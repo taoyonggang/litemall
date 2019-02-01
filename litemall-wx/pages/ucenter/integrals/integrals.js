@@ -63,50 +63,6 @@ Page({
   onUnload: function() {
     // 页面关闭
   },
-  openGoods(event) {
-
-    let that = this;
-    let index = event.currentTarget.dataset.index;
-    let goodsId = this.data.collectList[index].valueId;
-
-    //触摸时间距离页面打开的毫秒数  
-    var touchTime = that.data.touchEnd - that.data.touchStart;
-    console.log(touchTime);
-    //如果按下时间大于350为长按  
-    if (touchTime > 350) {
-      wx.showModal({
-        title: '',
-        content: '确定删除吗？',
-        success: function(res) {
-          if (res.confirm) {
-
-            util.request(api.CollectAddOrDelete, {
-              type: that.data.type,
-              valueId: goodsId
-            }, 'POST').then(function(res) {
-              if (res.errno === 0) {
-                console.log(res.data);
-                wx.showToast({
-                  title: '删除成功',
-                  icon: 'success',
-                  duration: 2000
-                });
-                that.data.collectList.splice(index, 1)
-                that.setData({
-                  collectList: that.data.collectList
-                });
-              }
-            });
-          }
-        }
-      })
-    } else {
-
-      wx.navigateTo({
-        url: '/pages/goods/goods?id=' + goodsId,
-      });
-    }
-  },
   //按下事件开始  
   touchStart: function(e) {
     let that = this;
