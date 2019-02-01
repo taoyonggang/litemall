@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-02-01 19:38:14
+Date: 2019-02-01 22:55:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -112,7 +112,7 @@ CREATE TABLE `litemall_cart` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='购物车商品表';
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='购物车商品表';
 
 -- ----------------------------
 -- Table structure for litemall_category
@@ -252,7 +252,7 @@ CREATE TABLE `litemall_footprint` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='用户浏览足迹表';
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COMMENT='用户浏览足迹表';
 
 -- ----------------------------
 -- Table structure for litemall_goods
@@ -280,6 +280,7 @@ CREATE TABLE `litemall_goods` (
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  `integral_limit` float NOT NULL DEFAULT '1' COMMENT '积分使用上限，默认为1，代表100%',
   PRIMARY KEY (`id`),
   KEY `goods_sn` (`goods_sn`),
   KEY `cat_id` (`category_id`),
@@ -381,12 +382,14 @@ DROP TABLE IF EXISTS `litemall_integrals`;
 CREATE TABLE `litemall_integrals` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL COMMENT '会员id,外键',
-  `action` varchar(100) CHARACTER SET latin1 DEFAULT NULL COMMENT '积分活动描述',
+  `action` varchar(100) DEFAULT NULL COMMENT '积分活动描述',
   `integral_do` int(11) NOT NULL DEFAULT '0' COMMENT '积分加减值',
   `order_id` int(11) DEFAULT NULL COMMENT '订单id',
-  `integral_limit` float NOT NULL COMMENT '积分使用上限，默认为1,100%',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='积分明细表';
+  `add_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `add_time` (`add_time`) USING BTREE,
+  KEY `user_id` (`user_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='积分明细表';
 
 -- ----------------------------
 -- Table structure for litemall_integral_rule
