@@ -85,4 +85,18 @@ public class LitemallIntegralsService {
         }
     }
 
+    public Integer queryTotalCount(Integer userId){
+
+        if (userId!=null && userId>=0) {
+            LitemallIntegralsExample example = new LitemallIntegralsExample();
+            LitemallIntegralsExample.Criteria criteria = example.createCriteria();
+            criteria.andUserIdEqualTo(userId);
+            Integer count = (int)integralsMapper.countByExample(example);
+            return count;
+        }else{
+            return 0;
+        }
+    }
+
+
 }

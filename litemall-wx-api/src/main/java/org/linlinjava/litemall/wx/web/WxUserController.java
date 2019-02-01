@@ -63,9 +63,13 @@ public class WxUserController {
             return ResponseUtil.unlogin();
         }
 
+        int count = litemallIntegralsService.queryTotalCount(userId);
+        int totalPages = (int) Math.ceil((double) count / size);
+
         Map<Object, Object> data = new HashMap<Object, Object>();
         data.put("integrals", litemallIntegralsService.queryIntegrals(userId,page,size,sort,order));
         data.put("integralSum", litemallIntegralsService.queryIntegralSum(userId));
+        data.put("totalPages", totalPages);
         return ResponseUtil.ok(data);
     }
 

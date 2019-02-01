@@ -8,14 +8,14 @@
 
   <view class="collect-list" wx:else>
     <view class="c">
-          <text>总积分:{{integralsum}}</text>
+          <text>总积分:{{integralSum}}</text>
     </view>
     <view class="item" bindtap="openGoods" bindtouchstart="touchStart" bindtouchend="touchEnd" wx:for="{{integrals}}" wx:key="id" data-index="{{index}}">
       
       <view class="info">
-        <view class="name">{{item.add_time}}</view>
+        <view class="subtitle">{{item.addTime}}</view>
         <view class="subtitle">{{item.action}}</view>
-        <view class="price">￥{{item.integral_do}}</view>
+        <view class="price">{{item.integralDo}}</view>
       </view>
     </view>
   </view>

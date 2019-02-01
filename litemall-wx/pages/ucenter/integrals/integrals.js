@@ -6,7 +6,7 @@ var app = getApp();
 Page({
   data: {
     type: 0,
-    integralsum,
+    integralSum: 0,
     integrals: [],
     page: 1,
     size: 10,
@@ -24,7 +24,7 @@ Page({
     }).then(function(res) {
       if (res.errno === 0) {
         that.setData({
-          integralsum: res.data.integralSum,
+          integralSum: res.data.integralSum,
           integrals: that.data.integrals.concat(res.data.integrals),
           totalPages: res.data.totalPages
         });
