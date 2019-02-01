@@ -1,27 +1,24 @@
--- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: litemall
--- ------------------------------------------------------
--- Server version	5.7.21-log
+/*
+Navicat MySQL Data Transfer
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+Source Server         : 127.0.0.1
+Source Server Version : 50725
+Source Host           : localhost:3306
+Source Database       : litemall
 
---
--- Table structure for table `litemall_ad`
---
+Target Server Type    : MYSQL
+Target Server Version : 50725
+File Encoding         : 65001
 
+Date: 2019-02-01 19:38:14
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for litemall_ad
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_ad`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(63) NOT NULL DEFAULT '' COMMENT '广告标题',
@@ -38,15 +35,11 @@ CREATE TABLE `litemall_ad` (
   PRIMARY KEY (`id`),
   KEY `enabled` (`enabled`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='广告表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_address`
---
-
+-- ----------------------------
+-- Table structure for litemall_address
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_address`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(63) NOT NULL DEFAULT '' COMMENT '收货人名称',
@@ -62,16 +55,12 @@ CREATE TABLE `litemall_address` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='收货地址表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COMMENT='收货地址表';
 
---
--- Table structure for table `litemall_admin`
---
-
+-- ----------------------------
+-- Table structure for litemall_admin
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_admin`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_admin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(63) NOT NULL DEFAULT '' COMMENT '管理员名称',
@@ -84,16 +73,12 @@ CREATE TABLE `litemall_admin` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   `role_ids` varchar(127) DEFAULT '[]' COMMENT '角色列表',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='管理员表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COMMENT='管理员表';
 
---
--- Table structure for table `litemall_brand`
---
-
+-- ----------------------------
+-- Table structure for litemall_brand
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_brand`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_brand` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL DEFAULT '' COMMENT '品牌商名称',
@@ -105,16 +90,12 @@ CREATE TABLE `litemall_brand` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1046003 DEFAULT CHARSET=utf8mb4 COMMENT='品牌商表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=1046001 DEFAULT CHARSET=utf8mb4 COMMENT='品牌商表';
 
---
--- Table structure for table `litemall_cart`
---
-
+-- ----------------------------
+-- Table structure for litemall_cart
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_cart`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_cart` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL COMMENT '用户表的用户ID',
@@ -131,16 +112,12 @@ CREATE TABLE `litemall_cart` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='购物车商品表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='购物车商品表';
 
---
--- Table structure for table `litemall_category`
---
-
+-- ----------------------------
+-- Table structure for litemall_category
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_category`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(63) NOT NULL DEFAULT '' COMMENT '类目名称',
@@ -156,16 +133,12 @@ CREATE TABLE `litemall_category` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `parent_id` (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=1036007 DEFAULT CHARSET=utf8mb4 COMMENT='类目表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=1036005 DEFAULT CHARSET=utf8mb4 COMMENT='类目表';
 
---
--- Table structure for table `litemall_collect`
---
-
+-- ----------------------------
+-- Table structure for litemall_collect
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_collect`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_collect` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
@@ -178,15 +151,11 @@ CREATE TABLE `litemall_collect` (
   KEY `user_id` (`user_id`),
   KEY `goods_id` (`value_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='收藏表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_comment`
---
-
+-- ----------------------------
+-- Table structure for litemall_comment
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_comment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `value_id` int(11) NOT NULL DEFAULT '0' COMMENT '如果type=0，则是商品评论；如果是type=1，则是专题评论。',
@@ -202,15 +171,11 @@ CREATE TABLE `litemall_comment` (
   PRIMARY KEY (`id`),
   KEY `id_value` (`value_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1012 DEFAULT CHARSET=utf8 COMMENT='评论表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_coupon`
---
-
+-- ----------------------------
+-- Table structure for litemall_coupon
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_coupon`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_coupon` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(63) NOT NULL COMMENT '优惠券名称',
@@ -233,16 +198,12 @@ CREATE TABLE `litemall_coupon` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='优惠券信息及规则表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COMMENT='优惠券信息及规则表';
 
---
--- Table structure for table `litemall_coupon_user`
---
-
+-- ----------------------------
+-- Table structure for litemall_coupon_user
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_coupon_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_coupon_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL COMMENT '用户ID',
@@ -256,16 +217,12 @@ CREATE TABLE `litemall_coupon_user` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COMMENT='优惠券用户使用表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='优惠券用户使用表';
 
---
--- Table structure for table `litemall_feedback`
---
-
+-- ----------------------------
+-- Table structure for litemall_feedback
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_feedback`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_feedback` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
@@ -282,15 +239,11 @@ CREATE TABLE `litemall_feedback` (
   PRIMARY KEY (`id`),
   KEY `id_value` (`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='意见反馈表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_footprint`
---
-
+-- ----------------------------
+-- Table structure for litemall_footprint
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_footprint`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_footprint` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户表的用户ID',
@@ -299,16 +252,12 @@ CREATE TABLE `litemall_footprint` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户浏览足迹表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='用户浏览足迹表';
 
---
--- Table structure for table `litemall_goods`
---
-
+-- ----------------------------
+-- Table structure for litemall_goods
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_goods`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `goods_sn` varchar(63) NOT NULL DEFAULT '' COMMENT '商品编号',
@@ -336,16 +285,12 @@ CREATE TABLE `litemall_goods` (
   KEY `cat_id` (`category_id`),
   KEY `brand_id` (`brand_id`),
   KEY `sort_order` (`sort_order`)
-) ENGINE=InnoDB AUTO_INCREMENT=1181004 DEFAULT CHARSET=utf8mb4 COMMENT='商品基本信息表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=1181001 DEFAULT CHARSET=utf8mb4 COMMENT='商品基本信息表';
 
---
--- Table structure for table `litemall_goods_attribute`
---
-
+-- ----------------------------
+-- Table structure for litemall_goods_attribute
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_goods_attribute`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_goods_attribute` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
@@ -357,15 +302,11 @@ CREATE TABLE `litemall_goods_attribute` (
   PRIMARY KEY (`id`),
   KEY `goods_id` (`goods_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=877 DEFAULT CHARSET=utf8mb4 COMMENT='商品参数表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_goods_product`
---
-
+-- ----------------------------
+-- Table structure for litemall_goods_product
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_goods_product`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_goods_product` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
@@ -377,16 +318,12 @@ CREATE TABLE `litemall_goods_product` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=251 DEFAULT CHARSET=utf8mb4 COMMENT='商品货品表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=248 DEFAULT CHARSET=utf8mb4 COMMENT='商品货品表';
 
---
--- Table structure for table `litemall_goods_specification`
---
-
+-- ----------------------------
+-- Table structure for litemall_goods_specification
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_goods_specification`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_goods_specification` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
@@ -398,16 +335,12 @@ CREATE TABLE `litemall_goods_specification` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `goods_id` (`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=250 DEFAULT CHARSET=utf8mb4 COMMENT='商品规格表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COMMENT='商品规格表';
 
---
--- Table structure for table `litemall_groupon`
---
-
+-- ----------------------------
+-- Table structure for litemall_groupon
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_groupon`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_groupon` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL COMMENT '关联的订单ID',
@@ -422,15 +355,11 @@ CREATE TABLE `litemall_groupon` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_groupon_rules`
---
-
+-- ----------------------------
+-- Table structure for litemall_groupon_rules
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_groupon_rules`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_groupon_rules` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `goods_id` int(11) NOT NULL COMMENT '商品表的商品ID',
@@ -444,15 +373,37 @@ CREATE TABLE `litemall_groupon_rules` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_issue`
---
+-- ----------------------------
+-- Table structure for litemall_integrals
+-- ----------------------------
+DROP TABLE IF EXISTS `litemall_integrals`;
+CREATE TABLE `litemall_integrals` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL COMMENT '会员id,外键',
+  `action` varchar(100) CHARACTER SET latin1 DEFAULT NULL COMMENT '积分活动描述',
+  `integral_do` int(11) NOT NULL DEFAULT '0' COMMENT '积分加减值',
+  `order_id` int(11) DEFAULT NULL COMMENT '订单id',
+  `integral_limit` float NOT NULL COMMENT '积分使用上限，默认为1,100%',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='积分明细表';
 
+-- ----------------------------
+-- Table structure for litemall_integral_rule
+-- ----------------------------
+DROP TABLE IF EXISTS `litemall_integral_rule`;
+CREATE TABLE `litemall_integral_rule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `create_rule` float NOT NULL DEFAULT '1' COMMENT '积分生成规则，1为消费一元生成1积分',
+  `delete_rule` float NOT NULL DEFAULT '0.1' COMMENT '积分核减规则，1积分等于0.1元',
+  `create_user` int(11) NOT NULL DEFAULT '500' COMMENT '注册赠送的积分数',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='积分加减规则表';
+
+-- ----------------------------
+-- Table structure for litemall_issue
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_issue`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_issue` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `question` varchar(255) DEFAULT NULL COMMENT '问题标题',
@@ -462,15 +413,11 @@ CREATE TABLE `litemall_issue` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COMMENT='常见问题表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_keyword`
---
-
+-- ----------------------------
+-- Table structure for litemall_keyword
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_keyword`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_keyword` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `keyword` varchar(127) NOT NULL DEFAULT '' COMMENT '关键字',
@@ -483,15 +430,11 @@ CREATE TABLE `litemall_keyword` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COMMENT='关键字表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_order`
---
-
+-- ----------------------------
+-- Table structure for litemall_order
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_order`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_order` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL COMMENT '用户表的用户ID',
@@ -520,16 +463,12 @@ CREATE TABLE `litemall_order` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='订单表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COMMENT='订单表';
 
---
--- Table structure for table `litemall_order_goods`
---
-
+-- ----------------------------
+-- Table structure for litemall_order_goods
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_order_goods`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_order_goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `order_id` int(11) NOT NULL DEFAULT '0' COMMENT '订单表的订单ID',
@@ -548,16 +487,12 @@ CREATE TABLE `litemall_order_goods` (
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   KEY `goods_id` (`goods_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='订单商品表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='订单商品表';
 
---
--- Table structure for table `litemall_permission`
---
-
+-- ----------------------------
+-- Table structure for litemall_permission
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_permission`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) DEFAULT NULL COMMENT '角色ID',
@@ -567,15 +502,11 @@ CREATE TABLE `litemall_permission` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COMMENT='权限表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_region`
---
-
+-- ----------------------------
+-- Table structure for litemall_region
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_region`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_region` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `pid` int(11) NOT NULL DEFAULT '0' COMMENT '行政区域父ID，例如区县的pid指向市，市的pid指向省，省的pid则是0',
@@ -587,15 +518,11 @@ CREATE TABLE `litemall_region` (
   KEY `region_type` (`type`),
   KEY `agency_id` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3232 DEFAULT CHARSET=utf8mb4 COMMENT='行政区域表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_role`
---
-
+-- ----------------------------
+-- Table structure for litemall_role
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_role`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(63) NOT NULL COMMENT '角色名称',
@@ -606,16 +533,12 @@ CREATE TABLE `litemall_role` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COMMENT='角色表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='角色表';
 
---
--- Table structure for table `litemall_search_history`
---
-
+-- ----------------------------
+-- Table structure for litemall_search_history
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_search_history`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_search_history` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL COMMENT '用户表的用户ID',
@@ -625,16 +548,12 @@ CREATE TABLE `litemall_search_history` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='搜索历史表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='搜索历史表';
 
---
--- Table structure for table `litemall_storage`
---
-
+-- ----------------------------
+-- Table structure for litemall_storage
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_storage`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_storage` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key` varchar(63) NOT NULL COMMENT '文件的唯一索引',
@@ -646,16 +565,12 @@ CREATE TABLE `litemall_storage` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='文件存储表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='文件存储表';
 
---
--- Table structure for table `litemall_system`
---
-
+-- ----------------------------
+-- Table structure for litemall_system
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_system`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_system` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `key_name` varchar(255) NOT NULL COMMENT '系统配置名',
@@ -665,15 +580,11 @@ CREATE TABLE `litemall_system` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='系统配置表';
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Table structure for table `litemall_topic`
---
-
+-- ----------------------------
+-- Table structure for litemall_topic
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_topic`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_topic` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL DEFAULT '''' COMMENT '专题标题',
@@ -689,16 +600,12 @@ CREATE TABLE `litemall_topic` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `topic_id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=319 DEFAULT CHARSET=utf8mb4 COMMENT='专题表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=315 DEFAULT CHARSET=utf8mb4 COMMENT='专题表';
 
---
--- Table structure for table `litemall_user`
---
-
+-- ----------------------------
+-- Table structure for litemall_user
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_user`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(63) NOT NULL COMMENT '用户名称',
@@ -716,18 +623,15 @@ CREATE TABLE `litemall_user` (
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  `integral` int(11) NOT NULL DEFAULT '0' COMMENT '会员积分汇总',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COMMENT='用户表';
 
---
--- Table structure for table `litemall_user_formid`
---
-
+-- ----------------------------
+-- Table structure for litemall_user_formid
+-- ----------------------------
 DROP TABLE IF EXISTS `litemall_user_formid`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `litemall_user_formid` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `formId` varchar(63) NOT NULL COMMENT '缓存的FormId',
@@ -740,15 +644,4 @@ CREATE TABLE `litemall_user_formid` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC;
-/*!40101 SET character_set_client = @saved_cs_client */;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
-
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2018-12-10 16:59:09
+SET FOREIGN_KEY_CHECKS=1;

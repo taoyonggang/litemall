@@ -174,5 +174,12 @@
         <table tableName="litemall_permission">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+        <!--增加积分相关-->
+        <table tableName="litemall_integrals">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="litemall_integral_rule">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>
