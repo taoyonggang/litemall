@@ -33,14 +33,14 @@ Page({
     });
   },
   onLoad: function(options) {
-    this.getCollectList();
+    this.getIntegrals();
   },
   onReachBottom() {
     if (this.data.totalPages > this.data.page) {
       this.setData({
         page: this.data.page + 1
       });
-      this.getCollectList();
+      this.getIntegrals();
     } else {
       wx.showToast({
         title: '没有更多用户积分记录了',

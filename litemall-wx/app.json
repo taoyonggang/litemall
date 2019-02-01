@@ -36,7 +36,8 @@
     "pages/groupon/myGroupon/myGroupon",
     "pages/groupon/grouponDetail/grouponDetail",
     "pages/groupon/grouponList/grouponList",
-    "pages/coupon/coupon"
+    "pages/coupon/coupon",
+    "pages/ucenter/integrals/integrals"
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",
@@ -75,6 +76,12 @@
         "iconPath": "static/images/my.png",
         "selectedIconPath": "static/images/my@selected.png",
         "text": "个人"
+      },
+      {
+        "pagePath": "pages/ucenter/integrals/integrals",
+        "iconPath": "static/images/my.png",
+        "selectedIconPath": "static/images/my@selected.png",
+        "text": "积分"
       }
     ]
   },
