@@ -40,7 +40,14 @@ page {
   font-size: 37.5rpx;
   margin-bottom: 10rpx;
 }
-
+.profile-info .integrals {
+  display: block;
+  height: 45rpx;
+  line-height: 45rpx;
+  color: #fff;
+  font-size: 30rpx;
+  margin-bottom: 10rpx;
+}
 .profile-info .level {
   display: block;
   height: 30rpx;

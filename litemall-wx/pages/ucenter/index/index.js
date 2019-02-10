@@ -15,7 +15,15 @@ Page({
       unrecv: 0,
       uncomment: 0
     },
-    hasLogin: false
+    hasLogin: false,
+    integral: {
+      type: 0,
+      integralSum: 0,
+      integrals: [],
+      page: 1,
+      size: 10,
+      totalPages: 1
+    }
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -42,6 +50,22 @@ Page({
         }
       });
     }
+      let that = this;
+      util.request(api.IntegralsIndex, {
+        type: that.data.integral.type,
+        page: that.data.integral.page,
+        size: that.data.integral.size
+      }).then(function (res) {
+        if (res.errno === 0) {
+          that.setData({
+            integrals: res.data,
+           // integrals: that.data.integrals.concat(res.data.integrals),
+           // totalPages: res.data.totalPages
+          });
+        }
+        wx.hideLoading();
+      });
+
 
   },
   onHide: function() {
@@ -111,6 +135,17 @@ Page({
         url: "/pages/auth/login/login"
       });
     };
+  },
+  goIntegral() {
+    if (this.data.hasLogin) {
+      wx.navigateTo({
+        url: "/pages/ucenter/integrals/integrals"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    }
   },
   goIntegrals() {
     if (this.data.hasLogin) {

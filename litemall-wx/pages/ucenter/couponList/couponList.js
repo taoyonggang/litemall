@@ -132,14 +132,15 @@ Page({
   nextPage: function(event) {
     var that = this;
     if (this.data.page > that.data.count / that.data.size) {
-      return true;
+      //return true;
+      that.setData({
+        page: that.data.page + 1
+      });
+
+      this.getCouponList();
     }
 
-    that.setData({
-      page: that.data.page + 1
-    });
-
-    this.getCouponList();
+    
 
   },
   prevPage: function(event) {

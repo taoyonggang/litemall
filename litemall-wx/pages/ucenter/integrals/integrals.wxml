@@ -1,23 +1,60 @@
 <view class="container">
-  <view class="no-collect" wx:if="{{integrals.length <= 0}}">
-    <view class="c">
-      <image src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/noCart-a8fe3f12e5.png" />
-      <text>还没有积分</text>
+  <view class="h">
+    <view class="item {{ status == 0 ? 'active' : ''}}" bindtap="switchTab" data-index="0">
+      <view class="txt">我的积分</view>
+    </view>
+    <view class="item {{ status == 1 ? 'active' : ''}}" bindtap="switchTab" data-index="1">
+      <view class="txt">积分记录</view>
+    </view>
+    <view class="item {{ status == 2 ? 'active' : ''}}" bindtap="switchTab" data-index="2">
+      <view class="txt">积分规则</view>
     </view>
   </view>
-
-  <view class="collect-list" wx:else>
-    <view class="c">
+  <view class="b">
+    <view class="integrals-form"  style="height:150rpx" wx:if="{{status == 0}}">
+      <view wx:if="{{integrals.length <= 0}}">
+        <text>还没有积分</text>
+      </view>
+      <view class="collect-list" style='border-top:1px' wx:else>
+        <view class="allintegral">
+       
           <text>总积分:{{integralSum}}</text>
-    </view>
-    <view class="item" bindtap="openGoods" bindtouchstart="touchStart" bindtouchend="touchEnd" wx:for="{{integrals}}" wx:key="id" data-index="{{index}}">
-      
-      <view class="info">
-        <view class="subtitle">{{item.addTime}}</view>
-        <view class="subtitle">{{item.action}}</view>
-        <view class="price">{{item.integralDo}}</view>
+          <view class="add-btn"><navigator url="/pages/topic/topic">去兑换</navigator></view>
+        </view>
+         
       </view>
     </view>
-  </view>
+    <view class="coupon-form" wx:if="{{status == 1}}">
+      <view class="input-box">
+        <input class="coupon-sn" placeholder="请输入关键字" value="{{code}}" bindinput="bindExchange"/>
+        <image class="clear-icon" wx:if="{{ code.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearExchange"></image>
+      </view>
+      <view class="add-btn" bindtap='goExchange'>查询</view>
+     
+    </view>
 
+    <view class="collect-list" wx:if="{{status == 1}}">
+      <scroll-view class="coupon-list" scroll-y="true" scroll-top="{{scrollTop}}">
+        <view class="items" bindtap="openGoods" bindtouchstart="touchStart" bindtouchend="touchEnd" wx:for="{{integrals}}" wx:key="id" data-index="{{index}}">
+          <view class='list'>
+            <view class="info">
+              <view class="action">{{item.action}}</view>
+              <view class="addTime">{{item.addTime}}</view>
+            </view>
+            <view class="integralDo" wx:if="{{item.integralDo >0}}" style="color:rgb(50, 247, 24)">+{{item.integralDo}}</view>
+            <view class="integralDo" wx:elif="{{item.integralDo <0}}">{{item.integralDo}}</view>
+          </view>
+        </view>
+        <view class="page" wx:if="{{showPage}}">
+          <view class="prev {{ totalPages <= 1 ? 'disabled' : ''}}" bindtap="prevPage">上一页</view>
+          <view class="next {{page < totalPages ? 'disabled' : ''}}" bindtap="nextPage">下一页</view>
+        </view>
+      </scroll-view>
+    </view>
+    <view class="coupon-form" wx:if="{{status == 2}}">
+      <view>暂定规则</view>
+    </view>
+
+
+  </view>
 </view>

@@ -9,13 +9,15 @@ Page({
     integralSum: 0,
     integrals: [],
     page: 1,
-    size: 10,
-    totalPages: 1
+    size: 6,
+    totalPages: 1,
+    scrollTop: 0,
+    showPage: false
   },
   getIntegrals() {
-    wx.showLoading({
-      title: '加载中...',
-    });
+    // wx.showLoading({
+    //   title: '加载中...',
+    // });
     let that = this;
     util.request(api.IntegralsIndex, {
       type: that.data.type,
@@ -26,7 +28,9 @@ Page({
         that.setData({
           integralSum: res.data.integralSum,
           integrals: that.data.integrals.concat(res.data.integrals),
-          totalPages: res.data.totalPages
+          totalPages: res.data.totalPages,
+          showPage: true,
+          scrollTop: 0,
         });
       }
       wx.hideLoading();
@@ -77,4 +81,44 @@ Page({
       touchEnd: e.timeStamp
     })
   },
+  switchTab: function (e) {
+
+    this.setData({
+      integrals: [],
+      status: e.currentTarget.dataset.index,
+      page: 1,
+      size: 6,
+      count: 0,
+      scrollTop: 0,
+      showPage: false
+    });
+
+    this.getIntegrals();
+  },
+  nextPage: function (event) {
+    var that = this;
+    if (this.data.totalPages > this.data.page) {
+      //return true;
+
+      that.setData({
+        page: that.data.page + 1
+      });
+
+      this.getIntegrals();
+    }
+
+
+  },
+  prevPage: function (event) {
+    if (this.data.page <= 1) {
+      return false;
+    }
+
+    var that = this;
+    that.setData({
+      page: that.data.page - 1
+    });
+    this.getIntegrals();
+  },
+ 
 })

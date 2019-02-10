@@ -14,6 +14,7 @@
     "pages/ucenter/couponList/couponList",
     "pages/ucenter/couponSelect/couponSelect",
     "pages/ucenter/collect/collect",
+    "pages/ucenter/integrals/integrals",
     "pages/auth/login/login",
     "pages/auth/accountLogin/accountLogin",
     "pages/auth/register/register",
@@ -36,8 +37,8 @@
     "pages/groupon/myGroupon/myGroupon",
     "pages/groupon/grouponDetail/grouponDetail",
     "pages/groupon/grouponList/grouponList",
-    "pages/coupon/coupon",
-    "pages/ucenter/integrals/integrals"
+    "pages/coupon/coupon"
+    
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",
@@ -76,12 +77,6 @@
         "iconPath": "static/images/my.png",
         "selectedIconPath": "static/images/my@selected.png",
         "text": "个人"
-      },
-      {
-        "pagePath": "pages/ucenter/integrals/integrals",
-        "iconPath": "static/images/my.png",
-        "selectedIconPath": "static/images/my@selected.png",
-        "text": "积分"
       }
     ]
   },
