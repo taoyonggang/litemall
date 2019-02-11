@@ -45,10 +45,10 @@
             <view class="integralDo" wx:elif="{{item.integralDo <0}}">{{item.integralDo}}</view>
           </view>
         </view>
-        <view class="page" wx:if="{{showPage}}">
+        <!-- <view class="page" wx:if="{{showPage}}">
           <view class="prev {{ totalPages <= 1 ? 'disabled' : ''}}" bindtap="prevPage">上一页</view>
           <view class="next {{page < totalPages ? 'disabled' : ''}}" bindtap="nextPage">下一页</view>
-        </view>
+        </view> -->
       </scroll-view>
     </view>
     <view class="coupon-form" wx:if="{{status == 2}}">

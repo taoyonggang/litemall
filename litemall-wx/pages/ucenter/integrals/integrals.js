@@ -6,13 +6,15 @@ var app = getApp();
 Page({
   data: {
     type: 0,
+    status: 0,
     integralSum: 0,
     integrals: [],
     page: 1,
-    size: 6,
+    size: 8,
     totalPages: 1,
     scrollTop: 0,
-    showPage: false
+    showPage: false,
+    hasMoreData: true,
   },
   getIntegrals() {
     // wx.showLoading({
@@ -38,6 +40,12 @@ Page({
   },
   onLoad: function(options) {
     this.getIntegrals();
+  },
+  onPullDownRefresh() {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    this.getIntegrals();
+    wx.hideNavigationBarLoading() //完成停止加载
+    wx.stopPullDownRefresh() //停止下拉刷新
   },
   onReachBottom() {
     if (this.data.totalPages > this.data.page) {
@@ -81,13 +89,13 @@ Page({
       touchEnd: e.timeStamp
     })
   },
-  switchTab: function (e) {
+  switchTab: function(e) {
 
     this.setData({
       integrals: [],
       status: e.currentTarget.dataset.index,
       page: 1,
-      size: 6,
+      size: 8,
       count: 0,
       scrollTop: 0,
       showPage: false
@@ -95,7 +103,7 @@ Page({
 
     this.getIntegrals();
   },
-  nextPage: function (event) {
+  nextPage: function(event) {
     var that = this;
     if (this.data.totalPages > this.data.page) {
       //return true;
@@ -109,7 +117,7 @@ Page({
 
 
   },
-  prevPage: function (event) {
+  prevPage: function(event) {
     if (this.data.page <= 1) {
       return false;
     }
@@ -120,5 +128,7 @@ Page({
     });
     this.getIntegrals();
   },
- 
+  
+
+
 })
