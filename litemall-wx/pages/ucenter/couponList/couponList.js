@@ -55,14 +55,30 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function() {
-
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    this.getCouponList();
+    wx.hideNavigationBarLoading() //完成停止加载
+    wx.stopPullDownRefresh() //停止下拉刷新
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function() {
-
+    var that = this;
+    if (this.data.page > that.data.count / that.data.size) {
+      this.setData({
+        page: this.data.page + 1
+      });
+      this.getCouponList();
+    } else {
+      wx.showToast({
+        title: '没有更多优惠券了',
+        icon: 'none',
+        duration: 2000
+      });
+      return false;
+    }
   },
 
   /**

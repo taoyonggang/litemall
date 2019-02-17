@@ -39,3 +39,11 @@ export function deleteTopic(data) {
     data
   })
 }
+
+export function createCode(data) {
+  return request({
+    url: '/topic/createCode',
+    method: 'post',
+    data
+  })
+}

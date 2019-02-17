@@ -20,6 +20,11 @@
             <template slot="append">元</template>
           </el-input>
         </el-form-item>
+        <el-form-item label="积分兑换" prop="retailPrice">
+          <el-input v-model="goods.integrals" placeholder="0">
+            <template slot="append">分</template>
+          </el-input>
+        </el-form-item>
         <el-form-item label="是否新品" prop="isNew">
           <el-radio-group v-model="goods.isNew">
             <el-radio :label="true">新品</el-radio>

@@ -102,33 +102,5 @@ Page({
     });
 
     this.getIntegrals();
-  },
-  nextPage: function(event) {
-    var that = this;
-    if (this.data.totalPages > this.data.page) {
-      //return true;
-
-      that.setData({
-        page: that.data.page + 1
-      });
-
-      this.getIntegrals();
-    }
-
-
-  },
-  prevPage: function(event) {
-    if (this.data.page <= 1) {
-      return false;
-    }
-
-    var that = this;
-    that.setData({
-      page: that.data.page - 1
-    });
-    this.getIntegrals();
-  },
-  
-
-
+  }
 })

@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.linlinjava.litemall.admin.annotation.RequiresPermissionsDesc;
+import org.linlinjava.litemall.admin.util.QRCodeUtil;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
@@ -102,6 +103,25 @@ public class AdminTopicController {
     public Object delete(@RequestBody LitemallTopic topic) {
         topicService.deleteById(topic.getId());
         return ResponseUtil.ok();
+    }
+
+    @RequiresPermissions("admin:topic:createCode")
+    @RequiresPermissionsDesc(menu={"推广管理" , "专题管理"}, button="生成二维码")
+    @PostMapping("/createCode")
+    public Object createCode(@RequestBody LitemallTopic topic) throws Exception {
+        topic = topicService.findById(topic.getId());
+        topic.setCodeurl("/topicDetail/topicDetail?id="+topic.getId());
+        Object error = validate(topic);
+        if (error != null) {
+            return error;
+        }
+        if (topicService.updateById(topic) == 0) {
+            return ResponseUtil.updatedDataFailed();
+        }
+        String text = "http://www.1897.com/";
+        //QRCodeUtil.encode(text,"", "D:/barcode",true);
+        QRCodeUtil.encode(text, topic.getCodeurl(), "D:/barcode", true);
+        return ResponseUtil.ok(topic);
     }
 
 }

@@ -39,6 +39,7 @@
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
           <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button type="warning" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -120,7 +121,7 @@
 </style>
 
 <script>
-import { listTopic, createTopic, updateTopic, deleteTopic } from '@/api/topic'
+import { listTopic, createTopic, updateTopic, deleteTopic, createCode } from '@/api/topic'
 import { createStorage, uploadPath } from '@/api/storage'
 import BackToTop from '@/components/BackToTop'
 import Editor from '@tinymce/tinymce-vue'
@@ -316,6 +317,23 @@ export default {
           this.$notify.success({
             title: '成功',
             message: '删除专题成功'
+          })
+          const index = this.list.indexOf(row)
+          this.list.splice(index, 1)
+        })
+        .catch(response => {
+          this.$notify.error({
+            title: '失败',
+            message: response.data.errmsg
+          })
+        })
+    },
+    handleCreateCode(row) {
+      createCode(row)
+        .then(response => {
+          this.$notify.success({
+            title: '成功',
+            message: '生成二维码成功'
           })
           const index = this.list.indexOf(row)
           this.list.splice(index, 1)
