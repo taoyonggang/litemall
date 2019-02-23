@@ -14,6 +14,7 @@ import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.util.bcrypt.BCryptPasswordEncoder;
 import org.linlinjava.litemall.db.domain.LitemallUser;
 import org.linlinjava.litemall.db.service.CouponAssignService;
+import org.linlinjava.litemall.db.service.LitemallIntegralsService;
 import org.linlinjava.litemall.db.service.LitemallUserService;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.linlinjava.litemall.wx.dao.UserInfo;
@@ -30,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -58,6 +60,11 @@ public class WxAuthController {
 
     @Autowired
     private CouponAssignService couponAssignService;
+
+    @Autowired
+    private LitemallIntegralsService integralsService;
+
+
 
     /**
      * 账号登录
@@ -151,6 +158,9 @@ public class WxAuthController {
 
             // 新用户发送注册优惠券
             couponAssignService.assignForRegister(user.getId());
+            //新注册用户需要增加500积分
+            integralsService.addIntegral("新用户注册",500,user.getId());
+
         } else {
             user.setLastLoginTime(LocalDateTime.now());
             user.setLastLoginIp(IpUtil.client(request));
@@ -298,6 +308,9 @@ public class WxAuthController {
 
         // 给新用户发送注册优惠券
         couponAssignService.assignForRegister(user.getId());
+
+        //新注册用户需要增加500积分
+        integralsService.addIntegral("新用户注册",500,user.getId());
 
         // userInfo
         UserInfo userInfo = new UserInfo();

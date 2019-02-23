@@ -5,11 +5,14 @@ import org.linlinjava.litemall.db.dao.LitemallIntegralsMapper;
 import org.linlinjava.litemall.db.dao.LitemallUserMapper;
 import org.linlinjava.litemall.db.domain.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 import java.util.List;
+
+import static java.time.LocalDateTime.now;
 
 @Service
 public class LitemallIntegralsService {
@@ -96,6 +99,30 @@ public class LitemallIntegralsService {
         }else{
             return 0;
         }
+    }
+
+    /**
+     * 增加积分记录
+     * @param action
+     * @param InteggralDo
+     * @param userId
+     * @return
+     */
+    @Transactional
+    public Integer addIntegral(String action,Integer InteggralDo, Integer userId) {
+
+        LitemallUser user = userService.findById(userId);
+        if (user!=null) {
+            user.setIntegral(user.getIntegral()+InteggralDo);
+            userService.updateById(user);
+            LitemallIntegrals record = new LitemallIntegrals();
+            record.setAction(action);
+            record.setUserId(userId);
+            record.setIntegralDo(InteggralDo);
+            record.setAddTime(now());
+            return integralsMapper.insert(record);
+        }
+        return -1;
     }
 
 

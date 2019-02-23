@@ -2,6 +2,7 @@ package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
 import org.linlinjava.litemall.db.dao.LitemallUserMapper;
+import org.linlinjava.litemall.db.domain.LitemallIntegrals;
 import org.linlinjava.litemall.db.domain.LitemallUser;
 import org.linlinjava.litemall.db.domain.LitemallUserExample;
 import org.linlinjava.litemall.db.domain.UserVo;
@@ -16,6 +17,7 @@ import java.util.List;
 public class LitemallUserService {
     @Resource
     private LitemallUserMapper userMapper;
+
 
     public LitemallUser findById(Integer userId) {
         return userMapper.selectByPrimaryKey(userId);
