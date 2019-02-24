@@ -73,7 +73,7 @@ public class WxActivityController {
      * @return
      */
     @GetMapping("addActivityUser")
-    public int addActivityUser(@RequestParam(defaultValue = "-1") Integer activityId,
+    public Object addActivityUser(@RequestParam(defaultValue = "-1") Integer activityId,
                                @RequestParam(defaultValue = "-1") Integer promoterId,
                                @RequestParam(defaultValue = "-1") Integer userId,
                                @RequestParam(defaultValue = "线下推广") String orign
@@ -84,7 +84,13 @@ public class WxActivityController {
         activity.setUserId(userId);
         activity.setAddTime(now());
         activity.setOrign(orign);
-        return activityService.add(activity);
+        int result = activityService.add(activity);
+
+        Map<String, Object> data = new HashMap<String, Object>();
+        if (result>0) {
+            data.put("result", result);
+        }
+        return ResponseUtil.ok(data);
     }
 
 
