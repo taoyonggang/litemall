@@ -23,6 +23,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
     <result column="integral" jdbcType="INTEGER" property="integral" />
+    <result column="grade" jdbcType="INTEGER" property="grade" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -97,7 +98,7 @@
     -->
     id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
     nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
-    integral
+    integral, grade
   </sql>
   <select id="selectByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallUserExample" resultMap="BaseResultMap">
     <!--
@@ -136,7 +137,7 @@
       <otherwise>
         id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
           nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
-          integral
+          integral, grade
       </otherwise>
     </choose>
     from litemall_user
@@ -197,7 +198,7 @@
       <otherwise>
         id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
           nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
-          integral
+          integral, grade
       </otherwise>
     </choose>
     from litemall_user
@@ -234,13 +235,13 @@
       user_level, nickname, mobile, 
       avatar, weixin_openid, `status`, 
       add_time, update_time, deleted, 
-      integral)
+      integral, grade)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
       #{birthday,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, 
       #{userLevel,jdbcType=TINYINT}, #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
       #{avatar,jdbcType=VARCHAR}, #{weixinOpenid,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, 
-      #{integral,jdbcType=INTEGER})
+      #{integral,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="org.linlinjava.litemall.db.domain.LitemallUser">
     <!--
@@ -300,6 +301,9 @@
       <if test="integral != null">
         integral,
       </if>
+      <if test="grade != null">
+        grade,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="username != null">
@@ -349,6 +353,9 @@
       </if>
       <if test="integral != null">
         #{integral,jdbcType=INTEGER},
+      </if>
+      <if test="grade != null">
+        #{grade,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -420,6 +427,9 @@
       <if test="record.integral != null">
         integral = #{record.integral,jdbcType=INTEGER},
       </if>
+      <if test="record.grade != null">
+        grade = #{record.grade,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -447,7 +457,8 @@
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=BIT},
-      integral = #{record.integral,jdbcType=INTEGER}
+      integral = #{record.integral,jdbcType=INTEGER},
+      grade = #{record.grade,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -507,6 +518,9 @@
       <if test="integral != null">
         integral = #{integral,jdbcType=INTEGER},
       </if>
+      <if test="grade != null">
+        grade = #{grade,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -531,7 +545,8 @@
       add_time = #{addTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT},
-      integral = #{integral,jdbcType=INTEGER}
+      integral = #{integral,jdbcType=INTEGER},
+      grade = #{grade,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallUserExample" resultMap="BaseResultMap">
@@ -567,7 +582,7 @@
       <otherwise>
         id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
           nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
-          integral
+          integral, grade
       </otherwise>
     </choose>
     from litemall_user

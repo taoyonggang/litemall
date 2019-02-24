@@ -181,5 +181,12 @@
         <table tableName="litemall_integral_rule">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
+        <!--活动追踪-->
+        <table tableName="litemall_activity">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="litemall_usergrade">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
     </context>
 </generatorConfiguration>
