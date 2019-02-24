@@ -106,8 +106,11 @@ public class WxActivityController {
 
     @GetMapping("listActivity")
     public Object listActivity(@RequestParam(defaultValue = "-1") Integer activityId,
-                               @RequestParam(defaultValue = "-1") Integer userId
+                               @LoginUser Integer userId
     ){
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
         LitemallTopic topic = topicService.findById(activityId);
         Map<String, Object> data = new HashMap<String, Object>();
         data.put("activityId", activityId);
