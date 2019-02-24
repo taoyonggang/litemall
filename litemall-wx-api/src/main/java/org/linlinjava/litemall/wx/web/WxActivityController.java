@@ -19,12 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.time.LocalDateTime;
+import java.util.*;
 
 import static java.time.LocalDateTime.now;
+
 
 /**
  * 专题服务
@@ -78,6 +77,16 @@ public class WxActivityController {
                                @RequestParam(defaultValue = "-1") Integer userId,
                                @RequestParam(defaultValue = "线下推广") String orign
                                ){
+
+        Map<String, Object> data = new HashMap<String, Object>();
+        int count = activityService.queryActivityCount(activityId,userId);
+        //曾参加，返回0，不能重新加入
+        if (count>0){
+            data.put("result", 0);
+            return ResponseUtil.ok(data);
+        }
+
+        //未曾参加，加入活动记录
         LitemallActivity activity =  new LitemallActivity();
         activity.setActivityId(activityId);
         activity.setPromoterId(promoterId);
@@ -85,13 +94,51 @@ public class WxActivityController {
         activity.setAddTime(now());
         activity.setOrign(orign);
         int result = activityService.add(activity);
-
-        Map<String, Object> data = new HashMap<String, Object>();
         if (result>0) {
-            data.put("result", result);
+            data.put("result", 1);
         }
         return ResponseUtil.ok(data);
     }
+
+    @GetMapping("listActivity")
+    public Object listActivity(@RequestParam(defaultValue = "-1") Integer activityId,
+                               @RequestParam(defaultValue = "-1") Integer userId
+    ){
+        LitemallTopic topic = topicService.findById(activityId);
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("activityId", activityId);
+        if (topic!=null){
+            //活动是否过期
+            LocalDateTime now = now();
+            if (topic.getEndTime()!=null&&(now.compareTo(topic.getEndTime())>0)){
+                int count = activityService.queryActivityCount(activityId,userId);
+                data.put("endTime", topic.getEndTime());
+                //活动状态，1为活动，0为过期
+                data.put("actived",1);
+                //大于0就签到过
+                data.put("joinCount",count);
+                //总体返回结果，1为正常
+                if (count>0) data.put("result",0);
+                else data.put("result",1);
+            }else{//活动过期
+                data.put("endTime", topic.getEndTime());
+                data.put("actived",0);
+                //大于0就签到过
+                data.put("joinCount",0);
+                //总体返回结果，1为正常
+                data.put("result",0);
+            }
+        }else{//不存在活动
+            LocalDateTime now = now();
+            data.put("endTime", now);
+            data.put("actived",0);
+            data.put("joinCount",0);
+            data.put("result",0);
+        }
+        return ResponseUtil.ok(data);
+    }
+
+
 
 
 }
