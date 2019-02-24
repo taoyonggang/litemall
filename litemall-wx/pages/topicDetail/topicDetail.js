@@ -10,7 +10,9 @@ Page({
     topicList: [],
     commentCount: 0,
     commentList: [],
-    topicGoods: []
+    topicGoods: [],
+    pageBackgroundColor: '#c79935',
+    checkstatus: "签到",
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -84,5 +86,48 @@ Page({
   onUnload: function() {
     // 页面关闭
 
-  }
+  },
+  clearCheckIn: function () {
+    this.setData({
+      code: ''
+    });
+  },
+  goCheckIn: function () {
+    let that = this;
+    // util.request(api.CouponExchange, {
+    //   code: that.data.code
+    // }, 'POST').then(function (res) {
+    //   if (res.errno === 0) {
+    //     that.clearCheckIn();
+    this.setData({
+      pageBackgroundColor: '#35c735',
+      checkstatus: "签到成功"
+    });
+        wx.showToast({
+          title: "签到成功",
+          duration: 2000
+        })
+     
+    if (this.data.checkstatus == '签到成功'){
+        wx.showToast({
+          title: "已签到",
+          duration: 2000
+        })
+      }
+    //   }
+    //   else {
+    //     util.showErrorToast(res.errmsg);
+    //   }
+    // });
+  },
+  shareCode:function(){
+    wx.reLaunch({
+      url: '/pages/qrcode/qrcode'
+    });
+    return {
+      title: '生成分享二维码',
+      desc: '生成分享二维码',
+      path: '/pages/qrcode/qrcode'
+    }
+  },
 })

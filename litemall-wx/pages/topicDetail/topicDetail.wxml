@@ -1,12 +1,15 @@
 <scroll-view class="container">
   <scroll-view class="content">
+  <view class="goods_name_right" bindtap="shareCode">生成分享二维码</view>
     <import src="../../lib/wxParse/wxParse.wxml" />
     <template is="wxParse" data="{{wxParseData:topicDetail.nodes}}" />
+    <view  class="add-btn" style="background-color:{{pageBackgroundColor}}" bindtap='goCheckIn'>{{checkstatus}}</view>
+    <view  class="add-btn-out"  bindtap='goCheckIn'>退出</view>
   </scroll-view>
   <scroll-view class="sv-goods" wx:if="{{topicGoods.length > 0 }}">
     <view class="topic-goods">
       <view class="h">
-        <text class="t">专题商品</text>
+        <text class="t">活动产品</text>
         <image bindtap="postComment" class="i" src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/comment-add-2aca147c3f.png"></image>
       </view>
       <view class="b">
@@ -25,7 +28,7 @@
       </view>
     </view>
   </scroll-view>
-  <scroll-view class="comments">
+  <!-- <scroll-view class="comments">
     <view class="h">
       <text class="t">精选留言</text>
       <image bindtap="postComment" class="i" src="http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/comment-add-2aca147c3f.png"></image>
@@ -55,10 +58,10 @@
         <text class="txt">等你来留言</text>
       </view>
     </view>
-  </scroll-view>
-  <scroll-view class="rec-box">
+  </scroll-view> -->
+  <!-- <scroll-view class="rec-box">
     <view class="h">
-      <text class="txt">专题推荐</text>
+      <text class="txt">历史活动</text>
     </view>
     <view class="b">
       <navigator class="item" wx:for="{{topicList}}" wx:key="id" url="../topicDetail/topicDetail?id={{item.id}}">
@@ -66,5 +69,5 @@
         <text class="title">{{item.title}}</text>
       </navigator>
     </view>
-  </scroll-view>
+  </scroll-view> -->
 </scroll-view>

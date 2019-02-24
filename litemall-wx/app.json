@@ -37,12 +37,13 @@
     "pages/groupon/myGroupon/myGroupon",
     "pages/groupon/grouponDetail/grouponDetail",
     "pages/groupon/grouponList/grouponList",
-    "pages/coupon/coupon"
+    "pages/coupon/coupon",
+    "pages/qrcode/qrcode"
     
   ],
   "window": {
     "navigationBarBackgroundColor": "#FFFFFF",
-    "navigationBarTitleText": "litemall小程序商城",
+    "navigationBarTitleText": "商城",
     "enablePullDownRefresh": true,
     "navigationBarTextStyle": "black",
     "backgroundColor": "#FFFFFF",
