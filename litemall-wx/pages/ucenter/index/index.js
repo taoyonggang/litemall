@@ -147,6 +147,17 @@ Page({
       });
     }
   },
+  goEventCheckIn() {
+    if (this.data.hasLogin) {
+      wx.navigateTo({
+        url: "/pages/eventCheckIn/eventCheckIn"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    }
+  },
   goIntegrals() {
     if (this.data.hasLogin) {
       wx.navigateTo({
