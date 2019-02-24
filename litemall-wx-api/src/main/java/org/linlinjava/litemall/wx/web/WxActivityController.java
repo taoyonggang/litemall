@@ -11,6 +11,7 @@ import org.linlinjava.litemall.db.domain.LitemallTopic;
 import org.linlinjava.litemall.db.service.LitemallActivityService;
 import org.linlinjava.litemall.db.service.LitemallGoodsService;
 import org.linlinjava.litemall.db.service.LitemallTopicService;
+import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -73,11 +74,14 @@ public class WxActivityController {
      * @return
      */
     @GetMapping("addActivityUser")
-    public Object addActivityUser(@RequestParam(defaultValue = "-1") Integer activityId,
-                               @RequestParam(defaultValue = "-1") Integer promoterId,
-                               @RequestParam(defaultValue = "-1") Integer userId,
-                               @RequestParam(defaultValue = "线下推广") String orign
+    public Object addActivityUser(@LoginUser Integer userId, @RequestParam(defaultValue = "-1") Integer activityId,
+                                  @RequestParam(defaultValue = "-1") Integer promoterId,
+                                  //@RequestParam(defaultValue = "-1") Integer userId,
+                                  @RequestParam(defaultValue = "线下推广") String orign
                                ){
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
         LitemallActivity activity =  new LitemallActivity();
         activity.setActivityId(activityId);
         activity.setPromoterId(promoterId);
