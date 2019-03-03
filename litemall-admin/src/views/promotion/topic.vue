@@ -31,9 +31,11 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="底价" prop="price"/>
+      <!-- <el-table-column align="center" label="底价" prop="price"/> -->
 
       <el-table-column align="center" label="阅读数量" prop="readCount"/>
+
+      <el-table-column align="center" label="发布人" prop="mgrUserid"/>
 
       <el-table-column align="center" label="操作" min-width="200" class-name="small-padding fixed-width">
         <template slot-scope="scope">
@@ -74,11 +76,14 @@
         <el-form-item style="width: 700px;" label="专题内容">
           <editor :init="editorInit" v-model="dataForm.content"/>
         </el-form-item>
-        <el-form-item label="商品低价" prop="price">
+        <!-- <el-form-item label="商品低价" prop="price">
           <el-input v-model="dataForm.price"/>
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item label="阅读量" prop="readCount">
           <el-input v-model="dataForm.readCount"/>
+        </el-form-item>
+        <el-form-item label="发布人" prop="mgrUserid">
+          <el-input v-model="dataForm.mgrUserid"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">

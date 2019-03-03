@@ -100,5 +100,7 @@ module.exports = {
   UserIndex: WxApiRoot + 'user/index', //个人页面用户相关信息
 
   IntegralsIndex: WxApiRoot + 'user/integrals', //个人积分相关信息
-  
+
+  CheckIn: WxApiRoot + 'activity/addActivityUser', //个人积分相关信息
+  SelectActivity: WxApiRoot + 'activity/listActivity',
 };

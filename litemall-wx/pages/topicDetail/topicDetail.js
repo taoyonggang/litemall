@@ -13,14 +13,28 @@ Page({
     topicGoods: [],
     pageBackgroundColor: '#c79935',
     checkstatus: "签到",
+    activityId:0,
+    promoterId:0,
+    userId:0,
+    userInfo: {
+      id:0,
+      nickName: 'test',
+      avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
+    },
+
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
     that.setData({
-      id: options.id
+      id: options.id,
+      activityId: options.activityId
     });
-
+    if (options.promoterId !== undefined) {
+      that.setData({
+        promoterId: options.promoterId
+      });
+    } 
     util.request(api.TopicDetail, {
       id: that.data.id
     }).then(function(res) {
@@ -94,32 +108,53 @@ Page({
   },
   goCheckIn: function () {
     let that = this;
-    // util.request(api.CouponExchange, {
-    //   code: that.data.code
-    // }, 'POST').then(function (res) {
-    //   if (res.errno === 0) {
-    //     that.clearCheckIn();
-    this.setData({
-      pageBackgroundColor: '#35c735',
-      checkstatus: "签到成功"
-    });
-        wx.showToast({
-          title: "签到成功",
-          duration: 2000
-        })
-     
-    if (this.data.checkstatus == '签到成功'){
-        wx.showToast({
-          title: "已签到",
-          duration: 2000
+    util.request(api.SelectActivity, {
+      activityId: that.data.id,
+    }, 'GET').then(function (res) {
+      res = res.data;
+      if (res.result == 0){
+        if (res.joinCount > 0) {
+          wx.showToast({
+            title: "已签到过",
+            duration: 2000
+          })
+        } else if (res.actived == 0) {
+          wx.showToast({
+            title: "活动过期",
+            duration: 2000
+          })
+        } 
+      }
+      else if (res.result == 1) {
+        util.request(api.CheckIn, {
+          activityId: that.data.id,
+          promoterId: that.data.promoterId,
+          orign: "线下推广"
+        }, 'GET').then(function (res) {
+          if (res.errno === 0) {
+            that.clearCheckIn();
+            that.setData({
+              pageBackgroundColor: '#35c735',
+              checkstatus: "签到成功"
+            });
+            wx.showToast({
+              title: "签到成功",
+              duration: 2000
+            })
+
+            if (that.data.checkstatus == '签到成功') {
+              wx.showToast({
+                title: "已签到",
+                duration: 2000
+              })
+            }
+          }
         })
       }
-    //   }
-    //   else {
-    //     util.showErrorToast(res.errmsg);
-    //   }
-    // });
-  },
+
+    })
+
+ },
   shareCode:function(){
     wx.reLaunch({
       url: '/pages/qrcode/qrcode'
@@ -130,4 +165,9 @@ Page({
       path: '/pages/qrcode/qrcode'
     }
   },
+  goOut:function(){
+    wx.reLaunch({
+      url: '/pages/index/index'
+    });
+  }
 })
