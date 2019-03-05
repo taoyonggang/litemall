@@ -41,7 +41,7 @@
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
           <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
-          <el-button type="warning" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button>
+          <!-- <el-button type="warning" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button> -->
         </template>
       </el-table-column>
     </el-table>

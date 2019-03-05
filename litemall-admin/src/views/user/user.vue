@@ -16,6 +16,8 @@
 
       <el-table-column align="center" label="用户名" prop="username"/>
 
+      <el-table-column align="center" label="昵称" prop="nickname"/>
+
       <el-table-column align="center" label="手机号码" prop="mobile"/>
 
       <el-table-column align="center" label="性别" prop="gender">
