@@ -327,7 +327,7 @@ export const asyncRouterMap = [
         name: 'topic',
         meta: {
           perms: ['GET /admin/topic/list', 'POST /admin/topic/create', 'GET /admin/topic/read', 'POST /admin/topic/update', 'POST /admin/topic/delete'],
-          title: '专题管理',
+          title: '活动管理',
           noCache: true
         }
       },

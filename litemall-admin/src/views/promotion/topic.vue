@@ -3,18 +3,18 @@
 
     <!-- 查询和其他操作 -->
     <div class="filter-container">
-      <el-input v-model="listQuery.title" clearable class="filter-item" style="width: 200px;" placeholder="请输入专题标题"/>
-      <el-input v-model="listQuery.subtitle" clearable class="filter-item" style="width: 200px;" placeholder="请输入专题子标题"/>
+      <el-input v-model="listQuery.title" clearable class="filter-item" style="width: 200px;" placeholder="请输入活动名称"/>
+      <el-input v-model="listQuery.subtitle" clearable class="filter-item" style="width: 200px;" placeholder="请输入活动所属区域"/>
       <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
+      <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加活动</el-button>
       <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">导出</el-button>
     </div>
 
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" size="small" element-loading-text="正在查询中。。。" border fit highlight-current-row>
-      <el-table-column align="center" label="专题标题" prop="title"/>
+      <el-table-column align="center" label="活动名称" prop="title"/>
 
-      <el-table-column align="center" label="专题子标题" min-width="200" prop="subtitle"/>
+      <el-table-column align="center" label="活动区域" min-width="200" prop="subtitle"/>
 
       <el-table-column align="center" property="picUrl" label="图片">
         <template slot-scope="scope">
@@ -22,16 +22,16 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="专题详情" prop="content">
+      <el-table-column align="center" label="活动详情" prop="content">
         <template slot-scope="scope">
-          <el-dialog :visible.sync="contentDialogVisible" title="专题详情">
+          <el-dialog :visible.sync="contentDialogVisible" title="活动详情">
             <div v-html="contentDetail"/>
           </el-dialog>
           <el-button type="primary" size="mini" @click="showContent(scope.row.content)">查看</el-button>
         </template>
       </el-table-column>
 
-      <!-- <el-table-column align="center" label="底价" prop="price"/> -->
+      <el-table-column align="center" label="底价" prop="price"/>
 
       <el-table-column align="center" label="阅读数量" prop="readCount"/>
 
@@ -55,13 +55,13 @@
     <!-- 添加或修改对话框 -->
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="dataForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
-        <el-form-item label="专题标题" prop="title">
+        <el-form-item label="活动名称" prop="title">
           <el-input v-model="dataForm.title"/>
         </el-form-item>
-        <el-form-item label="专题子标题" prop="subtitle">
+        <el-form-item label="活动区域" prop="subtitle">
           <el-input v-model="dataForm.subtitle"/>
         </el-form-item>
-        <el-form-item label="专题图片" prop="picUrl">
+        <el-form-item label="活动图片" prop="picUrl">
           <el-upload
             :headers="headers"
             :action="uploadPath"
@@ -73,18 +73,18 @@
             <i v-else class="el-icon-plus avatar-uploader-icon"/>
           </el-upload>
         </el-form-item>
-        <el-form-item style="width: 700px;" label="专题内容">
+        <el-form-item style="width: 700px;" label="活动内容">
           <editor :init="editorInit" v-model="dataForm.content"/>
         </el-form-item>
-        <!-- <el-form-item label="商品低价" prop="price">
+        <el-form-item label="商品低价" prop="price">
           <el-input v-model="dataForm.price"/>
-        </el-form-item> -->
+        </el-form-item>
         <el-form-item label="阅读量" prop="readCount">
           <el-input v-model="dataForm.readCount"/>
         </el-form-item>
-        <el-form-item label="发布人" prop="mgrUserid">
+        <!-- <el-form-item label="发布人" prop="mgrUserid">
           <el-input v-model="dataForm.mgrUserid"/>
-        </el-form-item>
+        </el-form-item>-->
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">取消</el-button>
@@ -170,13 +170,13 @@ export default {
       },
       rules: {
         title: [
-          { required: true, message: '专题标题不能为空', trigger: 'blur' }
+          { required: true, message: '活动名称不能为空', trigger: 'blur' }
         ],
         subtitle: [
-          { required: true, message: '专题子标题不能为空', trigger: 'blur' }
+          { required: true, message: '活动区域不能为空', trigger: 'blur' }
         ],
         content: [
-          { required: true, message: '专题内容不能为空', trigger: 'blur' }
+          { required: true, message: '活动内容不能为空', trigger: 'blur' }
         ]
       },
       downloadLoading: false,
@@ -265,7 +265,7 @@ export default {
               this.dialogFormVisible = false
               this.$notify.success({
                 title: '成功',
-                message: '创建专题成功'
+                message: '创建活动成功'
               })
             })
             .catch(response => {
@@ -304,7 +304,7 @@ export default {
               this.dialogFormVisible = false
               this.$notify.success({
                 title: '成功',
-                message: '更新专题成功'
+                message: '更新活动成功'
               })
             })
             .catch(response => {
@@ -321,7 +321,7 @@ export default {
         .then(response => {
           this.$notify.success({
             title: '成功',
-            message: '删除专题成功'
+            message: '删除活动成功'
           })
           const index = this.list.indexOf(row)
           this.list.splice(index, 1)
@@ -354,14 +354,14 @@ export default {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = [
-          '专题ID',
-          '专题标题',
-          '专题子标题',
-          '专题内容',
-          '专题图片',
+          '活动ID',
+          '活动名称',
+          '活动区域',
+          '活动内容',
+          '活动图片',
           '商品低价',
           '阅读量',
-          '专题商品'
+          '活动商品'
         ]
         const filterVal = [
           'id',
@@ -373,7 +373,7 @@ export default {
           'readCount',
           'goods'
         ]
-        excel.export_json_to_excel2(tHeader, this.list, filterVal, '专题信息')
+        excel.export_json_to_excel2(tHeader, this.list, filterVal, '活动信息')
         this.downloadLoading = false
       })
     }
