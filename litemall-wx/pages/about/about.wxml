@@ -3,16 +3,18 @@
   <view class="about-item">
 
     <view class="item-left">
-      <label>项目名称: </label>
-       <text>{{shopInfo.name}}</text> 
+      <label>公司名称: </label>
+      <text>海普诺凯</text>
+       <!-- <text>{{shopInfo.name}}</text>  -->
     </view>
 
   </view>
 
   <view class="about-item">
     <view class="item-left">
-      <label>项目地址: </label>
-       <text>{{shopInfo.address}}</text> 
+      <label>公司地址: </label>
+      <text></text>
+       <!-- <text>{{shopInfo.address}}</text>  -->
     </view>
 
     <view class="item-right" bindtap="showLocation">
@@ -23,7 +25,8 @@
   <view class="about-item">
     <view class="item-left">
       <label>电话号码:    </label>
-       <text>{{shopInfo.linkPhone}}</text> 
+      <text></text>
+       <!-- <text>{{shopInfo.linkPhone}}</text>  -->
     </view>
     <view class="item-right" bindtap="callPhone">
       <image src="/static/images/telephone.png" class="right-icon"></image>
@@ -32,8 +35,9 @@
 
   <view class="about-item">
     <view class="item-left">
-      <label>litemall交流群: </label>
-       <text>{{shopInfo.qqNumber}}</text> 
+      <label>关于: </label>
+      <text></text>
+       <!-- <text>{{shopInfo.qqNumber}}</text>  -->
     </view>
     <view class="item-right">
       <image src="/static/images/mobile.png" class="right-icon"></image>

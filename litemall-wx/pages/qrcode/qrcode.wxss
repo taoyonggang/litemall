@@ -1,5 +1,15 @@
 /* pages/main/index.wxss */
-.container-box{background-color: #efeff4;height: 100vh}
+/* .container-box{background-color: #efeff4;height: 100vh} */
+page {
+  background: #f4f4f4;
+  min-height: 100%;
+}
+
+.container {
+  background: #f4f4f4;
+  min-height: 100%;
+  padding-top: 30rpx;
+}
 .img-box{padding: 32rpx;background-color: #fff;border-bottom: 1rpx solid #e5e5e5;position: relative}
 .img-box image{width: 686rpx;height: 686rpx;background-color: #f9f9f9}
 .input-row{

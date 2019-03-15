@@ -13,12 +13,12 @@
       <!-- </navigator> -->
     </swiper-item>
   </swiper>
-  <!-- <view class="m-menu">
+  <view class="m-menu">
     <navigator class="item" url="/pages/category/category?id={{item.id}}" wx:for="{{channel}}" wx:key="id">
       <image src="{{item.iconUrl}}" background-size="cover"></image>
       <text>{{item.name}}</text>
     </navigator>
-  </view> -->
+  </view>
 
   <view class="a-section a-coupon" wx:if="{{coupon.length > 0}}">
     <view class="h">
