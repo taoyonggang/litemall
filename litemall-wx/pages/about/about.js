@@ -12,12 +12,12 @@ Page({
   data: {
     load_statue: true,
     shopInfo: {
-      name: 'litemall',
-      address: 'https://github.com/linlinjava/litemall',
+      name: '海普诺凯',
+      address: 'http://www.1897.com',
       latitude: 31.201900,
       longitude: 121.587839,
       linkPhone: '021-xxxx-xxxx',
-      qqNumber: '738696120'
+      qqNumber: ''
     },
   },
 

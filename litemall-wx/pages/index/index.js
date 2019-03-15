@@ -20,8 +20,8 @@ Page({
 
   onShareAppMessage: function() {
     return {
-      title: 'litemall小程序商场',
-      desc: '开源微信小程序商城',
+      title: '商城',
+      desc: '小程序商城',
       path: '/pages/index/index'
     }
   },
