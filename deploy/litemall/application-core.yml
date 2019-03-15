@@ -1,11 +1,11 @@
 litemall:
   # 开发者应该设置成自己的wx相关信息
   wx:
-    app-id: wxa5b486c6b918ecfb
-    app-secret: e04004829d4c383b4db7769d88dfbca1
-    mch-id: 111111
+    app-id: wx63a98c7fe5883393
+    app-secret: ac38f05fe6999bba5d9705ad30fe380f
+    mch-id: 1525660281
     mch-key: xxxxxx
-    notify-url: http://122.152.206.172:8080/wx/order/pay-notify
+    notify-url: https://hpnk.1897.com/wx/order/pay-notify
     # 商户证书文件路径
     # 请参考“商户证书”一节 https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=4_3
     key-path: xxxxx
@@ -43,19 +43,19 @@ litemall:
       enable: false
       template:
       - name: paySucceed
-        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        templateId: f8aGRB0smC0nWOcyFN7riUUYHg_VlsoiidM_FNfrtqo
       - name: captcha
-        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        templateId: hzQAxmKpEVoRjRToRSWE7FWftt28WoJci62LKrqUs8A
       - name: ship
-        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        templateId: JaNc7p8T1Uzj69KZlHf4KShsdFz88xoA-MdaSeUtBCc
       - name: refund
-        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        templateId: KfioPe3e3y6aJGHJJ5dhE-uyzDaL1cnId_UACgH5TdQ
 
   # 快鸟物流查询配置
   express:
-    enable: false
-    appId: "XXXXXXXXX"
-    appKey: "XXXXXXXXXXXXXXXXXXXXXXXXX"
+    enable: true
+    appId: "1447940"
+    appKey: "fe64e3f9-cbad-4825-aa90-b8a57fad612a"
     vendors:
     - code: "ZTO"
       name: "中通快递"
@@ -86,22 +86,32 @@ litemall:
 
   # 对象存储配置
   storage:
-    # 当前工作的对象存储模式，分别是local、aliyun、tencent
-    active: local
+    # 当前工作的对象存储模式，分别是local、aliyun、tencent、qiniu
+    active: aliyun
     # 本地对象存储配置信息
     local:
       storagePath: storage
-      address: http://122.152.206.172:8080/wx/storage/fetch/
+      # 这个地方应该是wx模块的WxStorageController的fetch方法对应的地址
+      address: http://47.112.13.150:81/wx/storage/fetch/
     # 阿里云对象存储配置信息
     aliyun:
-      endpoint: oss-cn-shenzhen.aliyuncs.com
-      accessKeyId: 111111
-      accessKeySecret: xxxxxx
-      bucketName: xxxxxx
+      accessKeyId: LTAIusyq3udPoUJf
+      access-key: LTAIusyq3udPoUJf
+      accessKeySecret: uiBXvwgxdskmq7oAhgFAguZvbmQ1ur
+      endpoint: oss-cn-shanghai.aliyuncs.com
+      bucketName: taoyg
+      domain: https://taoyg.oss-cn-shanghai.aliyuncs.com
+
     # 腾讯对象存储配置信息
     # 请参考 https://cloud.tencent.com/document/product/436/6249
     tencent:
       secretId: 111111
       secretKey: xxxxxx
       region: xxxxxx
-      bucketName: xxxxxx
+      bucketName: litemall
+    # 七牛云对象存储配置信息
+    qiniu:
+      endpoint: http://pd5cb6ulu.bkt.clouddn.com
+      accessKey: 111111
+      secretKey: xxxxxx
+      bucketName: litemall
