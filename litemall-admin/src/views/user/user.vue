@@ -28,6 +28,10 @@
 
       <el-table-column align="center" label="生日" prop="birthday"/>
 
+      <el-table-column align="center" label="宝宝生日" prop="babybirthday"/>
+
+      <el-table-column align="center" label="来源" prop="from"/>
+
       <el-table-column align="center" label="用户等级" prop="userLevel">
         <template slot-scope="scope">
           <el-tag >{{ levelDic[scope.row.userLevel] }}</el-tag>
@@ -71,6 +75,12 @@
         </el-form-item>
         <el-form-item label="生日" prop="birthday">
           <el-date-picker v-model="dataForm.birthday" type="date" value-format="yyyy-MM-dd"/>
+        </el-form-item>
+        <el-form-item label="宝宝生日" prop="birthday">
+          <el-date-picker v-model="dataForm.babybirthday" type="date" value-format="yyyy-MM-dd"/>
+        </el-form-item>
+        <el-form-item label="来源" prop="from">
+          <el-input v-model="dataForm.from"/>
         </el-form-item>
         <el-form-item label="用户等级" prop="userLevel">
           <el-select v-model="dataForm.userLevel">
@@ -125,6 +135,8 @@ export default {
         gender: 0,
         userLevel: 0,
         birthday: undefined,
+        babybirthday:undefined,
+        from:undefined,
         status: 0
       },
       dialogFormVisible: false,
@@ -136,7 +148,8 @@ export default {
       rules: {
         username: [{ required: true, message: '用户名不能为空', trigger: 'blur' }],
         mobile: [{ required: true, message: '手机号码不能为空', trigger: 'blur' }],
-        password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
+        password: [{ required: true, message: '密码不能为空', trigger: 'blur' }],
+        from: [{ required: true, message: '来源不能为空', trigger: 'blur' }]
       },
       downloadLoading: false,
       genderDic: ['未知', '男', '女'],
@@ -174,6 +187,8 @@ export default {
         gender: 0,
         userLevel: 0,
         birthday: undefined,
+        babybirthday:undefined,
+        from:undefined,
         status: 0
       }
     },
@@ -247,7 +262,7 @@ export default {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['用户名', '手机号码', '性别', '生日', '状态']
-        const filterVal = ['username', 'mobile', 'gender', 'birthday', 'status']
+        const filterVal = ['username', 'mobile', 'gender', 'birthday', 'status','babybirthday','from']
         excel.export_json_to_excel2(tHeader, this.list, filterVal, '用户信息')
         this.downloadLoading = false
       })
