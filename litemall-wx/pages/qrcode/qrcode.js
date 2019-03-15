@@ -1,6 +1,7 @@
 // pages/main/index.js
-var QR = require("../../utils/qrcode.js");
 var api = require('../../config/api.js');
+var QR = require("../../utils/qrcode.js");
+
 Page({
   data: {
     canvasHidden: false,
@@ -11,17 +12,17 @@ Page({
     
   },
   onLoad: function (options) {
-
+      //var WxApiRoot = 'https://hpnk.1897.com/wx/';
       var that = this;
     // 页面初始化 options为页面跳转所带来的参数
     var size = this.setCanvasSize();//动态设置画布大小
       var activeId = options.id;
       var promoterId = options.promoterId;
       //var initUrl = this.data.placeholder;
-      // var initUrl = WxApiRoot + 'topicDetail/topicDetail ? id = ' + activeId + '&promoterId=' + promoterId + '&userId=' + promoterId;
-      var initUrl = WxApiRoot + 'topicDetail/topicDetail ? id = ' + activeId;
+       //var initUrl = WxApiRoot + 'topicDetail/topicDetail ? id = ' + activeId + '&promoterId=' + promoterId + '&userId=' + promoterId;
+    var initUrl = 'https://hpnk.1897.com/qiandao?id = '+activeId;
     this.createQrCode(initUrl, "mycanvas", size.w, size.h);
-    this.formSubmit();
+    this.formSubmit(initUrl);
 
 
   },
@@ -29,7 +30,7 @@ Page({
 
   },
   onShow: function () {
-    this.formSubmit();
+   // this.formSubmit(initUrl);
     // 页面显示
   },
   onHide: function () {
@@ -89,9 +90,9 @@ Page({
       urls: [img] // 需要预览的图片http链接列表
     })
   },
-  formSubmit: function (e) {
+  formSubmit(initUrl) {
     var that = this;
-    var url = e.detail.value.url;
+    var url = initUrl;
     that.setData({
       maskHidden: false,
     });

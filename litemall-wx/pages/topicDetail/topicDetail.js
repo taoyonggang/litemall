@@ -181,7 +181,8 @@ Page({
  },
   shareCode:function(){
       wx.navigateTo({
-          url: '/pages/qrcode/qrcode?id=' + this.data.id + 'promoterId=' + this.data.userInfo.id
+          //url: '/pages/qrcode/qrcode?id=' + this.data.id + '&promoterId=' + this.data.userInfo.id
+         url: '/pages/qrcode/qrcode?id=' + this.data.id
     });
     return {
       title: '生成分享二维码',
