@@ -1,11 +1,11 @@
 litemall:
   # 开发者应该设置成自己的wx相关信息
   wx:
-    app-id: wx3871e1c158baa851
-    app-secret: 70620989758239d9367a08ed80204f5f
-    mch-id: 111111
+    app-id: wx63a98c7fe5883393
+    app-secret: ac38f05fe6999bba5d9705ad30fe380f
+    mch-id: 1525660281
     mch-key: xxxxxx
-    notify-url: http://www.example.com/wx/order/pay-notify
+    notify-url: https://hpnk.1897.com/wx/order/pay-notify
     # 商户证书文件路径
     # 请参考“商户证书”一节 https://pay.weixin.qq.com/wiki/doc/api/wxa/wxa_api.php?chapter=4_3
     key-path: xxxxx
@@ -28,77 +28,80 @@ litemall:
       appid: 111111111
       appkey: xxxxxxxxxxxxxx
       template:
-      - name: paySucceed
-        templateId: 156349
-      - name: captcha
-        templateId: 156433
-      - name: ship
-        templateId: 158002
-      - name: refund
-        templateId: 159447
+        - name: paySucceed
+          templateId: 156349
+        - name: captcha
+          templateId: 156433
+        - name: ship
+          templateId: 158002
+        - name: refund
+          templateId: 159447
 
     # 微信模版通知配置
     # 微信模版用于通知客户或者运营者，注意配置格式；template-name，template-templateId 请参考 NotifyType 枚举值
     wx:
       enable: false
       template:
-      - name: paySucceed
-        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      - name: captcha
-        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      - name: ship
-        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-      - name: refund
-        templateId: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+        - name: paySucceed
+          templateId: f8aGRB0smC0nWOcyFN7riUUYHg_VlsoiidM_FNfrtqo
+        - name: captcha
+          templateId: hzQAxmKpEVoRjRToRSWE7FWftt28WoJci62LKrqUs8A
+        - name: ship
+          templateId: JaNc7p8T1Uzj69KZlHf4KShsdFz88xoA-MdaSeUtBCc
+        - name: refund
+          templateId: KfioPe3e3y6aJGHJJ5dhE-uyzDaL1cnId_UACgH5TdQ
 
   # 快鸟物流查询配置
   express:
-    enable: false
-    appId: "XXXXXXXXX"
-    appKey: "XXXXXXXXXXXXXXXXXXXXXXXXX"
+    enable: true
+    appId: "1447940"
+    appKey: "fe64e3f9-cbad-4825-aa90-b8a57fad612a"
     vendors:
-    - code: "ZTO"
-      name: "中通快递"
-    - code: "YTO"
-      name: "圆通速递"
-    - code: "YD"
-      name: "韵达速递"
-    - code: "YZPY"
-      name: "邮政快递包裹"
-    - code: "EMS"
-      name: "EMS"
-    - code: "DBL"
-      name: "德邦快递"
-    - code: "FAST"
-      name: "快捷快递"
-    - code: "ZJS"
-      name: "宅急送"
-    - code: "TNT"
-      name: "TNT快递"
-    - code: "UPS"
-      name: "UPS"
-    - code: "DHL"
-      name: "DHL"
-    - code: "FEDEX"
-      name: "FEDEX联邦(国内件)"
-    - code: "FEDEX_GJ"
-      name: "FEDEX联邦(国际件)"
+      - code: "ZTO"
+        name: "中通快递"
+      - code: "YTO"
+        name: "圆通速递"
+      - code: "YD"
+        name: "韵达速递"
+      - code: "YZPY"
+        name: "邮政快递包裹"
+      - code: "EMS"
+        name: "EMS"
+      - code: "DBL"
+        name: "德邦快递"
+      - code: "FAST"
+        name: "快捷快递"
+      - code: "ZJS"
+        name: "宅急送"
+      - code: "TNT"
+        name: "TNT快递"
+      - code: "UPS"
+        name: "UPS"
+      - code: "DHL"
+        name: "DHL"
+      - code: "FEDEX"
+        name: "FEDEX联邦(国内件)"
+      - code: "FEDEX_GJ"
+        name: "FEDEX联邦(国际件)"
 
   # 对象存储配置
   storage:
     # 当前工作的对象存储模式，分别是local、aliyun、tencent、qiniu
-    active: local
+    active: aliyun
     # 本地对象存储配置信息
     local:
       storagePath: storage
       # 这个地方应该是wx模块的WxStorageController的fetch方法对应的地址
-      address: http://localhost:8080/wx/storage/fetch/
+      address: http://47.112.13.150:81/wx/storage/fetch/
     # 阿里云对象存储配置信息
     aliyun:
-      endpoint: oss-cn-shenzhen.aliyuncs.com
-      accessKeyId: 111111
-      accessKeySecret: xxxxxx
-      bucketName: litemall
+      accessKeyId: LTAIusyq3udPoUJf
+      access-key: LTAIusyq3udPoUJf
+      accessKeySecret: uiBXvwgxdskmq7oAhgFAguZvbmQ1ur
+      endpoint: oss-cn-shanghai.aliyuncs.com
+      bucketName: taoyg
+      domain: https://taoyg.oss-cn-shanghai.aliyuncs.com
+
     # 腾讯对象存储配置信息
     # 请参考 https://cloud.tencent.com/document/product/436/6249
     tencent:
