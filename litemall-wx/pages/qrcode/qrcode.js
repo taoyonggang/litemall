@@ -1,19 +1,28 @@
 // pages/main/index.js
 var QR = require("../../utils/qrcode.js");
+var api = require('../../config/api.js');
 Page({
   data: {
     canvasHidden: false,
     maskHidden: true,
-    imagePath: '',
-    placeholder: 'http://wxapp-union.com'//默认二维码生成文本
+      //imagePath: 'https://taoyg.oss-cn-shanghai.aliyuncs.com/674u0o6j3byy4pkpk5ue.jpg',
+      imagePath: '',
+      placeholder: 'http://wxapp-union.com',//默认二维码生成文本
+    
   },
   onLoad: function (options) {
-    var that = this;
+
+      var that = this;
     // 页面初始化 options为页面跳转所带来的参数
     var size = this.setCanvasSize();//动态设置画布大小
-    var initUrl = this.data.placeholder;
+      var activeId = options.id;
+      var promoterId = options.promoterId;
+      //var initUrl = this.data.placeholder;
+      // var initUrl = WxApiRoot + 'topicDetail/topicDetail ? id = ' + activeId + '&promoterId=' + promoterId + '&userId=' + promoterId;
+      var initUrl = WxApiRoot + 'topicDetail/topicDetail ? id = ' + activeId;
     this.createQrCode(initUrl, "mycanvas", size.w, size.h);
     this.formSubmit();
+
 
   },
   onReady: function () {

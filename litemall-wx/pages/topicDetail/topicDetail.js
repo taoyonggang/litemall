@@ -17,10 +17,11 @@ Page({
     promoterId:0,
     userId:0,
     userInfo: {
-      id:0,
       nickName: 'test',
-      avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png'
+        avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png',
+        id: 0,
     },
+      hasLogin: false,
 
   },
   onLoad: function(options) {
@@ -34,7 +35,15 @@ Page({
       that.setData({
         promoterId: options.promoterId
       });
-    } 
+    }
+      //获取用户的登录信息
+      if (app.globalData.hasLogin) {
+          let userInfo = wx.getStorageSync('userInfo');
+          this.setData({
+              userInfo: userInfo,
+              hasLogin: true
+          });
+      }
     util.request(api.TopicDetail, {
       id: that.data.id
     }).then(function(res) {
@@ -57,6 +66,21 @@ Page({
         });
       }
     });
+
+      util.request(api.SelectActivity, {
+          activityId: that.data.id,
+      }, 'GET').then(function (res) {
+          res = res.data;
+          if (res.result == 0) {
+              if (res.joinCount > 0) {
+                  that.setData({
+                      pageBackgroundColor: '#35c735',
+                      checkstatus: "已签到"
+                  });
+              }
+          }
+      });
+
   },
   getCommentList() {
     let that = this;
@@ -156,8 +180,8 @@ Page({
 
  },
   shareCode:function(){
-    wx.reLaunch({
-      url: '/pages/qrcode/qrcode'
+      wx.navigateTo({
+          url: '/pages/qrcode/qrcode?id=' + this.data.id + 'promoterId=' + this.data.userInfo.id
     });
     return {
       title: '生成分享二维码',
