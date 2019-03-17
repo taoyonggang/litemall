@@ -32,7 +32,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -324,6 +331,77 @@ public class WxAuthController {
         result.put("tokenExpire", userToken.getExpireTime().toString());
         result.put("userInfo", userInfo);
         return ResponseUtil.ok(result);
+    }
+
+    /**
+     * 账号注册
+     *
+     * @param body    请求内容
+     *                {
+     *                username: xxx,
+     *                password: xxx,
+     *                mobile: xxx
+     *                code: xxx
+     *                }
+     *                其中code是手机验证码，目前还不支持手机短信验证码
+     * @param request 请求对象
+     * @return 登录结果
+     * 成功则
+     * {
+     * errno: 0,
+     * errmsg: '成功',
+     * data:
+     * {
+     * token: xxx,
+     * tokenExpire: xxx,
+     * userInfo: xxx
+     * }
+     * }
+     * 失败则 { errno: XXX, errmsg: XXX }
+     */
+    @PostMapping("update")
+    public Object update(@RequestBody String body, HttpServletRequest request) {
+        String username = JacksonUtil.parseString(body, "username");
+        String nickname = JacksonUtil.parseString(body, "nickname");
+        String birthday = JacksonUtil.parseString(body, "birthday");
+        String babybirthday = JacksonUtil.parseString(body, "babybirthday");
+        String fromSource = JacksonUtil.parseString(body, "fromSource");
+        String address = JacksonUtil.parseString(body, "address");
+
+
+        if (StringUtils.isEmpty(nickname) || StringUtils.isEmpty(fromSource) || StringUtils.isEmpty(birthday)
+                || StringUtils.isEmpty(babybirthday) || StringUtils.isEmpty(address)) {
+            return ResponseUtil.badArgument();
+        }
+
+        List<LitemallUser> userList = userService.queryByUsername(username);
+        if (userList.size() == 0) {
+            return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "用户不存在");
+        }
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date birthdayDate = format.parse(birthday);
+            Instant instant = birthdayDate.toInstant();
+            ZoneId zoneId = ZoneId.systemDefault();
+            LocalDate birthdayLocalDate = instant.atZone(zoneId).toLocalDate();
+            Date babybirthdayDate = format.parse(babybirthday);
+            instant = babybirthdayDate.toInstant();
+            LocalDate babybirthdayLocalDate = instant.atZone(zoneId).toLocalDate();
+            LitemallUser user = userList.get(0);
+            user.setNickname(username);
+            user.setBirthday(birthdayLocalDate);
+            user.setBabybirthday(babybirthdayLocalDate);
+            user.setFromsouce(fromSource);
+            user.setAddress(address);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return ResponseUtil.fail(USER_INFO_ERROR, "更新用户数据有错误");
+        }
+
+
+        return ResponseUtil.ok();
     }
 
     /**
