@@ -33,7 +33,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDate;
@@ -334,16 +333,14 @@ public class WxAuthController {
     }
 
     /**
-     * 账号注册
+     * 账号信息更新
      *
      * @param body    请求内容
      *                {
      *                username: xxx,
      *                password: xxx,
-     *                mobile: xxx
-     *                code: xxx
      *                }
-     *                其中code是手机验证码，目前还不支持手机短信验证码
+     *
      * @param request 请求对象
      * @return 登录结果
      * 成功则
@@ -395,7 +392,8 @@ public class WxAuthController {
             user.setBabybirthday(babybirthdayLocalDate);
             user.setFromsouce(fromSource);
             user.setAddress(address);
-        } catch (ParseException e) {
+            userService.updateById(user);
+        } catch (Exception e) {
             e.printStackTrace();
             return ResponseUtil.fail(USER_INFO_ERROR, "更新用户数据有错误");
         }
