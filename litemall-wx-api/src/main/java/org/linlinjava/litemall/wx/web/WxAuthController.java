@@ -357,8 +357,13 @@ public class WxAuthController {
      * 失败则 { errno: XXX, errmsg: XXX }
      */
     @PostMapping("update")
-    public Object update(@RequestBody String body, HttpServletRequest request) {
-        String username = JacksonUtil.parseString(body, "username");
+    public Object update(@LoginUser Integer userId, @RequestBody String body, HttpServletRequest request) {
+
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        //String username = JacksonUtil.parseString(body, "username");
         String nickname = JacksonUtil.parseString(body, "nickname");
         String birthday = JacksonUtil.parseString(body, "birthday");
         String babybirthday = JacksonUtil.parseString(body, "babybirthday");
@@ -371,8 +376,8 @@ public class WxAuthController {
             return ResponseUtil.badArgument();
         }
 
-        List<LitemallUser> userList = userService.queryByUsername(username);
-        if (userList.size() == 0) {
+        LitemallUser user = userService.findById(userId);
+        if (user == null) {
             return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "用户不存在");
         }
 
@@ -386,8 +391,8 @@ public class WxAuthController {
             Date babybirthdayDate = format.parse(babybirthday);
             instant = babybirthdayDate.toInstant();
             LocalDate babybirthdayLocalDate = instant.atZone(zoneId).toLocalDate();
-            LitemallUser user = userList.get(0);
-            user.setNickname(username);
+
+            user.setNickname(nickname);
             user.setBirthday(birthdayLocalDate);
             user.setBabybirthday(babybirthdayLocalDate);
             user.setFromsouce(fromSource);
