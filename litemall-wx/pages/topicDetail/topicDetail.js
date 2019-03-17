@@ -1,7 +1,9 @@
-var app = getApp();
+
 var WxParse = require('../../lib/wxParse/wxParse.js');
+var utils = require('../../utils/utils.js');
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
+var app = getApp();
 
 
 Page({
@@ -28,30 +30,38 @@ Page({
     onLoad: function (options) {
         // 页面初始化 options为页面跳转所带来的参数
         var that = this;
-        that.setData({
-            id: options.id,
-            activityId: options.activityId
+        if (options.id !== undefined) {
+            that.setData({
+                id: options.id
+            });
+        }
+        if (options.activityId !== undefined) {
+            that.setData({
+                activityId: options.activityId
         });
+        }
         if (options.promoterId !== undefined) {
             that.setData({
                 promoterId: options.promoterId
             });
         }
 
-        console.log("index 生命周期 onload" + JSON.stringify(options))
-        //在此函数中获取扫描普通链接二维码参数
-        try {
-            let q = decodeURIComponent(options.q)
-            if (q) {
-                console.log("index 生命周期 onload url=" + q)
-                var fromId = util.getQueryString(options, 'id');
-                console.log("index 生命周期 onload 参数 id=" + fromId)
-                that.setData({
-                    id: fromId
-                });
+        if (options.q) {
+            console.log("index 生命周期 onload" + JSON.stringify(options))
+            //在此函数中获取扫描普通链接二维码参数
+            try {
+                let q = decodeURIComponent(options.q)
+                if (q) {
+                    console.log("index 生命周期 onload url=" + q)
+                    var fromId = utils.getQueryString(options, 'id');
+                    console.log("index 生命周期 onload 参数 id=" + fromId)
+                    that.setData({
+                        id: fromId
+                    });
+                }
+            } catch (err) {
+                console.error(err) // 可执行
             }
-        } catch (err) {
-            console.log(err) // 可执行
         }
 
 

@@ -1,6 +1,8 @@
-const util = require('../../utils/util.js');
+
 const api = require('../../config/api.js');
 const user = require('../../utils/user.js');
+const util = require('../../utils/util.js');
+const utils = require('../../utils/utils.js');
 
 //获取应用实例
 const app = getApp();
@@ -52,27 +54,28 @@ Page({
     });
   },
   onLoad: function(options) {
-    let getQueryString = function (url, name) {
-      console.log("url = " + url)
-      console.log("name = " + name)
-      var reg = new RegExp('(^|&|/?)' + name + '=([^&|/?]*)(&|/?|$)', 'i')
-      var r = url.substr(1).match(reg)
-      if (r != null) {
-        console.log("r = " + r)
-        console.log("r[2] = " + r[2])
-        return r[2]
-      }
-      return null;
-    }
-    // 页面初始化 options为页面跳转所带来的参数
-    if (options) {
-      console.log("index 生命周期 onload" + JSON.stringify(options));
-      //在此函数中获取扫描普通链接二维码参数
+      // 页面初始化 options为页面跳转所带来的参数
+      if (options.q) {
+          console.log("index 生命周期 onload" + JSON.stringify(options));
+          //在此函数中获取扫描普通链接二维码参数
+          let getQueryString = function (url, name) {
+              console.log("url = " + url)
+              console.log("name = " + name)
+              var reg = new RegExp('(^|&|/?)' + name + '=([^&|/?]*)(&|/?|$)', 'i')
+              var r = url.substr(1).match(reg)
+              if (r != null) {
+                  console.log("r = " + r)
+                  console.log("r[2] = " + r[2])
+                  return r[2]
+              }
+              return null;
+          }
       try {
         let q = decodeURIComponent(options.q)
         if (q) {
           console.log("index 生命周期 onload url=" + q)
-          var fromId = util.getQueryString(options, 'id');
+            //var fromId = utils.getQueryString(options, 'id');
+            var fromId = getQueryString(options, 'id');
           console.log("index 生命周期 onload 参数 id=" + fromId)
           that.setData({
             id: fromId
