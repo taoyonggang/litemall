@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-03-17 18:37:29
+Date: 2019-03-17 23:21:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -200,6 +200,7 @@ CREATE TABLE `litemall_cart` (
   `goods_name` varchar(127) DEFAULT NULL COMMENT '商品名称',
   `product_id` int(11) DEFAULT NULL COMMENT '商品货品表的货品ID',
   `price` decimal(10,2) DEFAULT '0.00' COMMENT '商品货品的价格',
+  `integral` decimal(10,2) DEFAULT '0.00' COMMENT '积分',
   `number` smallint(5) DEFAULT '0' COMMENT '商品货品的数量',
   `specifications` varchar(1023) DEFAULT NULL COMMENT '商品规格值列表，采用JSON数组格式',
   `checked` tinyint(1) DEFAULT '1' COMMENT '购物车中商品是否选择状态',
@@ -213,34 +214,34 @@ CREATE TABLE `litemall_cart` (
 -- ----------------------------
 -- Records of litemall_cart
 -- ----------------------------
-INSERT INTO `litemall_cart` VALUES ('1', '1', '1073008', '1073008', '铸铁珐琅牛排煎锅', '91', '149.00', '2', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/619e46411ccd62e5c0f16692ee1a85a0.png', '2019-01-23 18:10:28', '2019-01-23 18:10:28', '1');
-INSERT INTO `litemall_cart` VALUES ('2', '1', '1055012', '1055012', '300根全棉羽丝绒抱枕芯', '67', '39.00', '3', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/3d437c8d68e2ec3f3dd61001bf98f16e.png', '2019-01-23 18:10:56', '2019-01-23 18:10:56', '1');
-INSERT INTO `litemall_cart` VALUES ('3', '2', '1009012', '1009012', '可水洗舒柔丝羽绒枕', '14', '59.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png', '2019-01-26 17:37:22', '2019-01-26 17:37:22', '1');
-INSERT INTO `litemall_cart` VALUES ('4', '3', '1057036', '1057036', '日式纯色水洗亚麻抱枕', '71', '79.00', '2', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/8a9ee5ba08929cc9e40b973607d2f633.png', '2019-02-01 22:16:29', '2019-02-01 22:16:31', '0');
-INSERT INTO `litemall_cart` VALUES ('5', '3', '1055012', '1055012', '300根全棉羽丝绒抱枕芯', '67', '39.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/3d437c8d68e2ec3f3dd61001bf98f16e.png', '2019-02-01 22:16:40', '2019-02-01 22:16:40', '0');
-INSERT INTO `litemall_cart` VALUES ('6', '2', '1009024', '1009024', '日式和风懒人沙发', '16', '599.00', '2', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/149dfa87a7324e184c5526ead81de9ad.png', '2019-02-06 16:43:06', '2019-02-06 16:43:07', '1');
-INSERT INTO `litemall_cart` VALUES ('7', '2', '1116011', '1116011', '蔓越莓曲奇 200克', '167', '36.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '2019-02-11 13:54:55', '2019-02-11 13:54:55', '1');
-INSERT INTO `litemall_cart` VALUES ('8', '2', '1134032', '1134032', '趣味粉彩系列记忆棉坐垫', '199', '49.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/8b30eeb17c831eba08b97bdcb4c46a8e.png', '2019-02-11 13:55:00', '2019-02-11 13:55:00', '1');
-INSERT INTO `litemall_cart` VALUES ('9', '2', '1135002', '1135002', '宫廷奢华真丝四件套', '204', '2599.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/45548f26cfd0c7c41e0afc3709d48286.png', '2019-02-11 13:55:03', '2019-02-11 13:55:03', '1');
-INSERT INTO `litemall_cart` VALUES ('10', '2', '1009012', '1009012', '可水洗舒柔丝羽绒枕', '14', '59.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png', '2019-02-11 13:55:08', '2019-02-11 13:55:08', '1');
-INSERT INTO `litemall_cart` VALUES ('11', '2', '1011004', '1011004', '色织精梳AB纱格纹空调被', '20', '199.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/0984c9388a2c3fd2335779da904be393.png', '2019-02-11 13:55:15', '2019-02-11 13:55:15', '1');
-INSERT INTO `litemall_cart` VALUES ('12', '2', '1006014', '1006014', '双宫茧桑蚕丝被 子母被', '11', '1399.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/2b537159f0f789034bf8c4b339c43750.png', '2019-02-11 13:55:18', '2019-02-11 13:55:18', '1');
-INSERT INTO `litemall_cart` VALUES ('13', '2', '1116011', '1116011', '蔓越莓曲奇 200克', '167', '36.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '2019-02-11 14:59:53', '2019-02-11 14:59:53', '1');
-INSERT INTO `litemall_cart` VALUES ('14', '2', '1116011', '1116011', '蔓越莓曲奇 200克', '167', '36.00', '2', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '2019-02-11 16:00:23', '2019-02-11 17:13:08', '1');
-INSERT INTO `litemall_cart` VALUES ('15', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '251', '0.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:38:44', '2019-02-11 16:39:34', '1');
-INSERT INTO `litemall_cart` VALUES ('16', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '252', '300.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:40:04', '2019-02-11 16:40:04', '1');
-INSERT INTO `litemall_cart` VALUES ('17', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '253', '300.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:43:14', '2019-02-11 16:43:14', '1');
-INSERT INTO `litemall_cart` VALUES ('18', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '254', '300.00', '2', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:51:02', '2019-02-11 16:52:13', '1');
-INSERT INTO `litemall_cart` VALUES ('19', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '254', '300.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:51:02', '2019-02-11 16:52:13', '1');
-INSERT INTO `litemall_cart` VALUES ('20', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '254', '300.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:51:02', '2019-02-11 16:52:13', '1');
-INSERT INTO `litemall_cart` VALUES ('21', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '254', '300.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:51:02', '2019-02-11 16:52:13', '1');
-INSERT INTO `litemall_cart` VALUES ('22', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '254', '300.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:51:02', '2019-02-11 16:52:13', '1');
-INSERT INTO `litemall_cart` VALUES ('23', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '255', '301.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:53:04', '2019-02-17 16:01:19', '0');
-INSERT INTO `litemall_cart` VALUES ('24', '2', '1127047', '1127047', '趣味粉彩系列笔记本', '182', '29.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/6c03ca93d8fe404faa266ea86f3f1e43.png', '2019-02-11 17:05:27', '2019-02-11 17:05:47', '1');
-INSERT INTO `litemall_cart` VALUES ('25', '2', '1006013', '1006013', '双宫茧桑蚕丝被 空调被', '10', '699.00', '1', '[\"标准\"]', '0', 'http://yanxuan.nosdn.127.net/583812520c68ca7995b6fac4c67ae2c7.png', '2019-02-13 18:27:31', '2019-02-17 16:00:49', '1');
-INSERT INTO `litemall_cart` VALUES ('26', '2', '1006014', '1006014', '双宫茧桑蚕丝被 子母被', '11', '1399.00', '1', '[\"标准\"]', '0', 'http://yanxuan.nosdn.127.net/2b537159f0f789034bf8c4b339c43750.png', '2019-02-13 18:28:26', '2019-02-17 16:00:52', '1');
-INSERT INTO `litemall_cart` VALUES ('27', '2', '1181008', '奶粉', '奶粉', '267', '0.00', '1', '[\"4580分\"]', '0', 'http://localhost:8080/wx/storage/fetch/szc17ybj4czqhgrd2tof.PNG', '2019-02-14 14:56:51', '2019-02-17 16:00:51', '1');
-INSERT INTO `litemall_cart` VALUES ('28', '2', '1181008', '奶粉', '奶粉', '270', '0.00', '1', '[\"400g\"]', '0', 'http://localhost:8080/wx/storage/fetch/szc17ybj4czqhgrd2tof.PNG', '2019-02-14 15:02:41', '2019-02-17 16:00:52', '1');
+INSERT INTO `litemall_cart` VALUES ('1', '1', '1073008', '1073008', '铸铁珐琅牛排煎锅', '91', '149.00', '0.00', '2', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/619e46411ccd62e5c0f16692ee1a85a0.png', '2019-01-23 18:10:28', '2019-01-23 18:10:28', '1');
+INSERT INTO `litemall_cart` VALUES ('2', '1', '1055012', '1055012', '300根全棉羽丝绒抱枕芯', '67', '39.00', '0.00', '3', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/3d437c8d68e2ec3f3dd61001bf98f16e.png', '2019-01-23 18:10:56', '2019-01-23 18:10:56', '1');
+INSERT INTO `litemall_cart` VALUES ('3', '2', '1009012', '1009012', '可水洗舒柔丝羽绒枕', '14', '59.00', '0.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png', '2019-01-26 17:37:22', '2019-01-26 17:37:22', '1');
+INSERT INTO `litemall_cart` VALUES ('4', '3', '1057036', '1057036', '日式纯色水洗亚麻抱枕', '71', '79.00', '0.00', '2', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/8a9ee5ba08929cc9e40b973607d2f633.png', '2019-02-01 22:16:29', '2019-02-01 22:16:31', '0');
+INSERT INTO `litemall_cart` VALUES ('5', '3', '1055012', '1055012', '300根全棉羽丝绒抱枕芯', '67', '39.00', '0.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/3d437c8d68e2ec3f3dd61001bf98f16e.png', '2019-02-01 22:16:40', '2019-02-01 22:16:40', '0');
+INSERT INTO `litemall_cart` VALUES ('6', '2', '1009024', '1009024', '日式和风懒人沙发', '16', '599.00', '0.00', '2', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/149dfa87a7324e184c5526ead81de9ad.png', '2019-02-06 16:43:06', '2019-02-06 16:43:07', '1');
+INSERT INTO `litemall_cart` VALUES ('7', '2', '1116011', '1116011', '蔓越莓曲奇 200克', '167', '36.00', '0.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '2019-02-11 13:54:55', '2019-02-11 13:54:55', '1');
+INSERT INTO `litemall_cart` VALUES ('8', '2', '1134032', '1134032', '趣味粉彩系列记忆棉坐垫', '199', '49.00', '0.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/8b30eeb17c831eba08b97bdcb4c46a8e.png', '2019-02-11 13:55:00', '2019-02-11 13:55:00', '1');
+INSERT INTO `litemall_cart` VALUES ('9', '2', '1135002', '1135002', '宫廷奢华真丝四件套', '204', '2599.00', '0.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/45548f26cfd0c7c41e0afc3709d48286.png', '2019-02-11 13:55:03', '2019-02-11 13:55:03', '1');
+INSERT INTO `litemall_cart` VALUES ('10', '2', '1009012', '1009012', '可水洗舒柔丝羽绒枕', '14', '59.00', '0.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png', '2019-02-11 13:55:08', '2019-02-11 13:55:08', '1');
+INSERT INTO `litemall_cart` VALUES ('11', '2', '1011004', '1011004', '色织精梳AB纱格纹空调被', '20', '199.00', '0.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/0984c9388a2c3fd2335779da904be393.png', '2019-02-11 13:55:15', '2019-02-11 13:55:15', '1');
+INSERT INTO `litemall_cart` VALUES ('12', '2', '1006014', '1006014', '双宫茧桑蚕丝被 子母被', '11', '1399.00', '0.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/2b537159f0f789034bf8c4b339c43750.png', '2019-02-11 13:55:18', '2019-02-11 13:55:18', '1');
+INSERT INTO `litemall_cart` VALUES ('13', '2', '1116011', '1116011', '蔓越莓曲奇 200克', '167', '36.00', '0.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '2019-02-11 14:59:53', '2019-02-11 14:59:53', '1');
+INSERT INTO `litemall_cart` VALUES ('14', '2', '1116011', '1116011', '蔓越莓曲奇 200克', '167', '36.00', '0.00', '2', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '2019-02-11 16:00:23', '2019-02-11 17:13:08', '1');
+INSERT INTO `litemall_cart` VALUES ('15', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '251', '0.00', '0.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:38:44', '2019-02-11 16:39:34', '1');
+INSERT INTO `litemall_cart` VALUES ('16', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '252', '300.00', '0.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:40:04', '2019-02-11 16:40:04', '1');
+INSERT INTO `litemall_cart` VALUES ('17', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '253', '300.00', '0.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:43:14', '2019-02-11 16:43:14', '1');
+INSERT INTO `litemall_cart` VALUES ('18', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '254', '300.00', '0.00', '2', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:51:02', '2019-02-11 16:52:13', '1');
+INSERT INTO `litemall_cart` VALUES ('19', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '254', '300.00', '0.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:51:02', '2019-02-11 16:52:13', '1');
+INSERT INTO `litemall_cart` VALUES ('20', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '254', '300.00', '0.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:51:02', '2019-02-11 16:52:13', '1');
+INSERT INTO `litemall_cart` VALUES ('21', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '254', '300.00', '0.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:51:02', '2019-02-11 16:52:13', '1');
+INSERT INTO `litemall_cart` VALUES ('22', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '254', '300.00', '0.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:51:02', '2019-02-11 16:52:13', '1');
+INSERT INTO `litemall_cart` VALUES ('23', '2', '1181001', '1888', '婴幼儿奶粉2阶段', '255', '301.00', '0.00', '1', '[\"标准\"]', '1', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '2019-02-11 16:53:04', '2019-02-17 16:01:19', '0');
+INSERT INTO `litemall_cart` VALUES ('24', '2', '1127047', '1127047', '趣味粉彩系列笔记本', '182', '29.00', '0.00', '1', '[\"标准\"]', '1', 'http://yanxuan.nosdn.127.net/6c03ca93d8fe404faa266ea86f3f1e43.png', '2019-02-11 17:05:27', '2019-02-11 17:05:47', '1');
+INSERT INTO `litemall_cart` VALUES ('25', '2', '1006013', '1006013', '双宫茧桑蚕丝被 空调被', '10', '699.00', '0.00', '1', '[\"标准\"]', '0', 'http://yanxuan.nosdn.127.net/583812520c68ca7995b6fac4c67ae2c7.png', '2019-02-13 18:27:31', '2019-02-17 16:00:49', '1');
+INSERT INTO `litemall_cart` VALUES ('26', '2', '1006014', '1006014', '双宫茧桑蚕丝被 子母被', '11', '1399.00', '0.00', '1', '[\"标准\"]', '0', 'http://yanxuan.nosdn.127.net/2b537159f0f789034bf8c4b339c43750.png', '2019-02-13 18:28:26', '2019-02-17 16:00:52', '1');
+INSERT INTO `litemall_cart` VALUES ('27', '2', '1181008', '奶粉', '奶粉', '267', '0.00', '0.00', '1', '[\"4580分\"]', '0', 'http://localhost:8080/wx/storage/fetch/szc17ybj4czqhgrd2tof.PNG', '2019-02-14 14:56:51', '2019-02-17 16:00:51', '1');
+INSERT INTO `litemall_cart` VALUES ('28', '2', '1181008', '奶粉', '奶粉', '270', '0.00', '0.00', '1', '[\"400g\"]', '0', 'http://localhost:8080/wx/storage/fetch/szc17ybj4czqhgrd2tof.PNG', '2019-02-14 15:02:41', '2019-02-17 16:00:52', '1');
 
 -- ----------------------------
 -- Table structure for litemall_category
@@ -2835,6 +2836,7 @@ CREATE TABLE `litemall_goods_product` (
   `goods_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品表的商品ID',
   `specifications` varchar(1023) NOT NULL COMMENT '商品规格值列表，采用JSON数组格式',
   `price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '商品货品价格',
+  `integral` decimal(10,2) NOT NULL DEFAULT '0.00',
   `number` int(11) NOT NULL DEFAULT '0' COMMENT '商品货品数量',
   `url` varchar(125) DEFAULT NULL COMMENT '商品货品图片',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
@@ -2846,297 +2848,297 @@ CREATE TABLE `litemall_goods_product` (
 -- ----------------------------
 -- Records of litemall_goods_product
 -- ----------------------------
-INSERT INTO `litemall_goods_product` VALUES ('1', '1181000', '[\"1.5m床垫*1+枕头*2\",\"浅杏粉\"]', '999.00', '100', 'http://yanxuan.nosdn.127.net/1f67b1970ee20fd572b7202da0ff705d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('2', '1181000', '[\"1.5m床垫*1+枕头*2\",\"玛瑙红\"]', '1500.00', '198', 'quality=90&thumbnail=200x200&imageView', '2018-02-01 00:00:00', '2018-11-07 17:14:01', '0');
-INSERT INTO `litemall_goods_product` VALUES ('3', '1181000', '[\"1.5m床垫*1+枕头*2\",\"烟白灰\"]', '1000.00', '300', 'http://yanxuan.nosdn.127.net/36f64a7161b67e7fb8ea45be32ecfa25.png?quality=90&thumbnail=200x200&imageView', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('4', '1181000', '[\"1.8m床垫*1+枕头*2\",\"浅杏粉\"]', '1001.00', '400', 'http://yanxuan.nosdn.127.net/10022c73fa7aa75c2c0d736e96cc56d5.png?quality=90&thumbnail=200x200&imageView', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('5', '1181000', '[\"1.8m床垫*1+枕头*2\",\"玛瑙红\"]', '2000.00', '2', 'quality=90&thumbnail=200x200&imageView', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('6', '1181000', '[\"1.8m床垫*1+枕头*2\",\"烟白灰\"]', '3000.00', '0', 'http://yanxuan.nosdn.127.net/36f64a7161b67e7fb8ea45be32ecfa25.png?quality=90&thumbnail=200x200&imageView', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('7', '1006002', '[\"标准\"]', '899.00', '100', 'http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('8', '1006007', '[\"标准\"]', '459.00', '100', 'http://yanxuan.nosdn.127.net/66425d1ed50b3968fed27c822fdd32e0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('9', '1006010', '[\"标准\"]', '659.00', '100', 'http://yanxuan.nosdn.127.net/8fe022126a2789d970f82853be13a5e6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('10', '1006013', '[\"标准\"]', '699.00', '100', 'http://yanxuan.nosdn.127.net/583812520c68ca7995b6fac4c67ae2c7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('11', '1006014', '[\"标准\"]', '1399.00', '100', 'http://yanxuan.nosdn.127.net/2b537159f0f789034bf8c4b339c43750.png', '2018-02-01 00:00:00', '2019-02-11 14:29:06', '0');
-INSERT INTO `litemall_goods_product` VALUES ('12', '1006051', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/ad5a317216f9da495b144070ecf1f957.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('13', '1009009', '[\"标准\"]', '1999.00', '100', 'http://yanxuan.nosdn.127.net/9791006f25e26b2d7c81f41f87ce8619.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('14', '1009012', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png', '2018-02-01 00:00:00', '2019-02-11 14:29:06', '0');
-INSERT INTO `litemall_goods_product` VALUES ('15', '1009013', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/da56fda947d0f430d5f4cf4aba14e679.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('16', '1009024', '[\"标准\"]', '599.00', '100', 'http://yanxuan.nosdn.127.net/149dfa87a7324e184c5526ead81de9ad.png', '2018-02-01 00:00:00', '2019-02-10 18:33:21', '0');
-INSERT INTO `litemall_goods_product` VALUES ('17', '1009027', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/71cfd849335c498dee3c54d1eb823c17.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('18', '1010000', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/3bec70b85337c3eec182e54380ef7370.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('19', '1010001', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/a8b0a5def7d64e411dd98bdfb1fc989b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('20', '1011004', '[\"标准\"]', '199.00', '100', 'http://yanxuan.nosdn.127.net/0984c9388a2c3fd2335779da904be393.png', '2018-02-01 00:00:00', '2019-02-11 14:29:06', '0');
-INSERT INTO `litemall_goods_product` VALUES ('21', '1015007', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/a2045004de8a6225289376ad54317fc8.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('22', '1019000', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/77c09feb378814be712741b273d16656.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('23', '1019001', '[\"标准\"]', '109.00', '100', 'http://yanxuan.nosdn.127.net/7644803ab19b3e398456aa5a54229363.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('24', '1019002', '[\"标准\"]', '199.00', '100', 'http://yanxuan.nosdn.127.net/0118039f7cda342651595d994ed09567.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('25', '1019006', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/60c3707837c97a21715ecc3986a744ce.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('26', '1020000', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/819fdf1f635a694166bcfdd426416e8c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('27', '1021000', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/7191f2599c7fe44ed4cff7a76e853154.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('28', '1021001', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/fd5a8622ee1a7dfd4b57b938ebf25b24.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('29', '1021004', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('30', '1021010', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/25d734cc0b2eae8f63f9deb1e4ad5f64.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('31', '1022000', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/5350e35e6f22165f38928f3c2c52ac57.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('32', '1022001', '[\"标准\"]', '349.00', '100', 'http://yanxuan.nosdn.127.net/bf8faee3b27b480f63b70056597b626d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('33', '1023003', '[\"标准\"]', '398.00', '100', 'http://yanxuan.nosdn.127.net/c39d54c06a71b4b61b6092a0d31f2335.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('34', '1023012', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/07376e78bf4fb8a5aa8e6a0b1437c3ad.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('35', '1023032', '[\"标准\"]', '449.00', '100', 'http://yanxuan.nosdn.127.net/e0b928ada728c140f6965bb41f47407b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('36', '1023034', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/715899c65c023bb4973fb0466a5b79d6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('37', '1025005', '[\"标准\"]', '268.00', '100', 'http://yanxuan.nosdn.127.net/49e26f00ca4d0ce00f9960d22c936738.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('38', '1027004', '[\"标准\"]', '249.00', '100', 'http://yanxuan.nosdn.127.net/6252f53aaf36c072b6678f3d8c635132.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('39', '1029005', '[\"标准\"]', '959.00', '100', 'http://yanxuan.nosdn.127.net/25fe52f44853eb45f610846991bc4d9d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('40', '1030001', '[\"标准\"]', '969.00', '100', 'http://yanxuan.nosdn.127.net/88dc5d80c6f84102f003ecd69c86e1cf.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('41', '1030002', '[\"标准\"]', '899.00', '100', 'http://yanxuan.nosdn.127.net/8b9328496990357033d4259fda250679.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('42', '1030003', '[\"标准\"]', '1469.00', '100', 'http://yanxuan.nosdn.127.net/1d1ab099dc0e254c15e57302e78e200b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('43', '1030004', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/e84f2e3b3d39cfdc8af5c3954a877aae.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('44', '1030005', '[\"标准\"]', '899.00', '100', 'http://yanxuan.nosdn.127.net/86f57132793d3e3c924a7ba529849288.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('45', '1030006', '[\"标准\"]', '329.00', '100', 'http://yanxuan.nosdn.127.net/578ffec952eb25ff072d8ea1b676bfd2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('46', '1033000', '[\"标准\"]', '199.00', '100', 'http://yanxuan.nosdn.127.net/9aab9a0bf4fef8fe3dc8c732bc22d4b7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('47', '1035006', '[\"标准\"]', '56.00', '100', 'http://yanxuan.nosdn.127.net/ee92704f3b8323905b51fc647823e6e5.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('48', '1036002', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/ffd7efe9d5225dff9f36d5110b027caa.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('49', '1036013', '[\"标准\"]', '109.00', '100', 'http://yanxuan.nosdn.127.net/da1bc2c10f7b2e53f2466bd23953b982.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('50', '1036016', '[\"标准\"]', '109.00', '100', 'http://yanxuan.nosdn.127.net/513d08057c69fdb7d19cc810e976118d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('51', '1037011', '[\"标准\"]', '599.00', '100', 'http://yanxuan.nosdn.127.net/a03ea6f4509439acdafcb7ceba1debe0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('52', '1037012', '[\"标准\"]', '69.00', '100', 'http://yanxuan.nosdn.127.net/ffd2c91c7cf9c6e0f630595f7679b95d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('53', '1038004', '[\"标准\"]', '359.00', '100', 'http://yanxuan.nosdn.127.net/4d3d3eaeb872860539d7faa59f9f84e9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('54', '1039051', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/c8ca0600fa7ba11ca8be6a3173dd38c9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('55', '1039056', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/3e14e82a44c3a250af63df4c29c572d0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('56', '1043005', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/2a95b16f5b147cab4845641bee738a2e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('57', '1044012', '[\"标准\"]', '349.00', '100', 'http://yanxuan.nosdn.127.net/a803c68ea88e3116023b45ac9ea99510.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('58', '1045000', '[\"标准\"]', '28.00', '100', 'http://yanxuan.nosdn.127.net/b2adc3fd9b84a289a1be03e8ee400e61.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('59', '1046001', '[\"标准\"]', '8.90', '100', 'http://yanxuan.nosdn.127.net/74583e585825ecacb11f7c53d2021e00.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('60', '1046002', '[\"标准\"]', '9.90', '100', 'http://yanxuan.nosdn.127.net/eb486cfe807c4fe5696aa59cbcf1f96a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('61', '1046044', '[\"标准\"]', '349.00', '100', 'http://yanxuan.nosdn.127.net/2bfecfe58ea3ee0d554f2ed58e9ba30a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('62', '1048005', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/ce980c16810a471dffff6aa8d7bac754.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('63', '1051000', '[\"标准\"]', '180.00', '100', 'http://yanxuan.nosdn.127.net/e564410546a11ddceb5a82bfce8da43d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('64', '1051001', '[\"标准\"]', '159.00', '100', 'http://yanxuan.nosdn.127.net/f53ed57d9e23fda7e24dfd0e0a50c5d1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('65', '1051002', '[\"标准\"]', '228.00', '100', 'http://yanxuan.nosdn.127.net/56f4b4753392d27c0c2ccceeb579ed6f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('66', '1051003', '[\"标准\"]', '148.00', '100', 'http://yanxuan.nosdn.127.net/6a54ccc389afb2459b163245bbb2c978.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('67', '1055012', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/3d437c8d68e2ec3f3dd61001bf98f16e.png', '2018-02-01 00:00:00', '2019-01-26 16:58:11', '0');
-INSERT INTO `litemall_goods_product` VALUES ('68', '1055016', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/23e0203f1512f33e605f61c28fa03d2d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('69', '1055022', '[\"标准\"]', '4.90', '100', 'http://yanxuan.nosdn.127.net/c7c74a96eacb29455dbf557b840eaaf5.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('70', '1056002', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/922fdbe007033f7a88f7ebc57c3d1e75.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '1');
-INSERT INTO `litemall_goods_product` VALUES ('71', '1057036', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/8a9ee5ba08929cc9e40b973607d2f633.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('72', '1064000', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/ebe118f94ddafe82c4a8cd51da6ff183.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('73', '1064002', '[\"标准\"]', '69.00', '100', 'http://yanxuan.nosdn.127.net/48dbfe207b2203ef45055dcc9cedbe60.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('74', '1064003', '[\"标准\"]', '89.00', '100', 'http://yanxuan.nosdn.127.net/58ed94b63b39339e7814f1339013793c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('75', '1064004', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/337da7094c1df295ca0f0b8baa55b2d5.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('76', '1064006', '[\"标准\"]', '129.00', '100', 'http://yanxuan.nosdn.127.net/35306b8e65932dd28a5628d0bb44a044.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('77', '1064007', '[\"标准\"]', '249.00', '100', 'http://yanxuan.nosdn.127.net/d7bd87f8cc1965b25be33a8aad53812b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('78', '1064021', '[\"标准\"]', '199.00', '100', 'http://yanxuan.nosdn.127.net/c83a3881704094ddd3970099ca77d115.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('79', '1064022', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/a9c155e26d09e3c92b623f0472ed674a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('80', '1065004', '[\"标准\"]', '199.00', '100', 'http://yanxuan.nosdn.127.net/05977cf923857db0c44b405bd87b096b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('81', '1065005', '[\"标准\"]', '249.00', '100', 'http://yanxuan.nosdn.127.net/18b7be03bba9d01e4285fc443ea65bb1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('82', '1068010', '[\"标准\"]', '329.00', '100', 'http://yanxuan.nosdn.127.net/9ed4ff9642ea9cb776a20560647cd72b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('83', '1068011', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/0e4ba6ed44fef8803c243e585b621ab7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('84', '1068012', '[\"标准\"]', '599.00', '100', 'http://yanxuan.nosdn.127.net/69145abddddd31ae8878ea7ca7297b4b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('85', '1070000', '[\"标准\"]', '26.00', '100', 'http://yanxuan.nosdn.127.net/8392725765cdd57fdae3f173877f4bda.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('86', '1071004', '[\"标准\"]', '89.00', '100', 'http://yanxuan.nosdn.127.net/f0abf2bf11c8d303212e4a0c1106bb73.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('87', '1071005', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/07a47d73e2eb53b1a7939219a4e63618.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('88', '1071006', '[\"标准\"]', '9.90', '100', 'http://yanxuan.nosdn.127.net/d206e0d15955b4d76431a752f2c94f9f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('89', '1072000', '[\"标准\"]', '89.00', '100', 'http://yanxuan.nosdn.127.net/87cf3a17ad40bfdcdc3314ea4591a5e8.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('90', '1072001', '[\"标准\"]', '49.00', '100', 'http://yanxuan.nosdn.127.net/0e9d5954d7dc2477d9c46b730e05ab42.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('91', '1073008', '[\"标准\"]', '149.00', '100', 'http://yanxuan.nosdn.127.net/619e46411ccd62e5c0f16692ee1a85a0.png', '2018-02-01 00:00:00', '2019-01-26 16:58:11', '0');
-INSERT INTO `litemall_goods_product` VALUES ('92', '1074001', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/73567265b04a9998f64419186ddd8531.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('93', '1075022', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/97ad483a94ed88216a989df83e39cbf0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('94', '1075023', '[\"标准\"]', '199.00', '100', 'http://yanxuan.nosdn.127.net/29bc800b9f1fa551bc3cd47b10e2a799.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('95', '1075024', '[\"标准\"]', '2399.00', '100', 'http://yanxuan.nosdn.127.net/ce4a1eb18ea518bf584620632509935f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('96', '1081000', '[\"标准\"]', '49.00', '100', 'http://yanxuan.nosdn.127.net/cc45baafad00405699552c187c64c512.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('97', '1081002', '[\"标准\"]', '89.00', '100', 'http://yanxuan.nosdn.127.net/380cfcd5d8bc22360de089f0b4eb11da.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('98', '1083009', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/76e5c820f6bb71a26517ffa01f499871.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('99', '1083010', '[\"标准\"]', '469.00', '100', 'http://yanxuan.nosdn.127.net/b9a12d07f8f2d04d662d9340e68e6687.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('100', '1084001', '[\"标准\"]', '249.00', '100', 'http://yanxuan.nosdn.127.net/07f682d405c1d2ed343c210ac8f8862a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('101', '1084003', '[\"标准\"]', '199.00', '100', 'http://yanxuan.nosdn.127.net/cf40c167e7054fe184d49f19121f63c7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('102', '1085019', '[\"标准\"]', '349.00', '100', 'http://yanxuan.nosdn.127.net/65c955a7a98e84d44ca30bb88a591eac.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('103', '1086015', '[\"标准\"]', '249.00', '100', 'http://yanxuan.nosdn.127.net/d5c2ecfe0fb00cdd8b829975bab21a31.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('104', '1086023', '[\"标准\"]', '19.90', '100', 'http://yanxuan.nosdn.127.net/121a99e896b3e332c102eb5f6f9b3406.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('105', '1086024', '[\"标准\"]', '9.90', '100', 'http://yanxuan.nosdn.127.net/af899cfaa13f515ecb9cf9a33f41370a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('106', '1086025', '[\"标准\"]', '49.00', '100', 'http://yanxuan.nosdn.127.net/78eff56b293c8354bc9ac496fc2c5179.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('107', '1086026', '[\"标准\"]', '29.00', '100', 'http://yanxuan.nosdn.127.net/caecdaa37d9cbcff980cee0968911e34.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('108', '1086052', '[\"标准\"]', '859.00', '100', 'http://yanxuan.nosdn.127.net/93171a281c4ed272c007a050816e6f6c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('109', '1090004', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/a3a92057f10e5e6e804c19ef495e3dee.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('110', '1092001', '[\"标准\"]', '29.00', '100', 'http://yanxuan.nosdn.127.net/8e35b003ce7895c39eeb073b1f61b1d7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('111', '1092005', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/ab1992495e0370f09386d418ad45220d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('112', '1092024', '[\"标准\"]', '1599.00', '100', 'http://yanxuan.nosdn.127.net/f245a86dcb9f455217241e437b203926.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('113', '1092025', '[\"标准\"]', '19.90', '100', 'http://yanxuan.nosdn.127.net/56a46e9a4832587471c0f9ad7c1b7d85.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('114', '1092026', '[\"标准\"]', '19.90', '100', 'http://yanxuan.nosdn.127.net/83433f5a7ef69abda2544a53332a0fad.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('115', '1092038', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/1aba9ed9c9160b9ca8e7de58ce4e46b1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('116', '1092039', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/d8c18953bcb05f0b07d6b48e2d159ace.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('117', '1093000', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/1a22cc488390b616e75afbbd94db6584.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('118', '1093001', '[\"标准\"]', '29.00', '100', 'http://yanxuan.nosdn.127.net/71fede861c3641d570a89a65ccf4525f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('119', '1093002', '[\"标准\"]', '49.00', '100', 'http://yanxuan.nosdn.127.net/48d95e820628610fcdcda30570d4379c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('120', '1097004', '[\"标准\"]', '1699.00', '100', 'http://yanxuan.nosdn.127.net/54f822e9c542d20566c7f70f90d52ae6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('121', '1097005', '[\"标准\"]', '1199.00', '100', 'http://yanxuan.nosdn.127.net/e5fd0724a05387615738173fb8f1570d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('122', '1097006', '[\"标准\"]', '999.00', '100', 'http://yanxuan.nosdn.127.net/bcf2a72face2c4221dfdc9b3c97d4062.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('123', '1097007', '[\"标准\"]', '759.00', '100', 'http://yanxuan.nosdn.127.net/b6e132180679b0673486145decc89aa3.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('124', '1097009', '[\"标准\"]', '1599.00', '100', 'http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('125', '1097011', '[\"标准\"]', '3899.00', '100', 'http://yanxuan.nosdn.127.net/fea36ef2514c904f4f45f1975f37f289.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('126', '1097012', '[\"标准\"]', '999.00', '100', 'http://yanxuan.nosdn.127.net/d659d5ce0efaa9baa43abb6e34a1d9fe.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('127', '1097013', '[\"标准\"]', '2699.00', '100', 'http://yanxuan.nosdn.127.net/2fa8cb066a356f47a3f0814e99fee7f2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('128', '1097014', '[\"标准\"]', '4199.00', '100', 'http://yanxuan.nosdn.127.net/308184b7b1965470d58b5c92e9bcc4b0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('129', '1097016', '[\"标准\"]', '2799.00', '100', 'http://yanxuan.nosdn.127.net/a7e6df722b82ad1b0158adcbdcf30df9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('130', '1097017', '[\"标准\"]', '2199.00', '100', 'http://yanxuan.nosdn.127.net/e16ff61bef76db81090db191b9d5ec15.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('131', '1100000', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/15e40cfb6a78f557616814a815685fd4.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('132', '1100001', '[\"标准\"]', '199.00', '100', 'http://yanxuan.nosdn.127.net/a95285853138cbaf56e4ba729f2b8749.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('133', '1100002', '[\"标准\"]', '189.00', '100', 'http://yanxuan.nosdn.127.net/edf1945ef594c00920bdc727f4c5c7fd.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('134', '1108029', '[\"标准\"]', '89.00', '100', 'http://yanxuan.nosdn.127.net/fe52cd141b4b330db5627114b0e0e550.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('135', '1108030', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/4891e60ff08ceed36d40a754e45e8742.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('136', '1108031', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/e13e9697e01339c6cf7479eb81b3fbe2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('137', '1108032', '[\"标准\"]', '29.00', '100', 'http://yanxuan.nosdn.127.net/b1f9e1f700469f71fe3c4187ef53c99f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('138', '1109004', '[\"标准\"]', '89.00', '100', 'http://yanxuan.nosdn.127.net/d25b5990f16c6d1ac168a34b7aeca681.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('139', '1109005', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/7f508253f65733c7b2af52dd3943ee28.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('140', '1109008', '[\"标准\"]', '3999.00', '100', 'http://yanxuan.nosdn.127.net/c5be2604c0e4186a4e7079feeb742cee.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('141', '1109034', '[\"标准\"]', '129.00', '100', 'http://yanxuan.nosdn.127.net/c2c96acc680cbadb1787385598e1e593.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('142', '1110002', '[\"标准\"]', '119.00', '100', 'http://yanxuan.nosdn.127.net/a7a524512c34d24a4b9762766dd9d0f0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('143', '1110003', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/72dfb4bfc1cd1b834c064a9d1d40627d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('144', '1110004', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/1ffd5831e63027715445f74a28f8c4ed.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('145', '1110007', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/deeb55bb45f94cb236a47d1264e883b8.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('146', '1110008', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/255a4888161f9b4fe530cf319f14551d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('147', '1110013', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/6eb8d1c37142a5951b6242791c78146b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('148', '1110014', '[\"标准\"]', '69.00', '100', 'http://yanxuan.nosdn.127.net/cb4f78bd887059416c3df485e3f31366.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('149', '1110015', '[\"标准\"]', '69.00', '100', 'http://yanxuan.nosdn.127.net/56da5270172244be56c00fdc8eb24fae.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('150', '1110016', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/3bd73b7279a83d1cbb50c0e45778e6d6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '1');
-INSERT INTO `litemall_goods_product` VALUES ('151', '1110017', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/534231583f82572398ec84bad425cdaf.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '1');
-INSERT INTO `litemall_goods_product` VALUES ('152', '1110018', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/d93aa5d6e7a296101cf4cb72613aeda6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '1');
-INSERT INTO `litemall_goods_product` VALUES ('153', '1110019', '[\"标准\"]', '69.00', '100', 'http://yanxuan.nosdn.127.net/1e7e392b6fc9da99dc112197b7444eec.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('154', '1111007', '[\"标准\"]', '78.00', '100', 'http://yanxuan.nosdn.127.net/8d228f767b136a67aaf2cbbf6deb46fa.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('155', '1111010', '[\"标准\"]', '69.00', '100', 'http://yanxuan.nosdn.127.net/ef7efe55839e66993fb604dc3c2d9410.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('156', '1113010', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/2d0920b51331bb1636330ad8e07d1b97.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('157', '1113011', '[\"标准\"]', '49.00', '100', 'http://yanxuan.nosdn.127.net/7a683f68fc988df299b5cfe6273d6fb7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('158', '1113019', '[\"标准\"]', '208.00', '100', 'http://yanxuan.nosdn.127.net/ad504bb389039ff35c4cd6ae912be87e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('159', '1114011', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/196b5ce11930b4eadaec563cb0406634.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('160', '1115023', '[\"标准\"]', '1599.00', '100', 'http://yanxuan.nosdn.127.net/f3d1f0217ed250a37ea807f456351a51.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('161', '1115028', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/3d0045e8f43439c7004fae052b2162ed.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('162', '1115052', '[\"标准\"]', '86.00', '100', 'http://yanxuan.nosdn.127.net/39dea35a3ea2361e4b054ee2f421af53.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('163', '1115053', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/fabf9ac36751a2e1322135c56f1dc338.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('164', '1116004', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/14d3a47ccf52815baf6df308be6db5a6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('165', '1116005', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/71937456c3cd654f936f619201a79c09.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('166', '1116008', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/149a09a391ea5a888debf50b9dc4ed7b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('167', '1116011', '[\"标准\"]', '36.00', '80', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '2018-02-01 00:00:00', '2019-02-11 17:13:10', '0');
-INSERT INTO `litemall_goods_product` VALUES ('168', '1116030', '[\"标准\"]', '439.00', '100', 'http://yanxuan.nosdn.127.net/9d59a22b5aff348b5aba5fc7e451ea4d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('169', '1116031', '[\"标准\"]', '439.00', '100', 'http://yanxuan.nosdn.127.net/f88c3dc42f3e4d7da1ded8c1ee6a97ba.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('170', '1116032', '[\"标准\"]', '3499.00', '100', 'http://yanxuan.nosdn.127.net/45176a783387751fc07a07f5031dd62c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('171', '1116033', '[\"标准\"]', '1399.00', '100', 'http://yanxuan.nosdn.127.net/f1dbf1d9967c478ee6def81ed40734a2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('172', '1125010', '[\"标准\"]', '159.00', '100', 'http://yanxuan.nosdn.127.net/f82995ccb2a2f6beddd4ad794f5da2a1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('173', '1125011', '[\"标准\"]', '139.00', '100', 'http://yanxuan.nosdn.127.net/be9740b734087f294f59a6560b932bc1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('174', '1125016', '[\"标准\"]', '139.00', '100', 'http://yanxuan.nosdn.127.net/46f3059b020eb3900e9af8e8c1af8a97.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('175', '1125017', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/ae63fed274187e3e572043c53fefd836.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('176', '1125026', '[\"标准\"]', '159.00', '100', 'http://yanxuan.nosdn.127.net/6308c120c441fd3e47658167ad944156.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('177', '1127003', '[\"标准\"]', '2599.00', '100', 'http://yanxuan.nosdn.127.net/6ad1813d123f7a80f84c2cfa5f8c7caf.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('178', '1127024', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/0a70f12a712e90d7d93beec4f686fe8e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('179', '1127025', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/b2fe79c872a8a7f647264b5e51bcc802.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('180', '1127038', '[\"标准\"]', '359.00', '100', 'http://yanxuan.nosdn.127.net/addc278cf9c301dd535791df2e03b2ea.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('181', '1127039', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/be64df0a04ade4cfd75bf7d4e8509ecc.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('182', '1127047', '[\"标准\"]', '29.00', '97', 'http://yanxuan.nosdn.127.net/6c03ca93d8fe404faa266ea86f3f1e43.png', '2018-02-01 00:00:00', '2019-02-11 17:13:11', '0');
-INSERT INTO `litemall_goods_product` VALUES ('183', '1127052', '[\"标准\"]', '169.00', '100', 'http://yanxuan.nosdn.127.net/4f483526cfe3b953f403ae02049df5b9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('184', '1128002', '[\"标准\"]', '599.00', '100', 'http://yanxuan.nosdn.127.net/a1094a808ffb3a52a6cb13565a283d98.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('185', '1128010', '[\"标准\"]', '29.00', '100', 'http://yanxuan.nosdn.127.net/a84e8e6979f00efd9a728ed36b154753.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('186', '1128011', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/d6e25ec5b4ad7aa37e077ce751b56f46.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('187', '1129015', '[\"标准\"]', '89.00', '100', 'http://yanxuan.nosdn.127.net/fc11a482efeece9630548d8b350e7f54.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('188', '1129016', '[\"标准\"]', '29.00', '100', 'http://yanxuan.nosdn.127.net/a7c7eec41194e65d64931a2d08ef4f8c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('189', '1130037', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/19ecd7c6f6f31219cf75117238d95139.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('190', '1130038', '[\"标准\"]', '89.00', '100', 'http://yanxuan.nosdn.127.net/4d77296e02896675558f1a8a83742132.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('191', '1130039', '[\"标准\"]', '89.00', '100', 'http://yanxuan.nosdn.127.net/03c73e1f1ce1d2365e83b3230e507030.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('192', '1130041', '[\"标准\"]', '109.00', '100', 'http://yanxuan.nosdn.127.net/442b9d99c0e7f39efd7967e0e5987374.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('193', '1130042', '[\"标准\"]', '239.00', '100', 'http://yanxuan.nosdn.127.net/dc9d09334eb201fe9408ed604e549941.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('194', '1130049', '[\"标准\"]', '429.00', '100', 'http://yanxuan.nosdn.127.net/d88513f85b3617d734bde93af2c766c9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('195', '1130056', '[\"标准\"]', '2299.00', '100', 'http://yanxuan.nosdn.127.net/56e72b84a9bb66687c003ecdaba73816.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('196', '1131017', '[\"标准\"]', '259.00', '100', 'http://yanxuan.nosdn.127.net/2b6e2268ed712f1a336283f013abb7a1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('197', '1134022', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/a2b7489b4a2b1c09b66464cede4dabd7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('198', '1134030', '[\"标准\"]', '46.00', '99', 'http://yanxuan.nosdn.127.net/aa49dfe878becf768eddc4c1636643a6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('199', '1134032', '[\"标准\"]', '49.00', '84', 'http://yanxuan.nosdn.127.net/8b30eeb17c831eba08b97bdcb4c46a8e.png', '2018-02-01 00:00:00', '2019-02-11 14:29:06', '0');
-INSERT INTO `litemall_goods_product` VALUES ('200', '1134036', '[\"标准\"]', '38.00', '100', 'http://yanxuan.nosdn.127.net/9356cc27b22bd47ad43913d13226555f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('201', '1134056', '[\"标准\"]', '429.00', '100', 'http://yanxuan.nosdn.127.net/c29f47f58ba1e3c2ff5a193eec0b11d6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('202', '1135000', '[\"标准\"]', '359.00', '100', 'http://yanxuan.nosdn.127.net/53d0309471b570a7e12a3f01ba694491.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('203', '1135001', '[\"标准\"]', '459.00', '100', 'http://yanxuan.nosdn.127.net/f82ee85933d6f0cc95382215281d3526.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('204', '1135002', '[\"标准\"]', '2599.00', '100', 'http://yanxuan.nosdn.127.net/45548f26cfd0c7c41e0afc3709d48286.png', '2018-02-01 00:00:00', '2019-02-11 14:29:06', '0');
-INSERT INTO `litemall_goods_product` VALUES ('205', '1135050', '[\"标准\"]', '179.00', '100', 'http://yanxuan.nosdn.127.net/366f3f3f0e8971c8cf871e2b55b74ff2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('206', '1135051', '[\"标准\"]', '299.00', '100', 'http://yanxuan.nosdn.127.net/9126151f028a8804026d530836b481cb.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('207', '1135052', '[\"标准\"]', '259.00', '100', 'http://yanxuan.nosdn.127.net/63f5da1f5363af43aa91864bf66af48e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('208', '1135053', '[\"标准\"]', '429.00', '100', 'http://yanxuan.nosdn.127.net/1f9e34b1aadd14ea0c9c299c530d86ba.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('209', '1135054', '[\"标准\"]', '559.00', '100', 'http://yanxuan.nosdn.127.net/30d7daa0824fbb61b6c36175c8203349.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('210', '1135055', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/87b6a608b99279ebf1764682e9e5fcec.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('211', '1135056', '[\"标准\"]', '259.00', '100', 'http://yanxuan.nosdn.127.net/536246ca4adb77274a94b18bb2f91f47.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('212', '1135057', '[\"标准\"]', '199.00', '100', 'http://yanxuan.nosdn.127.net/98c5e80b8e328687ce9c949314ebc41d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('213', '1135058', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/37bc0fa3524a904ac740340fa92bd515.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('214', '1135065', '[\"标准\"]', '69.00', '100', 'http://yanxuan.nosdn.127.net/055eb16f95fe995108dd683f532fda22.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('215', '1135072', '[\"标准\"]', '69.00', '100', 'http://yanxuan.nosdn.127.net/43e57d4208cdc78ac9c088f9b3e798f5.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('216', '1135073', '[\"标准\"]', '69.00', '100', 'http://yanxuan.nosdn.127.net/53052b04ae001d289c040e09ea92231c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('217', '1138000', '[\"标准\"]', '29.00', '100', 'http://yanxuan.nosdn.127.net/ad953e16ad8c33b714e7af941ce8cd56.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('218', '1138001', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('219', '1143006', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/2b48feb65954c6739be28d15b9fbfbe3.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('220', '1143015', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/50e197854e0ada79c37b7215a1574450.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('221', '1143016', '[\"标准\"]', '319.00', '100', 'http://yanxuan.nosdn.127.net/e56c6239ee4a641ce2a4565c6babb43e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('222', '1143018', '[\"标准\"]', '68.00', '100', 'http://yanxuan.nosdn.127.net/d1fd69cee4990f4de1109baef30efeeb.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('223', '1143019', '[\"标准\"]', '98.00', '100', 'http://yanxuan.nosdn.127.net/277b07c1e5e6fb57cf9ca47fcd3903d5.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('224', '1143020', '[\"标准\"]', '168.00', '100', 'http://yanxuan.nosdn.127.net/200d4d59763af9a0781cca4a06175de7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('225', '1147045', '[\"标准\"]', '599.00', '100', 'http://yanxuan.nosdn.127.net/5cda4a0c4c4ff9728d03186bd053c9ca.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('226', '1147046', '[\"标准\"]', '599.00', '100', 'http://yanxuan.nosdn.127.net/655d718df8107f8e7fd1dc6140e29039.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('227', '1147047', '[\"标准\"]', '559.00', '100', 'http://yanxuan.nosdn.127.net/bda805b0a2464b6ec33c18981565e50e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('228', '1147048', '[\"标准\"]', '559.00', '100', 'http://yanxuan.nosdn.127.net/fd7920a2eadd10fa10c0c03959a2abe0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('229', '1151012', '[\"标准\"]', '359.00', '100', 'http://yanxuan.nosdn.127.net/cb65635dbcef42b68ba21433f4948f5a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('230', '1151013', '[\"标准\"]', '359.00', '100', 'http://yanxuan.nosdn.127.net/73a8692048f58f15e823b636d7c3bb74.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('231', '1152004', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/8c93cef435d888bd79833777df1cd0c2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '1');
-INSERT INTO `litemall_goods_product` VALUES ('232', '1152008', '[\"标准\"]', '29.00', '100', 'http://yanxuan.nosdn.127.net/203cb83d93606865e3ddde57b69b9e9a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('233', '1152009', '[\"标准\"]', '29.00', '100', 'http://yanxuan.nosdn.127.net/ae6d41117717387b82dcaf1dfce0cd97.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('234', '1152031', '[\"标准\"]', '99.00', '100', 'http://yanxuan.nosdn.127.net/fd6e78a397bd9e9804116a36f0270b0a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('235', '1152095', '[\"标准\"]', '499.00', '100', 'http://yanxuan.nosdn.127.net/c86b49f635fa141decebabbd0966a6ef.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('236', '1152097', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/532836444ae5eaec40b5810ca4f9b1e6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('237', '1152100', '[\"标准\"]', '499.00', '100', 'http://yanxuan.nosdn.127.net/a667c4fbbd9c499c0733539d7e986617.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('238', '1152101', '[\"标准\"]', '888.00', '100', 'http://yanxuan.nosdn.127.net/c1c62211a17b71a634fa0c705d11fb42.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('239', '1152161', '[\"标准\"]', '459.00', '100', 'http://yanxuan.nosdn.127.net/977401e75113f7c8334c4fb5b4bf6215.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('240', '1153006', '[\"标准\"]', '1288.00', '100', 'http://yanxuan.nosdn.127.net/2743921b945a6c71fcdc3c5282a03413.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('241', '1155000', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/d7d6ef1f1865991077384761b4521dce.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('242', '1155015', '[\"标准\"]', '12.90', '100', 'http://yanxuan.nosdn.127.net/66b9f1638c0517d179262f14ed1345f9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('243', '1156006', '[\"标准\"]', '699.00', '100', 'http://yanxuan.nosdn.127.net/ea5b0a572b35089446fba491db7fbbc3.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
-INSERT INTO `litemall_goods_product` VALUES ('244', '1166008', '[\"标准\"]', '459.00', '98', 'http://yanxuan.nosdn.127.net/615a16e899e01efb780c488df4233f48.png', '2018-02-01 00:00:00', '2018-11-07 17:14:01', '0');
-INSERT INTO `litemall_goods_product` VALUES ('245', '1152004', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/8c93cef435d888bd79833777df1cd0c2.png', '2019-01-23 18:17:06', '2019-01-23 18:17:06', '1');
-INSERT INTO `litemall_goods_product` VALUES ('246', '1152004', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/8c93cef435d888bd79833777df1cd0c2.png', '2019-01-23 18:17:53', '2019-01-23 18:17:53', '1');
-INSERT INTO `litemall_goods_product` VALUES ('247', '1152004', '[\"标准\"]', '399.00', '100', 'http://yanxuan.nosdn.127.net/8c93cef435d888bd79833777df1cd0c2.png', '2019-01-23 18:21:14', '2019-01-23 18:21:14', '0');
-INSERT INTO `litemall_goods_product` VALUES ('248', '1181001', '[\"标准\"]', '0.00', '0', '', '2019-02-06 18:06:06', '2019-02-06 18:06:06', '1');
-INSERT INTO `litemall_goods_product` VALUES ('249', '1181001', '[\"标准\"]', '0.00', '0', '', '2019-02-11 16:19:07', '2019-02-11 16:19:07', '1');
-INSERT INTO `litemall_goods_product` VALUES ('250', '1181001', '[\"标准\"]', '0.00', '0', '', '2019-02-11 16:35:08', '2019-02-11 16:35:08', '1');
-INSERT INTO `litemall_goods_product` VALUES ('251', '1181001', '[\"标准\"]', '0.00', '10', '', '2019-02-11 16:35:38', '2019-02-11 16:35:38', '1');
-INSERT INTO `litemall_goods_product` VALUES ('252', '1181001', '[\"标准\"]', '300.00', '10', '', '2019-02-11 16:39:52', '2019-02-11 16:39:52', '1');
-INSERT INTO `litemall_goods_product` VALUES ('253', '1181001', '[\"标准\"]', '300.00', '10', '', '2019-02-11 16:41:53', '2019-02-11 20:49:30', '1');
-INSERT INTO `litemall_goods_product` VALUES ('254', '1181001', '[\"标准\"]', '300.00', '10', '', '2019-02-11 16:47:19', '2019-02-11 20:49:30', '1');
-INSERT INTO `litemall_goods_product` VALUES ('255', '1181001', '[\"标准\"]', '301.00', '10', '', '2019-02-11 16:51:47', '2019-02-11 16:51:47', '1');
-INSERT INTO `litemall_goods_product` VALUES ('256', '1181001', '[\"标准\"]', '200.00', '10', '', '2019-02-11 16:53:24', '2019-02-11 16:53:24', '1');
-INSERT INTO `litemall_goods_product` VALUES ('257', '1181002', '[\"标准\"]', '0.00', '0', '', '2019-02-12 23:56:04', '2019-02-12 23:56:04', '1');
-INSERT INTO `litemall_goods_product` VALUES ('258', '1181003', '[\"标准\"]', '0.00', '0', '', '2019-02-13 09:55:45', '2019-02-13 09:55:45', '1');
-INSERT INTO `litemall_goods_product` VALUES ('259', '1181004', '[\"标准\"]', '0.00', '0', '', '2019-02-13 09:57:40', '2019-02-13 09:57:40', '1');
-INSERT INTO `litemall_goods_product` VALUES ('260', '1181005', '[\"标准\"]', '0.00', '0', '', '2019-02-13 11:14:18', '2019-02-13 11:14:18', '1');
-INSERT INTO `litemall_goods_product` VALUES ('261', '1181005', '[\"标准\"]', '0.00', '0', '', '2019-02-13 11:15:30', '2019-02-13 11:15:30', '1');
-INSERT INTO `litemall_goods_product` VALUES ('262', '1181005', '[\"标准\"]', '0.00', '0', '', '2019-02-13 11:15:53', '2019-02-13 11:15:53', '1');
-INSERT INTO `litemall_goods_product` VALUES ('263', '1181006', '[\"标准\"]', '0.00', '0', '', '2019-02-13 11:19:11', '2019-02-13 11:19:11', '1');
-INSERT INTO `litemall_goods_product` VALUES ('264', '1181007', '[\"标准\"]', '0.00', '0', '', '2019-02-13 17:12:00', '2019-02-13 17:12:00', '1');
-INSERT INTO `litemall_goods_product` VALUES ('265', '1181008', '[\"标准\"]', '0.00', '0', '', '2019-02-14 14:51:56', '2019-02-14 14:51:56', '1');
-INSERT INTO `litemall_goods_product` VALUES ('266', '1181008', '[\"4580分\"]', '0.00', '0', '', '2019-02-14 14:55:06', '2019-02-14 14:55:06', '1');
-INSERT INTO `litemall_goods_product` VALUES ('267', '1181008', '[\"4580分\"]', '0.00', '120', 'http://localhost:8080/wx/storage/fetch/3kubcv8saw2ofyasc7lf.PNG', '2019-02-14 14:56:24', '2019-02-14 14:56:24', '1');
-INSERT INTO `litemall_goods_product` VALUES ('268', '1181008', '[\"4580分\"]', '0.00', '120', 'http://localhost:8080/wx/storage/fetch/3kubcv8saw2ofyasc7lf.PNG', '2019-02-14 14:58:34', '2019-02-14 14:58:34', '1');
-INSERT INTO `litemall_goods_product` VALUES ('269', '1181008', '[\"4580分\"]', '0.00', '120', 'http://localhost:8080/wx/storage/fetch/3kubcv8saw2ofyasc7lf.PNG', '2019-02-14 14:59:35', '2019-02-14 14:59:35', '1');
-INSERT INTO `litemall_goods_product` VALUES ('270', '1181008', '[\"400g\"]', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/u155l8tevdvjjyj2vfmx.jpg', '2019-02-14 15:01:55', '2019-02-14 15:01:55', '1');
-INSERT INTO `litemall_goods_product` VALUES ('271', '1181009', '[\"标准\"]', '100.00', '100', 'http://localhost:8080/wx/storage/fetch/qwvuhrnpkxjqeff419ai.PNG', '2019-02-17 13:23:05', '2019-02-17 13:23:05', '1');
-INSERT INTO `litemall_goods_product` VALUES ('272', '1181009', '[\"标准\"]', '100.00', '100', 'http://localhost:8080/wx/storage/fetch/qwvuhrnpkxjqeff419ai.PNG', '2019-02-17 13:27:11', '2019-02-17 13:27:11', '1');
-INSERT INTO `litemall_goods_product` VALUES ('273', '1181010', '[\"标准\"]', '400.00', '400', 'http://localhost:8080/wx/storage/fetch/qnrasxvy6m8oycktr3v7.PNG', '2019-02-17 13:29:33', '2019-02-17 13:29:33', '1');
-INSERT INTO `litemall_goods_product` VALUES ('274', '1181011', '[\"标准\"]', '400.00', '380', 'http://localhost:8080/wx/storage/fetch/9uswxm20seg3hsgn53sj.PNG', '2019-02-17 13:30:31', '2019-02-17 13:30:31', '1');
-INSERT INTO `litemall_goods_product` VALUES ('275', '1181012', '[\"标准\"]', '2456.00', '200', 'http://localhost:8080/wx/storage/fetch/s7mu6uyot8jmhsqr9nqz.PNG', '2019-02-17 13:32:30', '2019-02-17 13:32:30', '1');
-INSERT INTO `litemall_goods_product` VALUES ('276', '1181013', '[\"标准\"]', '600.00', '600', 'http://localhost:8080/wx/storage/fetch/pa8u1tn708xdtk1m6v1w.PNG', '2019-02-17 13:33:17', '2019-02-17 13:33:17', '1');
-INSERT INTO `litemall_goods_product` VALUES ('277', '1181014', '[\"标准\"]', '300.00', '100', 'http://localhost:8080/wx/storage/fetch/v8o8bojdqseogh783dh2.PNG', '2019-02-17 13:35:29', '2019-02-17 13:35:29', '1');
-INSERT INTO `litemall_goods_product` VALUES ('278', '1181014', '[\"标准\"]', '300.00', '100', 'http://localhost:8080/wx/storage/fetch/v8o8bojdqseogh783dh2.PNG', '2019-02-17 16:06:41', '2019-02-17 16:06:41', '1');
-INSERT INTO `litemall_goods_product` VALUES ('279', '1181014', '[\"标准\"]', '300.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-02-17 23:18:57', '2019-02-17 23:18:57', '1');
-INSERT INTO `litemall_goods_product` VALUES ('280', '1181013', '[\"标准\"]', '600.00', '600', 'http://localhost:8080/wx/storage/fetch/lft60u2j58emjbfp6m7c.png', '2019-02-17 23:19:17', '2019-02-17 23:19:17', '1');
-INSERT INTO `litemall_goods_product` VALUES ('281', '1181012', '[\"标准\"]', '2456.00', '200', 'http://localhost:8080/wx/storage/fetch/cmb16uaz6nm8pf5v36rz.png', '2019-02-17 23:19:37', '2019-02-17 23:19:37', '0');
-INSERT INTO `litemall_goods_product` VALUES ('282', '1181014', '[\"标准\"]', '300.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-02-17 23:22:14', '2019-02-17 23:22:14', '1');
-INSERT INTO `litemall_goods_product` VALUES ('283', '1181013', '[\"标准\"]', '600.00', '600', 'http://localhost:8080/wx/storage/fetch/lft60u2j58emjbfp6m7c.png', '2019-02-17 23:22:25', '2019-02-17 23:22:25', '0');
-INSERT INTO `litemall_goods_product` VALUES ('284', '1181011', '[\"标准\"]', '400.00', '380', 'http://localhost:8080/wx/storage/fetch/9uswxm20seg3hsgn53sj.PNG', '2019-02-17 23:31:35', '2019-02-17 23:31:35', '0');
-INSERT INTO `litemall_goods_product` VALUES ('285', '1181014', '[\"标准\"]', '300.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-02-17 23:32:11', '2019-02-17 23:32:11', '0');
-INSERT INTO `litemall_goods_product` VALUES ('286', '1110016', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/3bd73b7279a83d1cbb50c0e45778e6d6.png', '2019-02-17 23:34:28', '2019-02-17 23:34:28', '1');
-INSERT INTO `litemall_goods_product` VALUES ('287', '1110017', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/534231583f82572398ec84bad425cdaf.png', '2019-02-17 23:34:53', '2019-02-17 23:34:53', '1');
-INSERT INTO `litemall_goods_product` VALUES ('288', '1110016', '[\"标准\"]', '39.00', '100', 'http://yanxuan.nosdn.127.net/3bd73b7279a83d1cbb50c0e45778e6d6.png', '2019-02-17 23:53:47', '2019-02-17 23:53:47', '0');
-INSERT INTO `litemall_goods_product` VALUES ('289', '1110017', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/534231583f82572398ec84bad425cdaf.png', '2019-02-17 23:54:01', '2019-02-17 23:54:01', '0');
-INSERT INTO `litemall_goods_product` VALUES ('290', '1056002', '[\"标准\"]', '59.00', '100', 'http://yanxuan.nosdn.127.net/922fdbe007033f7a88f7ebc57c3d1e75.png', '2019-02-17 23:54:17', '2019-02-17 23:54:17', '0');
-INSERT INTO `litemall_goods_product` VALUES ('291', '1110018', '[\"标准\"]', '79.00', '100', 'http://yanxuan.nosdn.127.net/d93aa5d6e7a296101cf4cb72613aeda6.png', '2019-02-17 23:54:38', '2019-02-17 23:54:38', '0');
+INSERT INTO `litemall_goods_product` VALUES ('1', '1181000', '[\"1.5m床垫*1+枕头*2\",\"浅杏粉\"]', '999.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/1f67b1970ee20fd572b7202da0ff705d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('2', '1181000', '[\"1.5m床垫*1+枕头*2\",\"玛瑙红\"]', '1500.00', '0.00', '198', 'quality=90&thumbnail=200x200&imageView', '2018-02-01 00:00:00', '2018-11-07 17:14:01', '0');
+INSERT INTO `litemall_goods_product` VALUES ('3', '1181000', '[\"1.5m床垫*1+枕头*2\",\"烟白灰\"]', '1000.00', '0.00', '300', 'http://yanxuan.nosdn.127.net/36f64a7161b67e7fb8ea45be32ecfa25.png?quality=90&thumbnail=200x200&imageView', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('4', '1181000', '[\"1.8m床垫*1+枕头*2\",\"浅杏粉\"]', '1001.00', '0.00', '400', 'http://yanxuan.nosdn.127.net/10022c73fa7aa75c2c0d736e96cc56d5.png?quality=90&thumbnail=200x200&imageView', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('5', '1181000', '[\"1.8m床垫*1+枕头*2\",\"玛瑙红\"]', '2000.00', '0.00', '2', 'quality=90&thumbnail=200x200&imageView', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('6', '1181000', '[\"1.8m床垫*1+枕头*2\",\"烟白灰\"]', '3000.00', '0.00', '0', 'http://yanxuan.nosdn.127.net/36f64a7161b67e7fb8ea45be32ecfa25.png?quality=90&thumbnail=200x200&imageView', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('7', '1006002', '[\"标准\"]', '899.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8ab2d3287af0cefa2cc539e40600621d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('8', '1006007', '[\"标准\"]', '459.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/66425d1ed50b3968fed27c822fdd32e0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('9', '1006010', '[\"标准\"]', '659.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8fe022126a2789d970f82853be13a5e6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('10', '1006013', '[\"标准\"]', '699.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/583812520c68ca7995b6fac4c67ae2c7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('11', '1006014', '[\"标准\"]', '1399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/2b537159f0f789034bf8c4b339c43750.png', '2018-02-01 00:00:00', '2019-02-11 14:29:06', '0');
+INSERT INTO `litemall_goods_product` VALUES ('12', '1006051', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ad5a317216f9da495b144070ecf1f957.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('13', '1009009', '[\"标准\"]', '1999.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/9791006f25e26b2d7c81f41f87ce8619.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('14', '1009012', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png', '2018-02-01 00:00:00', '2019-02-11 14:29:06', '0');
+INSERT INTO `litemall_goods_product` VALUES ('15', '1009013', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/da56fda947d0f430d5f4cf4aba14e679.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('16', '1009024', '[\"标准\"]', '599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/149dfa87a7324e184c5526ead81de9ad.png', '2018-02-01 00:00:00', '2019-02-10 18:33:21', '0');
+INSERT INTO `litemall_goods_product` VALUES ('17', '1009027', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/71cfd849335c498dee3c54d1eb823c17.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('18', '1010000', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/3bec70b85337c3eec182e54380ef7370.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('19', '1010001', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a8b0a5def7d64e411dd98bdfb1fc989b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('20', '1011004', '[\"标准\"]', '199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/0984c9388a2c3fd2335779da904be393.png', '2018-02-01 00:00:00', '2019-02-11 14:29:06', '0');
+INSERT INTO `litemall_goods_product` VALUES ('21', '1015007', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a2045004de8a6225289376ad54317fc8.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('22', '1019000', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/77c09feb378814be712741b273d16656.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('23', '1019001', '[\"标准\"]', '109.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/7644803ab19b3e398456aa5a54229363.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('24', '1019002', '[\"标准\"]', '199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/0118039f7cda342651595d994ed09567.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('25', '1019006', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/60c3707837c97a21715ecc3986a744ce.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('26', '1020000', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/819fdf1f635a694166bcfdd426416e8c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('27', '1021000', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/7191f2599c7fe44ed4cff7a76e853154.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('28', '1021001', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/fd5a8622ee1a7dfd4b57b938ebf25b24.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('29', '1021004', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/654b02045fde802b51d5bbf09a8b75f2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('30', '1021010', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/25d734cc0b2eae8f63f9deb1e4ad5f64.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('31', '1022000', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/5350e35e6f22165f38928f3c2c52ac57.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('32', '1022001', '[\"标准\"]', '349.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/bf8faee3b27b480f63b70056597b626d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('33', '1023003', '[\"标准\"]', '398.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/c39d54c06a71b4b61b6092a0d31f2335.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('34', '1023012', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/07376e78bf4fb8a5aa8e6a0b1437c3ad.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('35', '1023032', '[\"标准\"]', '449.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/e0b928ada728c140f6965bb41f47407b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('36', '1023034', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/715899c65c023bb4973fb0466a5b79d6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('37', '1025005', '[\"标准\"]', '268.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/49e26f00ca4d0ce00f9960d22c936738.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('38', '1027004', '[\"标准\"]', '249.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/6252f53aaf36c072b6678f3d8c635132.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('39', '1029005', '[\"标准\"]', '959.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/25fe52f44853eb45f610846991bc4d9d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('40', '1030001', '[\"标准\"]', '969.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/88dc5d80c6f84102f003ecd69c86e1cf.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('41', '1030002', '[\"标准\"]', '899.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8b9328496990357033d4259fda250679.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('42', '1030003', '[\"标准\"]', '1469.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/1d1ab099dc0e254c15e57302e78e200b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('43', '1030004', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/e84f2e3b3d39cfdc8af5c3954a877aae.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('44', '1030005', '[\"标准\"]', '899.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/86f57132793d3e3c924a7ba529849288.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('45', '1030006', '[\"标准\"]', '329.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/578ffec952eb25ff072d8ea1b676bfd2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('46', '1033000', '[\"标准\"]', '199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/9aab9a0bf4fef8fe3dc8c732bc22d4b7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('47', '1035006', '[\"标准\"]', '56.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ee92704f3b8323905b51fc647823e6e5.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('48', '1036002', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ffd7efe9d5225dff9f36d5110b027caa.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('49', '1036013', '[\"标准\"]', '109.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/da1bc2c10f7b2e53f2466bd23953b982.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('50', '1036016', '[\"标准\"]', '109.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/513d08057c69fdb7d19cc810e976118d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('51', '1037011', '[\"标准\"]', '599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a03ea6f4509439acdafcb7ceba1debe0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('52', '1037012', '[\"标准\"]', '69.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ffd2c91c7cf9c6e0f630595f7679b95d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('53', '1038004', '[\"标准\"]', '359.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/4d3d3eaeb872860539d7faa59f9f84e9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('54', '1039051', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/c8ca0600fa7ba11ca8be6a3173dd38c9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('55', '1039056', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/3e14e82a44c3a250af63df4c29c572d0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('56', '1043005', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/2a95b16f5b147cab4845641bee738a2e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('57', '1044012', '[\"标准\"]', '349.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a803c68ea88e3116023b45ac9ea99510.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('58', '1045000', '[\"标准\"]', '28.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/b2adc3fd9b84a289a1be03e8ee400e61.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('59', '1046001', '[\"标准\"]', '8.90', '0.00', '100', 'http://yanxuan.nosdn.127.net/74583e585825ecacb11f7c53d2021e00.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('60', '1046002', '[\"标准\"]', '9.90', '0.00', '100', 'http://yanxuan.nosdn.127.net/eb486cfe807c4fe5696aa59cbcf1f96a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('61', '1046044', '[\"标准\"]', '349.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/2bfecfe58ea3ee0d554f2ed58e9ba30a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('62', '1048005', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ce980c16810a471dffff6aa8d7bac754.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('63', '1051000', '[\"标准\"]', '180.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/e564410546a11ddceb5a82bfce8da43d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('64', '1051001', '[\"标准\"]', '159.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/f53ed57d9e23fda7e24dfd0e0a50c5d1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('65', '1051002', '[\"标准\"]', '228.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/56f4b4753392d27c0c2ccceeb579ed6f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('66', '1051003', '[\"标准\"]', '148.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/6a54ccc389afb2459b163245bbb2c978.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('67', '1055012', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/3d437c8d68e2ec3f3dd61001bf98f16e.png', '2018-02-01 00:00:00', '2019-01-26 16:58:11', '0');
+INSERT INTO `litemall_goods_product` VALUES ('68', '1055016', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/23e0203f1512f33e605f61c28fa03d2d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('69', '1055022', '[\"标准\"]', '4.90', '0.00', '100', 'http://yanxuan.nosdn.127.net/c7c74a96eacb29455dbf557b840eaaf5.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('70', '1056002', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/922fdbe007033f7a88f7ebc57c3d1e75.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '1');
+INSERT INTO `litemall_goods_product` VALUES ('71', '1057036', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8a9ee5ba08929cc9e40b973607d2f633.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('72', '1064000', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ebe118f94ddafe82c4a8cd51da6ff183.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('73', '1064002', '[\"标准\"]', '69.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/48dbfe207b2203ef45055dcc9cedbe60.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('74', '1064003', '[\"标准\"]', '89.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/58ed94b63b39339e7814f1339013793c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('75', '1064004', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/337da7094c1df295ca0f0b8baa55b2d5.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('76', '1064006', '[\"标准\"]', '129.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/35306b8e65932dd28a5628d0bb44a044.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('77', '1064007', '[\"标准\"]', '249.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d7bd87f8cc1965b25be33a8aad53812b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('78', '1064021', '[\"标准\"]', '199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/c83a3881704094ddd3970099ca77d115.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('79', '1064022', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a9c155e26d09e3c92b623f0472ed674a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('80', '1065004', '[\"标准\"]', '199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/05977cf923857db0c44b405bd87b096b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('81', '1065005', '[\"标准\"]', '249.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/18b7be03bba9d01e4285fc443ea65bb1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('82', '1068010', '[\"标准\"]', '329.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/9ed4ff9642ea9cb776a20560647cd72b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('83', '1068011', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/0e4ba6ed44fef8803c243e585b621ab7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('84', '1068012', '[\"标准\"]', '599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/69145abddddd31ae8878ea7ca7297b4b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('85', '1070000', '[\"标准\"]', '26.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8392725765cdd57fdae3f173877f4bda.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('86', '1071004', '[\"标准\"]', '89.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/f0abf2bf11c8d303212e4a0c1106bb73.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('87', '1071005', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/07a47d73e2eb53b1a7939219a4e63618.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('88', '1071006', '[\"标准\"]', '9.90', '0.00', '100', 'http://yanxuan.nosdn.127.net/d206e0d15955b4d76431a752f2c94f9f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('89', '1072000', '[\"标准\"]', '89.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/87cf3a17ad40bfdcdc3314ea4591a5e8.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('90', '1072001', '[\"标准\"]', '49.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/0e9d5954d7dc2477d9c46b730e05ab42.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('91', '1073008', '[\"标准\"]', '149.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/619e46411ccd62e5c0f16692ee1a85a0.png', '2018-02-01 00:00:00', '2019-01-26 16:58:11', '0');
+INSERT INTO `litemall_goods_product` VALUES ('92', '1074001', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/73567265b04a9998f64419186ddd8531.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('93', '1075022', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/97ad483a94ed88216a989df83e39cbf0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('94', '1075023', '[\"标准\"]', '199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/29bc800b9f1fa551bc3cd47b10e2a799.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('95', '1075024', '[\"标准\"]', '2399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ce4a1eb18ea518bf584620632509935f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('96', '1081000', '[\"标准\"]', '49.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/cc45baafad00405699552c187c64c512.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('97', '1081002', '[\"标准\"]', '89.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/380cfcd5d8bc22360de089f0b4eb11da.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('98', '1083009', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/76e5c820f6bb71a26517ffa01f499871.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('99', '1083010', '[\"标准\"]', '469.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/b9a12d07f8f2d04d662d9340e68e6687.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('100', '1084001', '[\"标准\"]', '249.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/07f682d405c1d2ed343c210ac8f8862a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('101', '1084003', '[\"标准\"]', '199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/cf40c167e7054fe184d49f19121f63c7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('102', '1085019', '[\"标准\"]', '349.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/65c955a7a98e84d44ca30bb88a591eac.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('103', '1086015', '[\"标准\"]', '249.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d5c2ecfe0fb00cdd8b829975bab21a31.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('104', '1086023', '[\"标准\"]', '19.90', '0.00', '100', 'http://yanxuan.nosdn.127.net/121a99e896b3e332c102eb5f6f9b3406.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('105', '1086024', '[\"标准\"]', '9.90', '0.00', '100', 'http://yanxuan.nosdn.127.net/af899cfaa13f515ecb9cf9a33f41370a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('106', '1086025', '[\"标准\"]', '49.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/78eff56b293c8354bc9ac496fc2c5179.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('107', '1086026', '[\"标准\"]', '29.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/caecdaa37d9cbcff980cee0968911e34.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('108', '1086052', '[\"标准\"]', '859.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/93171a281c4ed272c007a050816e6f6c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('109', '1090004', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a3a92057f10e5e6e804c19ef495e3dee.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('110', '1092001', '[\"标准\"]', '29.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8e35b003ce7895c39eeb073b1f61b1d7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('111', '1092005', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ab1992495e0370f09386d418ad45220d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('112', '1092024', '[\"标准\"]', '1599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/f245a86dcb9f455217241e437b203926.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('113', '1092025', '[\"标准\"]', '19.90', '0.00', '100', 'http://yanxuan.nosdn.127.net/56a46e9a4832587471c0f9ad7c1b7d85.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('114', '1092026', '[\"标准\"]', '19.90', '0.00', '100', 'http://yanxuan.nosdn.127.net/83433f5a7ef69abda2544a53332a0fad.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('115', '1092038', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/1aba9ed9c9160b9ca8e7de58ce4e46b1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('116', '1092039', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d8c18953bcb05f0b07d6b48e2d159ace.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('117', '1093000', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/1a22cc488390b616e75afbbd94db6584.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('118', '1093001', '[\"标准\"]', '29.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/71fede861c3641d570a89a65ccf4525f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('119', '1093002', '[\"标准\"]', '49.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/48d95e820628610fcdcda30570d4379c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('120', '1097004', '[\"标准\"]', '1699.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/54f822e9c542d20566c7f70f90d52ae6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('121', '1097005', '[\"标准\"]', '1199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/e5fd0724a05387615738173fb8f1570d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('122', '1097006', '[\"标准\"]', '999.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/bcf2a72face2c4221dfdc9b3c97d4062.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('123', '1097007', '[\"标准\"]', '759.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/b6e132180679b0673486145decc89aa3.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('124', '1097009', '[\"标准\"]', '1599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/e7b68189ef2f77a28110c3fc7ca5a697.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('125', '1097011', '[\"标准\"]', '3899.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/fea36ef2514c904f4f45f1975f37f289.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('126', '1097012', '[\"标准\"]', '999.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d659d5ce0efaa9baa43abb6e34a1d9fe.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('127', '1097013', '[\"标准\"]', '2699.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/2fa8cb066a356f47a3f0814e99fee7f2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('128', '1097014', '[\"标准\"]', '4199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/308184b7b1965470d58b5c92e9bcc4b0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('129', '1097016', '[\"标准\"]', '2799.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a7e6df722b82ad1b0158adcbdcf30df9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('130', '1097017', '[\"标准\"]', '2199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/e16ff61bef76db81090db191b9d5ec15.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('131', '1100000', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/15e40cfb6a78f557616814a815685fd4.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('132', '1100001', '[\"标准\"]', '199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a95285853138cbaf56e4ba729f2b8749.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('133', '1100002', '[\"标准\"]', '189.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/edf1945ef594c00920bdc727f4c5c7fd.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('134', '1108029', '[\"标准\"]', '89.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/fe52cd141b4b330db5627114b0e0e550.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('135', '1108030', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/4891e60ff08ceed36d40a754e45e8742.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('136', '1108031', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/e13e9697e01339c6cf7479eb81b3fbe2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('137', '1108032', '[\"标准\"]', '29.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/b1f9e1f700469f71fe3c4187ef53c99f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('138', '1109004', '[\"标准\"]', '89.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d25b5990f16c6d1ac168a34b7aeca681.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('139', '1109005', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/7f508253f65733c7b2af52dd3943ee28.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('140', '1109008', '[\"标准\"]', '3999.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/c5be2604c0e4186a4e7079feeb742cee.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('141', '1109034', '[\"标准\"]', '129.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/c2c96acc680cbadb1787385598e1e593.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('142', '1110002', '[\"标准\"]', '119.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a7a524512c34d24a4b9762766dd9d0f0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('143', '1110003', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/72dfb4bfc1cd1b834c064a9d1d40627d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('144', '1110004', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/1ffd5831e63027715445f74a28f8c4ed.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('145', '1110007', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/deeb55bb45f94cb236a47d1264e883b8.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('146', '1110008', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/255a4888161f9b4fe530cf319f14551d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('147', '1110013', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/6eb8d1c37142a5951b6242791c78146b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('148', '1110014', '[\"标准\"]', '69.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/cb4f78bd887059416c3df485e3f31366.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('149', '1110015', '[\"标准\"]', '69.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/56da5270172244be56c00fdc8eb24fae.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('150', '1110016', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/3bd73b7279a83d1cbb50c0e45778e6d6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '1');
+INSERT INTO `litemall_goods_product` VALUES ('151', '1110017', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/534231583f82572398ec84bad425cdaf.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '1');
+INSERT INTO `litemall_goods_product` VALUES ('152', '1110018', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d93aa5d6e7a296101cf4cb72613aeda6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '1');
+INSERT INTO `litemall_goods_product` VALUES ('153', '1110019', '[\"标准\"]', '69.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/1e7e392b6fc9da99dc112197b7444eec.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('154', '1111007', '[\"标准\"]', '78.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8d228f767b136a67aaf2cbbf6deb46fa.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('155', '1111010', '[\"标准\"]', '69.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ef7efe55839e66993fb604dc3c2d9410.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('156', '1113010', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/2d0920b51331bb1636330ad8e07d1b97.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('157', '1113011', '[\"标准\"]', '49.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/7a683f68fc988df299b5cfe6273d6fb7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('158', '1113019', '[\"标准\"]', '208.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ad504bb389039ff35c4cd6ae912be87e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('159', '1114011', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/196b5ce11930b4eadaec563cb0406634.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('160', '1115023', '[\"标准\"]', '1599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/f3d1f0217ed250a37ea807f456351a51.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('161', '1115028', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/3d0045e8f43439c7004fae052b2162ed.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('162', '1115052', '[\"标准\"]', '86.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/39dea35a3ea2361e4b054ee2f421af53.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('163', '1115053', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/fabf9ac36751a2e1322135c56f1dc338.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('164', '1116004', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/14d3a47ccf52815baf6df308be6db5a6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('165', '1116005', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/71937456c3cd654f936f619201a79c09.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('166', '1116008', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/149a09a391ea5a888debf50b9dc4ed7b.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('167', '1116011', '[\"标准\"]', '36.00', '0.00', '80', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '2018-02-01 00:00:00', '2019-02-11 17:13:10', '0');
+INSERT INTO `litemall_goods_product` VALUES ('168', '1116030', '[\"标准\"]', '439.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/9d59a22b5aff348b5aba5fc7e451ea4d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('169', '1116031', '[\"标准\"]', '439.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/f88c3dc42f3e4d7da1ded8c1ee6a97ba.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('170', '1116032', '[\"标准\"]', '3499.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/45176a783387751fc07a07f5031dd62c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('171', '1116033', '[\"标准\"]', '1399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/f1dbf1d9967c478ee6def81ed40734a2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('172', '1125010', '[\"标准\"]', '159.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/f82995ccb2a2f6beddd4ad794f5da2a1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('173', '1125011', '[\"标准\"]', '139.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/be9740b734087f294f59a6560b932bc1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('174', '1125016', '[\"标准\"]', '139.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/46f3059b020eb3900e9af8e8c1af8a97.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('175', '1125017', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ae63fed274187e3e572043c53fefd836.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('176', '1125026', '[\"标准\"]', '159.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/6308c120c441fd3e47658167ad944156.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('177', '1127003', '[\"标准\"]', '2599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/6ad1813d123f7a80f84c2cfa5f8c7caf.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('178', '1127024', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/0a70f12a712e90d7d93beec4f686fe8e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('179', '1127025', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/b2fe79c872a8a7f647264b5e51bcc802.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('180', '1127038', '[\"标准\"]', '359.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/addc278cf9c301dd535791df2e03b2ea.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('181', '1127039', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/be64df0a04ade4cfd75bf7d4e8509ecc.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('182', '1127047', '[\"标准\"]', '29.00', '0.00', '97', 'http://yanxuan.nosdn.127.net/6c03ca93d8fe404faa266ea86f3f1e43.png', '2018-02-01 00:00:00', '2019-02-11 17:13:11', '0');
+INSERT INTO `litemall_goods_product` VALUES ('183', '1127052', '[\"标准\"]', '169.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/4f483526cfe3b953f403ae02049df5b9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('184', '1128002', '[\"标准\"]', '599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a1094a808ffb3a52a6cb13565a283d98.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('185', '1128010', '[\"标准\"]', '29.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a84e8e6979f00efd9a728ed36b154753.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('186', '1128011', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d6e25ec5b4ad7aa37e077ce751b56f46.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('187', '1129015', '[\"标准\"]', '89.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/fc11a482efeece9630548d8b350e7f54.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('188', '1129016', '[\"标准\"]', '29.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a7c7eec41194e65d64931a2d08ef4f8c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('189', '1130037', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/19ecd7c6f6f31219cf75117238d95139.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('190', '1130038', '[\"标准\"]', '89.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/4d77296e02896675558f1a8a83742132.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('191', '1130039', '[\"标准\"]', '89.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/03c73e1f1ce1d2365e83b3230e507030.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('192', '1130041', '[\"标准\"]', '109.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/442b9d99c0e7f39efd7967e0e5987374.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('193', '1130042', '[\"标准\"]', '239.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/dc9d09334eb201fe9408ed604e549941.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('194', '1130049', '[\"标准\"]', '429.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d88513f85b3617d734bde93af2c766c9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('195', '1130056', '[\"标准\"]', '2299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/56e72b84a9bb66687c003ecdaba73816.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('196', '1131017', '[\"标准\"]', '259.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/2b6e2268ed712f1a336283f013abb7a1.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('197', '1134022', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a2b7489b4a2b1c09b66464cede4dabd7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('198', '1134030', '[\"标准\"]', '46.00', '0.00', '99', 'http://yanxuan.nosdn.127.net/aa49dfe878becf768eddc4c1636643a6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('199', '1134032', '[\"标准\"]', '49.00', '0.00', '84', 'http://yanxuan.nosdn.127.net/8b30eeb17c831eba08b97bdcb4c46a8e.png', '2018-02-01 00:00:00', '2019-02-11 14:29:06', '0');
+INSERT INTO `litemall_goods_product` VALUES ('200', '1134036', '[\"标准\"]', '38.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/9356cc27b22bd47ad43913d13226555f.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('201', '1134056', '[\"标准\"]', '429.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/c29f47f58ba1e3c2ff5a193eec0b11d6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('202', '1135000', '[\"标准\"]', '359.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/53d0309471b570a7e12a3f01ba694491.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('203', '1135001', '[\"标准\"]', '459.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/f82ee85933d6f0cc95382215281d3526.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('204', '1135002', '[\"标准\"]', '2599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/45548f26cfd0c7c41e0afc3709d48286.png', '2018-02-01 00:00:00', '2019-02-11 14:29:06', '0');
+INSERT INTO `litemall_goods_product` VALUES ('205', '1135050', '[\"标准\"]', '179.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/366f3f3f0e8971c8cf871e2b55b74ff2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('206', '1135051', '[\"标准\"]', '299.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/9126151f028a8804026d530836b481cb.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('207', '1135052', '[\"标准\"]', '259.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/63f5da1f5363af43aa91864bf66af48e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('208', '1135053', '[\"标准\"]', '429.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/1f9e34b1aadd14ea0c9c299c530d86ba.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('209', '1135054', '[\"标准\"]', '559.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/30d7daa0824fbb61b6c36175c8203349.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('210', '1135055', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/87b6a608b99279ebf1764682e9e5fcec.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('211', '1135056', '[\"标准\"]', '259.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/536246ca4adb77274a94b18bb2f91f47.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('212', '1135057', '[\"标准\"]', '199.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/98c5e80b8e328687ce9c949314ebc41d.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('213', '1135058', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/37bc0fa3524a904ac740340fa92bd515.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('214', '1135065', '[\"标准\"]', '69.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/055eb16f95fe995108dd683f532fda22.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('215', '1135072', '[\"标准\"]', '69.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/43e57d4208cdc78ac9c088f9b3e798f5.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('216', '1135073', '[\"标准\"]', '69.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/53052b04ae001d289c040e09ea92231c.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('217', '1138000', '[\"标准\"]', '29.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ad953e16ad8c33b714e7af941ce8cd56.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('218', '1138001', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/dbc5b25b824c3b3d7ff43b56ca35eee9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('219', '1143006', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/2b48feb65954c6739be28d15b9fbfbe3.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('220', '1143015', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/50e197854e0ada79c37b7215a1574450.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('221', '1143016', '[\"标准\"]', '319.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/e56c6239ee4a641ce2a4565c6babb43e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('222', '1143018', '[\"标准\"]', '68.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d1fd69cee4990f4de1109baef30efeeb.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('223', '1143019', '[\"标准\"]', '98.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/277b07c1e5e6fb57cf9ca47fcd3903d5.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('224', '1143020', '[\"标准\"]', '168.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/200d4d59763af9a0781cca4a06175de7.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('225', '1147045', '[\"标准\"]', '599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/5cda4a0c4c4ff9728d03186bd053c9ca.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('226', '1147046', '[\"标准\"]', '599.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/655d718df8107f8e7fd1dc6140e29039.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('227', '1147047', '[\"标准\"]', '559.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/bda805b0a2464b6ec33c18981565e50e.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('228', '1147048', '[\"标准\"]', '559.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/fd7920a2eadd10fa10c0c03959a2abe0.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('229', '1151012', '[\"标准\"]', '359.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/cb65635dbcef42b68ba21433f4948f5a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('230', '1151013', '[\"标准\"]', '359.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/73a8692048f58f15e823b636d7c3bb74.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('231', '1152004', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8c93cef435d888bd79833777df1cd0c2.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '1');
+INSERT INTO `litemall_goods_product` VALUES ('232', '1152008', '[\"标准\"]', '29.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/203cb83d93606865e3ddde57b69b9e9a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('233', '1152009', '[\"标准\"]', '29.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ae6d41117717387b82dcaf1dfce0cd97.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('234', '1152031', '[\"标准\"]', '99.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/fd6e78a397bd9e9804116a36f0270b0a.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('235', '1152095', '[\"标准\"]', '499.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/c86b49f635fa141decebabbd0966a6ef.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('236', '1152097', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/532836444ae5eaec40b5810ca4f9b1e6.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('237', '1152100', '[\"标准\"]', '499.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/a667c4fbbd9c499c0733539d7e986617.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('238', '1152101', '[\"标准\"]', '888.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/c1c62211a17b71a634fa0c705d11fb42.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('239', '1152161', '[\"标准\"]', '459.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/977401e75113f7c8334c4fb5b4bf6215.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('240', '1153006', '[\"标准\"]', '1288.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/2743921b945a6c71fcdc3c5282a03413.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('241', '1155000', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d7d6ef1f1865991077384761b4521dce.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('242', '1155015', '[\"标准\"]', '12.90', '0.00', '100', 'http://yanxuan.nosdn.127.net/66b9f1638c0517d179262f14ed1345f9.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('243', '1156006', '[\"标准\"]', '699.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/ea5b0a572b35089446fba491db7fbbc3.png', '2018-02-01 00:00:00', '2018-02-01 00:00:00', '0');
+INSERT INTO `litemall_goods_product` VALUES ('244', '1166008', '[\"标准\"]', '459.00', '0.00', '98', 'http://yanxuan.nosdn.127.net/615a16e899e01efb780c488df4233f48.png', '2018-02-01 00:00:00', '2018-11-07 17:14:01', '0');
+INSERT INTO `litemall_goods_product` VALUES ('245', '1152004', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8c93cef435d888bd79833777df1cd0c2.png', '2019-01-23 18:17:06', '2019-01-23 18:17:06', '1');
+INSERT INTO `litemall_goods_product` VALUES ('246', '1152004', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8c93cef435d888bd79833777df1cd0c2.png', '2019-01-23 18:17:53', '2019-01-23 18:17:53', '1');
+INSERT INTO `litemall_goods_product` VALUES ('247', '1152004', '[\"标准\"]', '399.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/8c93cef435d888bd79833777df1cd0c2.png', '2019-01-23 18:21:14', '2019-01-23 18:21:14', '0');
+INSERT INTO `litemall_goods_product` VALUES ('248', '1181001', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-06 18:06:06', '2019-02-06 18:06:06', '1');
+INSERT INTO `litemall_goods_product` VALUES ('249', '1181001', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-11 16:19:07', '2019-02-11 16:19:07', '1');
+INSERT INTO `litemall_goods_product` VALUES ('250', '1181001', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-11 16:35:08', '2019-02-11 16:35:08', '1');
+INSERT INTO `litemall_goods_product` VALUES ('251', '1181001', '[\"标准\"]', '0.00', '0.00', '10', '', '2019-02-11 16:35:38', '2019-02-11 16:35:38', '1');
+INSERT INTO `litemall_goods_product` VALUES ('252', '1181001', '[\"标准\"]', '300.00', '0.00', '10', '', '2019-02-11 16:39:52', '2019-02-11 16:39:52', '1');
+INSERT INTO `litemall_goods_product` VALUES ('253', '1181001', '[\"标准\"]', '300.00', '0.00', '10', '', '2019-02-11 16:41:53', '2019-02-11 20:49:30', '1');
+INSERT INTO `litemall_goods_product` VALUES ('254', '1181001', '[\"标准\"]', '300.00', '0.00', '10', '', '2019-02-11 16:47:19', '2019-02-11 20:49:30', '1');
+INSERT INTO `litemall_goods_product` VALUES ('255', '1181001', '[\"标准\"]', '301.00', '0.00', '10', '', '2019-02-11 16:51:47', '2019-02-11 16:51:47', '1');
+INSERT INTO `litemall_goods_product` VALUES ('256', '1181001', '[\"标准\"]', '200.00', '0.00', '10', '', '2019-02-11 16:53:24', '2019-02-11 16:53:24', '1');
+INSERT INTO `litemall_goods_product` VALUES ('257', '1181002', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-12 23:56:04', '2019-02-12 23:56:04', '1');
+INSERT INTO `litemall_goods_product` VALUES ('258', '1181003', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-13 09:55:45', '2019-02-13 09:55:45', '1');
+INSERT INTO `litemall_goods_product` VALUES ('259', '1181004', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-13 09:57:40', '2019-02-13 09:57:40', '1');
+INSERT INTO `litemall_goods_product` VALUES ('260', '1181005', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-13 11:14:18', '2019-02-13 11:14:18', '1');
+INSERT INTO `litemall_goods_product` VALUES ('261', '1181005', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-13 11:15:30', '2019-02-13 11:15:30', '1');
+INSERT INTO `litemall_goods_product` VALUES ('262', '1181005', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-13 11:15:53', '2019-02-13 11:15:53', '1');
+INSERT INTO `litemall_goods_product` VALUES ('263', '1181006', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-13 11:19:11', '2019-02-13 11:19:11', '1');
+INSERT INTO `litemall_goods_product` VALUES ('264', '1181007', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-13 17:12:00', '2019-02-13 17:12:00', '1');
+INSERT INTO `litemall_goods_product` VALUES ('265', '1181008', '[\"标准\"]', '0.00', '0.00', '0', '', '2019-02-14 14:51:56', '2019-02-14 14:51:56', '1');
+INSERT INTO `litemall_goods_product` VALUES ('266', '1181008', '[\"4580分\"]', '0.00', '0.00', '0', '', '2019-02-14 14:55:06', '2019-02-14 14:55:06', '1');
+INSERT INTO `litemall_goods_product` VALUES ('267', '1181008', '[\"4580分\"]', '0.00', '0.00', '120', 'http://localhost:8080/wx/storage/fetch/3kubcv8saw2ofyasc7lf.PNG', '2019-02-14 14:56:24', '2019-02-14 14:56:24', '1');
+INSERT INTO `litemall_goods_product` VALUES ('268', '1181008', '[\"4580分\"]', '0.00', '0.00', '120', 'http://localhost:8080/wx/storage/fetch/3kubcv8saw2ofyasc7lf.PNG', '2019-02-14 14:58:34', '2019-02-14 14:58:34', '1');
+INSERT INTO `litemall_goods_product` VALUES ('269', '1181008', '[\"4580分\"]', '0.00', '0.00', '120', 'http://localhost:8080/wx/storage/fetch/3kubcv8saw2ofyasc7lf.PNG', '2019-02-14 14:59:35', '2019-02-14 14:59:35', '1');
+INSERT INTO `litemall_goods_product` VALUES ('270', '1181008', '[\"400g\"]', '0.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/u155l8tevdvjjyj2vfmx.jpg', '2019-02-14 15:01:55', '2019-02-14 15:01:55', '1');
+INSERT INTO `litemall_goods_product` VALUES ('271', '1181009', '[\"标准\"]', '100.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/qwvuhrnpkxjqeff419ai.PNG', '2019-02-17 13:23:05', '2019-02-17 13:23:05', '1');
+INSERT INTO `litemall_goods_product` VALUES ('272', '1181009', '[\"标准\"]', '100.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/qwvuhrnpkxjqeff419ai.PNG', '2019-02-17 13:27:11', '2019-02-17 13:27:11', '1');
+INSERT INTO `litemall_goods_product` VALUES ('273', '1181010', '[\"标准\"]', '400.00', '0.00', '400', 'http://localhost:8080/wx/storage/fetch/qnrasxvy6m8oycktr3v7.PNG', '2019-02-17 13:29:33', '2019-02-17 13:29:33', '1');
+INSERT INTO `litemall_goods_product` VALUES ('274', '1181011', '[\"标准\"]', '400.00', '0.00', '380', 'http://localhost:8080/wx/storage/fetch/9uswxm20seg3hsgn53sj.PNG', '2019-02-17 13:30:31', '2019-02-17 13:30:31', '1');
+INSERT INTO `litemall_goods_product` VALUES ('275', '1181012', '[\"标准\"]', '2456.00', '0.00', '200', 'http://localhost:8080/wx/storage/fetch/s7mu6uyot8jmhsqr9nqz.PNG', '2019-02-17 13:32:30', '2019-02-17 13:32:30', '1');
+INSERT INTO `litemall_goods_product` VALUES ('276', '1181013', '[\"标准\"]', '600.00', '0.00', '600', 'http://localhost:8080/wx/storage/fetch/pa8u1tn708xdtk1m6v1w.PNG', '2019-02-17 13:33:17', '2019-02-17 13:33:17', '1');
+INSERT INTO `litemall_goods_product` VALUES ('277', '1181014', '[\"标准\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/v8o8bojdqseogh783dh2.PNG', '2019-02-17 13:35:29', '2019-02-17 13:35:29', '1');
+INSERT INTO `litemall_goods_product` VALUES ('278', '1181014', '[\"标准\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/v8o8bojdqseogh783dh2.PNG', '2019-02-17 16:06:41', '2019-02-17 16:06:41', '1');
+INSERT INTO `litemall_goods_product` VALUES ('279', '1181014', '[\"标准\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-02-17 23:18:57', '2019-02-17 23:18:57', '1');
+INSERT INTO `litemall_goods_product` VALUES ('280', '1181013', '[\"标准\"]', '600.00', '0.00', '600', 'http://localhost:8080/wx/storage/fetch/lft60u2j58emjbfp6m7c.png', '2019-02-17 23:19:17', '2019-02-17 23:19:17', '1');
+INSERT INTO `litemall_goods_product` VALUES ('281', '1181012', '[\"标准\"]', '2456.00', '0.00', '200', 'http://localhost:8080/wx/storage/fetch/cmb16uaz6nm8pf5v36rz.png', '2019-02-17 23:19:37', '2019-02-17 23:19:37', '0');
+INSERT INTO `litemall_goods_product` VALUES ('282', '1181014', '[\"标准\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-02-17 23:22:14', '2019-02-17 23:22:14', '1');
+INSERT INTO `litemall_goods_product` VALUES ('283', '1181013', '[\"标准\"]', '600.00', '0.00', '600', 'http://localhost:8080/wx/storage/fetch/lft60u2j58emjbfp6m7c.png', '2019-02-17 23:22:25', '2019-02-17 23:22:25', '0');
+INSERT INTO `litemall_goods_product` VALUES ('284', '1181011', '[\"标准\"]', '400.00', '0.00', '380', 'http://localhost:8080/wx/storage/fetch/9uswxm20seg3hsgn53sj.PNG', '2019-02-17 23:31:35', '2019-02-17 23:31:35', '0');
+INSERT INTO `litemall_goods_product` VALUES ('285', '1181014', '[\"标准\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-02-17 23:32:11', '2019-02-17 23:32:11', '0');
+INSERT INTO `litemall_goods_product` VALUES ('286', '1110016', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/3bd73b7279a83d1cbb50c0e45778e6d6.png', '2019-02-17 23:34:28', '2019-02-17 23:34:28', '1');
+INSERT INTO `litemall_goods_product` VALUES ('287', '1110017', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/534231583f82572398ec84bad425cdaf.png', '2019-02-17 23:34:53', '2019-02-17 23:34:53', '1');
+INSERT INTO `litemall_goods_product` VALUES ('288', '1110016', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/3bd73b7279a83d1cbb50c0e45778e6d6.png', '2019-02-17 23:53:47', '2019-02-17 23:53:47', '0');
+INSERT INTO `litemall_goods_product` VALUES ('289', '1110017', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/534231583f82572398ec84bad425cdaf.png', '2019-02-17 23:54:01', '2019-02-17 23:54:01', '0');
+INSERT INTO `litemall_goods_product` VALUES ('290', '1056002', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/922fdbe007033f7a88f7ebc57c3d1e75.png', '2019-02-17 23:54:17', '2019-02-17 23:54:17', '0');
+INSERT INTO `litemall_goods_product` VALUES ('291', '1110018', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d93aa5d6e7a296101cf4cb72613aeda6.png', '2019-02-17 23:54:38', '2019-02-17 23:54:38', '0');
 
 -- ----------------------------
 -- Table structure for litemall_goods_specification
@@ -3516,17 +3518,17 @@ CREATE TABLE `litemall_integrals` (
 -- ----------------------------
 -- Records of litemall_integrals
 -- ----------------------------
-INSERT INTO `litemall_integrals` VALUES ('1', '2', '用户注册', '500', '1', '2019-02-06 14:51:41', '0', '0');
-INSERT INTO `litemall_integrals` VALUES ('2', '2', '兑换礼品', '-100', '3', '2019-02-06 14:51:45', '0', '0');
-INSERT INTO `litemall_integrals` VALUES ('3', '2', '购买奶粉3罐', '1000', '4', '2019-02-06 14:51:46', '0', '0');
-INSERT INTO `litemall_integrals` VALUES ('4', '2', '兑换保温杯', '-300', '2', '2019-02-06 14:53:52', '0', '0');
-INSERT INTO `litemall_integrals` VALUES ('5', '2', '购买奶粉1罐', '480', '5', '2019-02-06 14:52:21', '0', '0');
-INSERT INTO `litemall_integrals` VALUES ('6', '2', '购买奶粉1罐', '320', '6', '2019-02-06 14:52:21', '0', '0');
-INSERT INTO `litemall_integrals` VALUES ('7', '2', '兑换暖宝宝', '-60', '7', '2019-02-06 14:53:48', '0', '0');
-INSERT INTO `litemall_integrals` VALUES ('8', '2', '购买奶粉1罐', '320', '8', '2019-02-06 14:52:21', '0', '0');
-INSERT INTO `litemall_integrals` VALUES ('9', '2', '购买奶粉1罐', '320', '9', '2019-02-06 14:52:21', '0', '0');
-INSERT INTO `litemall_integrals` VALUES ('10', '2', '兑换暖宝宝', '-60', '10', '2019-02-06 14:53:48', '0', '0');
-INSERT INTO `litemall_integrals` VALUES ('11', '2', '购买奶粉1罐', '320', '11', '2019-02-06 14:52:21', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('1', '2', '用户注册', '500', '1', '2019-03-17 21:51:40', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('2', '2', '兑换礼品', '-100', '3', '2019-03-17 21:51:42', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('3', '2', '购买奶粉3罐', '1000', '4', '2019-03-17 21:51:43', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('4', '2', '兑换保温杯', '-300', '2', '2019-03-17 21:51:44', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('5', '2', '购买奶粉1罐', '480', '5', '2019-03-17 21:51:45', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('6', '2', '购买奶粉1罐', '320', '6', '2019-03-17 21:51:47', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('7', '2', '兑换暖宝宝', '-60', '7', '2019-03-17 21:51:48', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('8', '2', '购买奶粉1罐', '320', '8', '2019-03-17 21:51:49', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('9', '2', '购买奶粉1罐', '320', '9', '2019-03-17 21:51:51', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('10', '2', '兑换暖宝宝', '-60', '10', '2019-03-17 21:51:52', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('11', '2', '购买奶粉1罐', '320', '11', '2019-03-17 21:51:54', '1', '0');
 
 -- ----------------------------
 -- Table structure for litemall_integral_rule
@@ -3614,6 +3616,7 @@ CREATE TABLE `litemall_order` (
   `groupon_price` decimal(10,2) NOT NULL COMMENT '团购优惠价减免',
   `order_price` decimal(10,2) NOT NULL COMMENT '订单费用， = goods_price + freight_price - coupon_price',
   `actual_price` decimal(10,2) NOT NULL COMMENT '实付费用， = order_price - integral_price',
+  `actual_integral` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '需要积分',
   `pay_id` varchar(63) DEFAULT NULL COMMENT '微信付款编号',
   `pay_time` datetime DEFAULT NULL COMMENT '微信付款时间',
   `ship_sn` varchar(63) DEFAULT NULL COMMENT '发货编号',
@@ -3631,14 +3634,14 @@ CREATE TABLE `litemall_order` (
 -- ----------------------------
 -- Records of litemall_order
 -- ----------------------------
-INSERT INTO `litemall_order` VALUES ('1', '1', '20190123642652', '103', '陶勇刚', '13311621227', '上海市 市辖区 普陀区 梅川路1111弄', '', '415.00', '0.00', '10.00', '0.00', '0.00', '405.00', '405.00', null, null, null, null, null, null, '0', '2019-01-26 16:58:11', '2019-01-23 18:12:31', '2019-01-26 16:58:11', '0');
-INSERT INTO `litemall_order` VALUES ('2', '2', '20190126660140', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '59.00', '8.00', '0.00', '0.00', '0.00', '67.00', '67.00', null, null, null, null, null, null, '0', '2019-01-26 19:05:56', '2019-01-26 17:38:35', '2019-01-26 19:05:56', '0');
-INSERT INTO `litemall_order` VALUES ('3', '2', '20190210197494', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '1198.00', '0.00', '88.00', '0.00', '0.00', '1110.00', '1110.00', null, null, null, null, null, null, '0', '2019-02-10 18:33:22', '2019-02-10 17:52:04', '2019-02-10 18:33:22', '0');
-INSERT INTO `litemall_order` VALUES ('4', '2', '20190211952414', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '4341.00', '0.00', '88.00', '0.00', '0.00', '4253.00', '4253.00', null, null, null, null, null, null, '0', '2019-02-11 14:29:06', '2019-02-11 13:55:37', '2019-02-11 14:29:06', '0');
-INSERT INTO `litemall_order` VALUES ('5', '2', '20190211400263', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '36.00', '8.00', '3.00', '0.00', '0.00', '41.00', '41.00', null, null, null, null, null, null, '0', '2019-02-11 15:59:06', '2019-02-11 14:59:58', '2019-02-11 15:59:06', '0');
-INSERT INTO `litemall_order` VALUES ('6', '2', '20190211497432', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '300.00', '0.00', '88.00', '0.00', '0.00', '212.00', '212.00', null, null, null, null, null, null, '0', '2019-02-11 20:49:30', '2019-02-11 16:50:26', '2019-02-11 20:49:30', '0');
-INSERT INTO `litemall_order` VALUES ('7', '2', '20190211480066', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '1800.00', '0.00', '0.00', '0.00', '0.00', '1800.00', '1800.00', null, null, null, null, null, null, '0', '2019-02-11 20:49:30', '2019-02-11 16:52:44', '2019-02-11 20:49:30', '0');
-INSERT INTO `litemall_order` VALUES ('8', '2', '20190211658476', '101', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '101.00', '0.00', '10.00', '0.00', '0.00', '91.00', '91.00', null, null, null, null, null, null, '0', null, '2019-02-11 17:13:11', '2019-02-11 17:13:11', '1');
+INSERT INTO `litemall_order` VALUES ('1', '1', '20190123642652', '103', '陶勇刚', '13311621227', '上海市 市辖区 普陀区 梅川路1111弄', '', '415.00', '0.00', '10.00', '0.00', '0.00', '405.00', '405.00', '0.00', null, null, null, null, null, null, '0', '2019-01-26 16:58:11', '2019-01-23 18:12:31', '2019-01-26 16:58:11', '0');
+INSERT INTO `litemall_order` VALUES ('2', '2', '20190126660140', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '59.00', '8.00', '0.00', '0.00', '0.00', '67.00', '67.00', '0.00', null, null, null, null, null, null, '0', '2019-01-26 19:05:56', '2019-01-26 17:38:35', '2019-01-26 19:05:56', '0');
+INSERT INTO `litemall_order` VALUES ('3', '2', '20190210197494', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '1198.00', '0.00', '88.00', '0.00', '0.00', '1110.00', '1110.00', '0.00', null, null, null, null, null, null, '0', '2019-02-10 18:33:22', '2019-02-10 17:52:04', '2019-02-10 18:33:22', '0');
+INSERT INTO `litemall_order` VALUES ('4', '2', '20190211952414', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '4341.00', '0.00', '88.00', '0.00', '0.00', '4253.00', '4253.00', '0.00', null, null, null, null, null, null, '0', '2019-02-11 14:29:06', '2019-02-11 13:55:37', '2019-02-11 14:29:06', '0');
+INSERT INTO `litemall_order` VALUES ('5', '2', '20190211400263', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '36.00', '8.00', '3.00', '0.00', '0.00', '41.00', '41.00', '0.00', null, null, null, null, null, null, '0', '2019-02-11 15:59:06', '2019-02-11 14:59:58', '2019-02-11 15:59:06', '0');
+INSERT INTO `litemall_order` VALUES ('6', '2', '20190211497432', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '300.00', '0.00', '88.00', '0.00', '0.00', '212.00', '212.00', '0.00', null, null, null, null, null, null, '0', '2019-02-11 20:49:30', '2019-02-11 16:50:26', '2019-02-11 20:49:30', '0');
+INSERT INTO `litemall_order` VALUES ('7', '2', '20190211480066', '103', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '1800.00', '0.00', '0.00', '0.00', '0.00', '1800.00', '1800.00', '0.00', null, null, null, null, null, null, '0', '2019-02-11 20:49:30', '2019-02-11 16:52:44', '2019-02-11 20:49:30', '0');
+INSERT INTO `litemall_order` VALUES ('8', '2', '20190211658476', '101', '王w', '13311621227', '上海市 市辖区 普陀区 中江路879弄1楼', '', '101.00', '0.00', '10.00', '0.00', '0.00', '91.00', '91.00', '0.00', null, null, null, null, null, null, '0', null, '2019-02-11 17:13:11', '2019-02-11 17:13:11', '1');
 
 -- ----------------------------
 -- Table structure for litemall_order_goods
@@ -3653,6 +3656,7 @@ CREATE TABLE `litemall_order_goods` (
   `product_id` int(11) NOT NULL DEFAULT '0' COMMENT '商品货品表的货品ID',
   `number` smallint(5) NOT NULL DEFAULT '0' COMMENT '商品货品的购买数量',
   `price` decimal(10,2) NOT NULL DEFAULT '0.00' COMMENT '商品货品的售价',
+  `integral` decimal(10,2) NOT NULL DEFAULT '0.00',
   `specifications` varchar(1023) NOT NULL COMMENT '商品货品的规格列表',
   `pic_url` varchar(255) NOT NULL DEFAULT '' COMMENT '商品货品图片或者商品图片',
   `comment` int(11) DEFAULT '0' COMMENT '订单商品评论，如果是-1，则超期不能评价；如果是0，则可以评价；如果其他值，则是comment表里面的评论ID。',
@@ -3667,25 +3671,25 @@ CREATE TABLE `litemall_order_goods` (
 -- ----------------------------
 -- Records of litemall_order_goods
 -- ----------------------------
-INSERT INTO `litemall_order_goods` VALUES ('1', '1', '1073008', '铸铁珐琅牛排煎锅', '1073008', '91', '2', '149.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/619e46411ccd62e5c0f16692ee1a85a0.png', '0', '2019-01-23 18:12:31', '2019-01-23 18:12:31', '0');
-INSERT INTO `litemall_order_goods` VALUES ('2', '1', '1055012', '300根全棉羽丝绒抱枕芯', '1055012', '67', '3', '39.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/3d437c8d68e2ec3f3dd61001bf98f16e.png', '0', '2019-01-23 18:12:31', '2019-01-23 18:12:31', '0');
-INSERT INTO `litemall_order_goods` VALUES ('3', '2', '1009012', '可水洗舒柔丝羽绒枕', '1009012', '14', '1', '59.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png', '0', '2019-01-26 17:38:35', '2019-01-26 17:38:35', '0');
-INSERT INTO `litemall_order_goods` VALUES ('4', '3', '1009024', '日式和风懒人沙发', '1009024', '16', '2', '599.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/149dfa87a7324e184c5526ead81de9ad.png', '0', '2019-02-10 17:52:04', '2019-02-10 17:52:04', '0');
-INSERT INTO `litemall_order_goods` VALUES ('5', '4', '1116011', '蔓越莓曲奇 200克', '1116011', '167', '1', '36.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
-INSERT INTO `litemall_order_goods` VALUES ('6', '4', '1134032', '趣味粉彩系列记忆棉坐垫', '1134032', '199', '1', '49.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/8b30eeb17c831eba08b97bdcb4c46a8e.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
-INSERT INTO `litemall_order_goods` VALUES ('7', '4', '1135002', '宫廷奢华真丝四件套', '1135002', '204', '1', '2599.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/45548f26cfd0c7c41e0afc3709d48286.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
-INSERT INTO `litemall_order_goods` VALUES ('8', '4', '1009012', '可水洗舒柔丝羽绒枕', '1009012', '14', '1', '59.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
-INSERT INTO `litemall_order_goods` VALUES ('9', '4', '1011004', '色织精梳AB纱格纹空调被', '1011004', '20', '1', '199.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/0984c9388a2c3fd2335779da904be393.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
-INSERT INTO `litemall_order_goods` VALUES ('10', '4', '1006014', '双宫茧桑蚕丝被 子母被', '1006014', '11', '1', '1399.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/2b537159f0f789034bf8c4b339c43750.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
-INSERT INTO `litemall_order_goods` VALUES ('11', '5', '1116011', '蔓越莓曲奇 200克', '1116011', '167', '1', '36.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '0', '2019-02-11 14:59:58', '2019-02-11 14:59:58', '0');
-INSERT INTO `litemall_order_goods` VALUES ('12', '6', '1181001', '婴幼儿奶粉2阶段', '1888', '253', '1', '300.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:50:26', '2019-02-11 16:50:26', '0');
-INSERT INTO `litemall_order_goods` VALUES ('13', '7', '1181001', '婴幼儿奶粉2阶段', '1888', '254', '2', '300.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:52:44', '2019-02-11 16:52:44', '0');
-INSERT INTO `litemall_order_goods` VALUES ('14', '7', '1181001', '婴幼儿奶粉2阶段', '1888', '254', '1', '300.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:52:44', '2019-02-11 16:52:44', '0');
-INSERT INTO `litemall_order_goods` VALUES ('15', '7', '1181001', '婴幼儿奶粉2阶段', '1888', '254', '1', '300.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:52:44', '2019-02-11 16:52:44', '0');
-INSERT INTO `litemall_order_goods` VALUES ('16', '7', '1181001', '婴幼儿奶粉2阶段', '1888', '254', '1', '300.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:52:44', '2019-02-11 16:52:44', '0');
-INSERT INTO `litemall_order_goods` VALUES ('17', '7', '1181001', '婴幼儿奶粉2阶段', '1888', '254', '1', '300.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:52:44', '2019-02-11 16:52:44', '0');
-INSERT INTO `litemall_order_goods` VALUES ('18', '8', '1116011', '蔓越莓曲奇 200克', '1116011', '167', '2', '36.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '0', '2019-02-11 17:13:11', '2019-02-11 17:13:11', '0');
-INSERT INTO `litemall_order_goods` VALUES ('19', '8', '1127047', '趣味粉彩系列笔记本', '1127047', '182', '1', '29.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/6c03ca93d8fe404faa266ea86f3f1e43.png', '0', '2019-02-11 17:13:11', '2019-02-11 17:13:11', '0');
+INSERT INTO `litemall_order_goods` VALUES ('1', '1', '1073008', '铸铁珐琅牛排煎锅', '1073008', '91', '2', '149.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/619e46411ccd62e5c0f16692ee1a85a0.png', '0', '2019-01-23 18:12:31', '2019-01-23 18:12:31', '0');
+INSERT INTO `litemall_order_goods` VALUES ('2', '1', '1055012', '300根全棉羽丝绒抱枕芯', '1055012', '67', '3', '39.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/3d437c8d68e2ec3f3dd61001bf98f16e.png', '0', '2019-01-23 18:12:31', '2019-01-23 18:12:31', '0');
+INSERT INTO `litemall_order_goods` VALUES ('3', '2', '1009012', '可水洗舒柔丝羽绒枕', '1009012', '14', '1', '59.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png', '0', '2019-01-26 17:38:35', '2019-01-26 17:38:35', '0');
+INSERT INTO `litemall_order_goods` VALUES ('4', '3', '1009024', '日式和风懒人沙发', '1009024', '16', '2', '599.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/149dfa87a7324e184c5526ead81de9ad.png', '0', '2019-02-10 17:52:04', '2019-02-10 17:52:04', '0');
+INSERT INTO `litemall_order_goods` VALUES ('5', '4', '1116011', '蔓越莓曲奇 200克', '1116011', '167', '1', '36.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
+INSERT INTO `litemall_order_goods` VALUES ('6', '4', '1134032', '趣味粉彩系列记忆棉坐垫', '1134032', '199', '1', '49.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/8b30eeb17c831eba08b97bdcb4c46a8e.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
+INSERT INTO `litemall_order_goods` VALUES ('7', '4', '1135002', '宫廷奢华真丝四件套', '1135002', '204', '1', '2599.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/45548f26cfd0c7c41e0afc3709d48286.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
+INSERT INTO `litemall_order_goods` VALUES ('8', '4', '1009012', '可水洗舒柔丝羽绒枕', '1009012', '14', '1', '59.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/a196b367f23ccfd8205b6da647c62b84.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
+INSERT INTO `litemall_order_goods` VALUES ('9', '4', '1011004', '色织精梳AB纱格纹空调被', '1011004', '20', '1', '199.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/0984c9388a2c3fd2335779da904be393.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
+INSERT INTO `litemall_order_goods` VALUES ('10', '4', '1006014', '双宫茧桑蚕丝被 子母被', '1006014', '11', '1', '1399.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/2b537159f0f789034bf8c4b339c43750.png', '0', '2019-02-11 13:55:37', '2019-02-11 13:55:37', '0');
+INSERT INTO `litemall_order_goods` VALUES ('11', '5', '1116011', '蔓越莓曲奇 200克', '1116011', '167', '1', '36.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '0', '2019-02-11 14:59:58', '2019-02-11 14:59:58', '0');
+INSERT INTO `litemall_order_goods` VALUES ('12', '6', '1181001', '婴幼儿奶粉2阶段', '1888', '253', '1', '300.00', '0.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:50:26', '2019-02-11 16:50:26', '0');
+INSERT INTO `litemall_order_goods` VALUES ('13', '7', '1181001', '婴幼儿奶粉2阶段', '1888', '254', '2', '300.00', '0.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:52:44', '2019-02-11 16:52:44', '0');
+INSERT INTO `litemall_order_goods` VALUES ('14', '7', '1181001', '婴幼儿奶粉2阶段', '1888', '254', '1', '300.00', '0.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:52:44', '2019-02-11 16:52:44', '0');
+INSERT INTO `litemall_order_goods` VALUES ('15', '7', '1181001', '婴幼儿奶粉2阶段', '1888', '254', '1', '300.00', '0.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:52:44', '2019-02-11 16:52:44', '0');
+INSERT INTO `litemall_order_goods` VALUES ('16', '7', '1181001', '婴幼儿奶粉2阶段', '1888', '254', '1', '300.00', '0.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:52:44', '2019-02-11 16:52:44', '0');
+INSERT INTO `litemall_order_goods` VALUES ('17', '7', '1181001', '婴幼儿奶粉2阶段', '1888', '254', '1', '300.00', '0.00', '[\"标准\"]', 'http://localhost:8080/wx/storage/fetch/8u0c80jh7nhe0rj886al.PNG', '0', '2019-02-11 16:52:44', '2019-02-11 16:52:44', '0');
+INSERT INTO `litemall_order_goods` VALUES ('18', '8', '1116011', '蔓越莓曲奇 200克', '1116011', '167', '2', '36.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/767b370d07f3973500db54900bcbd2a7.png', '0', '2019-02-11 17:13:11', '2019-02-11 17:13:11', '0');
+INSERT INTO `litemall_order_goods` VALUES ('19', '8', '1127047', '趣味粉彩系列笔记本', '1127047', '182', '1', '29.00', '0.00', '[\"标准\"]', 'http://yanxuan.nosdn.127.net/6c03ca93d8fe404faa266ea86f3f1e43.png', '0', '2019-02-11 17:13:11', '2019-02-11 17:13:11', '0');
 
 -- ----------------------------
 -- Table structure for litemall_permission
@@ -7291,8 +7295,9 @@ CREATE TABLE `litemall_user` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   `integral` int(11) NOT NULL DEFAULT '0' COMMENT '会员积分汇总',
   `grade` int(20) NOT NULL DEFAULT '0' COMMENT '等级',
+  `fromSouce` varchar(255) DEFAULT NULL COMMENT '来源',
+  `address` varchar(500) DEFAULT NULL,
   `babybirthday` date DEFAULT NULL COMMENT '宝宝生日',
-  `from` varchar(50) DEFAULT NULL COMMENT '来源',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户表';
@@ -7300,9 +7305,8 @@ CREATE TABLE `litemall_user` (
 -- ----------------------------
 -- Records of litemall_user
 -- ----------------------------
-INSERT INTO `litemall_user` VALUES ('1', 'test123', '$2a$10$RDdMsCctq0rFNwGkyGm4ouAaLridP7pocqQA3eVOaCZACYgjdfn8C', '1', '2019-01-01', null, '', '0', '', '13311621227', '', '', '0', '2019-01-23 18:01:19', '2019-01-23 18:09:06', '0', '0', '0', null, null);
-INSERT INTO `litemall_user` VALUES ('2', 'ou0VW46B2MIitGvQbXEh_E9vrgL0', 'ou0VW46B2MIitGvQbXEh_E9vrgL0', '2', null, '2019-02-17 22:05:36', '0:0:0:0:0:0:0:1', '0', 'Annie淼', '', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKiaaRleMiauvZVCktNORPulcoY7VIFxpv05qogfXMEJAsBE3D2w4K6np3rThJygzibjGDkzjibQCae0A/132', 'ou0VW46B2MIitGvQbXEh_E9vrgL0', '0', '2019-01-26 17:36:25', '2019-02-17 22:05:36', '0', '0', '0', null, null);
-INSERT INTO `litemall_user` VALUES ('3', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', '1', null, '2019-02-02 00:00:03', '0:0:0:0:0:0:0:1', '0', 'firebird', '', 'https://wx.qlogo.cn/mmopen/vi_32/iaj85Pia2KvicvYrtl6z1q0AWMUPMnOkWUdEP69KS0BJn5A6k52WTa2ibuHR099LWJOFX37mbUPkqzQ2kBsMakl8Ww/132', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', '0', '2019-01-26 19:07:27', '2019-02-02 00:00:03', '0', '0', '0', null, null);
+INSERT INTO `litemall_user` VALUES ('1', 'test123', '$2a$10$RDdMsCctq0rFNwGkyGm4ouAaLridP7pocqQA3eVOaCZACYgjdfn8C', '1', '2019-01-01', null, '', '0', '', '13311621227', '', '', '0', '2019-01-23 18:01:19', '2019-01-23 18:09:06', '0', '0', '0', null, null, null);
+INSERT INTO `litemall_user` VALUES ('3', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', '1', null, '2019-02-02 00:00:03', '0:0:0:0:0:0:0:1', '0', 'firebird', '', 'https://wx.qlogo.cn/mmopen/vi_32/iaj85Pia2KvicvYrtl6z1q0AWMUPMnOkWUdEP69KS0BJn5A6k52WTa2ibuHR099LWJOFX37mbUPkqzQ2kBsMakl8Ww/132', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', '0', '2019-01-26 19:07:27', '2019-02-02 00:00:03', '0', '0', '0', null, null, null);
 
 -- ----------------------------
 -- Table structure for litemall_usercross
