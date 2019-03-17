@@ -6,7 +6,6 @@ import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
 import org.linlinjava.litemall.db.domain.LitemallActivity;
-import org.linlinjava.litemall.db.domain.LitemallGoods;
 import org.linlinjava.litemall.db.domain.LitemallTopic;
 import org.linlinjava.litemall.db.service.LitemallActivityService;
 import org.linlinjava.litemall.db.service.LitemallGoodsService;
@@ -19,9 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static java.time.LocalDateTime.now;
 
@@ -142,6 +142,22 @@ public class WxActivityController {
             data.put("joinCount",0);
             data.put("result",0);
         }
+        return ResponseUtil.ok(data);
+    }
+
+
+    @GetMapping("/list")
+    public Object list(Integer activityId, Integer promoterId, Integer userId, LocalDateTime addTime, LocalDateTime endTime,
+                       @RequestParam(defaultValue = "1") Integer page,
+                       @RequestParam(defaultValue = "10") Integer limit,
+                       @Sort @RequestParam(defaultValue = "add_time") String sort,
+                       @Order @RequestParam(defaultValue = "desc") String order) {
+        List<LitemallActivity> ActivityList = activityService.querySelective(activityId, promoterId, userId, addTime, endTime, page, limit, sort, order);
+        int total = activityService.countSelective(activityId, promoterId, userId, addTime, endTime, page, limit, sort, order);
+        Map<String, Object> data = new HashMap<>();
+        data.put("total", total);
+        data.put("items", ActivityList);
+
         return ResponseUtil.ok(data);
     }
 
