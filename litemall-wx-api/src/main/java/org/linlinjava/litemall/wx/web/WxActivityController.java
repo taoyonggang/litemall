@@ -144,7 +144,24 @@ public class WxActivityController {
         }
         return ResponseUtil.ok(data);
     }
+    @GetMapping("listActivityRecord")
+    public Object listActivityRecord(@LoginUser Integer userId,
+                       @RequestParam(defaultValue = "1") Integer page,
+                       @RequestParam(defaultValue = "10") Integer size,
+                       @Sort @RequestParam(defaultValue = "add_time") String sort,
+                       @Order @RequestParam(defaultValue = "desc") String order) {
+        List<LitemallActivity> activityList = activityService.selectByUserId(userId,page,size,sort,order);
+        Map<String, Object> data = new HashMap<String, Object>();
+        /*int count = activityService.queryTotalCount(userId);
+        int totalPages = (int) Math.ceil((double) count / size);
 
+        data.put("integrals", activityService.queryIntegrals(userId,page,size,sort,order));
+        data.put("integralSum", activityService.queryIntegralSum(userId));
+        data.put("totalPages", totalPages);
+        data.put("data", activityList);*/
+        //data.put("count", total);
+        return ResponseUtil.ok(data);
+    }
 
 
 

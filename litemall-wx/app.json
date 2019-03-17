@@ -38,14 +38,16 @@
     "pages/groupon/grouponDetail/grouponDetail",
     "pages/groupon/grouponList/grouponList",
     "pages/coupon/coupon",
-    "pages/qrcode/qrcode"
+    "pages/qrcode/qrcode",
+    "pages/ucenter/activityrecord/activityrecord",
+    "pages/ucenter/userinfo/userinfo"
     
   ],
   "window": {
-    "navigationBarBackgroundColor": "#FFFFFF",
-    "navigationBarTitleText": "商城",
+    "navigationBarBackgroundColor": "#931e24",
+    "navigationBarTitleText": "海普诺凯商城",
     "enablePullDownRefresh": true,
-    "navigationBarTextStyle": "black",
+    "navigationBarTextStyle": "white",
     "backgroundColor": "#FFFFFF",
     "backgroundTextStyle": "dark"
   },

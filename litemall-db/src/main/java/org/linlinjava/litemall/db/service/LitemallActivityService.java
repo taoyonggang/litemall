@@ -1,18 +1,15 @@
 package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
-import net.sf.jsqlparser.expression.DateTimeLiteralExpression;
 import org.linlinjava.litemall.db.dao.LitemallActivityMapper;
 import org.linlinjava.litemall.db.domain.LitemallActivity;
 import org.linlinjava.litemall.db.domain.LitemallActivityExample;
 import org.linlinjava.litemall.db.domain.LitemallActivity.Column;
-import org.linlinjava.litemall.db.domain.LitemallTopic;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 //import org.linlinjava.litemall.db.domain.LitemallActivity.Column;
@@ -183,6 +180,7 @@ public class LitemallActivityService {
     }
 
 
-
-
+    public  List<LitemallActivity> selectByUserId(Integer userId, Integer page, Integer size, String sort, String order) {
+        return  activityMapper.selectByUserId(userId);
+    }
 }

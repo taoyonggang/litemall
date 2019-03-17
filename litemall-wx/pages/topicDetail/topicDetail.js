@@ -93,7 +93,7 @@ Page({
             if (res.result == 0) {
                 if (res.joinCount > 0) {
                     that.setData({
-                        pageBackgroundColor: '#35c735',
+                      pageBackgroundColor: '#c39744',
                         checkstatus: "已签到"
                     });
                 }

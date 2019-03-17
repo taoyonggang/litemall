@@ -102,8 +102,10 @@ module.exports = {
 
     IntegralsIndex: WxApiRoot + 'user/integrals', //个人积分相关信息
 
-    CheckIn: WxApiRoot + 'activity/addActivityUser', //个人积分相关信息
+    CheckIn: WxApiRoot + 'activity/addActivityUser', 
     SelectActivity: WxApiRoot + 'activity/listActivity',
+    UpdateUser: WxApiRoot + 'auth/update', //更新用户
+  SelectActivityRecord: WxApiRoot + 'activity/listActivityRecord', //查询活动记录
 };
 
 App({

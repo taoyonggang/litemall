@@ -1,18 +1,18 @@
 <view class="container">
 <view   class="section">
-<view class="label">会员姓名</view>
-  <input name="input" style="background-color: #FFFFFF" placeholder="" />
+<view class="label">会员姓名：</view>
+  <input name="input" style="background-color: #FFFFFF;height: 104rpx;padding-left: 30rpx;"  bindinput="nicknameInput" value="{{nickname}}" placeholder="" />
 </view>
-<view class="section" >
+<!-- <view class="section" >
    <label>手机：</label>
-  <input name="input" style="background-color: #FFFFFF" placeholder="" />
-</view>
+  <input name="input" style="background-color: #FFFFFF" value="{{mobile}}" placeholder="" />
+</view> -->
 <view class="section" >
  <label>来源：</label>
   <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
     <view class="picker">
       <view class="fb-type">
-        <view class="type-label">{{array[index]}}</view>
+        <view class="type-label" id='souces'>{{array[index]}}</view>
         <image class="type-icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/pickerArrow-a8b918f05f.png"></image>
 
       </view>
@@ -21,34 +21,34 @@
   </view>
    <view class="section" >
       <label>会员生日：</label>          
-      <input name="input"value="{{userdate}}"  bindtap="showUserDatePicker" style="background-color: #FFFFFF" placeholder="" />
+      <input name="input"value="{{birthday}}"  bindtap="showUserDatePicker" style="background-color: #FFFFFF;height: 104rpx;padding-left: 30rpx;" placeholder="" />
    </view> 
-    <date-picker
+  <view class="section" >
+      <label>宝宝生日：</label>          
+      <input name="input"value="{{babybirthday}}"  bindtap="showBabyDatePicker" style="background-color: #FFFFFF;height: 104rpx;padding-left: 30rpx;" placeholder="" />
+   </view> 
+       <date-picker
     id="date-picker-User"
     value="{{datePickerValueUser}}" 
     isShow="{{datePickerIsShowUser}}"
     bindsureclick="datePickerOnSureClickUser"
     bindcancelclick="datePickerOnCancelClickUser" />  
-  <view class="section" >
-      <label>宝宝生日：</label>          
-      <input name="input"value="{{date}}"  bindtap="showBabyDatePicker" style="background-color: #FFFFFF" placeholder="" />
-   </view> 
  <date-picker
     id="date-picker"
     value="{{datePickerValue}}" 
     isShow="{{datePickerIsShow}}"
     bindsureclick="datePickerOnSureClick"
     bindcancelclick="datePickerOnCancelClick" />  
-  <!-- <view class="section" >
+  <view class="section" >
       <label>地址：</label>          
-      <input name="input"value="{{city}}"   bindtap="showCityPicker" style="background-color: #FFFFFF" placeholder="" />
+      <input name="input"value="{{address}}"   bindtap="showCityPicker" style="background-color: #FFFFFF;height: 104rpx;padding-left: 30rpx;" placeholder="" />
    </view> 
     <city-picker
     id="city-picker"
     value="{{cityPickerValue}}" 
     isShow="{{cityPickerIsShow}}"
     bindsureclick="cityPickerOnSureClick"
-    bindcancelclick="cityPickerOnCancelClick" /> -->
+    bindcancelclick="cityPickerOnCancelClick" />
   <!-- <view class="fb-body">
     <textarea class="content" placeholder="对我们网站、商品、服务，你还有什么建议吗？你还希望在商城上买到什么？请告诉我们..." bindinput="contentInput" maxlength="500" auto-focus="true" value="{{content}}" />
     <view class="weui-uploader__files" id="uploaderFiles">

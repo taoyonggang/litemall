@@ -156,4 +156,6 @@ public interface LitemallActivityMapper {
      * @project https://github.com/itfsw/mybatis-generator-plugin
      */
     int logicalDeleteByPrimaryKey(Integer id);
+
+    List<LitemallActivity> selectByUserId(Integer userId);
 }

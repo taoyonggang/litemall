@@ -1,7 +1,8 @@
 {
   "navigationBarTitleText": "完善信息",
   "usingComponents": {
-    "date-picker": "../../../components/date-picker/date-picker"
+    "date-picker": "../../../components/date-picker/date-picker",
+    "city-picker": "../../../components/city-picker/city-picker"
     
   }
 }

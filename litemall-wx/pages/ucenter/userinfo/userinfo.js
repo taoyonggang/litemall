@@ -6,101 +6,111 @@ var app = getApp();
 
 Page({
   data: {
-    array: ['门店','活动推荐','专业推荐','广告推荐','自主注册','其他'],
+    array: ['活动推荐','门店','专业推荐','广告推荐','自主注册','其他'],
     index: 0,
     content: '',
     contentLength: 0,
-    mobile: '',
-    hasPicture: false,
-    picUrls: [],
-    files: [],
-    userdate: '',
-    date:'',
     datePickerValueUser: ['', '', ''],
     datePickerIsShowUser: false,
     datePickerValue: ['', '', ''],
     datePickerIsShow: false,
-    city: '',
+    address: '',
     cityPickerValue: [0, 0],
     cityPickerIsShow: false,
-  },
-  chooseImage: function (e) {
-    if (this.data.files.length >= 5) {
-      util.showErrorToast('只能上传五张图片')
-      return false;
-    }
-
-    var that = this;
-    wx.chooseImage({
-      count: 1,
-      sizeType: ['original', 'compressed'],
-      sourceType: ['album', 'camera'],
-      success: function (res) {
-        that.setData({
-          files: that.data.files.concat(res.tempFilePaths)
-        });
-        that.upload(res);
-      }
-    })
-  },
-  upload: function (res) {
-    var that = this;
-    const uploadTask = wx.uploadFile({
-      url: api.StorageUpload,
-      filePath: res.tempFilePaths[0],
-      name: 'file',
-      success: function (res) {
-        var _res = JSON.parse(res.data);
-        if (_res.errno === 0) {
-          var url = _res.data.url
-          that.data.picUrls.push(url)
-          that.setData({
-            hasPicture: true,
-            picUrls: that.data.picUrls
-          })
-        }
-      },
-      fail: function (e) {
-        wx.showModal({
-          title: '错误',
-          content: '上传失败',
-          showCancel: false
-        })
-      },
-    })
-
-    uploadTask.onProgressUpdate((res) => {
-      console.log('上传进度', res.progress)
-      console.log('已经上传的数据长度', res.totalBytesSent)
-      console.log('预期需要上传的数据总长度', res.totalBytesExpectedToSend)
-    })
-
-  },
-  previewImage: function (e) {
-    wx.previewImage({
-      current: e.currentTarget.id, // 当前显示图片的http链接
-      urls: this.data.files // 需要预览的图片http链接列表
-    })
+    nickname:'',
+    mobile: '',
+    birthday: '',
+    babybirthday: '',
+    userInfo:'',
+    udername:'',
+    id:'',
+    fromSource:'',
   },
   bindPickerChange: function (e) {
     this.setData({
       index: e.detail.value
     });
   },
-  mobileInput: function (e) {
+  nicknameInput: function (e) {
     this.setData({
-      mobile: e.detail.value
+      nickname: e.detail.value
     });
   },
-  contentInput: function (e) {
+  showUserDatePicker: function (e) {
+    // this.data.datePicker.show(this);
     this.setData({
-      contentLength: e.detail.cursor,
-      content: e.detail.value,
+      datePickerIsShowUser: true,
     });
   },
-  clearMobile: function (e) {
+  showBabyDatePicker: function (e) {
+    // this.data.datePicker.show(this);
     this.setData({
-      mobile: ''
+      datePickerIsShow: true,
+    });
+  },
+  datePickerOnSureClickUser: function (e) {
+    console.log('datePickerOnSureClickUser');
+    console.log(e);
+    this.setData({
+      birthday: `${e.detail.value[0]}-${e.detail.value[1]}-${e.detail.value[2]}`,
+      datePickerValueUser: e.detail.value,
+      datePickerIsShowUser: false,
+    });
+  },
+
+  datePickerOnCancelClickUser: function (event) {
+    console.log('datePickerOnCancelClickUser');
+    console.log(event);
+    this.setData({
+      datePickerIsShowUser: false,
+    });
+  },
+  datePickerOnSureClick: function (e) {
+    console.log('datePickerOnSureClick');
+    console.log(e);
+    this.setData({
+      babybirthday: `${e.detail.value[0]}-${e.detail.value[1]}-${e.detail.value[2]}`,
+      datePickerValue: e.detail.value,
+      datePickerIsShow: false,
+    });
+  },
+
+  datePickerOnCancelClick: function (event) {
+    console.log('datePickerOnCancelClick');
+    console.log(event);
+    this.setData({
+      datePickerIsShow: false,
+    });
+  },
+  /**
+   * 城市选择确认
+   */
+  cityPickerOnSureClick: function (e) {
+    console.log('cityPickerOnSureClick');
+    console.log(e);
+    this.setData({
+      address: e.detail.valueName[0] + e.detail.valueName[1],
+      cityPickerValue: e.detail.valueCode,
+      cityPickerIsShow: false,
+    });
+
+  },
+  /**
+   * 城市选择取消
+   */
+  cityPickerOnCancelClick: function (event) {
+    console.log('cityPickerOnCancelClick');
+    console.log(event);
+    this.setData({
+      cityPickerIsShow: false,
+    });
+  },
+
+
+  showCityPicker() {
+    // this.data.cityPicker.show()
+    this.setData({
+      cityPickerIsShow: true,
     });
   },
   submitFeedback: function (e) {
@@ -111,26 +121,37 @@ Page({
     }
 
     let that = this;
-    if (that.data.index == 0) {
-      util.showErrorToast('请选择反馈类型');
-      return false;
-    }
-
-    if (that.data.content == '') {
-      util.showErrorToast('请输入反馈内容');
-      return false;
-    }
-
-    if (that.data.mobile == '') {
-      util.showErrorToast('请输入手机号码');
-      return false;
-    }
-
-    if (!check.isValidPhone(this.data.mobile)) {
+    //获取用户的登录信息
+    if (app.globalData.hasLogin) {
+      let userInfo = wx.getStorageSync('userInfo');
       this.setData({
-        mobile: ''
+        userInfo: userInfo,
+        hasLogin: true,
+        //nickname: userInfo.nickName
       });
-      util.showErrorToast('请输入手机号码');
+    }
+    var fromsouce = that.data.array[that.data.index];
+    this.setData({
+      fromSource: fromsouce
+    })
+    if (that.data.nickname == '') {
+       util.showErrorToast('请输入会员姓名');
+       return false;
+     }
+    if (that.data.birthday == '') {
+      util.showErrorToast('请输入会员生日');
+      return false;
+    }
+    if (that.data.babybirthday == '') {
+      util.showErrorToast('请输入宝宝生日');
+      return false;
+    }
+    if (that.data.fromSource == '') {
+      util.showErrorToast('请输入来源');
+      return false;
+    }
+    if (that.data.address == '') {
+      util.showErrorToast('请输入地址');
       return false;
     }
 
@@ -141,30 +162,28 @@ Page({
 
       }
     });
+    
 
-    util.request(api.FeedbackAdd, {
-      mobile: that.data.mobile,
-      feedType: that.data.array[that.data.index],
-      content: that.data.content,
-      hasPicture: that.data.hasPicture,
-      picUrls: that.data.picUrls
+    util.request(api.UpdateUser, {
+      nickname: that.data.nickname,
+      //mobile: that.data.mobile,
+      fromSource: that.data.fromSource,
+      birthday: that.data.birthday,
+      babybirthday: that.data.babybirthday,
+      address: that.data.address,
+      //id: that.data.id,
     }, 'POST').then(function (res) {
       wx.hideLoading();
-
       if (res.errno === 0) {
         wx.showToast({
-          title: '感谢您的反馈！',
+          title: '提交成功',
           icon: 'success',
           duration: 2000,
           complete: function () {
             that.setData({
-              index: 0,
-              content: '',
-              contentLength: 0,
-              mobile: '',
-              hasPicture: false,
-              picUrls: [],
-              files: []
+            });
+            wx.navigateTo({
+              url: "/pages/index/index"
             });
           }
         });
@@ -191,81 +210,5 @@ Page({
     // 页面关闭
   },
 
-  showUserDatePicker: function (e) {
-    // this.data.datePicker.show(this);
-    this.setData({
-      datePickerIsShowUser: true,
-    });
-  },
-  showBabyDatePicker: function (e) {
-    // this.data.datePicker.show(this);
-    this.setData({
-      datePickerIsShow: true,
-    });
-  },
-  datePickerOnSureClickUser: function (e) {
-    console.log('datePickerOnSureClickUser');
-    console.log(e);
-    this.setData({
-      userdate: `${e.detail.value[0]}年${e.detail.value[1]}月${e.detail.value[2]}日`,
-      datePickerValueUser: e.detail.value,
-      datePickerIsShowUser: false,
-    });
-  },
-
-  datePickerOnCancelClickUser: function (event) {
-    console.log('datePickerOnCancelClickUser');
-    console.log(event);
-    this.setData({
-      datePickerIsShowUser: false,
-    });
-  },
-  datePickerOnSureClick: function (e) {
-    console.log('datePickerOnSureClick');
-    console.log(e);
-    this.setData({
-      date: `${e.detail.value[0]}年${e.detail.value[1]}月${e.detail.value[2]}日`,
-      datePickerValue: e.detail.value,
-      datePickerIsShow: false,
-    });
-  },
-
-  datePickerOnCancelClick: function (event) {
-    console.log('datePickerOnCancelClick');
-    console.log(event);
-    this.setData({
-      datePickerIsShow: false,
-    });
-  },
-  /**
-   * 城市选择确认
-   */
-  cityPickerOnSureClick: function (e) {
-    console.log('cityPickerOnSureClick');
-    console.log(e);
-    this.setData({
-      city: e.detail.valueName[0] + e.detail.valueName[1],
-      cityPickerValue: e.detail.valueCode,
-      cityPickerIsShow: false,
-    });
-
-  },
-  /**
-   * 城市选择取消
-   */
-  cityPickerOnCancelClick: function (event) {
-    console.log('cityPickerOnCancelClick');
-    console.log(event);
-    this.setData({
-      cityPickerIsShow: false,
-    });
-  },
-
-
-  showCityPicker() {
-    // this.data.cityPicker.show()
-    this.setData({
-      cityPickerIsShow: true,
-    });
-  }
+  
 })
