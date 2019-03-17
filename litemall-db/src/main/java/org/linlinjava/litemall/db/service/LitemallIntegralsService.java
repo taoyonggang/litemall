@@ -134,7 +134,7 @@ public class LitemallIntegralsService {
      * @return
      */
     @Transactional
-    public Integer addIntegral(String action, Integer InteggralDo, Integer userId, Integer type) {
+    public Integer addIntegral(String action, Integer InteggralDo, Integer userId, Integer type, Integer effective) {
 
         LitemallUser user = userService.findById(userId);
         if (user!=null) {
@@ -143,13 +143,48 @@ public class LitemallIntegralsService {
             LitemallIntegrals record = new LitemallIntegrals();
             record.setAction(action);
             record.setUserId(userId);
-            record.setEffective((byte) 1);
+            record.setEffective(effective.byteValue());
             record.setIntegralType(type.byteValue());
             record.setIntegralDo(InteggralDo);
             record.setAddTime(now());
             return integralsMapper.insert(record);
         }
         return -1;
+    }
+
+
+    /**
+     * 使某一类积分记录有效/无效
+     *
+     * @param type
+     * @param effective
+     * @param userId
+     * @return
+     */
+    @Transactional
+    public Integer updateIntegral(Integer userId, Integer type, Integer effective) {
+
+        LitemallIntegralsExample example = new LitemallIntegralsExample();
+        LitemallIntegralsExample.Criteria criteria = example.createCriteria();
+
+        if (userId != null && userId >= 0) {
+            criteria.andUserIdEqualTo(userId);
+            criteria.andIntegralTypeEqualTo(type.byteValue());
+        } else { //不允许查询所有用户积分
+            return -1;
+        }
+
+        List<LitemallIntegrals> records = integralsMapper.selectByExample(example);
+
+        if (records != null && records.size() > 0) {
+            LitemallIntegrals record = records.get(0);
+            record.setEffective(effective.byteValue());
+            return integralsMapper.updateByPrimaryKey(record);
+        }
+
+        return -1;
+
+
     }
 
 

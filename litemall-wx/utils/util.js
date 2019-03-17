@@ -85,7 +85,7 @@ function showErrorToast(msg) {
     })
 }
 
-let getQueryString = function (url, name) {
+function getQueryString(url, name) {
     console.log("url = " + url)
     console.log("name = " + name)
     var reg = new RegExp('(^|&|/?)' + name + '=([^&|/?]*)(&|/?|$)', 'i')
@@ -99,9 +99,9 @@ let getQueryString = function (url, name) {
 }
 
 module.exports = {
-    getQueryString: getQueryString,
     formatTime,
     request,
     redirect,
-    showErrorToast
+    showErrorToast,
+    getQueryString
 }

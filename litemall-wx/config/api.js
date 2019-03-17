@@ -8,6 +8,8 @@
 // 云平台上线时使用
 var WxApiRoot = 'https://hpnk.1897.com/wx/';
 
+//var utils = require('../utils/utils.js');
+
 module.exports = {
     WxApiRoot: WxApiRoot,
     IndexUrl: WxApiRoot + 'home/index', //首页数据接口
@@ -106,15 +108,17 @@ module.exports = {
     SelectActivity: WxApiRoot + 'activity/listActivity',
 };
 
+/*
 App({
     onLaunch: function (options) {
         console.log("全局onLaunch options==" + JSON.stringify(options))
         let q = decodeURIComponent(options.query.q)
         if (q) {
-            console.log("全局onLaunch onload url=" + q)
-            console.log("全局onLaunch onload 参数 flag=" + utils.getQueryString(q, 'flag'))
+          console.log("全局onLaunch onload url=" + q)
+          console.log("全局onLaunch onload 参数 flag=" + utils.getQueryString(q, 'flag'))
         }
 
     }
 
 })
+*/
