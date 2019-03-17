@@ -146,22 +146,6 @@ public class WxActivityController {
     }
 
 
-    @GetMapping("/list")
-    public Object list(Integer activityId, Integer promoterId, Integer userId, LocalDateTime addTime, LocalDateTime endTime,
-                       @RequestParam(defaultValue = "1") Integer page,
-                       @RequestParam(defaultValue = "10") Integer limit,
-                       @Sort @RequestParam(defaultValue = "add_time") String sort,
-                       @Order @RequestParam(defaultValue = "desc") String order) {
-        List<LitemallActivity> ActivityList = activityService.querySelective(activityId, promoterId, userId, addTime, endTime, page, limit, sort, order);
-        int total = activityService.countSelective(activityId, promoterId, userId, addTime, endTime, page, limit, sort, order);
-        Map<String, Object> data = new HashMap<>();
-        data.put("total", total);
-        data.put("items", ActivityList);
-
-        return ResponseUtil.ok(data);
-    }
-
-
 
 
 }
