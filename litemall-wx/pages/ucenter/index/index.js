@@ -191,6 +191,17 @@ Page({
       });
     };
   },
+  goUserInfo(e) {
+    if (this.data.hasLogin) {
+      wx.navigateTo({
+        url: "/pages/ucenter/userinfo/userinfo"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    };
+  },
   goFootprint() {
     if (this.data.hasLogin) {
       wx.navigateTo({

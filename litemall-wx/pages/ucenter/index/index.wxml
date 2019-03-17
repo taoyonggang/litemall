@@ -89,12 +89,18 @@
       <image class='user_column_item_image' src='/static/images/feedback.png'></image>
       <view class='user_column_item_text'>意见反馈</view>
     </view>
-    <view class='user_column_item'>
+    <view class='user_column_item' bindtap='goUserInfo'>
+      <contact-button style="opacity:0;position:absolute;" type="default-dark" session-from="weapp" size="27">
+      </contact-button>
+      <image class='user_column_item_image' src='/static/images/customer.png'></image>
+      <view class='user_column_item_text'>完善信息</view>
+    </view>
+     <!-- <view class='user_column_item'>
       <contact-button style="opacity:0;position:absolute;" type="default-dark" session-from="weapp" size="27">
       </contact-button>
       <image class='user_column_item_image' src='/static/images/customer.png'></image>
       <view class='user_column_item_text'>联系客服</view>
-    </view>
+    </view> -->
     <view class='user_column_item' bindtap='aboutUs'>
       <image class='user_column_item_image' src='/static/images/about_us.png'></image>
       <view class='user_column_item_text'>关于我们</view>

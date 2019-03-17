@@ -15,7 +15,25 @@
       <input class="password" value="{{confirmPassword}}" password bindinput="bindConfirmPasswordInput" placeholder="确认密码" />
       <image class="clear" id="clear-confirm-password" wx:if="{{ confirmPassword.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
     </view>
-
+      <view class="form-item">
+    		<!--<input class="babybirthday" value="{{date}}"  bindtap="showDatePicker" placeholder="宝宝生日"/>-->
+        <input class="babybirthday" value="{{date}}"  bindtap="showDatePicker" placeholder="宝宝生日"/>
+    	</view>
+       <view class="form-item">
+    		<!--<input class="babybirthday" value="{{date}}"  bindtap="showDatePicker" placeholder="宝宝生日"/>-->
+      <picker bindchange="bindViewEvent" data-model="component" data-method="bindSelect" data-name="index"                value='{{index}}' range="{{fromsource}}">
+          <view class="label-right">
+              {{fromsource}}
+          </view>
+      </picker>
+    	</view>
+      <!--<view bindtap="showDatePicker" >选择日期</view>-->
+          <date-picker
+        id="date-picker"
+        value="{{datePickerValue}}" 
+        isShow="{{datePickerIsShow}}"
+        bindsureclick="datePickerOnSureClick"
+        bindcancelclick="datePickerOnCancelClick" />
     <view class="form-item">
       <input class="mobile" value="{{mobile}}" bindinput="bindMobileInput" placeholder="手机号" />
       <image wx:if="{{ mobile.length > 0 }}" id="clear-mobile" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>

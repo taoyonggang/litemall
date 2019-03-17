@@ -52,7 +52,45 @@ Page({
     });
   },
   onLoad: function(options) {
+    let getQueryString = function (url, name) {
+      console.log("url = " + url)
+      console.log("name = " + name)
+      var reg = new RegExp('(^|&|/?)' + name + '=([^&|/?]*)(&|/?|$)', 'i')
+      var r = url.substr(1).match(reg)
+      if (r != null) {
+        console.log("r = " + r)
+        console.log("r[2] = " + r[2])
+        return r[2]
+      }
+      return null;
+    }
+    // 页面初始化 options为页面跳转所带来的参数
+    if (options) {
+      console.log("index 生命周期 onload" + JSON.stringify(options));
+      //在此函数中获取扫描普通链接二维码参数
+      try {
+        let q = decodeURIComponent(options.q)
+        if (q) {
+          console.log("index 生命周期 onload url=" + q)
+          var fromId = util.getQueryString(options, 'id');
+          console.log("index 生命周期 onload 参数 id=" + fromId)
+          that.setData({
+            id: fromId
+          });
+          wx.navigateTo({
+            url: '../topicDetail/topicDetail?id=' + id
+          });
+          return {
+            title: '签到',
+            desc: '签到',
+            path: '../topicDetail/topicDetail?id=' + id
+          }
+        }
+      } catch (err) {
+        console.error(err) // 可执行
+      };
 
+    }
     // 页面初始化 options为页面跳转所带来的参数
     if (options.scene) {
       //这个scene的值存在则证明首页的开启来源于朋友圈分享的图,同时可以通过获取到的goodId的值跳转导航到对应的详情页

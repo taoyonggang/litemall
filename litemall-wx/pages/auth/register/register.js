@@ -1,14 +1,19 @@
+var app = getApp();
 var api = require('../../../config/api.js');
 var check = require('../../../utils/check.js');
 
-var app = getApp();
+
 Page({
   data: {
     username: '',
     password: '',
     confirmPassword: '',
     mobile: '',
-    code: ''
+    code: '',
+    fromsource: ['门店','活动推荐','专业推荐','广告推荐','自主注册','其他'],
+  },
+  bindViewEvent: function (e) {
+    app.process(this, e);
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -226,5 +231,31 @@ Page({
         });
         break;
     }
-  }
+  },
+
+  showDatePicker: function (e) {
+    // this.data.datePicker.show(this);
+    this.setData({
+      datePickerIsShow: true,
+    });
+  },
+
+  datePickerOnSureClick: function (e) {
+    console.log('datePickerOnSureClick');
+    console.log(e);
+    this.setData({
+      date: `${e.detail.value[0]}年${e.detail.value[1]}月${e.detail.value[2]}日`,
+      datePickerValue: e.detail.value,
+      datePickerIsShow: false,
+    });
+  },
+
+  datePickerOnCancelClick: function (event) {
+    console.log('datePickerOnCancelClick');
+    console.log(event);
+    this.setData({
+      datePickerIsShow: false,
+    });
+  },
+
 })

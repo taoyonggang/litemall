@@ -1,3 +1,6 @@
 {
-  "navigationBarTitleText": "注册"
+  "navigationBarTitleText": "注册",
+  "usingComponents": {
+    "date-picker": "../../../components/date-picker/date-picker"
+  }
 }

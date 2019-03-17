@@ -20,7 +20,7 @@ Page({
       var promoterId = options.promoterId;
       //var initUrl = this.data.placeholder;
        //var initUrl = WxApiRoot + 'topicDetail/topicDetail ? id = ' + activeId + '&promoterId=' + promoterId + '&userId=' + promoterId;
-    var initUrl = 'https://hpnk.1897.com/qiandao?id = '+activeId;
+    var initUrl = 'https://hpnk.1897.com/qiandao/'+activeId;
     this.createQrCode(initUrl, "mycanvas", size.w, size.h);
     this.formSubmit(initUrl);
 
