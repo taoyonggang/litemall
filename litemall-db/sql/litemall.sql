@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-03-04 21:24:45
+Date: 2019-03-17 18:37:29
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -3506,6 +3506,8 @@ CREATE TABLE `litemall_integrals` (
   `integral_do` int(11) NOT NULL DEFAULT '0' COMMENT '积分加减值',
   `order_id` int(11) DEFAULT NULL COMMENT '订单id',
   `add_time` datetime NOT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
+  `effective` tinyint(4) NOT NULL DEFAULT '1' COMMENT '积分是否有效，默认有效1',
+  `integral_type` tinyint(4) DEFAULT '0' COMMENT '积分类型：1，完善资料，2，交易，3，消费',
   PRIMARY KEY (`id`),
   KEY `add_time` (`add_time`) USING BTREE,
   KEY `user_id` (`user_id`) USING BTREE
@@ -3514,17 +3516,17 @@ CREATE TABLE `litemall_integrals` (
 -- ----------------------------
 -- Records of litemall_integrals
 -- ----------------------------
-INSERT INTO `litemall_integrals` VALUES ('1', '2', '用户注册', '500', '1', '2019-02-06 14:51:41');
-INSERT INTO `litemall_integrals` VALUES ('2', '2', '兑换礼品', '-100', '3', '2019-02-06 14:51:45');
-INSERT INTO `litemall_integrals` VALUES ('3', '2', '购买奶粉3罐', '1000', '4', '2019-02-06 14:51:46');
-INSERT INTO `litemall_integrals` VALUES ('4', '2', '兑换保温杯', '-300', '2', '2019-02-06 14:53:52');
-INSERT INTO `litemall_integrals` VALUES ('5', '2', '购买奶粉1罐', '480', '5', '2019-02-06 14:52:21');
-INSERT INTO `litemall_integrals` VALUES ('6', '2', '购买奶粉1罐', '320', '6', '2019-02-06 14:52:21');
-INSERT INTO `litemall_integrals` VALUES ('7', '2', '兑换暖宝宝', '-60', '7', '2019-02-06 14:53:48');
-INSERT INTO `litemall_integrals` VALUES ('8', '2', '购买奶粉1罐', '320', '8', '2019-02-06 14:52:21');
-INSERT INTO `litemall_integrals` VALUES ('9', '2', '购买奶粉1罐', '320', '9', '2019-02-06 14:52:21');
-INSERT INTO `litemall_integrals` VALUES ('10', '2', '兑换暖宝宝', '-60', '10', '2019-02-06 14:53:48');
-INSERT INTO `litemall_integrals` VALUES ('11', '2', '购买奶粉1罐', '320', '11', '2019-02-06 14:52:21');
+INSERT INTO `litemall_integrals` VALUES ('1', '2', '用户注册', '500', '1', '2019-02-06 14:51:41', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('2', '2', '兑换礼品', '-100', '3', '2019-02-06 14:51:45', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('3', '2', '购买奶粉3罐', '1000', '4', '2019-02-06 14:51:46', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('4', '2', '兑换保温杯', '-300', '2', '2019-02-06 14:53:52', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('5', '2', '购买奶粉1罐', '480', '5', '2019-02-06 14:52:21', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('6', '2', '购买奶粉1罐', '320', '6', '2019-02-06 14:52:21', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('7', '2', '兑换暖宝宝', '-60', '7', '2019-02-06 14:53:48', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('8', '2', '购买奶粉1罐', '320', '8', '2019-02-06 14:52:21', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('9', '2', '购买奶粉1罐', '320', '9', '2019-02-06 14:52:21', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('10', '2', '兑换暖宝宝', '-60', '10', '2019-02-06 14:53:48', '0', '0');
+INSERT INTO `litemall_integrals` VALUES ('11', '2', '购买奶粉1罐', '320', '11', '2019-02-06 14:52:21', '0', '0');
 
 -- ----------------------------
 -- Table structure for litemall_integral_rule
@@ -7289,6 +7291,8 @@ CREATE TABLE `litemall_user` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   `integral` int(11) NOT NULL DEFAULT '0' COMMENT '会员积分汇总',
   `grade` int(20) NOT NULL DEFAULT '0' COMMENT '等级',
+  `babybirthday` date DEFAULT NULL COMMENT '宝宝生日',
+  `from` varchar(50) DEFAULT NULL COMMENT '来源',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`username`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户表';
@@ -7296,9 +7300,9 @@ CREATE TABLE `litemall_user` (
 -- ----------------------------
 -- Records of litemall_user
 -- ----------------------------
-INSERT INTO `litemall_user` VALUES ('1', 'test123', '$2a$10$RDdMsCctq0rFNwGkyGm4ouAaLridP7pocqQA3eVOaCZACYgjdfn8C', '1', '2019-01-01', null, '', '0', '', '13311621227', '', '', '0', '2019-01-23 18:01:19', '2019-01-23 18:09:06', '0', '0', '0');
-INSERT INTO `litemall_user` VALUES ('2', 'ou0VW46B2MIitGvQbXEh_E9vrgL0', 'ou0VW46B2MIitGvQbXEh_E9vrgL0', '2', null, '2019-02-17 22:05:36', '0:0:0:0:0:0:0:1', '0', 'Annie淼', '', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKiaaRleMiauvZVCktNORPulcoY7VIFxpv05qogfXMEJAsBE3D2w4K6np3rThJygzibjGDkzjibQCae0A/132', 'ou0VW46B2MIitGvQbXEh_E9vrgL0', '0', '2019-01-26 17:36:25', '2019-02-17 22:05:36', '0', '0', '0');
-INSERT INTO `litemall_user` VALUES ('3', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', '1', null, '2019-02-02 00:00:03', '0:0:0:0:0:0:0:1', '0', 'firebird', '', 'https://wx.qlogo.cn/mmopen/vi_32/iaj85Pia2KvicvYrtl6z1q0AWMUPMnOkWUdEP69KS0BJn5A6k52WTa2ibuHR099LWJOFX37mbUPkqzQ2kBsMakl8Ww/132', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', '0', '2019-01-26 19:07:27', '2019-02-02 00:00:03', '0', '0', '0');
+INSERT INTO `litemall_user` VALUES ('1', 'test123', '$2a$10$RDdMsCctq0rFNwGkyGm4ouAaLridP7pocqQA3eVOaCZACYgjdfn8C', '1', '2019-01-01', null, '', '0', '', '13311621227', '', '', '0', '2019-01-23 18:01:19', '2019-01-23 18:09:06', '0', '0', '0', null, null);
+INSERT INTO `litemall_user` VALUES ('2', 'ou0VW46B2MIitGvQbXEh_E9vrgL0', 'ou0VW46B2MIitGvQbXEh_E9vrgL0', '2', null, '2019-02-17 22:05:36', '0:0:0:0:0:0:0:1', '0', 'Annie淼', '', 'https://wx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKiaaRleMiauvZVCktNORPulcoY7VIFxpv05qogfXMEJAsBE3D2w4K6np3rThJygzibjGDkzjibQCae0A/132', 'ou0VW46B2MIitGvQbXEh_E9vrgL0', '0', '2019-01-26 17:36:25', '2019-02-17 22:05:36', '0', '0', '0', null, null);
+INSERT INTO `litemall_user` VALUES ('3', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', '1', null, '2019-02-02 00:00:03', '0:0:0:0:0:0:0:1', '0', 'firebird', '', 'https://wx.qlogo.cn/mmopen/vi_32/iaj85Pia2KvicvYrtl6z1q0AWMUPMnOkWUdEP69KS0BJn5A6k52WTa2ibuHR099LWJOFX37mbUPkqzQ2kBsMakl8Ww/132', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', '0', '2019-01-26 19:07:27', '2019-02-02 00:00:03', '0', '0', '0', null, null);
 
 -- ----------------------------
 -- Table structure for litemall_usercross
