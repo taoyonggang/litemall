@@ -1,0 +1,75 @@
+<view class="container">
+<view   class="section">
+<view class="label">会员姓名</view>
+  <input name="input" style="background-color: #FFFFFF" placeholder="" />
+</view>
+<view class="section" >
+   <label>手机：</label>
+  <input name="input" style="background-color: #FFFFFF" placeholder="" />
+</view>
+<view class="section" >
+ <label>来源：</label>
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <view class="picker">
+      <view class="fb-type">
+        <view class="type-label">{{array[index]}}</view>
+        <image class="type-icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/pickerArrow-a8b918f05f.png"></image>
+
+      </view>
+    </view>
+  </picker>
+  </view>
+   <view class="section" >
+      <label>会员生日：</label>          
+      <input name="input"value="{{userdate}}"  bindtap="showUserDatePicker" style="background-color: #FFFFFF" placeholder="" />
+   </view> 
+    <date-picker
+    id="date-picker-User"
+    value="{{datePickerValueUser}}" 
+    isShow="{{datePickerIsShowUser}}"
+    bindsureclick="datePickerOnSureClickUser"
+    bindcancelclick="datePickerOnCancelClickUser" />  
+  <view class="section" >
+      <label>宝宝生日：</label>          
+      <input name="input"value="{{date}}"  bindtap="showBabyDatePicker" style="background-color: #FFFFFF" placeholder="" />
+   </view> 
+ <date-picker
+    id="date-picker"
+    value="{{datePickerValue}}" 
+    isShow="{{datePickerIsShow}}"
+    bindsureclick="datePickerOnSureClick"
+    bindcancelclick="datePickerOnCancelClick" />  
+  <!-- <view class="section" >
+      <label>地址：</label>          
+      <input name="input"value="{{city}}"   bindtap="showCityPicker" style="background-color: #FFFFFF" placeholder="" />
+   </view> 
+    <city-picker
+    id="city-picker"
+    value="{{cityPickerValue}}" 
+    isShow="{{cityPickerIsShow}}"
+    bindsureclick="cityPickerOnSureClick"
+    bindcancelclick="cityPickerOnCancelClick" /> -->
+  <!-- <view class="fb-body">
+    <textarea class="content" placeholder="对我们网站、商品、服务，你还有什么建议吗？你还希望在商城上买到什么？请告诉我们..." bindinput="contentInput" maxlength="500" auto-focus="true" value="{{content}}" />
+    <view class="weui-uploader__files" id="uploaderFiles">
+      <block wx:for="{{files}}" wx:key="*this">
+        <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+          <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+        </view>
+      </block>
+      <view class="weui-uploader__input-box" wx:if="{{ files.length < 5 }}">
+        <view class="weui-uploader__input" bindtap="chooseImage"></view>
+      </view>
+    </view>
+    <view class="text-count">{{contentLength}}/500</view>
+  </view>
+  <view class="fb-mobile">
+    <view class="label">手机号码</view>
+    <view class="mobile-box">
+      <input class="mobile" maxlength="11" type="number" placeholder="方便我们与你联系" bindinput="mobileInput" value="{{mobile}}" />
+      <image class="clear-icon" src="/static/images/clear_input.png" wx:if="{{ mobile.length > 0 }}" catchtap="clearMobile"></image>
+    </view>
+  </view> -->
+
+  <view class="fb-btn" bindtap="submitFeedback">提交</view>
+</view>
