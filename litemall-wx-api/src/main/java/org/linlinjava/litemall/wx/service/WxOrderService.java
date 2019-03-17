@@ -206,6 +206,7 @@ public class WxOrderService {
         orderVo.put("goodsPrice", order.getGoodsPrice());
         orderVo.put("freightPrice", order.getFreightPrice());
         orderVo.put("actualPrice", order.getActualPrice());
+        orderVo.put("actualIntegral", order.getActualIntegral());
         orderVo.put("orderStatusText", OrderUtil.orderStatusText(order));
         orderVo.put("handleOption", OrderUtil.build(order));
         orderVo.put("expCode", order.getShipChannel());
@@ -299,12 +300,15 @@ public class WxOrderService {
             return ResponseUtil.badArgumentValue();
         }
         BigDecimal checkedGoodsPrice = new BigDecimal(0.00);
+        BigDecimal checkedGoodsIntegral = new BigDecimal(0.00);
         for (LitemallCart checkGoods : checkedGoodsList) {
             //  只有当团购规格商品ID符合才进行团购优惠
             if (grouponRules != null && grouponRules.getGoodsId().equals(checkGoods.getGoodsId())) {
                 checkedGoodsPrice = checkedGoodsPrice.add(checkGoods.getPrice().subtract(grouponPrice).multiply(new BigDecimal(checkGoods.getNumber())));
+                checkedGoodsIntegral = checkedGoodsPrice.add(checkGoods.getIntegral().subtract(grouponPrice).multiply(new BigDecimal(checkGoods.getNumber())));
             } else {
                 checkedGoodsPrice = checkedGoodsPrice.add(checkGoods.getPrice().multiply(new BigDecimal(checkGoods.getNumber())));
+                checkedGoodsIntegral = checkedGoodsPrice.add(checkGoods.getIntegral().multiply(new BigDecimal(checkGoods.getNumber())));
             }
         }
 
@@ -335,6 +339,11 @@ public class WxOrderService {
         // 最终支付费用
         BigDecimal actualPrice = orderTotalPrice.subtract(integralPrice);
 
+        // 最终支付积分
+        BigDecimal actualIntegral = checkedGoodsIntegral;
+
+
+
         Integer orderId = null;
         LitemallOrder order = null;
         // 订单
@@ -353,6 +362,7 @@ public class WxOrderService {
         order.setIntegralPrice(integralPrice);
         order.setOrderPrice(orderTotalPrice);
         order.setActualPrice(actualPrice);
+        order.setActualIntegral(actualIntegral);
 
         // 有团购活动
         if (grouponRules != null) {
@@ -376,6 +386,7 @@ public class WxOrderService {
             orderGoods.setGoodsName(cartGoods.getGoodsName());
             orderGoods.setPicUrl(cartGoods.getPicUrl());
             orderGoods.setPrice(cartGoods.getPrice());
+            orderGoods.setIntegral(cartGoods.getIntegral());
             orderGoods.setNumber(cartGoods.getNumber());
             orderGoods.setSpecifications(cartGoods.getSpecifications());
             orderGoods.setAddTime(LocalDateTime.now());
@@ -572,6 +583,84 @@ public class WxOrderService {
         }
         return ResponseUtil.ok(result);
     }
+
+    /**
+     * 付款订单的预支付会话标识 积分模式
+     * <p>
+     * 1. 检测当前订单是否能够付款
+     * 2. 微信商户平台返回支付订单ID
+     * 3. 设置订单付款状态
+     *
+     * @param userId 用户ID
+     * @param body   订单信息，{ orderId：xxx }
+     * @return 支付订单ID
+     */
+    @Transactional
+    public Object prepayByIntegral(Integer userId, String body, HttpServletRequest request) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        Integer orderId = JacksonUtil.parseInteger(body, "orderId");
+        if (orderId == null) {
+            return ResponseUtil.badArgument();
+        }
+
+        LitemallOrder order = orderService.findById(orderId);
+        if (order == null) {
+            return ResponseUtil.badArgumentValue();
+        }
+        if (!order.getUserId().equals(userId)) {
+            return ResponseUtil.badArgumentValue();
+        }
+
+        // 检测是否能够取消
+        OrderHandleOption handleOption = OrderUtil.build(order);
+        if (!handleOption.isPay()) {
+            return ResponseUtil.fail(ORDER_INVALID_OPERATION, "订单不能支付");
+        }
+
+        LitemallUser user = userService.findById(userId);
+        String openid = user.getWeixinOpenid();
+        if (openid == null) {
+            return ResponseUtil.fail(AUTH_OPENID_UNACCESS, "订单不能支付");
+        }
+        WxPayMpOrderResult result = null;
+        try {
+            WxPayUnifiedOrderRequest orderRequest = new WxPayUnifiedOrderRequest();
+            orderRequest.setOutTradeNo(order.getOrderSn());
+            orderRequest.setOpenid(openid);
+            orderRequest.setBody("订单：" + order.getOrderSn());
+            // 元转成分
+            int fee = 0;
+            BigDecimal actualPrice = order.getActualPrice();
+            fee = actualPrice.multiply(new BigDecimal(100)).intValue();
+            orderRequest.setTotalFee(fee);
+            orderRequest.setSpbillCreateIp(IpUtil.getIpAddr(request));
+
+            result = wxPayService.createOrder(orderRequest);
+
+            //缓存prepayID用于后续模版通知
+            String prepayId = result.getPackageValue();
+            prepayId = prepayId.replace("prepay_id=", "");
+            LitemallUserFormid userFormid = new LitemallUserFormid();
+            userFormid.setOpenid(user.getWeixinOpenid());
+            userFormid.setFormid(prepayId);
+            userFormid.setIsprepay(true);
+            userFormid.setUseamount(3);
+            userFormid.setExpireTime(LocalDateTime.now().plusDays(7));
+            formIdService.addUserFormid(userFormid);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseUtil.fail(ORDER_PAY_FAIL, "订单不能支付");
+        }
+
+        if (orderService.updateWithOptimisticLocker(order) == 0) {
+            return ResponseUtil.updatedDateExpired();
+        }
+        return ResponseUtil.ok(result);
+    }
+
 
     /**
      * 微信付款成功或失败回调接口

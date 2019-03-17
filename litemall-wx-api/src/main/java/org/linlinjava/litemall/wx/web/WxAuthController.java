@@ -24,6 +24,7 @@ import org.linlinjava.litemall.wx.service.CaptchaCodeManager;
 import org.linlinjava.litemall.wx.service.UserTokenManager;
 import org.linlinjava.litemall.wx.util.IpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -164,7 +165,7 @@ public class WxAuthController {
             // 新用户发送注册优惠券
             couponAssignService.assignForRegister(user.getId());
             //新注册用户需要增加500积分
-            integralsService.addIntegral("新用户注册", 500, user.getId(), 1);
+            integralsService.addIntegral("新用户注册", 500, user.getId(), 1, 0);
 
         } else {
             user.setLastLoginTime(LocalDateTime.now());
@@ -315,7 +316,7 @@ public class WxAuthController {
         couponAssignService.assignForRegister(user.getId());
 
         //新注册用户需要增加500积分
-        integralsService.addIntegral("新用户注册", 500, user.getId(), 1);
+        integralsService.addIntegral("新用户注册", 500, user.getId(), 0, 0);
 
         // userInfo
         UserInfo userInfo = new UserInfo();
@@ -357,6 +358,7 @@ public class WxAuthController {
      * 失败则 { errno: XXX, errmsg: XXX }
      */
     @PostMapping("update")
+    @Transactional
     public Object update(@LoginUser Integer userId, @RequestBody String body, HttpServletRequest request) {
 
         if (userId == null) {
@@ -398,6 +400,10 @@ public class WxAuthController {
             user.setFromsouce(fromSource);
             user.setAddress(address);
             userService.updateById(user);
+
+            //激活注册积分
+            integralsService.updateIntegral(userId, 1, 1);
+
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseUtil.fail(USER_INFO_ERROR, "更新用户数据有错误");
@@ -406,6 +412,7 @@ public class WxAuthController {
 
         return ResponseUtil.ok();
     }
+
 
     /**
      * 账号密码重置

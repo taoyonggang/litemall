@@ -139,7 +139,7 @@
       </when>
       <otherwise>
           id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level,
-          nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted,
+          nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
           integral, grade, fromSouce, address, babybirthday
       </otherwise>
     </choose>
@@ -200,7 +200,7 @@
       </when>
       <otherwise>
           id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level,
-          nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted,
+          nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
           integral, grade, fromSouce, address, babybirthday
       </otherwise>
     </choose>
@@ -234,18 +234,18 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into litemall_user (username, `password`, gender, 
-      birthday, last_login_time, last_login_ip, 
+      birthday, last_login_time, last_login_ip,
       user_level, nickname, mobile,
       avatar, weixin_openid, `status`,
       add_time, update_time, deleted,
-      integral, grade, fromSouce,
+      integral, grade, fromSouce, 
       address, babybirthday)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
-      #{birthday,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR},
       #{userLevel,jdbcType=TINYINT}, #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR},
       #{avatar,jdbcType=VARCHAR}, #{weixinOpenid,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT},
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT},
-      #{integral,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER}, #{fromsouce,jdbcType=VARCHAR},
+      #{integral,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER}, #{fromsouce,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{babybirthday,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="org.linlinjava.litemall.db.domain.LitemallUser">
@@ -628,7 +628,7 @@
       </when>
       <otherwise>
           id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level,
-          nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted,
+          nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
           integral, grade, fromSouce, address, babybirthday
       </otherwise>
     </choose>

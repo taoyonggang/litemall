@@ -132,6 +132,7 @@ public class WxCartController {
             cart.setGoodsName((goods.getName()));
             cart.setPicUrl(goods.getPicUrl());
             cart.setPrice(product.getPrice());
+            cart.setIntegral(product.getIntegral());
             cart.setSpecifications(product.getSpecifications());
             cart.setUserId(userId);
             cart.setChecked(true);
@@ -198,6 +199,7 @@ public class WxCartController {
             cart.setGoodsName((goods.getName()));
             cart.setPicUrl(goods.getPicUrl());
             cart.setPrice(product.getPrice());
+            cart.setIntegral(product.getIntegral());
             cart.setSpecifications(product.getSpecifications());
             cart.setUserId(userId);
             cart.setChecked(true);

@@ -39,7 +39,7 @@ Page({
     // }
 
     // 页面初始化 options为页面跳转所带来的参数
-    if (options) {
+      if (options.q) {
       console.log("index 生命周期 onload" + JSON.stringify(options));
       //在此函数中获取扫描普通链接二维码参数
       try {
