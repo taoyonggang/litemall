@@ -31,7 +31,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -159,7 +158,7 @@ public class WxAuthController {
             // 新用户发送注册优惠券
             couponAssignService.assignForRegister(user.getId());
             //新注册用户需要增加500积分
-            integralsService.addIntegral("新用户注册",500,user.getId());
+            integralsService.addIntegral("新用户注册", 500, user.getId(), 1);
 
         } else {
             user.setLastLoginTime(LocalDateTime.now());
@@ -310,7 +309,7 @@ public class WxAuthController {
         couponAssignService.assignForRegister(user.getId());
 
         //新注册用户需要增加500积分
-        integralsService.addIntegral("新用户注册",500,user.getId());
+        integralsService.addIntegral("新用户注册", 500, user.getId(), 1);
 
         // userInfo
         UserInfo userInfo = new UserInfo();
@@ -388,6 +387,7 @@ public class WxAuthController {
         LitemallUser user = userService.findById(userId);
         user.setMobile(phone);
         if (userService.updateById(user) == 0) {
+            //integralsService.addIntegral("绑定手机送500积分",500,userId);
             return ResponseUtil.updatedDataFailed();
         }
         return ResponseUtil.ok();

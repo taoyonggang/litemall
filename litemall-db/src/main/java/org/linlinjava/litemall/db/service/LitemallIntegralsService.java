@@ -2,14 +2,14 @@ package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
 import org.linlinjava.litemall.db.dao.LitemallIntegralsMapper;
-import org.linlinjava.litemall.db.dao.LitemallUserMapper;
-import org.linlinjava.litemall.db.domain.*;
+import org.linlinjava.litemall.db.domain.LitemallIntegrals;
+import org.linlinjava.litemall.db.domain.LitemallIntegralsExample;
+import org.linlinjava.litemall.db.domain.LitemallUser;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static java.time.LocalDateTime.now;
@@ -68,7 +68,7 @@ public class LitemallIntegralsService {
     }
 
     /**
-     * 从积分明细表查询所有积分
+     * 从积分明细表查询所有有效积分
      * @param userId
      * @return
      */
@@ -78,12 +78,37 @@ public class LitemallIntegralsService {
             if(integrals!=null&&integrals.size()>0){
                 int sum = 0;
                 for (LitemallIntegrals integral:integrals) {
-                    sum += integral.getIntegralDo();
+                    //过滤无效积分
+                    if (integral.getEffective().equals((byte) 1)) {
+                        sum += integral.getIntegralDo();
+                    }
                 }
                 return sum;
             }
             return 0;
         }else{ //不允许查询所有积分
+            return 0;
+        }
+    }
+
+    /**
+     * 从积分明细表查询所有存在积分
+     *
+     * @param userId
+     * @return
+     */
+    public Integer queryIntegralExistSum(Integer userId) {
+        if (userId != null && userId >= 0) {
+            List<LitemallIntegrals> integrals = this.queryAllIntegrals(userId, null, null);
+            if (integrals != null && integrals.size() > 0) {
+                int sum = 0;
+                for (LitemallIntegrals integral : integrals) {
+                    sum += integral.getIntegralDo();
+                }
+                return sum;
+            }
+            return 0;
+        } else { //不允许查询所有积分
             return 0;
         }
     }
@@ -109,7 +134,7 @@ public class LitemallIntegralsService {
      * @return
      */
     @Transactional
-    public Integer addIntegral(String action,Integer InteggralDo, Integer userId) {
+    public Integer addIntegral(String action, Integer InteggralDo, Integer userId, Integer type) {
 
         LitemallUser user = userService.findById(userId);
         if (user!=null) {
@@ -118,6 +143,8 @@ public class LitemallIntegralsService {
             LitemallIntegrals record = new LitemallIntegrals();
             record.setAction(action);
             record.setUserId(userId);
+            record.setEffective((byte) 1);
+            record.setIntegralType(type.byteValue());
             record.setIntegralDo(InteggralDo);
             record.setAddTime(now());
             return integralsMapper.insert(record);
