@@ -58,24 +58,24 @@ Page({
       if (options.q) {
           console.log("index 生命周期 onload" + JSON.stringify(options));
           //在此函数中获取扫描普通链接二维码参数
-          let getQueryString = function (url, name) {
+          /*function getQueryString(url, name) {
               console.log("url = " + url)
-              console.log("name = " + name)
+              console.log("name = " + name)              
               var reg = new RegExp('(^|&|/?)' + name + '=([^&|/?]*)(&|/?|$)', 'i')
-              var r = url.substr(1).match(reg)
+             var r = url.substring(1).match(reg)
               if (r != null) {
                   console.log("r = " + r)
                   console.log("r[2] = " + r[2])
                   return r[2]
               }
               return null;
-          }
+          }*/
       try {
         let q = decodeURIComponent(options.q)
         if (q) {
           console.log("index 生命周期 onload url=" + q)
-            //var fromId = utils.getQueryString(options, 'id');
-            var fromId = getQueryString(options, 'id');
+            var fromId = utils.getQueryString(q, 'id');
+            //var fromId = getQueryString(options, 'id');
           console.log("index 生命周期 onload 参数 id=" + fromId)
           that.setData({
             id: fromId
