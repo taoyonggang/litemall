@@ -14,7 +14,7 @@
   text-align: center;
   line-height:200rpx;
   margin:0 auto;
-  margin-top:60rpx;
+  margin-top:214rpx;
   margin-bottom:60rpx;
 }
 .content .add-btn-out {
@@ -259,7 +259,9 @@
   height: auto;
   margin: 0 30rpx;
 }
-
+.container {
+background-color:#fff;
+}
 .rec-box .h {
   position: relative;
   width: 690rpx;
@@ -271,7 +273,7 @@
 .rec-box .h .txt {
   display: inline-block;
   position: absolute;
-  background: #f4f4f4;
+  /* background: #f4f4f4; */
   top: 59rpx;
   left: 200rpx;
   width: 290rpx;

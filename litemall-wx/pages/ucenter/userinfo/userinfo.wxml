@@ -1,7 +1,7 @@
 <view class="container">
 <view   class="section">
 <view class="label">会员姓名：</view>
-  <input name="input" style="background-color: #FFFFFF;height: 104rpx;padding-left: 30rpx;"  bindinput="nicknameInput" value="{{nickname}}" placeholder="" />
+  <input name="input" style="background-color: #FFFFFF;height: 104rpx;padding-left: 30rpx"  bindinput="nicknameInput" value="{{nickname}}" placeholder="" />
 </view>
 <!-- <view class="section" >
    <label>手机：</label>
@@ -41,14 +41,14 @@
     bindcancelclick="datePickerOnCancelClick" />  
   <view class="section" >
       <label>地址：</label>          
-      <input name="input"value="{{address}}"   bindtap="showCityPicker" style="background-color: #FFFFFF;height: 104rpx;padding-left: 30rpx;" placeholder="" />
+      <input name="input"value="{{address}}"  bindinput="addressInput"  style="background-color: #FFFFFF;height: 104rpx;padding-left: 30rpx;" placeholder="" />
    </view> 
-    <city-picker
+    <!-- <city-picker
     id="city-picker"
     value="{{cityPickerValue}}" 
     isShow="{{cityPickerIsShow}}"
     bindsureclick="cityPickerOnSureClick"
-    bindcancelclick="cityPickerOnCancelClick" />
+    bindcancelclick="cityPickerOnCancelClick" /> -->
   <!-- <view class="fb-body">
     <textarea class="content" placeholder="对我们网站、商品、服务，你还有什么建议吗？你还希望在商城上买到什么？请告诉我们..." bindinput="contentInput" maxlength="500" auto-focus="true" value="{{content}}" />
     <view class="weui-uploader__files" id="uploaderFiles">

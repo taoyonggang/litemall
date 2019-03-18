@@ -14,7 +14,6 @@ Page({
         commentCount: 0,
         commentList: [],
         topicGoods: [],
-        pageBackgroundColor: '#c79935',
         checkstatus: "签到",
         activityId: 0,
         promoterId: 0,
@@ -103,7 +102,7 @@ Page({
             if (res.result == 0) {
                 if (res.joinCount > 0) {
                     that.setData({
-                      pageBackgroundColor: '#c39744',
+                  
                         checkstatus: "已签到"
                     });
                 }
@@ -186,7 +185,7 @@ Page({
                     if (res.errno === 0) {
                         that.clearCheckIn();
                         that.setData({
-                            pageBackgroundColor: '#35c735',
+                          
                             checkstatus: "签到成功"
                         });
                         wx.showToast({

@@ -4,7 +4,7 @@
     <import src="../../lib/wxParse/wxParse.wxml" />
     <template is="wxParse" data="{{wxParseData:topicDetail.nodes}}" />
     <view  class="add-btn" style="background-color:{{pageBackgroundColor}}" bindtap='goCheckIn'>{{checkstatus}}</view>
-    <view  class="add-btn-out"  bindtap='goOut'>返回</view>
+    <!-- <view  class="add-btn-out"  bindtap='goOut'>返回</view> -->
   </scroll-view>
   <scroll-view class="sv-goods" wx:if="{{topicGoods.length > 0 }}">
     <view class="topic-goods">

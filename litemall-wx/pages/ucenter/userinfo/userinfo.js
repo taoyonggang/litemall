@@ -21,7 +21,15 @@ Page({
     mobile: '',
     birthday: '',
     babybirthday: '',
-    userInfo:'',
+    userInfo: {
+            nickName: 'test',
+            avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png',
+            id: 0,
+            birthday:'',
+            babybirthday:'',
+            address:'',
+            fromSource:''
+        },
     udername:'',
     id:'',
     fromSource:'',
@@ -34,6 +42,11 @@ Page({
   nicknameInput: function (e) {
     this.setData({
       nickname: e.detail.value
+    });
+  },
+  addressInput:function(e){
+    this.setData({
+      address: e.detail.value
     });
   },
   showUserDatePicker: function (e) {
@@ -121,15 +134,7 @@ Page({
     }
 
     let that = this;
-    //获取用户的登录信息
-    if (app.globalData.hasLogin) {
-      let userInfo = wx.getStorageSync('userInfo');
-      this.setData({
-        userInfo: userInfo,
-        hasLogin: true,
-        //nickname: userInfo.nickName
-      });
-    }
+
     var fromsouce = that.data.array[that.data.index];
     this.setData({
       fromSource: fromsouce
@@ -194,7 +199,19 @@ Page({
     });
   },
   onLoad: function (options) {
-
+    let that = this;
+    util.request(api.GetUserDeatil, {
+    }).then(function (res) {
+      if (res.errno === 0) {
+        that.setData({
+          nickname: res.data.userDetail.nickName,
+          fromSource: res.data.userDetail.fromSource,
+          birthday: res.data.userDetail.birthday,
+          babybirthday: res.data.userDetail.babybirthday,
+          address: res.data.userDetail.address,
+        });
+      }
+    });
   },
   onReady: function () {
 

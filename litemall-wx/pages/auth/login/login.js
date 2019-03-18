@@ -36,9 +36,8 @@ Page({
         app.globalData.hasLogin = true;
 
         //wx.navigateBack({
-        wx.navigateTo({
+        wx.navigateBack({
           delta: 1
-          //url: "/pages/ucenter/userinfo/userinfo"
         })
       }).catch((err) => {
         app.globalData.hasLogin = false;
@@ -50,7 +49,6 @@ Page({
   accountLogin: function() {
     wx.navigateTo({
       url: "/pages/auth/accountLogin/accountLogin"
-      //url: "/pages/center/userinfo/userinfo"
       
     });
   }
