@@ -6,7 +6,7 @@ var app = getApp();
 
 Page({
   data: {
-    array: ['活动推荐','门店','专业推荐','广告推荐','自主注册','其他'],
+    array: ['选择信息来源','活动推荐','门店','专业推荐','广告推荐','自主注册','其他'],
     index: 0,
     content: '',
     contentLength: 0,
@@ -226,6 +226,28 @@ Page({
   onUnload: function () {
     // 页面关闭
   },
-
+  clearInput: function (e) {
+    switch (e.currentTarget.id) {
+      case 'clear-nickname':
+        this.setData({
+          nickname: ''
+        });
+        break;
+      case 'clear-birthday':
+        this.setData({
+          birthday: ''
+        });
+        break;
+      case 'clear-babybirthday':
+        this.setData({
+          babybirthday: ''
+        });
+        break;
+      case 'clear-address':
+      this.setData({
+        address:''
+      }) ; 
+    }
+  }
   
 })
