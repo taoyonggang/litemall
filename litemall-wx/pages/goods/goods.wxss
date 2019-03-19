@@ -890,10 +890,10 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  float: left;
+  /* float: left; */
   background: #fff;
   border-bottom: 0px solid #fafafa;
-  margin-left: 15%;
+  /* margin-left: 15%; */
 }
 
 .sharebtn::after {
