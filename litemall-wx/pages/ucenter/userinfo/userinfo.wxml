@@ -34,10 +34,10 @@
        <image wx:if="{{ address.length > 0 }}" id="clear-address" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
   </view>
   <view class="form-item">
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" style="background-color: #FFFFFF;height: 104rpx"  >
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" style="background-color: #FFFFFF;height: 104rpx；"  >
         <view class="picker">
           <view class="fb-type">
-             <view class="type-label" id='souces' style="font-size:12px">{{array[index]}}</view>
+             <view class="type-label" id='souces' style="font-size:29rpx">{{array[index]}}</view>
                 <image class="type-icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/pickerArrow-a8b918f05f.png"></image>
           </view>
         </view>

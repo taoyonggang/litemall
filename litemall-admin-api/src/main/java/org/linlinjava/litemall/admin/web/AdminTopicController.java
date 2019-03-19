@@ -110,7 +110,7 @@ public class AdminTopicController {
     @PostMapping("/createCode")
     public Object createCode(@RequestBody LitemallTopic topic) throws Exception {
         topic = topicService.findById(topic.getId());
-        topic.setCodeurl("/topicDetail/topicDetail?id="+topic.getId());
+        topic.setCodeurl("https://hpnk.1897.com/activity/?id="+topic.getId());
         Object error = validate(topic);
         if (error != null) {
             return error;
@@ -118,9 +118,9 @@ public class AdminTopicController {
         if (topicService.updateById(topic) == 0) {
             return ResponseUtil.updatedDataFailed();
         }
-        String text = "http://www.1897.com/";
+        //String text = "http://www.1897.com/";
         //QRCodeUtil.encode(text,"", "D:/barcode",true);
-        QRCodeUtil.encode(text, topic.getCodeurl(), "D:/barcode", true);
+        QRCodeUtil.encode(topic.getCodeurl(), "C:\\barcode", true);
         return ResponseUtil.ok(topic);
     }
 
