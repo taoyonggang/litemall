@@ -43,7 +43,15 @@ public class LitemallActivityService {
         return queryList(activityId,userid,offset, limit, "add_time", "desc");
     }
 
-    public List<LitemallActivity> queryList(int activityId,int userid,int offset, int limit, String sort, String order) {
+    public List<LitemallActivity> queryList(int activityId,int userId,int offset, int limit, String sort, String order) {
+        LitemallActivityExample example = new LitemallActivityExample();
+        example.or().andDeletedEqualTo(false).andPromoterIdEqualTo(userId);
+        example.setOrderByClause(sort + " " + order);
+        PageHelper.startPage(offset, limit);
+        return activityMapper.selectByExampleSelective(example,columns);
+    }
+
+    public List<LitemallActivity> queryMyList(int userid,int offset, int limit, String sort, String order) {
         LitemallActivityExample example = new LitemallActivityExample();
         example.or().andDeletedEqualTo(false).andUserIdEqualTo(userid);
         example.setOrderByClause(sort + " " + order);
@@ -59,6 +67,17 @@ public class LitemallActivityService {
     public int queryTotal(Integer activityId,Integer pid) {
         LitemallActivityExample example = new LitemallActivityExample();
         example.or().andDeletedEqualTo(false).andActivityIdEqualTo(activityId).andPromoterIdEqualTo(pid);
+        return (int) activityMapper.countByExample(example);
+    }
+
+    /**
+     * 获取当前用户所有活动
+     * @param userId
+     * @return
+     */
+    public int queryMyActivityCount(Integer userId) {
+        LitemallActivityExample example = new LitemallActivityExample();
+        example.or().andDeletedEqualTo(false).andUserIdEqualTo(userId);
         return (int) activityMapper.countByExample(example);
     }
 
