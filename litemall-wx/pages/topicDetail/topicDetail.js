@@ -45,6 +45,7 @@ Page({
             });
         }
 
+        /*
         if (options.q) {
             console.log("index 生命周期 onload" + JSON.stringify(options))
             //在此函数中获取扫描普通链接二维码参数
@@ -62,6 +63,7 @@ Page({
                 console.error(err) // 可执行
             }
         }
+        */
 
 
         //获取用户的登录信息
