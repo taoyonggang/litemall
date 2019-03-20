@@ -57,36 +57,19 @@ Page({
       // 页面初始化 options为页面跳转所带来的参数
       if (options.q) {
           console.log("index 生命周期 onload" + JSON.stringify(options));
-          //在此函数中获取扫描普通链接二维码参数
-          /*function getQueryString(url, name) {
-              console.log("url = " + url)
-              console.log("name = " + name)              
-              var reg = new RegExp('(^|&|/?)' + name + '=([^&|/?]*)(&|/?|$)', 'i')
-             var r = url.substring(1).match(reg)
-              if (r != null) {
-                  console.log("r = " + r)
-                  console.log("r[2] = " + r[2])
-                  return r[2]
-              }
-              return null;
-          }*/
       try {
         let q = decodeURIComponent(options.q)
         if (q) {
           console.log("index 生命周期 onload url=" + q)
-            var fromId = utils.getQueryString(q, 'id');
-            //var fromId = getQueryString(options, 'id');
+          var fromId = utils.getQueryString(q, 'id');
           console.log("index 生命周期 onload 参数 id=" + fromId)
-          that.setData({
-            id: fromId
-          });
           wx.navigateTo({
-            url: '../topicDetail/topicDetail?id=' + id
+            url: '../topicDetail/topicDetail?id=' + fromId
           });
           return {
             title: '签到',
             desc: '签到',
-            path: '../topicDetail/topicDetail?id=' + id
+            path: '../topicDetail/topicDetail?id=' + fromId
           }
         }
       } catch (err) {
