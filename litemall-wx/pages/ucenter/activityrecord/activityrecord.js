@@ -50,14 +50,15 @@ Page({
       this.getIntegrals();
     } else {
       wx.showToast({
-        title: '没有更多用户积分记录了',
+        title: '没有更多用户活动参与记录了',
         icon: 'none',
         duration: 2000
       });
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
       return false;
     }
-    wx.hideNavigationBarLoading() //完成停止加载
-    wx.stopPullDownRefresh() //停止下拉刷新
+   
   },
   onReachBottom() {
     if (this.data.totalPages > this.data.page) {

@@ -54,10 +54,11 @@ Page({
         icon: 'none',
         duration: 2000
       });
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
       return false;
     }
-    wx.hideNavigationBarLoading() //完成停止加载
-    wx.stopPullDownRefresh() //停止下拉刷新
+ 
   },
   onReachBottom() {
     if (this.data.totalPages > this.data.page) {
