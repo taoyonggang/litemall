@@ -7,30 +7,29 @@ Page({
   data: {
     type: 0,
     status: 0,
-    integralSum: 0,
-    integrals: [],
     page: 1,
     size: 8,
     totalPages: 1,
     scrollTop: 0,
     showPage: false,
     hasMoreData: true,
+    topiclist:[],
+
   },
-  getIntegrals() {
+  getActivity() {
     // wx.showLoading({
     //   title: '加载中...',
     // });
     let that = this;
-    util.request(api.IntegralsIndex, {
+    util.request(api.SelectActivityRecord, {
       type: that.data.type,
       page: that.data.page,
       size: that.data.size
     }).then(function(res) {
       if (res.errno === 0) {
         that.setData({
-          integralSum: res.data.integralSum,
-          integrals: that.data.integrals.concat(res.data.integrals),
-          totalPages: res.data.totalPages,
+          topiclist: res.data.data,
+          totalPages: res.data.count,
           showPage: true,
           scrollTop: 0,
         });
@@ -39,7 +38,7 @@ Page({
     });
   },
   onLoad: function(options) {
-    this.getIntegrals();
+    this.getActivity();
   },
   onPullDownRefresh() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
@@ -47,7 +46,7 @@ Page({
       this.setData({
         page: this.data.page + 1
       });
-      this.getIntegrals();
+      this.getActivity();
     } else {
       wx.showToast({
         title: '没有更多用户活动参与记录了',
@@ -65,10 +64,10 @@ Page({
       this.setData({
         page: this.data.page + 1
       });
-      this.getIntegrals();
+      this.getActivity();
     } else {
       wx.showToast({
-        title: '没有更多用户积分记录了',
+        title: '没有更多用户活动参与记录了',
         icon: 'none',
         duration: 2000
       });
@@ -105,7 +104,7 @@ Page({
   switchTab: function(e) {
 
     this.setData({
-      integrals: [],
+      topiclist: [],
       status: e.currentTarget.dataset.index,
       page: 1,
       size: 8,
@@ -114,6 +113,6 @@ Page({
       showPage: false
     });
 
-    this.getIntegrals();
+    this.getActivity();
   }
 })
