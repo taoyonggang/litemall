@@ -50,19 +50,44 @@ public class WxActivityController {
      * @return 推荐人列表
      */
     @GetMapping("list")
-    public Object list(@RequestParam(defaultValue = "-1") Integer activityId,
-                       @RequestParam(defaultValue = "-1") Integer promoterId,
+    public Object list(@LoginUser Integer userId,
+                       @RequestParam(defaultValue = "-1") Integer activityId,
                        @RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer size,
                        @Sort @RequestParam(defaultValue = "add_time") String sort,
                        @Order @RequestParam(defaultValue = "desc") String order) {
-        List<LitemallActivity> topicList = activityService.queryList(activityId,promoterId,page, size, sort, order);
-        int total = activityService.queryTotal(activityId,promoterId);
+        List<LitemallActivity> topicList = activityService.queryList(activityId,userId,page, size, sort, order);
+        int total = activityService.queryTotal(activityId,userId);
         Map<String, Object> data = new HashMap<String, Object>();
         data.put("data", topicList);
         data.put("count", total);
         return ResponseUtil.ok(data);
     }
+
+    /**
+     * 获取用户自己的活动猎豹
+     * @param userId
+     * @param page
+     * @param size
+     * @param sort
+     * @param order
+     * @return
+     */
+    @GetMapping("listMyActivity")
+    public Object listMyActivity(@LoginUser Integer userId,
+                       @RequestParam(defaultValue = "1") Integer page,
+                       @RequestParam(defaultValue = "10") Integer size,
+                       @Sort @RequestParam(defaultValue = "add_time") String sort,
+                       @Order @RequestParam(defaultValue = "desc") String order) {
+        List<LitemallActivity> topicList = activityService.queryMyList(userId,page, size, sort, order);
+        int total = activityService.queryMyActivityCount(userId);
+        Map<String, Object> data = new HashMap<String, Object>();
+        data.put("data", topicList);
+        data.put("count", total);
+        return ResponseUtil.ok(data);
+    }
+
+
 
     /**
      * 添加活动用户
