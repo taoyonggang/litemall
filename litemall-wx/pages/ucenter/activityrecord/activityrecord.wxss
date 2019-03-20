@@ -4,9 +4,8 @@ page {
 }
 
 .container {
-  background: #f4f4f4;
+  background: #fff;
   min-height: 100%;
-  padding-top: 30rpx;
 }
 
 .container .h {
@@ -304,6 +303,7 @@ page {
 }
 .image {
   height: 30%;
+  width:100%;
 }
 
 .image-parent {
@@ -320,8 +320,8 @@ page {
   bottom: 0;
   margin: auto;
   text-align: center;
-  margin-top:254rpx;
-  margin-left:218rpx;
+  margin-top:247rpx;
+  margin-left:230rpx;
   color:#ab2b2b;
   font-size:60rpx;
   font-weight:border;
