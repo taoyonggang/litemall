@@ -31,6 +31,8 @@
         </template>
       </el-table-column>
 
+      <el-table-column align="center" label="结束时间" prop="endtime"/>
+
       <el-table-column align="center" label="底价" prop="price"/>
 
       <el-table-column align="center" label="阅读数量" prop="readCount"/>
@@ -41,7 +43,7 @@
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
           <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
-          <!-- <el-button type="warning" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button> -->
+          <el-button type="warning" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button> 
         </template>
       </el-table-column>
     </el-table>
@@ -75,6 +77,13 @@
         </el-form-item>
         <el-form-item style="width: 700px;" label="活动内容">
           <editor :init="editorInit" v-model="dataForm.content"/>
+        </el-form-item>
+             <el-form-item label="过期时间" prop="endtime">
+          <el-date-picker
+            v-model="dataForm.endtime"
+            type="datetime"
+            placeholder="选择日期"
+            value-format="yyyy-MM-dd HH:mm:ss"/>
         </el-form-item>
         <el-form-item label="商品低价" prop="price">
           <el-input v-model="dataForm.price"/>
@@ -148,7 +157,7 @@ export default {
         title: undefined,
         subtitle: undefined,
         sort: 'add_time',
-        order: 'desc'
+        order: 'desc',
       },
       dataForm: {
         id: undefined,
@@ -158,7 +167,8 @@ export default {
         content: '',
         price: undefined,
         readCount: undefined,
-        goods: []
+        goods: [],
+        endtime:''
       },
       contentDetail: '',
       contentDialogVisible: false,
@@ -242,7 +252,8 @@ export default {
         content: '',
         price: undefined,
         readCount: undefined,
-        goods: []
+        goods: [],
+        endtime:''
       }
     },
     handleCreate() {
@@ -359,6 +370,7 @@ export default {
           '活动区域',
           '活动内容',
           '活动图片',
+          '有效期',
           '商品低价',
           '阅读量',
           '活动商品'
@@ -369,6 +381,7 @@ export default {
           'subtitle',
           'content',
           'picUrl',
+          'endtime',
           'price',
           'readCount',
           'goods'
