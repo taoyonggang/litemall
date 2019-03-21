@@ -107,7 +107,7 @@ module.exports = {
     CheckIn: WxApiRoot + 'activity/addActivityUser', 
     SelectActivity: WxApiRoot + 'activity/listActivity',
     UpdateUser: WxApiRoot + 'auth/update', //更新用户
-     SelectActivityRecord: WxApiRoot + 'activity/listActivityRecord', //查询活动记录
+  SelectActivityRecord: WxApiRoot + 'activity/listMyActivity', //查询活动记录
   GetUserDeatil: WxApiRoot +'user/userDetail',
 };
 

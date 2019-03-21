@@ -43,9 +43,22 @@ Page({
   },
   onPullDownRefresh() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
-    this.getIntegrals();
-    wx.hideNavigationBarLoading() //完成停止加载
-    wx.stopPullDownRefresh() //停止下拉刷新
+    if (this.data.totalPages > this.data.page) {
+      this.setData({
+        page: this.data.page + 1
+      });
+      this.getIntegrals();
+    } else {
+      wx.showToast({
+        title: '没有更多用户积分记录了',
+        icon: 'none',
+        duration: 2000
+      });
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+      return false;
+    }
+ 
   },
   onReachBottom() {
     if (this.data.totalPages > this.data.page) {

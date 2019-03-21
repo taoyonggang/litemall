@@ -7,29 +7,30 @@ Page({
   data: {
     type: 0,
     status: 0,
+    integralSum: 0,
+    integrals: [],
     page: 1,
     size: 8,
     totalPages: 1,
     scrollTop: 0,
     showPage: false,
     hasMoreData: true,
-    topiclist:[],
-
   },
-  getActivity() {
+  getIntegrals() {
     // wx.showLoading({
     //   title: '加载中...',
     // });
     let that = this;
-    util.request(api.SelectActivityRecord, {
+    util.request(api.IntegralsIndex, {
       type: that.data.type,
       page: that.data.page,
       size: that.data.size
     }).then(function(res) {
       if (res.errno === 0) {
         that.setData({
-          topiclist: res.data.data,
-          totalPages: res.data.count,
+          integralSum: res.data.integralSum,
+          integrals: that.data.integrals.concat(res.data.integrals),
+          totalPages: res.data.totalPages,
           showPage: true,
           scrollTop: 0,
         });
@@ -38,36 +39,23 @@ Page({
     });
   },
   onLoad: function(options) {
-    this.getActivity();
+    this.getIntegrals();
   },
   onPullDownRefresh() {
     wx.showNavigationBarLoading() //在标题栏中显示加载
-    if (this.data.totalPages > this.data.page) {
-      this.setData({
-        page: this.data.page + 1
-      });
-      this.getActivity();
-    } else {
-      wx.showToast({
-        title: '没有更多用户活动参与记录了',
-        icon: 'none',
-        duration: 2000
-      });
-      wx.hideNavigationBarLoading() //完成停止加载
-      wx.stopPullDownRefresh() //停止下拉刷新
-      return false;
-    }
-   
+    this.getIntegrals();
+    wx.hideNavigationBarLoading() //完成停止加载
+    wx.stopPullDownRefresh() //停止下拉刷新
   },
   onReachBottom() {
     if (this.data.totalPages > this.data.page) {
       this.setData({
         page: this.data.page + 1
       });
-      this.getActivity();
+      this.getIntegrals();
     } else {
       wx.showToast({
-        title: '没有更多用户活动参与记录了',
+        title: '没有更多用户积分记录了',
         icon: 'none',
         duration: 2000
       });
@@ -104,7 +92,7 @@ Page({
   switchTab: function(e) {
 
     this.setData({
-      topiclist: [],
+      integrals: [],
       status: e.currentTarget.dataset.index,
       page: 1,
       size: 8,
@@ -113,6 +101,6 @@ Page({
       showPage: false
     });
 
-    this.getActivity();
+    this.getIntegrals();
   }
 })

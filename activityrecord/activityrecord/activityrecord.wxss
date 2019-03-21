@@ -4,8 +4,9 @@ page {
 }
 
 .container {
-  background: #fff;
+  background: #f4f4f4;
   min-height: 100%;
+  padding-top: 30rpx;
 }
 
 .container .h {
@@ -220,6 +221,12 @@ page {
   padding-bottom: 10px;
 
 }
+.info {
+  float:left;
+  width: 80%;
+  line-height: 40rpx;
+  
+}
 .action {
   margin-top: 10rpx;
   font-size: 32rpx;
@@ -228,23 +235,18 @@ page {
   line-height: 40rpx;
 }
 .addTime {
-  margin-top:10rpx;
-  font-size:32rpx;
-  color:#333;
-  min-width:66%;
-  float:left;
-  flex-wrap:nowrap;
-
-}
-.activitycount {
   margin-top: 10rpx;
-  font-size: 32rpx;
-  color: #333;
-  font-weight:bolder;
-  flex-wrap:nowrap;
+  font-size: 24rpx;
+  color: #888;
+  min-width: 600rpx;
+  line-height: 40rpx;
 }
-.textcount{
-  color: #b4282d;
+.integralDo {
+  margin-top: 10rpx;
+  font-size: 38rpx;
+  color: #333;
+  font-weight: bolder;
+  line-height: 95rpx;
 }
 .container .b .coupon-form {
   height: 110rpx;
@@ -295,36 +297,10 @@ page {
   height: 70rpx;
   border: none;
   width: 168rpx;
+  background: #b4282d;
   border-radius: 0;
   line-height: 70rpx;
   color: #fff;
   font-size: 28rpx;
   text-align: center;
 }
-.image {
-  height: 30%;
-  width:100%;
-}
-
-.image-parent {
-  position: relative;
-}
-
-.child {
-  width: 100px;
-  height: 38px;  
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  margin: auto;
-  text-align: center;
-  margin-top:247rpx;
-  margin-left:230rpx;
-  color:#ab2b2b;
-  font-size:60rpx;
-  font-weight:border;
-
-
-}  
