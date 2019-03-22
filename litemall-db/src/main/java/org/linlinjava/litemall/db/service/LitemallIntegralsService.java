@@ -134,7 +134,7 @@ public class LitemallIntegralsService {
      * @return
      */
     @Transactional
-    public Integer addIntegral(String action, Integer InteggralDo, Integer userId, Integer type, Integer effective) {
+    public Integer addIntegral(String action, Integer InteggralDo, Integer userId, Integer type, Integer effective,Integer orderId) {
 
         LitemallUser user = userService.findById(userId);
         if (user!=null) {
@@ -143,6 +143,7 @@ public class LitemallIntegralsService {
             LitemallIntegrals record = new LitemallIntegrals();
             record.setAction(action);
             record.setUserId(userId);
+            record.setOrderId(orderId);
             record.setEffective(effective.byteValue());
             record.setIntegralType(type.byteValue());
             record.setIntegralDo(InteggralDo);

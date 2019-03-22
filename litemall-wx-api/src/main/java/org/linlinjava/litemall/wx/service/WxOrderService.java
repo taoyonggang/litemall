@@ -103,6 +103,8 @@ public class WxOrderService {
     private LitemallCouponUserService couponUserService;
     @Autowired
     private CouponVerifyService couponVerifyService;
+    @Autowired
+    LitemallIntegralsService integralsService;
 
     private String detailedAddress(LitemallAddress litemallAddress) {
         Integer provinceId = litemallAddress.getProvinceId();
@@ -597,6 +599,9 @@ public class WxOrderService {
      */
     @Transactional
     public Object prepayByIntegral(Integer userId, String body, HttpServletRequest request) {
+
+        int fee = 0;
+
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
@@ -631,13 +636,18 @@ public class WxOrderService {
             orderRequest.setOpenid(openid);
             orderRequest.setBody("订单：" + order.getOrderSn());
             // 元转成分
-            int fee = 0;
-            BigDecimal actualPrice = order.getActualPrice();
-            fee = actualPrice.multiply(new BigDecimal(100)).intValue();
+
+            BigDecimal actualIntegral = order.getActualIntegral();
+            fee = actualIntegral.intValue();//actualIntegral.multiply(new BigDecimal(100)).intValue();
             orderRequest.setTotalFee(fee);
             orderRequest.setSpbillCreateIp(IpUtil.getIpAddr(request));
 
-            result = wxPayService.createOrder(orderRequest);
+            //result = wxPayService.createOrder(orderRequest);
+            Integer userIntegral = integralsService.queryIntegralSum(userId);
+
+            if (userIntegral<fee){
+                return ResponseUtil.fail(ORDER_PAY_FAIL, "剩余积分不足");
+            }
 
             //缓存prepayID用于后续模版通知
             String prepayId = result.getPackageValue();
@@ -647,7 +657,9 @@ public class WxOrderService {
             userFormid.setFormid(prepayId);
             userFormid.setIsprepay(true);
             userFormid.setUseamount(3);
+            userFormid.setOrderType(new Integer(1).byteValue());
             userFormid.setExpireTime(LocalDateTime.now().plusDays(7));
+
             formIdService.addUserFormid(userFormid);
 
         } catch (Exception e) {
@@ -658,6 +670,10 @@ public class WxOrderService {
         if (orderService.updateWithOptimisticLocker(order) == 0) {
             return ResponseUtil.updatedDateExpired();
         }
+
+        //直接划账支付
+        integralsService.addIntegral("购物消费",-fee,userId,2,1,2);
+
         return ResponseUtil.ok(result);
     }
 

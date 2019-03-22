@@ -199,7 +199,7 @@ public class LitemallActivityService {
     }
 
 
-    public  List<LitemallActivity> selectByUserId(Integer userId, Integer page, Integer size, String sort, String order) {
+    /*public  List<LitemallActivity> selectByUserId(Integer userId, Integer page, Integer size, String sort, String order) {
         return  activityMapper.selectByUserId(userId);
-    }
+    }*/
 }

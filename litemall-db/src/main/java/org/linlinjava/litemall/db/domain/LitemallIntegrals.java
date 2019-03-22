@@ -317,8 +317,8 @@ public class LitemallIntegrals {
             && (this.getIntegralDo() == null ? other.getIntegralDo() == null : this.getIntegralDo().equals(other.getIntegralDo()))
             && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
             && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()))
-                && (this.getEffective() == null ? other.getEffective() == null : this.getEffective().equals(other.getEffective()))
-                && (this.getIntegralType() == null ? other.getIntegralType() == null : this.getIntegralType().equals(other.getIntegralType()));
+            && (this.getEffective() == null ? other.getEffective() == null : this.getEffective().equals(other.getEffective()))
+            && (this.getIntegralType() == null ? other.getIntegralType() == null : this.getIntegralType().equals(other.getIntegralType()));
     }
 
     /**

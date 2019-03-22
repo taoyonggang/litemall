@@ -791,8 +791,8 @@ public class LitemallUser {
             && (this.getIntegral() == null ? other.getIntegral() == null : this.getIntegral().equals(other.getIntegral()))
             && (this.getGrade() == null ? other.getGrade() == null : this.getGrade().equals(other.getGrade()))
             && (this.getFromsouce() == null ? other.getFromsouce() == null : this.getFromsouce().equals(other.getFromsouce()))
-                && (this.getAddress() == null ? other.getAddress() == null : this.getAddress().equals(other.getAddress()))
-                && (this.getBabybirthday() == null ? other.getBabybirthday() == null : this.getBabybirthday().equals(other.getBabybirthday()));
+            && (this.getAddress() == null ? other.getAddress() == null : this.getAddress().equals(other.getAddress()))
+            && (this.getBabybirthday() == null ? other.getBabybirthday() == null : this.getBabybirthday().equals(other.getBabybirthday()));
     }
 
     /**

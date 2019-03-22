@@ -2,6 +2,8 @@ package org.linlinjava.litemall.wx.web;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.linlinjava.litemall.core.util.JacksonUtil;
+import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.linlinjava.litemall.wx.service.WxOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +13,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
+
+import static org.linlinjava.litemall.wx.util.WxResponseCode.ORDER_PAY_FAIL;
 
 @RestController
 @RequestMapping("/wx/order")
@@ -83,7 +87,14 @@ public class WxOrderController {
      */
     @PostMapping("prepay")
     public Object prepay(@LoginUser Integer userId, @RequestBody String body, HttpServletRequest request) {
-        return wxOrderService.prepay(userId, body, request);
+        Integer orderType = JacksonUtil.parseInteger(body, "orderType");
+        if(orderType==0) {
+            return wxOrderService.prepay(userId, body, request);
+        }else if (orderType==1){
+            return wxOrderService.prepayByIntegral(userId, body, request);
+        }else{
+            return ResponseUtil.fail(ORDER_PAY_FAIL, "订单类型不支持");
+        }
     }
 
     /**

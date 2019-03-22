@@ -165,7 +165,7 @@ public class WxAuthController {
             // 新用户发送注册优惠券
             couponAssignService.assignForRegister(user.getId());
             //新注册用户需要增加500积分
-            integralsService.addIntegral("新用户注册", 500, user.getId(), 1, 0);
+            integralsService.addIntegral("新用户注册", 500, user.getId(), 1, 0,1);
 
         } else {
             user.setLastLoginTime(LocalDateTime.now());
@@ -316,7 +316,7 @@ public class WxAuthController {
         couponAssignService.assignForRegister(user.getId());
 
         //新注册用户需要增加500积分
-        integralsService.addIntegral("新用户注册", 500, user.getId(), 0, 0);
+        integralsService.addIntegral("新用户注册", 500, user.getId(), 0, 0,1);
 
         // userInfo
         UserInfo userInfo = new UserInfo();
