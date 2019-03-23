@@ -22,6 +22,7 @@ import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.db.domain.*;
 import org.linlinjava.litemall.db.service.*;
 import org.linlinjava.litemall.db.util.CouponUserConstant;
+import org.linlinjava.litemall.db.util.IntegralStatus;
 import org.linlinjava.litemall.db.util.OrderHandleOption;
 import org.linlinjava.litemall.db.util.OrderUtil;
 import org.linlinjava.litemall.wx.util.IpUtil;
@@ -751,6 +752,13 @@ public class WxOrderService {
             if (updated == 0) {
                 return WxPayNotifyResponse.fail("更新数据已失效");
             }
+
+            // 支付成功，增加积分
+            Integer resultId  = integralsService.addIntegral("现金支付",
+                    order.getActualPrice().intValue()*IntegralStatus.CASH_GIFT_SWITCH,
+                    order.getUserId(),
+                    IntegralStatus.STATUS_USED,IntegralStatus.EFFECTIVE_YES,order.getId());
+
         }
 
         //  支付成功，有团购信息，更新团购信息
@@ -827,7 +835,8 @@ public class WxOrderService {
 
 
         //直接划账支付
-        Integer resultId  = integralsService.addIntegral("购物消费",-totalFee.intValue(),userId,2,1,2);
+        Integer resultId  = integralsService.addIntegral("购物消费",-totalFee.intValue(),userId,
+                IntegralStatus.STATUS_OUT,IntegralStatus.EFFECTIVE_YES,order.getId());
 
         order.setPayId(resultId.toString());
         order.setPayTime(LocalDateTime.now());
