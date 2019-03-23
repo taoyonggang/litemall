@@ -40,6 +40,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.linlinjava.litemall.db.domain.LitemallOrder.Column.orderSn;
 import static org.linlinjava.litemall.wx.util.WxResponseCode.*;
 
 /**
@@ -670,11 +671,10 @@ public class WxOrderService {
         if (orderService.updateWithOptimisticLocker(order) == 0) {
             return ResponseUtil.updatedDateExpired();
         }
+       //处理订单支付信息
+       Object r  = this.payManual(order,userId);
 
-        //直接划账支付
-        integralsService.addIntegral("购物消费",-fee,userId,2,1,2);
-
-        return ResponseUtil.ok(result);
+        return ResponseUtil.ok(r);
     }
 
 
@@ -789,6 +789,90 @@ public class WxOrderService {
 
         return WxPayNotifyResponse.success("处理成功!");
     }
+
+    /**
+     * 手工修改订单状态，用于内部结算，如积分支付
+     * <p>
+     * 1. 检测当前订单是否是付款状态;
+     * 2. 设置订单付款成功状态相关信息;
+     * 3. 响应微信商户平台.
+     *
+     * @param order  订单信息
+     * @param userId 用户信息
+     * @return 操作结果
+     */
+    @Transactional
+    public Object payManual(LitemallOrder order,Integer userId) {
+        String xmlResult = null;
+
+        WxPayOrderNotifyResult result = null;
+
+        if (order == null) {
+            return WxPayNotifyResponse.fail("订单不存在 sn=" + orderSn);
+        }
+
+        BigDecimal totalFee = order.getActualIntegral();
+        String payId  = order.getPayId();
+        String orderSn  = order.getShipSn();
+
+        // 检查这个订单是否已经处理过
+        if (OrderUtil.isPayStatus(order) && order.getPayId() != null) {
+            return WxPayNotifyResponse.success("订单已经处理成功!");
+        }
+
+        // 检查支付订单金额
+        if (!totalFee.equals(order.getActualIntegral())) {
+            return WxPayNotifyResponse.fail(order.getOrderSn() + " : 支付金额不符合 totalFee=" + totalFee);
+        }
+
+
+        //直接划账支付
+        Integer resultId  = integralsService.addIntegral("购物消费",-totalFee.intValue(),userId,2,1,2);
+
+        order.setPayId(resultId.toString());
+        order.setPayTime(LocalDateTime.now());
+        order.setOrderStatus(OrderUtil.STATUS_PAY);
+        //直接更新数据库
+        orderService.updateWithOptimisticLocker(order);
+
+        //  支付成功，有团购信息，更新团购信息
+        LitemallGroupon groupon = grouponService.queryByOrderId(order.getId());
+        if (groupon != null) {
+            LitemallGrouponRules grouponRules = grouponRulesService.queryById(groupon.getRulesId());
+
+            //仅当发起者才创建分享图片
+            if (groupon.getGrouponId() == 0) {
+                String url = qCodeService.createGrouponShareImage(grouponRules.getGoodsName(), grouponRules.getPicUrl(), groupon);
+                groupon.setShareUrl(url);
+            }
+            groupon.setPayed(true);
+            if (grouponService.updateById(groupon) == 0) {
+                return WxPayNotifyResponse.fail("更新数据已失效");
+            }
+        }
+
+        //TODO 发送邮件和短信通知，这里采用异步发送
+        // 订单支付成功以后，会发送短信给用户，以及发送邮件给管理员
+        notifyService.notifyMail("新订单通知", order.toString());
+        // 这里微信的短信平台对参数长度有限制，所以将订单号只截取后6位
+        notifyService.notifySmsTemplateSync(order.getMobile(), NotifyType.PAY_SUCCEED, new String[]{orderSn.substring(8, 14)});
+
+        // 请依据自己的模版消息配置更改参数
+        String[] parms = new String[]{
+                order.getOrderSn(),
+                order.getActualIntegral().toString(),
+                DateTimeUtil.getDateTimeDisplayString(order.getAddTime()),
+                order.getConsignee(),
+                order.getMobile(),
+                order.getAddress()
+        };
+
+        notifyService.notifyWxTemplate(result.getOpenid(), NotifyType.PAY_SUCCEED, parms, "pages/index/index?orderId=" + order.getId());
+
+        return WxPayNotifyResponse.success("处理成功!");
+    }
+
+
 
     /**
      * 订单申请退款
