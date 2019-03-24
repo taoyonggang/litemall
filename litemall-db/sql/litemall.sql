@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-03-17 23:21:01
+Date: 2019-03-23 22:57:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -1637,7 +1637,7 @@ CREATE TABLE `litemall_goods` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   `integral_limit` float NOT NULL DEFAULT '1' COMMENT '积分使用上限，默认为1，代表100%',
-  `integrals` int(20) NOT NULL DEFAULT '0' COMMENT '积分值，该商品需要多少积分可以兑换',
+  `integral` int(20) NOT NULL DEFAULT '0' COMMENT '积分值，该商品需要多少积分可以兑换',
   PRIMARY KEY (`id`),
   KEY `goods_sn` (`goods_sn`),
   KEY `cat_id` (`category_id`),
@@ -7278,7 +7278,7 @@ INSERT INTO `litemall_topic` VALUES ('314', '关爱他成长的每一个足迹',
 DROP TABLE IF EXISTS `litemall_user`;
 CREATE TABLE `litemall_user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` varchar(63) NOT NULL COMMENT '用户名称',
+  `username` varchar(255) NOT NULL COMMENT '用户名称',
   `password` varchar(63) NOT NULL DEFAULT '' COMMENT '用户密码',
   `gender` tinyint(3) NOT NULL DEFAULT '0' COMMENT '性别：0 未知， 1男， 1 女',
   `birthday` date DEFAULT NULL COMMENT '生日',
@@ -7361,6 +7361,7 @@ CREATE TABLE `litemall_user_formid` (
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  `order_type` tinyint(4) DEFAULT '0' COMMENT '订单类型：0为现金，1为积分',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 

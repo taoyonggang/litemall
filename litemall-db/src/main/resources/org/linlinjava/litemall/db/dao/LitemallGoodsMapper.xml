@@ -27,7 +27,7 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="deleted" jdbcType="BIT" property="deleted" />
     <result column="integral_limit" jdbcType="REAL" property="integralLimit" />
-    <result column="integrals" jdbcType="INTEGER" property="integrals" />
+    <result column="integral" jdbcType="DECIMAL" property="integral" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="org.linlinjava.litemall.db.domain.LitemallGoods">
     <!--
@@ -147,7 +147,7 @@
     -->
     id, goods_sn, `name`, category_id, brand_id, gallery, keywords, brief, is_on_sale, 
     sort_order, pic_url, share_url, is_new, is_hot, unit, counter_price, retail_price, 
-    add_time, update_time, deleted, integral_limit, integrals
+    add_time, update_time, deleted, integral_limit, integral
   </sql>
   <sql id="Blob_Column_List">
     <!--
@@ -213,7 +213,7 @@
       <otherwise>
         id, goods_sn, `name`, category_id, brand_id, gallery, keywords, brief, is_on_sale, 
           sort_order, pic_url, share_url, is_new, is_hot, unit, counter_price, retail_price, 
-          add_time, update_time, deleted, integral_limit, integrals, detail
+          add_time, update_time, deleted, integral_limit, integral, detail
       </otherwise>
     </choose>
     from litemall_goods
@@ -278,7 +278,7 @@
       <otherwise>
         id, goods_sn, `name`, category_id, brand_id, gallery, keywords, brief, is_on_sale, 
           sort_order, pic_url, share_url, is_new, is_hot, unit, counter_price, retail_price, 
-          add_time, update_time, deleted, integral_limit, integrals, detail
+          add_time, update_time, deleted, integral_limit, integral, detail
       </otherwise>
     </choose>
     from litemall_goods
@@ -316,7 +316,7 @@
       sort_order, pic_url, share_url, 
       is_new, is_hot, unit, counter_price, 
       retail_price, add_time, update_time, 
-      deleted, integral_limit, integrals, 
+      deleted, integral_limit, integral, 
       detail)
     values (#{goodsSn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{categoryId,jdbcType=INTEGER}, 
       #{brandId,jdbcType=INTEGER}, #{gallery,jdbcType=VARCHAR,typeHandler=org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler}, 
@@ -324,7 +324,7 @@
       #{sortOrder,jdbcType=SMALLINT}, #{picUrl,jdbcType=VARCHAR}, #{shareUrl,jdbcType=VARCHAR}, 
       #{isNew,jdbcType=BIT}, #{isHot,jdbcType=BIT}, #{unit,jdbcType=VARCHAR}, #{counterPrice,jdbcType=DECIMAL}, 
       #{retailPrice,jdbcType=DECIMAL}, #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{deleted,jdbcType=BIT}, #{integralLimit,jdbcType=REAL}, #{integrals,jdbcType=INTEGER}, 
+      #{deleted,jdbcType=BIT}, #{integralLimit,jdbcType=REAL}, #{integral,jdbcType=DECIMAL}, 
       #{detail,jdbcType=LONGVARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.linlinjava.litemall.db.domain.LitemallGoods">
@@ -397,8 +397,8 @@
       <if test="integralLimit != null">
         integral_limit,
       </if>
-      <if test="integrals != null">
-        integrals,
+      <if test="integral != null">
+        integral,
       </if>
       <if test="detail != null">
         detail,
@@ -465,8 +465,8 @@
       <if test="integralLimit != null">
         #{integralLimit,jdbcType=REAL},
       </if>
-      <if test="integrals != null">
-        #{integrals,jdbcType=INTEGER},
+      <if test="integral != null">
+        #{integral,jdbcType=DECIMAL},
       </if>
       <if test="detail != null">
         #{detail,jdbcType=LONGVARCHAR},
@@ -553,8 +553,8 @@
       <if test="record.integralLimit != null">
         integral_limit = #{record.integralLimit,jdbcType=REAL},
       </if>
-      <if test="record.integrals != null">
-        integrals = #{record.integrals,jdbcType=INTEGER},
+      <if test="record.integral != null">
+        integral = #{record.integral,jdbcType=DECIMAL},
       </if>
       <if test="record.detail != null">
         detail = #{record.detail,jdbcType=LONGVARCHAR},
@@ -591,7 +591,7 @@
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=BIT},
       integral_limit = #{record.integralLimit,jdbcType=REAL},
-      integrals = #{record.integrals,jdbcType=INTEGER},
+      integral = #{record.integral,jdbcType=DECIMAL},
       detail = #{record.detail,jdbcType=LONGVARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -624,7 +624,7 @@
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       deleted = #{record.deleted,jdbcType=BIT},
       integral_limit = #{record.integralLimit,jdbcType=REAL},
-      integrals = #{record.integrals,jdbcType=INTEGER}
+      integral = #{record.integral,jdbcType=DECIMAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -696,8 +696,8 @@
       <if test="integralLimit != null">
         integral_limit = #{integralLimit,jdbcType=REAL},
       </if>
-      <if test="integrals != null">
-        integrals = #{integrals,jdbcType=INTEGER},
+      <if test="integral != null">
+        integral = #{integral,jdbcType=DECIMAL},
       </if>
       <if test="detail != null">
         detail = #{detail,jdbcType=LONGVARCHAR},
@@ -731,7 +731,7 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT},
       integral_limit = #{integralLimit,jdbcType=REAL},
-      integrals = #{integrals,jdbcType=INTEGER},
+      integral = #{integral,jdbcType=DECIMAL},
       detail = #{detail,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -761,7 +761,7 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       deleted = #{deleted,jdbcType=BIT},
       integral_limit = #{integralLimit,jdbcType=REAL},
-      integrals = #{integrals,jdbcType=INTEGER}
+      integral = #{integral,jdbcType=DECIMAL}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallGoodsExample" resultMap="BaseResultMap">
@@ -816,7 +816,7 @@
       <otherwise>
         id, goods_sn, `name`, category_id, brand_id, gallery, keywords, brief, is_on_sale, 
           sort_order, pic_url, share_url, is_new, is_hot, unit, counter_price, retail_price, 
-          add_time, update_time, deleted, integral_limit, integrals, detail
+          add_time, update_time, deleted, integral_limit, integral, detail
       </otherwise>
     </choose>
     from litemall_goods
