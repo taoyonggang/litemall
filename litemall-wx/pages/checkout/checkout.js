@@ -13,13 +13,15 @@ Page({
     couponPrice: 0.00, //优惠券的价格
     grouponPrice: 0.00, //团购优惠价格
     orderTotalPrice: 0.00, //订单总价
+    orderTotalIntegral:0,//积分总价
     actualPrice: 0.00, //实际需要支付的总价
     cartId: 0,
     addressId: 0,
     couponId: 0,
     message: '',
     grouponLinkId: 0, //参与的团购，如果是发起则为0
-    grouponRulesId: 0 //团购规则ID
+    grouponRulesId: 0, //团购规则ID
+    orderType:0
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
@@ -39,7 +41,7 @@ Page({
           checkedGoodsList: res.data.checkedGoodsList,
           checkedAddress: res.data.checkedAddress,
           availableCouponLength: res.data.availableCouponLength,
-          actualPrice: res.data.actualPrice,
+          //actualPrice: res.data.actualPrice,
           couponPrice: res.data.couponPrice,
           grouponPrice: res.data.grouponPrice,
           freightPrice: res.data.freightPrice,
@@ -48,6 +50,7 @@ Page({
           addressId: res.data.addressId,
           couponId: res.data.couponId,
           grouponRulesId: res.data.grouponRulesId,
+          orderTotalIntegral: res.data.orderTotalIntegral
         });
       }
       wx.hideLoading();
@@ -141,7 +144,6 @@ Page({
       grouponLinkId: this.data.grouponLinkId
     }, 'POST').then(res => {
       if (res.errno === 0) {
-        
         // 下单成功，重置couponId
         try {
           wx.setStorageSync('couponId', 0);
@@ -150,8 +152,19 @@ Page({
         }
 
         const orderId = res.data.orderId;
+        if(this.data.orderTotalIntegral>0){
+          this.setData({
+            orderType: 1
+          });
+        }else{
+          this.setData({
+            orderType: 0
+          });
+        }
+        console.log(this.data.orderType);
         util.request(api.OrderPrepay, {
-          orderId: orderId
+          orderId: orderId,
+          orderType:this.data.orderType
         }, 'POST').then(function(res) {
           if (res.errno === 0) {
             const payParam = res.data;

@@ -1,11 +1,11 @@
 <!--index.wxml-->
 <view class="container">
-<view class="search">
+<!-- <view class="search">
     <navigator url="/pages/search/search" class="input">
       <image class="icon"></image>
       <text class="txt">商品搜索</text>
     </navigator>
-  </view>
+  </view> -->
   <swiper class="banner" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
     <swiper-item wx:for="{{banner}}" wx:key="id">
       <!-- <navigator url="{{item.link}}"> -->
@@ -142,8 +142,12 @@
             <view class="text">
               <text class="name">{{item.name}}</text>
               <text class="desc">{{item.brief}}</text>
-              <text class="price">￥{{item.retailPrice}}</text>
-               <text class="price">{{item.integral}}分</text>
+              <text class="price" wx:if="{{ item.retailPrice > 0 }}" >￥{{item.retailPrice}}</text>
+               <view wx:if="{{ item.integral > 0 }}">
+                   <image  src="/static/images/integrallogo.png" style="width:30rpx;height:30rpx;position:absolute;margin-top:10rpx"></image>
+                <text class="price" style="float:left;margin-left:38rpx">{{item.integral}}</text>
+
+               </view>
             </view>
           </view>
         </navigator>
@@ -163,8 +167,11 @@
         <navigator url="../goods/goods?id={{item.id}}">
           <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
           <text class="name">{{item.name}}</text>
-          <text class="price">￥{{item.retailPrice}}</text>
-          <text class="price">{{item.integral}}分</text>
+          <text class="price" wx:if="{{ item.retailPrice > 0 }}">￥{{item.retailPrice}}</text>
+          <view wx:if="{{ item.integral > 0 }}" style='display:block;' class="integral">
+                 <image  src="/static/images/integrallogo.png" style="width:30rpx;height:30rpx;position:absolute;"></image>
+                  <text class="price"  style="float:left;margin-left:38rpx">{{item.integral}}</text>
+               </view>
         </navigator>
       </view>
     </view>
@@ -183,8 +190,11 @@
           <navigator url="../goods/goods?id={{iitem.id}}" class="a">
             <image class="img" src="{{iitem.picUrl}}" background-size="cover"></image>
             <text class="name">{{iitem.name}}</text>
-            <text class="price">￥{{iitem.retailPrice}}</text>
-              <text class="price">{{iitem.integral}}分</text>
+            <text class="price" wx:if="{{ item.retailPrice > 0 }}">￥{{iitem.retailPrice}}</text>
+               <view wx:if="{{ item.integral > 0 }}">
+                <text class="price" >{{item.integral}}</text>
+                <image  src="/static/images/integrallogo.png" style="width:20rpx;height:20rpx;position:absolute;float:left;margin-top:8rpx;margin-left:6rpx"></image>
+               </view>
           </navigator>
         </view>
       </block>

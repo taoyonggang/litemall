@@ -4,9 +4,29 @@ var user = require('../../../utils/user.js');
 
 var app = getApp();
 Page({
+  data: {
+    fromId: '',
+  },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
     // 页面渲染完成
+    if (options.q) {
+      console.log("index 生命周期 onload" + JSON.stringify(options));
+      try {
+        let q = decodeURIComponent(options.q)
+        if (q) {
+          console.log("index 生命周期 onload url=" + q)
+          var fromId = utils.getQueryString(q, 'id');
+          console.log("index 生命周期 onload 参数 id=" + fromId)
+          that.setdata({
+            fromId: fromId,
+          })
+        }
+      } catch (err) {
+        console.error(err) // 可执行
+      };
+
+    }
 
   },
   onReady: function() {
@@ -31,18 +51,20 @@ Page({
     }
 
     user.checkLogin().catch(() => {
-
+      var that = this;
       user.loginByWeixin(e.detail.userInfo).then(res => {
         app.globalData.hasLogin = true;
+        if (that.data.fromId != ""){
+          wx.navigateTo({
+             url: "/pages/ucenter/userinfo/userinfo"
 
-        //wx.navigateBack({
-        // wx.navigateBack({
-        //   delta: 1
-        // })
-        wx.navigateTo({
-          url: "/pages/ucenter/userinfo/userinfo"
-
-        });
+           });
+        }else{
+          wx.navigateBack({
+            delta: 1
+          })
+        }
+        
       }).catch((err) => {
         app.globalData.hasLogin = false;
         util.showErrorToast('微信登录失败');

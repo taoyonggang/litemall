@@ -191,7 +191,7 @@ Page({
             //   url: "/pages/index/index"
             // });
              wx.navigateBack({
-              delta: 1
+              delta: 2
             })
           }
         });

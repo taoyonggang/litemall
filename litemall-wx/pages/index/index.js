@@ -62,7 +62,9 @@ Page({
         if (q) {
           console.log("index 生命周期 onload url=" + q)
           var fromId = utils.getQueryString(q, 'id');
+          var promoterId = utils.getQueryString(q, 'promoterId');
           console.log("index 生命周期 onload 参数 id=" + fromId)
+          console.log("index 生命周期 onload 参数 promoterId=" + promoterId)
           wx.navigateTo({
             url: '../topicDetail/topicDetail?id=' + fromId
           });

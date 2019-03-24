@@ -33,8 +33,8 @@
                   </view>
                   <view class="attr">{{ isEditCart ? '已选择:' : ''}}{{item.goodsSpecificationValues||''}}</view>
                   <view class="b">
-                    <text class="price">￥{{item.price}}</text>
-                     <text class="price">{{item.integral}}分</text>
+                    <text class="price" wx:if="{{ item.price > 0 }}">￥{{item.price}}</text>
+                     <text class="price" wx:if="{{ item.integral > 0 }}">{{item.integral}}点</text>
                     <view class="selnum">
                       <view class="cut" bindtap="cutNumber" data-item-index="{{index}}">-</view>
                       <input value="{{item.number}}" class="number" disabled="true" type="number" />

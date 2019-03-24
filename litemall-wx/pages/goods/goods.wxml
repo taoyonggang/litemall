@@ -33,7 +33,7 @@
       <view class="price">
         <view class="counterPrice">原价：￥{{goods.counterPrice}}</view>
         <view class="retailPrice">现价：￥{{checkedSpecPrice}}</view>
-        <view class="intergralsPrice">积分：{{integral}}分</view>
+        <view class="intergralsPrice">积分：{{integral}}点</view>
       </view>
 
       <view class="brand" wx:if="{{brand.name}}">

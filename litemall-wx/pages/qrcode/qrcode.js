@@ -1,4 +1,5 @@
 // pages/main/index.js
+var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
 var QR = require("../../utils/qrcode.js");
 
@@ -9,20 +10,30 @@ Page({
       //imagePath: 'https://taoyg.oss-cn-shanghai.aliyuncs.com/674u0o6j3byy4pkpk5ue.jpg',
       imagePath: '',
       placeholder: 'http://wxapp-union.com',//默认二维码生成文本
-    
+    userId:'',
   },
   onLoad: function (options) {
-      //var WxApiRoot = 'https://hpnk.1897.com/wx/';
-      var that = this;
-    // 页面初始化 options为页面跳转所带来的参数
-    var size = this.setCanvasSize();//动态设置画布大小
-      var activeId = options.id;
-      var promoterId = options.promoterId;
-      //var initUrl = this.data.placeholder;
-       //var initUrl = WxApiRoot + 'topicDetail/topicDetail ? id = ' + activeId + '&promoterId=' + promoterId + '&userId=' + promoterId;
-      var initUrl = 'https://hpnk.1897.com/activity/?id=' + activeId;
-    this.createQrCode(initUrl, "mycanvas", size.w, size.h);
-    this.formSubmit(initUrl);
+    var that = this;
+    //获取用户的登录信息
+    util.request(api.GetUserDeatil, {
+    }).then(function (res) {
+      if (res.errno === 0) {
+        that.setData({
+          userId: res.data.userDetail.userId,
+        });
+        // 页面初始化 options为页面跳转所带来的参数
+        var size = that.setCanvasSize();//动态设置画布大小
+        var activeId = options.id;
+        var promoterId = that.data.userId;
+        //var initUrl = this.data.placeholder;
+        //var initUrl = WxApiRoot + 'topicDetail/topicDetail ? id = ' + activeId + '&promoterId=' + promoterId + '&userId=' + promoterId;
+        var initUrl = 'https://hpnk.1897.com/activity/?id=' + activeId + '&promoterId=' + promoterId;
+        that.createQrCode(initUrl, "mycanvas", size.w, size.h);
+        that.formSubmit(initUrl);
+      }
+    });
+  
+
 
 
   },
