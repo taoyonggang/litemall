@@ -652,7 +652,7 @@ public class WxOrderService {
             }
 
             //缓存prepayID用于后续模版通知
-            String prepayId = result.getPackageValue();
+            String prepayId = order.getOrderSn();//result.getPackageValue();
             prepayId = prepayId.replace("prepay_id=", "");
             LitemallUserFormid userFormid = new LitemallUserFormid();
             userFormid.setOpenid(user.getWeixinOpenid());
@@ -842,7 +842,7 @@ public class WxOrderService {
         order.setPayTime(LocalDateTime.now());
         order.setOrderStatus(OrderUtil.STATUS_PAY);
         //直接更新数据库
-        orderService.updateWithOptimisticLocker(order);
+        orderService.updateOrder(order);
 
         //  支付成功，有团购信息，更新团购信息
         LitemallGroupon groupon = grouponService.queryByOrderId(order.getId());
@@ -862,9 +862,6 @@ public class WxOrderService {
 
         //TODO 发送邮件和短信通知，这里采用异步发送
         // 订单支付成功以后，会发送短信给用户，以及发送邮件给管理员
-        notifyService.notifyMail("新订单通知", order.toString());
-        // 这里微信的短信平台对参数长度有限制，所以将订单号只截取后6位
-        notifyService.notifySmsTemplateSync(order.getMobile(), NotifyType.PAY_SUCCEED, new String[]{orderSn.substring(8, 14)});
 
         // 请依据自己的模版消息配置更改参数
         String[] parms = new String[]{
@@ -876,7 +873,18 @@ public class WxOrderService {
                 order.getAddress()
         };
 
-        notifyService.notifyWxTemplate(result.getOpenid(), NotifyType.PAY_SUCCEED, parms, "pages/index/index?orderId=" + order.getId());
+        try {
+            notifyService.notifyMail("新订单通知", order.toString());
+            // 这里微信的短信平台对参数长度有限制，所以将订单号只截取后6位
+            notifyService.notifySmsTemplateSync(order.getMobile(), NotifyType.PAY_SUCCEED, new String[]{orderSn.substring(8, 14)});
+
+            notifyService.notifyWxTemplate(result.getOpenid(), NotifyType.PAY_SUCCEED, parms, "pages/index/index?orderId=" + order.getId());
+        }catch (Exception e){
+            logger.error("通知出错："+e.getMessage());
+        }
+
+
+
 
         return WxPayNotifyResponse.success("处理成功!");
     }
