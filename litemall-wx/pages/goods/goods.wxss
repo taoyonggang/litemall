@@ -142,10 +142,16 @@
 
 .goods-info .retailPrice {
   padding-left: 5%;
+  float: left;
   font-size: 30rpx;
   color: #a78845;
 }
-
+.goods-info .intergralsPrice {
+  padding-left: 5%;
+  float: left;
+  font-size: 30rpx;
+  color: #a78845;
+}
 .goods-info .brand {
   margin-top: 23rpx;
   min-height: 40rpx;
