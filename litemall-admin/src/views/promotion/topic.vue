@@ -43,7 +43,7 @@
         <template slot-scope="scope">
           <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
           <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
-          <el-button type="warning" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button> 
+          <el-button type="warning" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -78,7 +78,7 @@
         <el-form-item style="width: 700px;" label="活动内容">
           <editor :init="editorInit" v-model="dataForm.content"/>
         </el-form-item>
-             <el-form-item label="过期时间" prop="endtime">
+        <el-form-item label="过期时间" prop="endtime">
           <el-date-picker
             v-model="dataForm.endtime"
             type="datetime"
@@ -157,7 +157,7 @@ export default {
         title: undefined,
         subtitle: undefined,
         sort: 'add_time',
-        order: 'desc',
+        order: 'desc'
       },
       dataForm: {
         id: undefined,
@@ -168,7 +168,7 @@ export default {
         price: undefined,
         readCount: undefined,
         goods: [],
-        endtime:''
+        endtime: ''
       },
       contentDetail: '',
       contentDialogVisible: false,
@@ -253,7 +253,7 @@ export default {
         price: undefined,
         readCount: undefined,
         goods: [],
-        endtime:''
+        endtime: ''
       }
     },
     handleCreate() {

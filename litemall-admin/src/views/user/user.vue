@@ -134,9 +134,9 @@ export default {
         password: undefined,
         gender: 0,
         userLevel: 0,
-        birthday: undefined,
-        babybirthday:undefined,
-        fromSource:undefined,
+        birthday: '',
+        babybirthday: '',
+        fromSource: '',
         status: 0
       },
       dialogFormVisible: false,
@@ -186,9 +186,9 @@ export default {
         checkPass: undefined,
         gender: 0,
         userLevel: 0,
-        birthday: undefined,
-        babybirthday:undefined,
-        fromSource:undefined,
+        birthday: '',
+        babybirthday: '',
+        fromSource: '',
         status: 0
       }
     },
@@ -262,7 +262,7 @@ export default {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['用户名', '手机号码', '性别', '生日', '状态']
-        const filterVal = ['username', 'mobile', 'gender', 'birthday', 'status','babybirthday','fromSource']
+        const filterVal = ['username', 'mobile', 'gender', 'birthday', 'status', 'babybirthday', 'fromSource']
         excel.export_json_to_excel2(tHeader, this.list, filterVal, '用户信息')
         this.downloadLoading = false
       })
