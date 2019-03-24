@@ -187,9 +187,12 @@ Page({
           complete: function () {
             that.setData({
             });
-            wx.navigateTo({
-              url: "/pages/index/index"
-            });
+            // wx.navigateTo({
+            //   url: "/pages/index/index"
+            // });
+             wx.navigateBack({
+              delta: 1
+            })
           }
         });
       } else {

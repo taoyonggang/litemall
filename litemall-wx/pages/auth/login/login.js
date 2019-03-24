@@ -36,9 +36,13 @@ Page({
         app.globalData.hasLogin = true;
 
         //wx.navigateBack({
-        wx.navigateBack({
-          delta: 1
-        })
+        // wx.navigateBack({
+        //   delta: 1
+        // })
+        wx.navigateTo({
+          url: "/pages/ucenter/userinfo/userinfo"
+
+        });
       }).catch((err) => {
         app.globalData.hasLogin = false;
         util.showErrorToast('微信登录失败');

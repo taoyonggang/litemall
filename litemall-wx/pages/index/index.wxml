@@ -143,6 +143,7 @@
               <text class="name">{{item.name}}</text>
               <text class="desc">{{item.brief}}</text>
               <text class="price">￥{{item.retailPrice}}</text>
+               <text class="price">{{item.integral}}分</text>
             </view>
           </view>
         </navigator>
@@ -163,6 +164,7 @@
           <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
           <text class="name">{{item.name}}</text>
           <text class="price">￥{{item.retailPrice}}</text>
+          <text class="price">{{item.integral}}分</text>
         </navigator>
       </view>
     </view>
@@ -182,6 +184,7 @@
             <image class="img" src="{{iitem.picUrl}}" background-size="cover"></image>
             <text class="name">{{iitem.name}}</text>
             <text class="price">￥{{iitem.retailPrice}}</text>
+              <text class="price">{{iitem.integral}}分</text>
           </navigator>
         </view>
       </block>

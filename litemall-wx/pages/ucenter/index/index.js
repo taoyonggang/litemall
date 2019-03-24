@@ -19,7 +19,7 @@ Page({
     integral: {
       type: 0,
       integralSum: 0,
-      integrals: [],
+      integral: [],
       page: 1,
       size: 10,
       totalPages: 1
@@ -58,7 +58,7 @@ Page({
       }).then(function (res) {
         if (res.errno === 0) {
           that.setData({
-            integrals: res.data,
+            integral: res.data,
            // integrals: that.data.integrals.concat(res.data.integrals),
            // totalPages: res.data.totalPages
           });

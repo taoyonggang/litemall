@@ -23,6 +23,7 @@ Page({
     checkedSpecText: '规格数量选择',
     tmpSpecText: '请选择规格数量',
     checkedSpecPrice: 0,
+    integral:0,
     openAttr: false,
     openShare: false,
     noCollectImage: '/static/images/icon_collect.png',
@@ -145,6 +146,7 @@ Page({
           userHasCollect: res.data.userHasCollect,
           shareImage: res.data.shareImage,
           checkedSpecPrice: res.data.info.retailPrice,
+          integral: res.data.info.integral,
           groupon: res.data.groupon
         });
 

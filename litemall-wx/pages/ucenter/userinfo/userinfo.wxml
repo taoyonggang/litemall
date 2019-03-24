@@ -1,20 +1,24 @@
-<view class="container">
-<view class='imagesize'>
-  <image src="/static/images/logo.png" class='in-image'   >
+<view class="container" >
+<!-- <view class='imagesize'>
+  <image src="/static/images/registerimg.png" class='in-image'   >
   </image>
-</view>
+</view> -->
  <view class="form-box"> 
     <view class="form-item">
       <input class="nickname" value="{{nickname}}" bindinput="nicknameInput" placeholder="姓名" auto-focus/>
-      <image wx:if="{{ nickname.length > 0 }}" id="clear-nickname" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+      <!-- <image wx:if="{{ nickname.length > 0 }}" id="clear-nickname" class="clear" src="/static/images/nickname.png" catchtap="clearInput"></image> -->
+       <image class="clear" src="/static/images/nickname.png"></image>
     </view>
     <view class="form-item">
       <input class="birthday" value="{{birthday}}"bindtap="showUserDatePicker" placeholder="本人生日" auto-focus/>
-      <image wx:if="{{ birthday.length > 0 }}" id="clear-birthday" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+      <!-- <image wx:if="{{ birthday.length > 0 }}" id="clear-birthday" class="clear" src="/static/images/mombirthday.png" catchtap="clearInput"></image> -->
+       <image class="clear" src="/static/images/mombirthday.png"></image>
     </view>
     <view class="form-item">
       <input class="babybirthday" value="{{babybirthday}}"bindtap="showBabyDatePicker" placeholder="宝宝生日" auto-focus/>
-       <image wx:if="{{ babybirthday.length > 0 }}" id="clear-babybirthday" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+       <!-- <image wx:if="{{ babybirthday.length > 0 }}" id="clear-babybirthday" class="clear" src="/static/images/babybirthday.png" catchtap="clearInput"></image> -->
+      <image class="clear" src="/static/images/babybirthday.png"></image>
+
     </view>
  
        <date-picker
@@ -31,14 +35,15 @@
     bindcancelclick="datePickerOnCancelClick" />  
   <view class="form-item">
       <input class="address" value="{{address}}" bindinput="addressInput" placeholder="地址" auto-focus/>
-       <image wx:if="{{ address.length > 0 }}" id="clear-address" class="clear" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+       <!-- <image wx:if="{{ address.length > 0 }}" id="clear-address" class="clear" src="/static/images/addressimg.png" catchtap="clearInput"></image> -->
+       <image class="clear" src="/static/images/addressimg.png"></image>
   </view>
   <view class="form-item">
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" style="background-color: #FFFFFF;height: 104rpx；"  >
-        <view class="picker">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" style="background-color: #FFFFFF;height: 80rpx;border-radius:33rpx">
+        <view class="picker" style="border-radius:33rpx">
           <view class="fb-type">
              <view class="type-label" id='souces' style="font-size:29rpx">{{array[index]}}</view>
-                <image class="type-icon" src="http://yanxuan.nosdn.127.net/hxm/yanxuan-wap/p/20161201/style/img/icon-normal/pickerArrow-a8b918f05f.png"></image>
+                <image class="type-icon" src="/static/images/pulldown.png"></image>
           </view>
         </view>
      </picker>
