@@ -21,7 +21,7 @@
           </el-input>
         </el-form-item>
         <el-form-item label="积分兑换" prop="retailPrice">
-          <el-input v-model="goods.integrals" placeholder="0">
+          <el-input v-model="goods.integral" placeholder="0">
             <template slot="append">分</template>
           </el-input>
         </el-form-item>
