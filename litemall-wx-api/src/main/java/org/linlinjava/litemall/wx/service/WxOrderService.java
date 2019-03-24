@@ -309,10 +309,10 @@ public class WxOrderService {
             //  只有当团购规格商品ID符合才进行团购优惠
             if (grouponRules != null && grouponRules.getGoodsId().equals(checkGoods.getGoodsId())) {
                 checkedGoodsPrice = checkedGoodsPrice.add(checkGoods.getPrice().subtract(grouponPrice).multiply(new BigDecimal(checkGoods.getNumber())));
-                checkedGoodsIntegral = checkedGoodsPrice.add(checkGoods.getIntegral().subtract(grouponPrice).multiply(new BigDecimal(checkGoods.getNumber())));
+                checkedGoodsIntegral = checkedGoodsIntegral.add(checkGoods.getIntegral().subtract(grouponPrice).multiply(new BigDecimal(checkGoods.getNumber())));
             } else {
                 checkedGoodsPrice = checkedGoodsPrice.add(checkGoods.getPrice().multiply(new BigDecimal(checkGoods.getNumber())));
-                checkedGoodsIntegral = checkedGoodsPrice.add(checkGoods.getIntegral().multiply(new BigDecimal(checkGoods.getNumber())));
+                checkedGoodsIntegral = checkedGoodsIntegral.add(checkGoods.getIntegral().multiply(new BigDecimal(checkGoods.getNumber())));
             }
         }
 
@@ -331,7 +331,7 @@ public class WxOrderService {
 
         // 根据订单商品总价计算运费，满足条件（例如88元）则免运费，否则需要支付运费（例如8元）；
         BigDecimal freightPrice = new BigDecimal(0.00);
-        if (checkedGoodsPrice.compareTo(SystemConfig.getFreightLimit()) < 0) {
+        if (checkedGoodsPrice.compareTo(SystemConfig.getFreightLimit()) < 0 && checkedGoodsIntegral.intValue()<1) {
             freightPrice = SystemConfig.getFreight();
         }
 
