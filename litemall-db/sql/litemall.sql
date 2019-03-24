@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50725
 File Encoding         : 65001
 
-Date: 2019-03-23 22:57:18
+Date: 2019-03-24 16:47:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -209,7 +209,7 @@ CREATE TABLE `litemall_cart` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8 COMMENT='购物车商品表';
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 COMMENT='购物车商品表';
 
 -- ----------------------------
 -- Records of litemall_cart
@@ -242,6 +242,8 @@ INSERT INTO `litemall_cart` VALUES ('25', '2', '1006013', '1006013', '双宫茧�
 INSERT INTO `litemall_cart` VALUES ('26', '2', '1006014', '1006014', '双宫茧桑蚕丝被 子母被', '11', '1399.00', '0.00', '1', '[\"标准\"]', '0', 'http://yanxuan.nosdn.127.net/2b537159f0f789034bf8c4b339c43750.png', '2019-02-13 18:28:26', '2019-02-17 16:00:52', '1');
 INSERT INTO `litemall_cart` VALUES ('27', '2', '1181008', '奶粉', '奶粉', '267', '0.00', '0.00', '1', '[\"4580分\"]', '0', 'http://localhost:8080/wx/storage/fetch/szc17ybj4czqhgrd2tof.PNG', '2019-02-14 14:56:51', '2019-02-17 16:00:51', '1');
 INSERT INTO `litemall_cart` VALUES ('28', '2', '1181008', '奶粉', '奶粉', '270', '0.00', '0.00', '1', '[\"400g\"]', '0', 'http://localhost:8080/wx/storage/fetch/szc17ybj4czqhgrd2tof.PNG', '2019-02-14 15:02:41', '2019-02-17 16:00:52', '1');
+INSERT INTO `litemall_cart` VALUES ('29', '4', '1181014', '???6-12???', '???6-12???', '285', '300.00', '0.00', '1', '[\"??\"]', '1', 'http://localhost:8080/wx/storage/fetch/pcbvop2di21k6d4avk8y.png', '2019-03-24 15:25:47', '2019-03-24 15:25:47', '0');
+INSERT INTO `litemall_cart` VALUES ('30', '4', '1181014', '???6-12???', '???6-12???', '297', '300.00', '0.00', '4', '[\"??\"]', '1', 'http://localhost:8080/wx/storage/fetch/pcbvop2di21k6d4avk8y.png', '2019-03-24 16:39:12', '2019-03-24 16:40:05', '0');
 
 -- ----------------------------
 -- Table structure for litemall_category
@@ -1477,7 +1479,7 @@ CREATE TABLE `litemall_coupon_user` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8 COMMENT='优惠券用户使用表';
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='优惠券用户使用表';
 
 -- ----------------------------
 -- Records of litemall_coupon_user
@@ -1504,6 +1506,7 @@ INSERT INTO `litemall_coupon_user` VALUES ('19', '2', '12', '2', null, '2019-02-
 INSERT INTO `litemall_coupon_user` VALUES ('20', '2', '12', '1', '2019-02-10 17:52:04', '2019-02-06 15:48:53', '2019-02-21 15:48:53', '3', '2019-02-06 15:48:53', '2019-02-10 17:52:04', '0');
 INSERT INTO `litemall_coupon_user` VALUES ('21', '2', '12', '1', '2019-02-11 13:55:37', '2019-02-06 15:48:53', '2019-02-21 15:48:53', '4', '2019-02-06 15:48:53', '2019-02-11 13:55:37', '0');
 INSERT INTO `litemall_coupon_user` VALUES ('22', '2', '12', '1', '2019-02-11 16:50:27', '2019-02-06 15:48:53', '2019-02-21 15:48:53', '6', '2019-02-06 15:48:53', '2019-02-11 16:50:27', '0');
+INSERT INTO `litemall_coupon_user` VALUES ('23', '4', '3', '0', null, '2019-03-24 14:57:49', '2019-04-03 14:57:49', null, '2019-03-24 14:57:49', '2019-03-24 14:57:49', '0');
 
 -- ----------------------------
 -- Table structure for litemall_feedback
@@ -1542,7 +1545,7 @@ CREATE TABLE `litemall_footprint` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8 COMMENT='用户浏览足迹表';
+) ENGINE=InnoDB AUTO_INCREMENT=71 DEFAULT CHARSET=utf8 COMMENT='用户浏览足迹表';
 
 -- ----------------------------
 -- Records of litemall_footprint
@@ -1609,6 +1612,14 @@ INSERT INTO `litemall_footprint` VALUES ('59', '3', '1181013', '2019-02-17 23:20
 INSERT INTO `litemall_footprint` VALUES ('60', '3', '1181013', '2019-02-17 23:20:06', '2019-02-17 23:20:06', '0');
 INSERT INTO `litemall_footprint` VALUES ('61', '3', '1181014', '2019-02-17 23:20:09', '2019-02-17 23:20:09', '0');
 INSERT INTO `litemall_footprint` VALUES ('62', '3', '1181014', '2019-02-17 23:20:10', '2019-02-17 23:20:10', '0');
+INSERT INTO `litemall_footprint` VALUES ('63', '4', '1085019', '2019-03-24 15:10:39', '2019-03-24 15:10:39', '0');
+INSERT INTO `litemall_footprint` VALUES ('64', '4', '1086052', '2019-03-24 15:10:45', '2019-03-24 15:10:45', '0');
+INSERT INTO `litemall_footprint` VALUES ('65', '4', '1113019', '2019-03-24 15:10:55', '2019-03-24 15:10:55', '0');
+INSERT INTO `litemall_footprint` VALUES ('66', '4', '1156006', '2019-03-24 15:11:01', '2019-03-24 15:11:01', '0');
+INSERT INTO `litemall_footprint` VALUES ('67', '4', '1181014', '2019-03-24 15:24:58', '2019-03-24 15:24:58', '0');
+INSERT INTO `litemall_footprint` VALUES ('68', '4', '1181014', '2019-03-24 16:35:23', '2019-03-24 16:35:23', '0');
+INSERT INTO `litemall_footprint` VALUES ('69', '4', '1181014', '2019-03-24 16:39:03', '2019-03-24 16:39:03', '0');
+INSERT INTO `litemall_footprint` VALUES ('70', '4', '1181014', '2019-03-24 16:39:59', '2019-03-24 16:39:59', '0');
 
 -- ----------------------------
 -- Table structure for litemall_goods
@@ -1637,7 +1648,7 @@ CREATE TABLE `litemall_goods` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   `integral_limit` float NOT NULL DEFAULT '1' COMMENT '积分使用上限，默认为1，代表100%',
-  `integral` int(20) NOT NULL DEFAULT '0' COMMENT '积分值，该商品需要多少积分可以兑换',
+  `integral` decimal(20,0) NOT NULL DEFAULT '0' COMMENT '积分值，该商品需要多少积分可以兑换',
   PRIMARY KEY (`id`),
   KEY `goods_sn` (`goods_sn`),
   KEY `cat_id` (`category_id`),
@@ -1895,12 +1906,12 @@ INSERT INTO `litemall_goods` VALUES ('1181005', '23344', '34', '1036009', '10010
 INSERT INTO `litemall_goods` VALUES ('1181006', '455', '5', '1036009', '1001003', '[]', '', '', '1', '100', '', null, '1', '0', '’件‘', '5.00', '5.00', null, '2019-02-13 11:18:44', '2019-02-13 11:18:55', '1', '1', '0');
 INSERT INTO `litemall_goods` VALUES ('1181007', '122', '12', '1036009', '1001000', '[\"http://localhost:8080/wx/storage/fetch/mofmjmwoxhaafk96cy0f.jpg\"]', '', '12', '1', '100', 'http://localhost:8080/wx/storage/fetch/2gaujhz2q5uf5efi6u9b.jpg', null, '1', '0', '1', '1.00', '1.00', null, '2019-02-13 17:11:51', '2019-02-13 17:11:52', '1', '1', '233');
 INSERT INTO `litemall_goods` VALUES ('1181008', '奶粉', '奶粉', '1036011', '1046001', '[\"http://localhost:8080/wx/storage/fetch/txnft59oyrbk8d3rfnbt.PNG\"]', '积分兑换', '奶粉', '1', '100', 'http://localhost:8080/wx/storage/fetch/szc17ybj4czqhgrd2tof.PNG', '', '0', '0', '1', '458.00', '0.00', '<p>可积分兑换的奶粉</p>', '2019-02-14 14:51:56', '2019-02-14 15:01:55', '1', '1', '4580');
-INSERT INTO `litemall_goods` VALUES ('1181009', '奶粉1', '奶粉1', '1036009', '1046001', '[\"http://localhost:8080/wx/storage/fetch/u1spjxq744595jnd6hdy.PNG\"]', '', '奶粉', '1', '100', 'http://localhost:8080/wx/storage/fetch/x5z7pbxipe27ynm27c2j.PNG', '', '0', '0', '1', '100.00', '100.00', '<p>test</p>', '2019-02-17 13:23:05', '2019-02-17 13:27:11', '1', '1', '0');
-INSERT INTO `litemall_goods` VALUES ('1181010', '奶粉2', '奶粉2', '1036009', '1046002', '[\"http://localhost:8080/wx/storage/fetch/sy0l6vt040tyze7sqqym.PNG\"]', '', '1', '1', '100', 'http://localhost:8080/wx/storage/fetch/nreu1dr9yatwod4nfe0o.PNG', null, '0', '0', '1', '400.00', '400.00', '<p>1</p>', '2019-02-17 13:29:33', '2019-02-17 13:29:33', '1', '1', '0');
-INSERT INTO `litemall_goods` VALUES ('1181011', '奶粉3', '奶粉3', '1036014', '1046003', '[\"http://localhost:8080/wx/storage/fetch/dohbj2b5twrrcbsjc67n.PNG\",\"http://localhost:8080/wx/storage/fetch/bcrgvwshuxp4wspf9wdv.png\",\"http://localhost:8080/wx/storage/fetch/k3vx2e1cdebi350yaner.png\",\"http://localhost:8080/wx/storage/fetch/3j9x5pdeyokhfmjf76c9.png\",\"http://localhost:8080/wx/storage/fetch/hrurtiuttvmq1mzvcrxn.png\"]', '', '1', '1', '100', 'http://localhost:8080/wx/storage/fetch/1czffazaxf54cawddl1x.png', '', '0', '0', '1', '500.00', '500.00', '<p>1</p>', '2019-02-17 13:30:31', '2019-02-17 23:31:35', '0', '1', '0');
-INSERT INTO `litemall_goods` VALUES ('1181012', '奶粉11', '奶粉11', '1036014', '1046001', '[\"http://localhost:8080/wx/storage/fetch/aj6oxjxumbmp7m1kt3a4.PNG\"]', '', '1', '1', '100', 'http://localhost:8080/wx/storage/fetch/0l2szcf4o5c5o8qnfr5x.png', '', '0', '0', '1', '256.00', '246.00', '<p>1</p>', '2019-02-17 13:32:30', '2019-02-17 23:19:37', '0', '1', '0');
-INSERT INTO `litemall_goods` VALUES ('1181013', '奶粉12', '奶粉12', '1036014', '1046001', '[\"http://localhost:8080/wx/storage/fetch/qwfxxt7ulfj8k47end2q.PNG\"]', '', '1', '1', '100', 'http://localhost:8080/wx/storage/fetch/1tdls8hdhan8919v1mi5.png', '', '1', '1', '1', '300.00', '300.00', '<p>1</p>', '2019-02-17 13:33:17', '2019-02-17 23:22:25', '0', '1', '0');
-INSERT INTO `litemall_goods` VALUES ('1181014', '奶粉（6-12个月）', '奶粉（6-12个月）', '1036014', '1046003', '[\"http://localhost:8080/wx/storage/fetch/0rk22xpj9jhzkfokzt8b.PNG\",\"http://localhost:8080/wx/storage/fetch/dp3el127vf1yo5g6zmrd.png\",\"http://localhost:8080/wx/storage/fetch/8uzqmhak8z3inlf1vhow.png\",\"http://localhost:8080/wx/storage/fetch/55ke8ntbcr0mhpj8ln4s.png\",\"http://localhost:8080/wx/storage/fetch/0fh7h8diahapjpu966qt.png\"]', '', '1', '1', '100', 'http://localhost:8080/wx/storage/fetch/pcbvop2di21k6d4avk8y.png', '', '1', '1', '1', '380.00', '380.00', '<p>1</p>', '2019-02-17 13:35:29', '2019-02-17 23:32:11', '0', '1', '0');
+INSERT INTO `litemall_goods` VALUES ('1181009', '奶粉1', '奶粉1', '1036009', '1046001', '[\"http://localhost:8080/wx/storage/fetch/u1spjxq744595jnd6hdy.PNG\"]', '', '奶粉', '1', '100', 'http://localhost:8080/wx/storage/fetch/x5z7pbxipe27ynm27c2j.PNG', '', '0', '0', '1', '100.00', '100.00', '<p>test</p>', '2019-02-17 13:23:05', '2019-02-17 13:27:11', '1', '1', '1');
+INSERT INTO `litemall_goods` VALUES ('1181010', '奶粉2', '奶粉2', '1036009', '1046002', '[\"http://localhost:8080/wx/storage/fetch/sy0l6vt040tyze7sqqym.PNG\"]', '', '1', '1', '100', 'http://localhost:8080/wx/storage/fetch/nreu1dr9yatwod4nfe0o.PNG', null, '0', '0', '1', '400.00', '400.00', '<p>1</p>', '2019-02-17 13:29:33', '2019-02-17 13:29:33', '1', '1', '1');
+INSERT INTO `litemall_goods` VALUES ('1181011', '奶粉3', '奶粉3', '1036014', '1046003', '[\"http://localhost:8080/wx/storage/fetch/dohbj2b5twrrcbsjc67n.PNG\",\"http://localhost:8080/wx/storage/fetch/bcrgvwshuxp4wspf9wdv.png\",\"http://localhost:8080/wx/storage/fetch/k3vx2e1cdebi350yaner.png\",\"http://localhost:8080/wx/storage/fetch/3j9x5pdeyokhfmjf76c9.png\",\"http://localhost:8080/wx/storage/fetch/hrurtiuttvmq1mzvcrxn.png\"]', '', '1', '1', '100', 'http://localhost:8080/wx/storage/fetch/1czffazaxf54cawddl1x.png', '', '0', '0', '1', '500.00', '500.00', '<p>1</p>', '2019-02-17 13:30:31', '2019-02-17 23:31:35', '0', '1', '1');
+INSERT INTO `litemall_goods` VALUES ('1181012', '??11', '??11', '1036014', '1046001', '[\"http://localhost:8080/wx/storage/fetch/aj6oxjxumbmp7m1kt3a4.PNG\"]', '', '1', '1', '100', 'http://localhost:8080/wx/storage/fetch/0l2szcf4o5c5o8qnfr5x.png', '', '0', '0', '1', '256.00', '246.00', '<p>1</p>', '2019-02-17 13:32:30', '2019-03-24 16:34:23', '1', '1', '1');
+INSERT INTO `litemall_goods` VALUES ('1181013', '???12', '???12', '1036014', '1046001', '[\"http://localhost:8080/wx/storage/fetch/qwfxxt7ulfj8k47end2q.PNG\"]', '', '1', '1', '100', 'http://localhost:8080/wx/storage/fetch/1tdls8hdhan8919v1mi5.png', '', '1', '1', '1', '300.00', '300.00', '<p>1</p>', '2019-02-17 13:33:17', '2019-03-24 16:35:01', '1', '1', '1');
+INSERT INTO `litemall_goods` VALUES ('1181014', '???6-12???', '???6-12???', '1036014', '1046003', '[\"http://localhost:8080/wx/storage/fetch/0rk22xpj9jhzkfokzt8b.PNG\",\"http://localhost:8080/wx/storage/fetch/dp3el127vf1yo5g6zmrd.png\",\"http://localhost:8080/wx/storage/fetch/8uzqmhak8z3inlf1vhow.png\",\"http://localhost:8080/wx/storage/fetch/55ke8ntbcr0mhpj8ln4s.png\",\"http://localhost:8080/wx/storage/fetch/0fh7h8diahapjpu966qt.png\"]', '', '1', '1', '100', 'http://localhost:8080/wx/storage/fetch/pcbvop2di21k6d4avk8y.png', '', '1', '1', '1', '0.00', '0.00', '<p>1</p>', '2019-02-17 13:35:29', '2019-03-24 16:37:39', '0', '1', '1');
 
 -- ----------------------------
 -- Table structure for litemall_goods_attribute
@@ -2843,7 +2854,7 @@ CREATE TABLE `litemall_goods_product` (
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=292 DEFAULT CHARSET=utf8 COMMENT='商品货品表';
+) ENGINE=InnoDB AUTO_INCREMENT=298 DEFAULT CHARSET=utf8 COMMENT='商品货品表';
 
 -- ----------------------------
 -- Records of litemall_goods_product
@@ -3128,17 +3139,23 @@ INSERT INTO `litemall_goods_product` VALUES ('277', '1181014', '[\"标准\"]', '
 INSERT INTO `litemall_goods_product` VALUES ('278', '1181014', '[\"标准\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/v8o8bojdqseogh783dh2.PNG', '2019-02-17 16:06:41', '2019-02-17 16:06:41', '1');
 INSERT INTO `litemall_goods_product` VALUES ('279', '1181014', '[\"标准\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-02-17 23:18:57', '2019-02-17 23:18:57', '1');
 INSERT INTO `litemall_goods_product` VALUES ('280', '1181013', '[\"标准\"]', '600.00', '0.00', '600', 'http://localhost:8080/wx/storage/fetch/lft60u2j58emjbfp6m7c.png', '2019-02-17 23:19:17', '2019-02-17 23:19:17', '1');
-INSERT INTO `litemall_goods_product` VALUES ('281', '1181012', '[\"标准\"]', '2456.00', '0.00', '200', 'http://localhost:8080/wx/storage/fetch/cmb16uaz6nm8pf5v36rz.png', '2019-02-17 23:19:37', '2019-02-17 23:19:37', '0');
+INSERT INTO `litemall_goods_product` VALUES ('281', '1181012', '[\"标准\"]', '2456.00', '0.00', '200', 'http://localhost:8080/wx/storage/fetch/cmb16uaz6nm8pf5v36rz.png', '2019-02-17 23:19:37', '2019-02-17 23:19:37', '1');
 INSERT INTO `litemall_goods_product` VALUES ('282', '1181014', '[\"标准\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-02-17 23:22:14', '2019-02-17 23:22:14', '1');
-INSERT INTO `litemall_goods_product` VALUES ('283', '1181013', '[\"标准\"]', '600.00', '0.00', '600', 'http://localhost:8080/wx/storage/fetch/lft60u2j58emjbfp6m7c.png', '2019-02-17 23:22:25', '2019-02-17 23:22:25', '0');
+INSERT INTO `litemall_goods_product` VALUES ('283', '1181013', '[\"标准\"]', '600.00', '0.00', '600', 'http://localhost:8080/wx/storage/fetch/lft60u2j58emjbfp6m7c.png', '2019-02-17 23:22:25', '2019-02-17 23:22:25', '1');
 INSERT INTO `litemall_goods_product` VALUES ('284', '1181011', '[\"标准\"]', '400.00', '0.00', '380', 'http://localhost:8080/wx/storage/fetch/9uswxm20seg3hsgn53sj.PNG', '2019-02-17 23:31:35', '2019-02-17 23:31:35', '0');
-INSERT INTO `litemall_goods_product` VALUES ('285', '1181014', '[\"标准\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-02-17 23:32:11', '2019-02-17 23:32:11', '0');
+INSERT INTO `litemall_goods_product` VALUES ('285', '1181014', '[\"标准\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-02-17 23:32:11', '2019-02-17 23:32:11', '1');
 INSERT INTO `litemall_goods_product` VALUES ('286', '1110016', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/3bd73b7279a83d1cbb50c0e45778e6d6.png', '2019-02-17 23:34:28', '2019-02-17 23:34:28', '1');
 INSERT INTO `litemall_goods_product` VALUES ('287', '1110017', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/534231583f82572398ec84bad425cdaf.png', '2019-02-17 23:34:53', '2019-02-17 23:34:53', '1');
 INSERT INTO `litemall_goods_product` VALUES ('288', '1110016', '[\"标准\"]', '39.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/3bd73b7279a83d1cbb50c0e45778e6d6.png', '2019-02-17 23:53:47', '2019-02-17 23:53:47', '0');
 INSERT INTO `litemall_goods_product` VALUES ('289', '1110017', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/534231583f82572398ec84bad425cdaf.png', '2019-02-17 23:54:01', '2019-02-17 23:54:01', '0');
 INSERT INTO `litemall_goods_product` VALUES ('290', '1056002', '[\"标准\"]', '59.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/922fdbe007033f7a88f7ebc57c3d1e75.png', '2019-02-17 23:54:17', '2019-02-17 23:54:17', '0');
 INSERT INTO `litemall_goods_product` VALUES ('291', '1110018', '[\"标准\"]', '79.00', '0.00', '100', 'http://yanxuan.nosdn.127.net/d93aa5d6e7a296101cf4cb72613aeda6.png', '2019-02-17 23:54:38', '2019-02-17 23:54:38', '0');
+INSERT INTO `litemall_goods_product` VALUES ('292', '1181013', '[\"??\"]', '600.00', '0.00', '600', 'http://localhost:8080/wx/storage/fetch/lft60u2j58emjbfp6m7c.png', '2019-03-24 16:33:59', '2019-03-24 16:33:59', '1');
+INSERT INTO `litemall_goods_product` VALUES ('293', '1181012', '[\"??\"]', '2456.00', '0.00', '200', 'http://localhost:8080/wx/storage/fetch/cmb16uaz6nm8pf5v36rz.png', '2019-03-24 16:34:08', '2019-03-24 16:34:08', '1');
+INSERT INTO `litemall_goods_product` VALUES ('294', '1181012', '[\"??\"]', '2456.00', '0.00', '200', 'http://localhost:8080/wx/storage/fetch/cmb16uaz6nm8pf5v36rz.png', '2019-03-24 16:34:23', '2019-03-24 16:34:23', '1');
+INSERT INTO `litemall_goods_product` VALUES ('295', '1181013', '[\"??\"]', '600.00', '0.00', '600', 'http://localhost:8080/wx/storage/fetch/lft60u2j58emjbfp6m7c.png', '2019-03-24 16:34:42', '2019-03-24 16:34:42', '1');
+INSERT INTO `litemall_goods_product` VALUES ('296', '1181013', '[\"??\"]', '600.00', '0.00', '600', 'http://localhost:8080/wx/storage/fetch/lft60u2j58emjbfp6m7c.png', '2019-03-24 16:35:01', '2019-03-24 16:35:01', '1');
+INSERT INTO `litemall_goods_product` VALUES ('297', '1181014', '[\"??\"]', '300.00', '0.00', '100', 'http://localhost:8080/wx/storage/fetch/58fvvusm7ml8zmve5um0.png', '2019-03-24 16:37:39', '2019-03-24 16:37:39', '0');
 
 -- ----------------------------
 -- Table structure for litemall_goods_specification
@@ -3155,7 +3172,7 @@ CREATE TABLE `litemall_goods_specification` (
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`),
   KEY `goods_id` (`goods_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=290 DEFAULT CHARSET=utf8 COMMENT='商品规格表';
+) ENGINE=InnoDB AUTO_INCREMENT=296 DEFAULT CHARSET=utf8 COMMENT='商品规格表';
 
 -- ----------------------------
 -- Records of litemall_goods_specification
@@ -3438,17 +3455,23 @@ INSERT INTO `litemall_goods_specification` VALUES ('275', '1181014', '规格', '
 INSERT INTO `litemall_goods_specification` VALUES ('276', '1181014', '规格', '标准', '', '2019-02-17 16:06:41', '2019-02-17 16:06:41', '1');
 INSERT INTO `litemall_goods_specification` VALUES ('277', '1181014', '规格', '标准', '', '2019-02-17 23:18:57', '2019-02-17 23:18:57', '1');
 INSERT INTO `litemall_goods_specification` VALUES ('278', '1181013', '规格', '标准', '', '2019-02-17 23:19:17', '2019-02-17 23:19:17', '1');
-INSERT INTO `litemall_goods_specification` VALUES ('279', '1181012', '规格', '标准', '', '2019-02-17 23:19:37', '2019-02-17 23:19:37', '0');
+INSERT INTO `litemall_goods_specification` VALUES ('279', '1181012', '规格', '标准', '', '2019-02-17 23:19:37', '2019-02-17 23:19:37', '1');
 INSERT INTO `litemall_goods_specification` VALUES ('280', '1181014', '规格', '标准', '', '2019-02-17 23:22:14', '2019-02-17 23:22:14', '1');
-INSERT INTO `litemall_goods_specification` VALUES ('281', '1181013', '规格', '标准', '', '2019-02-17 23:22:25', '2019-02-17 23:22:25', '0');
+INSERT INTO `litemall_goods_specification` VALUES ('281', '1181013', '规格', '标准', '', '2019-02-17 23:22:25', '2019-02-17 23:22:25', '1');
 INSERT INTO `litemall_goods_specification` VALUES ('282', '1181011', '规格', '标准', '', '2019-02-17 23:31:35', '2019-02-17 23:31:35', '0');
-INSERT INTO `litemall_goods_specification` VALUES ('283', '1181014', '规格', '标准', '', '2019-02-17 23:32:11', '2019-02-17 23:32:11', '0');
+INSERT INTO `litemall_goods_specification` VALUES ('283', '1181014', '规格', '标准', '', '2019-02-17 23:32:11', '2019-02-17 23:32:11', '1');
 INSERT INTO `litemall_goods_specification` VALUES ('284', '1110016', '规格', '标准', '', '2019-02-17 23:34:28', '2019-02-17 23:34:28', '1');
 INSERT INTO `litemall_goods_specification` VALUES ('285', '1110017', '规格', '标准', '', '2019-02-17 23:34:53', '2019-02-17 23:34:53', '1');
 INSERT INTO `litemall_goods_specification` VALUES ('286', '1110016', '规格', '标准', '', '2019-02-17 23:53:47', '2019-02-17 23:53:47', '0');
 INSERT INTO `litemall_goods_specification` VALUES ('287', '1110017', '规格', '标准', '', '2019-02-17 23:54:01', '2019-02-17 23:54:01', '0');
 INSERT INTO `litemall_goods_specification` VALUES ('288', '1056002', '规格', '标准', '', '2019-02-17 23:54:17', '2019-02-17 23:54:17', '0');
 INSERT INTO `litemall_goods_specification` VALUES ('289', '1110018', '规格', '标准', '', '2019-02-17 23:54:38', '2019-02-17 23:54:38', '0');
+INSERT INTO `litemall_goods_specification` VALUES ('290', '1181013', '??', '??', '', '2019-03-24 16:33:59', '2019-03-24 16:33:59', '1');
+INSERT INTO `litemall_goods_specification` VALUES ('291', '1181012', '??', '??', '', '2019-03-24 16:34:08', '2019-03-24 16:34:08', '1');
+INSERT INTO `litemall_goods_specification` VALUES ('292', '1181012', '??', '??', '', '2019-03-24 16:34:23', '2019-03-24 16:34:23', '1');
+INSERT INTO `litemall_goods_specification` VALUES ('293', '1181013', '??', '??', '', '2019-03-24 16:34:42', '2019-03-24 16:34:42', '1');
+INSERT INTO `litemall_goods_specification` VALUES ('294', '1181013', '??', '??', '', '2019-03-24 16:35:01', '2019-03-24 16:35:01', '1');
+INSERT INTO `litemall_goods_specification` VALUES ('295', '1181014', '??', '??', '', '2019-03-24 16:37:39', '2019-03-24 16:37:39', '0');
 
 -- ----------------------------
 -- Table structure for litemall_groupon
@@ -3513,7 +3536,7 @@ CREATE TABLE `litemall_integrals` (
   PRIMARY KEY (`id`),
   KEY `add_time` (`add_time`) USING BTREE,
   KEY `user_id` (`user_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COMMENT='积分明细表';
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COMMENT='积分明细表';
 
 -- ----------------------------
 -- Records of litemall_integrals
@@ -3529,6 +3552,7 @@ INSERT INTO `litemall_integrals` VALUES ('8', '2', '购买奶粉1罐', '320', '8
 INSERT INTO `litemall_integrals` VALUES ('9', '2', '购买奶粉1罐', '320', '9', '2019-03-17 21:51:51', '1', '0');
 INSERT INTO `litemall_integrals` VALUES ('10', '2', '兑换暖宝宝', '-60', '10', '2019-03-17 21:51:52', '1', '0');
 INSERT INTO `litemall_integrals` VALUES ('11', '2', '购买奶粉1罐', '320', '11', '2019-03-17 21:51:54', '1', '0');
+INSERT INTO `litemall_integrals` VALUES ('12', '4', '?????', '500', '-1', '2019-03-24 14:57:49', '0', '1');
 
 -- ----------------------------
 -- Table structure for litemall_integral_rule
@@ -7300,13 +7324,14 @@ CREATE TABLE `litemall_user` (
   `babybirthday` date DEFAULT NULL COMMENT '宝宝生日',
   PRIMARY KEY (`id`),
   UNIQUE KEY `user_name` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COMMENT='用户表';
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8 COMMENT='用户表';
 
 -- ----------------------------
 -- Records of litemall_user
 -- ----------------------------
 INSERT INTO `litemall_user` VALUES ('1', 'test123', '$2a$10$RDdMsCctq0rFNwGkyGm4ouAaLridP7pocqQA3eVOaCZACYgjdfn8C', '1', '2019-01-01', null, '', '0', '', '13311621227', '', '', '0', '2019-01-23 18:01:19', '2019-01-23 18:09:06', '0', '0', '0', null, null, null);
 INSERT INTO `litemall_user` VALUES ('3', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', '1', null, '2019-02-02 00:00:03', '0:0:0:0:0:0:0:1', '0', 'firebird', '', 'https://wx.qlogo.cn/mmopen/vi_32/iaj85Pia2KvicvYrtl6z1q0AWMUPMnOkWUdEP69KS0BJn5A6k52WTa2ibuHR099LWJOFX37mbUPkqzQ2kBsMakl8Ww/132', 'ou0VW49u3qcLVbjmSENRpxt9Mfq0', '0', '2019-01-26 19:07:27', '2019-02-02 00:00:03', '0', '0', '0', null, null, null);
+INSERT INTO `litemall_user` VALUES ('4', 'o1X4Z47otekU53uBDbyMw1GJUgYM', 'o1X4Z47otekU53uBDbyMw1GJUgYM', '1', null, '2019-03-24 16:40:52', '0:0:0:0:0:0:0:1', '0', 'firebird', '', 'https://wx.qlogo.cn/mmopen/vi_32/YF1w5RKw58JeF9rtaODOrN3b9Lye9VnBiazTIIZ4efDibPz5NOW4at6mMxqzeLJYermibib11NqlPtng7ickpomH3JA/132', 'o1X4Z47otekU53uBDbyMw1GJUgYM', '0', '2019-03-24 14:57:49', '2019-03-24 16:40:52', '0', '500', '0', null, null, null);
 
 -- ----------------------------
 -- Table structure for litemall_usercross

@@ -118,6 +118,11 @@ public class AdminGoodsService {
                 return ResponseUtil.badArgument();
             }
 
+/*            BigDecimal integral = product.getIntegral();
+            if (integral == null) {
+                return ResponseUtil.badArgument();
+            }*/
+
             String[] productSpecifications = product.getSpecifications();
             if (productSpecifications.length == 0) {
                 return ResponseUtil.badArgument();
@@ -158,6 +163,7 @@ public class AdminGoodsService {
         Integer id = goods.getId();
         // 检查是否存在购物车商品或者订单商品
         // 如果存在则拒绝修改商品。
+
         if (orderGoodsService.checkExist(id)) {
             return ResponseUtil.fail(GOODS_UPDATE_NOT_ALLOWED, "商品已经在订单中，不能修改");
         }
@@ -194,6 +200,7 @@ public class AdminGoodsService {
         // 商品货品表litemall_product
         for (LitemallGoodsProduct product : products) {
             product.setGoodsId(goods.getId());
+            product.setIntegral(goods.getIntegral());
             productService.add(product);
         }
         qCodeService.createGoodShareImage(goods.getId().toString(), goods.getPicUrl(), goods.getName());
@@ -260,6 +267,7 @@ public class AdminGoodsService {
         // 商品货品表litemall_product
         for (LitemallGoodsProduct product : products) {
             product.setGoodsId(goods.getId());
+            product.setIntegral(goods.getIntegral());
             productService.add(product);
         }
         return ResponseUtil.ok();

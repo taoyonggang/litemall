@@ -129,7 +129,7 @@ public class WxCartController {
 
             cart.setId(null);
             cart.setGoodsSn(goods.getGoodsSn());
-            cart.setGoodsName((goods.getName()));
+            cart.setGoodsName(goods.getName());
             cart.setPicUrl(goods.getPicUrl());
             cart.setPrice(product.getPrice());
             cart.setIntegral(product.getIntegral());
@@ -426,12 +426,15 @@ public class WxCartController {
             checkedGoodsList.add(cart);
         }
         BigDecimal checkedGoodsPrice = new BigDecimal(0.00);
+        BigDecimal checkedGoodsIntegral = new BigDecimal(0.00);
         for (LitemallCart cart : checkedGoodsList) {
             //  只有当团购规格商品ID符合才进行团购优惠
             if (grouponRules != null && grouponRules.getGoodsId().equals(cart.getGoodsId())) {
                 checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().subtract(grouponPrice).multiply(new BigDecimal(cart.getNumber())));
+                checkedGoodsIntegral = checkedGoodsIntegral.add(cart.getIntegral().multiply(new BigDecimal(cart.getNumber())));
             } else {
                 checkedGoodsPrice = checkedGoodsPrice.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
+                checkedGoodsIntegral = checkedGoodsIntegral.add(cart.getIntegral().multiply(new BigDecimal(cart.getNumber())));
             }
         }
 
@@ -477,16 +480,14 @@ public class WxCartController {
 
         // 根据订单商品总价计算运费，满88则免运费，否则8元；
         BigDecimal freightPrice = new BigDecimal(0.00);
-        if (checkedGoodsPrice.compareTo(SystemConfig.getFreightLimit()) < 0) {
+        if (checkedGoodsPrice.compareTo(SystemConfig.getFreightLimit()) < 0 && checkedGoodsIntegral.intValue()<1) {
             freightPrice = SystemConfig.getFreight();
         }
 
-        // 可以使用的其他钱，例如用户积分
-        BigDecimal integralPrice = new BigDecimal(0.00);
 
         // 订单费用
         BigDecimal orderTotalPrice = checkedGoodsPrice.add(freightPrice).subtract(couponPrice);
-        BigDecimal actualPrice = orderTotalPrice.subtract(integralPrice);
+        BigDecimal orderTotalIntegral = checkedGoodsIntegral;
 
         Map<String, Object> data = new HashMap<>();
         data.put("addressId", addressId);
@@ -499,7 +500,7 @@ public class WxCartController {
         data.put("freightPrice", freightPrice);
         data.put("couponPrice", couponPrice);
         data.put("orderTotalPrice", orderTotalPrice);
-        data.put("actualPrice", actualPrice);
+        data.put("orderTotalIntegral", orderTotalIntegral);
         data.put("checkedGoodsList", checkedGoodsList);
         return ResponseUtil.ok(data);
     }
