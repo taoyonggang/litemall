@@ -12,17 +12,17 @@
 
     <!-- 查询结果 -->
     <el-table v-loading="listLoading" :data="list" size="small" element-loading-text="正在查询中。。。" border fit highlight-current-row>
-      <el-table-column align="center" label="活动名称" prop="title"/>
+      <el-table-column align="center" label="活动名称" prop="title" min-width="10%"/>
 
-      <el-table-column align="center" label="活动区域" min-width="200" prop="subtitle"/>
+      <el-table-column align="center" label="活动区域" prop="subtitle" min-width="15%"/>
 
-      <el-table-column align="center" property="picUrl" label="图片">
+      <el-table-column align="center" property="picUrl" label="图片" min-width="10%">
         <template slot-scope="scope">
           <img :src="scope.row.picUrl" width="80">
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="活动详情" prop="content">
+      <el-table-column align="center" label="活动详情" prop="content" min-width="8%">
         <template slot-scope="scope">
           <el-dialog :visible.sync="contentDialogVisible" title="活动详情">
             <div v-html="contentDetail"/>
@@ -31,19 +31,22 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="结束时间" prop="endtime"/>
+      <el-table-column align="center" label="过期时间" prop="endTime" min-width="10%"/>
 
-      <el-table-column align="center" label="底价" prop="price"/>
+      <el-table-column align="center" label="底价" prop="price" min-width="5%"/>
 
-      <el-table-column align="center" label="阅读数量" prop="readCount"/>
+      <el-table-column align="center" label="阅读数量" prop="readCount" min-width="7%"/>
 
-      <el-table-column align="center" label="发布人" prop="mgrUserid"/>
+      <!-- <el-table-column align="center" label="发布人" prop="mgrUserid"/> -->
 
-      <el-table-column align="center" label="操作" min-width="200" class-name="small-padding fixed-width">
+      <el-table-column align="center" label="操作" class-name="fixed-width" min-width="30%">
         <template slot-scope="scope">
-          <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
-          <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
-          <el-button type="warning" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button>
+          <el-row>
+            <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
+            <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
+            <el-button type="success" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button>
+            <el-button type="info" size="mini" @click="handleLink(scope.row)">链接</el-button>
+          </el-row>
         </template>
       </el-table-column>
     </el-table>
@@ -78,12 +81,13 @@
         <el-form-item style="width: 700px;" label="活动内容">
           <editor :init="editorInit" v-model="dataForm.content"/>
         </el-form-item>
-        <el-form-item label="过期时间" prop="endtime">
+        <el-form-item label="过期时间" prop="endTime">
           <el-date-picker
-            v-model="dataForm.endtime"
+            v-model="dataForm.endTime"
             type="datetime"
             placeholder="选择日期"
-            value-format="yyyy-MM-dd HH:mm:ss"/>
+            value-format="yyyy-MM-dd HH:mm:ss"
+            style="width: 300px"/>
         </el-form-item>
         <el-form-item label="商品低价" prop="price">
           <el-input v-model="dataForm.price"/>
@@ -101,7 +105,14 @@
         <el-button v-else type="primary" @click="updateData">确定</el-button>
       </div>
     </el-dialog>
-
+    <!-- 查看链接框 -->
+    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisibles">
+      <el-form ref="dataForm" :rules="rules" :model="dataForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
+        <el-form-item label="二维码链接" prop="codeurl">
+          <el-input v-model="dataForm.codeurl"/>
+        </el-form-item>
+      </el-form>
+    </el-dialog>
   </div>
 </template>
 
@@ -168,11 +179,12 @@ export default {
         price: undefined,
         readCount: undefined,
         goods: [],
-        endtime: ''
+        endTime: ''
       },
       contentDetail: '',
       contentDialogVisible: false,
       dialogFormVisible: false,
+      dialogFormVisibles: false,
       dialogStatus: '',
       textMap: {
         update: '编辑',
@@ -253,7 +265,7 @@ export default {
         price: undefined,
         readCount: undefined,
         goods: [],
-        endtime: ''
+        endTime: ''
       }
     },
     handleCreate() {
@@ -351,8 +363,8 @@ export default {
             title: '成功',
             message: '生成二维码成功'
           })
-          const index = this.list.indexOf(row)
-          this.list.splice(index, 1)
+          // const index = this.list.indexOf(row)
+          // this.list.splice(index, 1)
         })
         .catch(response => {
           this.$notify.error({
@@ -360,6 +372,13 @@ export default {
             message: response.data.errmsg
           })
         })
+    },
+    handleLink(row) {
+      this.dataForm = Object.assign({}, row)
+      this.dialogFormVisibles = true
+      this.$nextTick(() => {
+        this.$refs['dataForm'].clearValidate()
+      })
     },
     handleDownload() {
       this.downloadLoading = true
@@ -381,7 +400,7 @@ export default {
           'subtitle',
           'content',
           'picUrl',
-          'endtime',
+          'endTime',
           'price',
           'readCount',
           'goods'
