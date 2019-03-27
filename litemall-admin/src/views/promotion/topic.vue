@@ -44,8 +44,8 @@
           <el-row>
             <el-button type="primary" size="mini" @click="handleUpdate(scope.row)">编辑</el-button>
             <el-button type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
-            <el-button type="success" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button>
-            <el-button type="info" size="mini" @click="handleLink(scope.row)">链接</el-button>
+            <!-- <el-button type="success" size="mini" style="width:100px" @click="handleCreateCode(scope.row)">生成二维码</el-button> -->
+            <el-button type="success" size="mini" style="width:100px" @click="handleLink(scope.row)">查看二维码</el-button>
           </el-row>
         </template>
       </el-table-column>
@@ -110,6 +110,7 @@
       <el-form ref="dataForm" :rules="rules" :model="dataForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
         <el-form-item label="二维码链接" prop="codeurl">
           <el-input v-model="dataForm.codeurl"/>
+          <img :src="img">
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -179,8 +180,11 @@ export default {
         price: undefined,
         readCount: undefined,
         goods: [],
-        endTime: ''
+        endTime: '',
+        img: ''
+
       },
+      img: '',
       contentDetail: '',
       contentDialogVisible: false,
       dialogFormVisible: false,
@@ -265,7 +269,8 @@ export default {
         price: undefined,
         readCount: undefined,
         goods: [],
-        endTime: ''
+        endTime: '',
+        img: ''
       }
     },
     handleCreate() {
@@ -363,17 +368,40 @@ export default {
             title: '成功',
             message: '生成二维码成功'
           })
+
+          var img = 'data:image/png;base64,' + response.data.data
+          this.dataForm.img = 'data:image/png;base64,' + response.data.data
+          this.img = img
           // const index = this.list.indexOf(row)
           // this.list.splice(index, 1)
         })
         .catch(response => {
           this.$notify.error({
             title: '失败',
-            message: response.data.errmsg
+            message: '生成二维码失败'
           })
         })
     },
     handleLink(row) {
+      createCode(row)
+        .then(response => {
+          this.$notify.success({
+            title: '成功',
+            message: '生成二维码成功'
+          })
+
+          var img = 'data:image/png;base64,' + response.data.data
+          this.dataForm.img = 'data:image/png;base64,' + response.data.data
+          this.img = img
+          // const index = this.list.indexOf(row)
+          // this.list.splice(index, 1)
+        })
+        .catch(response => {
+          this.$notify.error({
+            title: '失败',
+            message: '生成二维码失败'
+          })
+        })
       this.dataForm = Object.assign({}, row)
       this.dialogFormVisibles = true
       this.$nextTick(() => {

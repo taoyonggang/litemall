@@ -7,6 +7,7 @@ import java.awt.Image;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.OutputStream;
 import java.util.Hashtable;
@@ -24,6 +25,7 @@ import com.google.zxing.Result;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+import sun.misc.BASE64Encoder;
 
 /**
  * 二维码工具类
@@ -131,9 +133,14 @@ public class QRCodeUtil {
                               boolean needCompress) throws Exception {
         BufferedImage image = QRCodeUtil.createImage(content, imgPath,
                 needCompress);
-        mkdirs(destPath);
-        String file = new Random().nextInt(99999999)+".jpg";
-        ImageIO.write(image, FORMAT_NAME, new File(destPath+"/"+file));
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        ImageIO.write(image, "png", outputStream);
+        BASE64Encoder encoder = new BASE64Encoder();
+        String base64Img = encoder.encode(outputStream.toByteArray());
+
+        //mkdirs(destPath);
+        //String file = new Random().nextInt(99999999)+".jpg";
+        //ImageIO.write(image, FORMAT_NAME, new File(destPath+"/"+file));
     }
 
     /**
@@ -209,11 +216,21 @@ public class QRCodeUtil {
      *            是否压缩LOGO
      * @throws Exception
      */
-    public static void encode(String content, String imgPath,
+    public static String encode(String content, String imgPath,
                               OutputStream output, boolean needCompress) throws Exception {
+        String binary = null;
         BufferedImage image = QRCodeUtil.createImage(content, imgPath,
                 needCompress);
-        ImageIO.write(image, FORMAT_NAME, output);
+        // 1、读取文件转换为字节数组
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        //转换成png格式的IO流
+        ImageIO.write(image, "png", out);
+        byte[] bytes = out.toByteArray();
+
+        // 2、将字节数组转为二进制
+        BASE64Encoder encoder = new BASE64Encoder();
+        binary = encoder.encodeBuffer(bytes).trim();
+        return binary;
     }
 
     /**

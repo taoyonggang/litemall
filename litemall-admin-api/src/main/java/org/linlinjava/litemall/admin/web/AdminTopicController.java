@@ -1,5 +1,11 @@
 package org.linlinjava.litemall.admin.web;
 
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.EncodeHintType;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -15,7 +21,9 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.constraints.NotNull;
+import java.io.OutputStream;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -108,20 +116,14 @@ public class AdminTopicController {
     @RequiresPermissions("admin:topic:createCode")
     @RequiresPermissionsDesc(menu={"推广管理" , "专题管理"}, button="生成二维码")
     @PostMapping("/createCode")
-    public Object createCode(@RequestBody LitemallTopic topic) throws Exception {
+    public Object createCode(@RequestBody LitemallTopic topic,OutputStream output, boolean needCompress) throws Exception {
         topic = topicService.findById(topic.getId());
-        topic.setCodeurl("https://hpnk.1897.com/activity/?id="+topic.getId());
-        Object error = validate(topic);
-        if (error != null) {
-            return error;
-        }
-        if (topicService.updateById(topic) == 0) {
-            return ResponseUtil.updatedDataFailed();
-        }
-        //String text = "http://www.1897.com/";
-        //QRCodeUtil.encode(text,"", "D:/barcode",true);
-        QRCodeUtil.encode(topic.getCodeurl(), "C:\\barcode", true);
-        return ResponseUtil.ok(topic);
+        String url = "https://hpnk.1897.com/activity/?id="+topic.getId();
+        topic.setCodeurl(url);
+        topicService.updateById(topic);
+        //String binary = Qrcode2.creatRrCode(url, "D:/barcode/milk.jpg",200,200);
+        String binary = QRCodeUtil.encode(url, "/opt/www/hpnk/dist/static/img/hpnk.jpg",output,true);
+        return ResponseUtil.ok(binary);
     }
 
 }

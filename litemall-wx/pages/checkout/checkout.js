@@ -161,6 +161,7 @@ Page({
             orderType: 0
           });
         }
+        const orderType = this.data.orderType;
         console.log(this.data.orderType);
         util.request(api.OrderPrepay, {
           orderId: orderId,
@@ -169,6 +170,12 @@ Page({
           if (res.errno === 0) {
             const payParam = res.data;
             console.log("支付过程开始");
+            if (orderType == 1){
+              console.log("支付过程成功");
+              wx.redirectTo({
+                url: '/pages/payResult/payResult?status=1&orderId=' + orderId
+              });
+            }else{
             wx.requestPayment({
               'timeStamp': payParam.timeStamp,
               'nonceStr': payParam.nonceStr,
@@ -191,7 +198,8 @@ Page({
                 console.log("支付过程结束")
               }
             });
-          } else {
+          }
+        }  else {
             wx.redirectTo({
               url: '/pages/payResult/payResult?status=0&orderId=' + orderId
             });

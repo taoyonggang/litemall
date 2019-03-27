@@ -40,7 +40,8 @@
         <view class="status"></view>
       </view>
       <view class="b">
-        <view class="l">实付：￥{{item.actualPrice}}</view>
+        <view class="l" wx:if="{{item.actualPrice > 0 }}">实付：￥{{item.actualPrice}}</view>
+         <view class="l" wx:if="{{item.actualIntegral > 0 }}">实付：{{item.actualIntegral}}点</view>
       </view>
     </navigator>
   </view>

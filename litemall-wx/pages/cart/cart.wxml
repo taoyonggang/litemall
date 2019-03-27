@@ -8,9 +8,9 @@
   </view>
   <view class='login' wx:else>
     <view class="service-policy">
-      <view class="item">30天无忧退货</view>
+      <!-- <view class="item">30天无忧退货</view>
       <view class="item">48小时快速退款</view>
-      <view class="item">满88元免邮费</view>
+      <view class="item">满88元免邮费</view> -->
     </view>
     <view class="no-cart" wx:if="{{cartGoods.length <= 0}}">
       <view class="c">
@@ -49,8 +49,12 @@
 
       </view>
       <view class="cart-bottom">
-        <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="checkedAll">全选({{cartTotal.checkedGoodsCount}})</view>
-        <view class="total">{{!isEditCart ? '￥'+cartTotal.checkedGoodsAmount : ''}}</view>
+        <view class="checkbox {{checkedAllStatus ? 'checked' : ''}}" bindtap="checkedAll" 
+        wx:if="{{cartTotal.checkedGoodsCount > 0 }}">全选({{cartTotal.checkedGoodsCount}})</view>
+        <view class="total"  wx:if="{{ cartTotal.checkedGoodsAmount > 0 }}">
+        {{!isEditCart ? '￥'+cartTotal.checkedGoodsAmount : ''}}</view>
+        <view class="total"  wx:if="{{ cartTotal.checkedGoodsAmountIntegral > 0 }}">
+        {{!isEditCart ? cartTotal.checkedGoodsAmountIntegral+'点' : ''}}</view>
         <view class='action_btn_area'>
           <view class="{{!isEditCart ? 'edit' : 'sure'}}" bindtap="editCart">{{!isEditCart ? '编辑' : '完成'}}</view>
           <view class="delete" bindtap="deleteCart" wx:if="{{isEditCart}}">删除({{cartTotal.checkedGoodsCount}})</view>
