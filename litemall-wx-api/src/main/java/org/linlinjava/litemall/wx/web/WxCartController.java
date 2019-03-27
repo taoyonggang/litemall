@@ -66,9 +66,11 @@ public class WxCartController {
         Integer checkedGoodsCount = 0;
         BigDecimal checkedGoodsAmount = new BigDecimal(0.00);
         BigDecimal checkedGoodsAmountIntegral = new BigDecimal(0.00);
+        BigDecimal goodsAmountIntegral = new BigDecimal(0.00);
         for (LitemallCart cart : cartList) {
             goodsCount += cart.getNumber();
             goodsAmount = goodsAmount.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
+            goodsAmountIntegral = goodsAmountIntegral.add(cart.getIntegral().multiply(new BigDecimal(cart.getNumber())));
             if (cart.getChecked()) {
                 checkedGoodsCount += cart.getNumber();
                 checkedGoodsAmount = checkedGoodsAmount.add(cart.getPrice().multiply(new BigDecimal(cart.getNumber())));
@@ -78,6 +80,7 @@ public class WxCartController {
         Map<String, Object> cartTotal = new HashMap<>();
         cartTotal.put("goodsCount", goodsCount);
         cartTotal.put("goodsAmount", goodsAmount);
+        cartTotal.put("goodsAmountIntegral", goodsAmountIntegral);
         cartTotal.put("checkedGoodsCount", checkedGoodsCount);
         cartTotal.put("checkedGoodsAmount", checkedGoodsAmount);
         cartTotal.put("checkedGoodsAmountIntegral", checkedGoodsAmountIntegral);

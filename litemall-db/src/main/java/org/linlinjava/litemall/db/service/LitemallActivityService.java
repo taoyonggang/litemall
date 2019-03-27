@@ -19,8 +19,6 @@ public class LitemallActivityService {
     @Resource
     private LitemallActivityMapper activityMapper;
 
-    @Resource
-    private LitemallTopicService topicService;
 
     private Column[] columns = new Column[]{Column.id, Column.activityId, Column.userId, Column.promoterId, Column.orign, Column.addTime};
 

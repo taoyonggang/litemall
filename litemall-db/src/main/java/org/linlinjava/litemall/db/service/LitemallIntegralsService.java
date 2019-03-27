@@ -36,6 +36,7 @@ public class LitemallIntegralsService {
 
         if (userId!=null && userId>=0) {
             criteria.andUserIdEqualTo(userId);
+            //criteria.andEffectiveEqualTo((byte) 1);
         }else{ //不允许查询所有积分
             return null;
         }

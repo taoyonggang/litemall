@@ -39,8 +39,6 @@ public class WxActivityController {
     private LitemallTopicService topicService;
     @Autowired
     private LitemallActivityService activityService;
-    @Autowired
-    private LitemallGoodsService goodsService;
 
     /**
      * 某个专题列表活动，自己推荐的用户列表
@@ -95,7 +93,7 @@ public class WxActivityController {
      * @param promoterId
      * @param userId
      * @param orign
-     * @return
+     * @return 1 加入成功
      */
     @GetMapping("addActivityUser")
     public Object addActivityUser(@LoginUser Integer userId, @RequestParam(defaultValue = "-1") Integer activityId,
@@ -115,17 +113,24 @@ public class WxActivityController {
             return ResponseUtil.ok(data);
         }
 
-        //未曾参加，加入活动记录
-        LitemallActivity activity =  new LitemallActivity();
-        activity.setActivityId(activityId);
-        activity.setPromoterId(promoterId);
-        activity.setUserId(userId);
-        activity.setAddTime(now());
-        activity.setOrign(orign);
-        int result = activityService.add(activity);
-        if (result>0) {
-            data.put("result", 1);
+        LitemallTopic topic = topicService.findById(activityId);
+        LocalDateTime now = now();
+        if (topic!=null && topic.getEndTime()!=null&&(now.isBefore(topic.getEndTime()))){
+            //未曾参加，加入活动记录
+            LitemallActivity activity =  new LitemallActivity();
+            activity.setActivityId(activityId);
+            activity.setPromoterId(promoterId);
+            activity.setUserId(userId);
+            activity.setAddTime(now());
+            activity.setOrign(orign);
+            int result = activityService.add(activity);
+            if (result>0) {
+                data.put("result", 1);
+            }
         }
+
+        //活动过期
+        data.put("result", 0);
         return ResponseUtil.ok(data);
     }
 
@@ -142,7 +147,7 @@ public class WxActivityController {
         if (topic!=null){
             //活动是否过期
             LocalDateTime now = now();
-            if (topic.getEndTime()!=null&&(now.compareTo(topic.getEndTime())>0)){
+            if (topic.getEndTime()!=null&&(now.isBefore(topic.getEndTime()))){
                 int count = activityService.queryActivityCount(activityId,userId);
                 data.put("endTime", topic.getEndTime());
                 //活动状态，1为活动，0为过期

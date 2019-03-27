@@ -148,6 +148,7 @@ public class WxOrderService {
             orderVo.put("id", order.getId());
             orderVo.put("orderSn", order.getOrderSn());
             orderVo.put("actualPrice", order.getActualPrice());
+            orderVo.put("actualIntegral", order.getActualIntegral());
             orderVo.put("orderStatusText", OrderUtil.orderStatusText(order));
             orderVo.put("handleOption", OrderUtil.build(order));
 
@@ -208,6 +209,7 @@ public class WxOrderService {
         orderVo.put("mobile", order.getMobile());
         orderVo.put("address", order.getAddress());
         orderVo.put("goodsPrice", order.getGoodsPrice());
+        orderVo.put("goodsIntegral", order.getIntegralPrice());
         orderVo.put("freightPrice", order.getFreightPrice());
         orderVo.put("actualPrice", order.getActualPrice());
         orderVo.put("actualIntegral", order.getActualIntegral());
@@ -336,15 +338,15 @@ public class WxOrderService {
         }
 
         // 可以使用的其他钱，例如用户积分
-        BigDecimal integralPrice = new BigDecimal(0.00);
+        //BigDecimal integralPrice = new BigDecimal(0.00);
 
         // 订单费用
         BigDecimal orderTotalPrice = checkedGoodsPrice.add(freightPrice).subtract(couponPrice);
         // 最终支付费用
-        BigDecimal actualPrice = orderTotalPrice.subtract(integralPrice);
+        BigDecimal orderTotalIntegral = checkedGoodsIntegral;
 
         // 最终支付积分
-        BigDecimal actualIntegral = checkedGoodsIntegral;
+        BigDecimal orderGoodsIntegral = checkedGoodsIntegral;
 
 
 
@@ -363,10 +365,10 @@ public class WxOrderService {
         order.setGoodsPrice(checkedGoodsPrice);
         order.setFreightPrice(freightPrice);
         order.setCouponPrice(couponPrice);
-        order.setIntegralPrice(integralPrice);
         order.setOrderPrice(orderTotalPrice);
-        order.setActualPrice(actualPrice);
-        order.setActualIntegral(actualIntegral);
+        order.setActualPrice(orderTotalPrice);
+        order.setIntegralPrice(checkedGoodsIntegral);
+        order.setActualIntegral(orderTotalIntegral);
 
         // 有团购活动
         if (grouponRules != null) {
@@ -631,6 +633,12 @@ public class WxOrderService {
         if (openid == null) {
             return ResponseUtil.fail(AUTH_OPENID_UNACCESS, "订单不能支付");
         }
+
+        //如果存在现金，必须走现金支付通道，返回失败
+        if (order.getActualPrice().floatValue() > 0.00001){
+            return ResponseUtil.fail(ORDER_INVALID_OPERATION, "订单必须存在现金支付");
+        }
+
         WxPayMpOrderResult result = null;
         try {
             WxPayUnifiedOrderRequest orderRequest = new WxPayUnifiedOrderRequest();
