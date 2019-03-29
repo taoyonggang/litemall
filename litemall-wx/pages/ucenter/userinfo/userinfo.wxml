@@ -5,17 +5,17 @@
 </view> -->
  <view class="form-box"> 
     <view class="form-item">
-      <input class="nickname" value="{{nickname}}" bindinput="nicknameInput" placeholder="姓名" auto-focus/>
+      <input class="nickname" placeholder-style="color:#dddddd;" value="{{nickname}}" bindinput="nicknameInput" placeholder="姓名"/>
       <!-- <image wx:if="{{ nickname.length > 0 }}" id="clear-nickname" class="clear" src="/static/images/nickname.png" catchtap="clearInput"></image> -->
        <image class="clear" src="/static/images/nickname.png"></image>
     </view>
     <view class="form-item">
-      <input class="birthday" value="{{birthday}}"bindtap="showUserDatePicker" placeholder="本人生日" auto-focus/>
+      <input class="birthday" placeholder-style="color:#dddddd;" value="{{birthday}}"bindtap="showUserDatePicker" placeholder="宝宝生日" disabled="false"/>
       <!-- <image wx:if="{{ birthday.length > 0 }}" id="clear-birthday" class="clear" src="/static/images/mombirthday.png" catchtap="clearInput"></image> -->
-       <image class="clear" src="/static/images/mombirthday.png"></image>
+       <image class="clear" src="/static/images/babybirthday.png"></image>
     </view>
     <view class="form-item">
-      <input class="babybirthday" value="{{babybirthday}}"bindtap="showBabyDatePicker" placeholder="宝宝生日" auto-focus/>
+      <input class="babybirthday"  placeholder-style="color:#dddddd;"  value="{{babybirthday}}"bindtap="showBabyDatePicker" placeholder="宝宝生日(二胎)" disabled="false"/>
        <!-- <image wx:if="{{ babybirthday.length > 0 }}" id="clear-babybirthday" class="clear" src="/static/images/babybirthday.png" catchtap="clearInput"></image> -->
       <image class="clear" src="/static/images/babybirthday.png"></image>
 
@@ -34,7 +34,7 @@
     bindsureclick="datePickerOnSureClick"
     bindcancelclick="datePickerOnCancelClick" />  
   <view class="form-item">
-      <input class="address" value="{{address}}" bindinput="addressInput" placeholder="地址" auto-focus/>
+      <input class="address" placeholder-style="color:#dddddd;"  value="{{address}}" bindinput="addressInput" placeholder="地址"/>
        <!-- <image wx:if="{{ address.length > 0 }}" id="clear-address" class="clear" src="/static/images/addressimg.png" catchtap="clearInput"></image> -->
        <image class="clear" src="/static/images/addressimg.png"></image>
   </view>
