@@ -9,8 +9,8 @@ background-repeat:no-repeat;
 background-size:100% 100%;
 -moz-background-size:100% 100%;
 width:100%;
-height:1200rpx;
-background-image:url(https://taoyg.oss-cn-shanghai.aliyuncs.com/baonkxqicjdebrafh9du.png);
+height:100%;
+background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/t1zm53tmo5dsdbmoz3z0.png);
 }
 .section{
   display:flex;
@@ -33,6 +33,8 @@ background-image:url(https://taoyg.oss-cn-shanghai.aliyuncs.com/baonkxqicjdebraf
   flex: 1;
   color:#dddddd;
   font-size: 28rpx;
+  margin-left:20rpx;
+
 }
 
 .fb-type .type-icon {
@@ -54,14 +56,6 @@ background-image:url(https://taoyg.oss-cn-shanghai.aliyuncs.com/baonkxqicjdebraf
   line-height: 40rpx;
   font-size: 28rpx;
 }
-  input::-webkit-input-placeholder {
-         /* placeholder颜色  */
-         color: #dddddd;
-         /* placeholder字体大小  */
-        font-size: 12px;
-        /* placeholder位置  */
-         text-align: right;
-  }
 .weui-uploader__files {
   width: 100%;
 }
@@ -217,13 +211,13 @@ view, text {
   height: auto;
   overflow: hidden;
   padding: 0 40rpx;
-  margin-top:610rpx;
+  margin-top:100%;
   z-index:999;
 }
 
 .form-item {
   position: relative;
-  height: 80rpx;
+  height: 90rpx;
   margin-left:99rpx;
   margin-right:99rpx;
 
@@ -337,5 +331,8 @@ white-space:nowrap;
 min-height:35rpx;
 border-radius:33rpx;
 background:#fff;
+text-indent:16rpx;
 }
-
+input.birthday,input.nickname,input.babybirthday,input.address{
+  text-indent:45rpx;
+}

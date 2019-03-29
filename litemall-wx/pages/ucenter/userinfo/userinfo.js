@@ -30,6 +30,14 @@ Page({
             address:'',
             fromSource:''
         },
+    integral: {
+      type: 0,
+      integralSum: 0,
+      integral: [],
+      page: 1,
+      size: 10,
+      totalPages: 1
+    },
     udername:'',
     id:'',
     fromSource:'',
@@ -144,11 +152,11 @@ Page({
        return false;
      }
     if (that.data.birthday == '') {
-      util.showErrorToast('请输入会员生日');
+      util.showErrorToast('请输入宝宝生日');
       return false;
     }
     if (that.data.babybirthday == '') {
-      util.showErrorToast('请输入宝宝生日');
+      util.showErrorToast('请输入宝宝生日(二胎)');
       return false;
     }
     if (that.data.fromSource == '') {
@@ -190,6 +198,26 @@ Page({
             // wx.navigateTo({
             //   url: "/pages/index/index"
             // });
+            var pages = getCurrentPages();//当前页面栈
+
+            if (pages.length > 1) {
+              var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
+              var currPage = pages[pages.length - 1]; // 当前页面，若不对当前页面进行操作，可省去
+              beforePage.changeData();//触发父页面中的方法
+            }
+            let that = this;
+            util.request(api.IntegralsIndex, {
+              type: that.data.integral.type,
+              page: that.data.integral.page,
+              size: that.data.integral.size
+            }).then(function (res) {
+              if (res.errno === 0) {
+                beforePage.setData({       //如果需要传参，可直接修改A页面的数据，若不需要，则可省去这一步
+                  integral: res.data
+                })
+              }
+            });
+           
              wx.navigateBack({
               delta: 2
             })

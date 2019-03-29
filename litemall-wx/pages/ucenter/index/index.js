@@ -25,13 +25,31 @@ Page({
       totalPages: 1
     }
   },
+  changeData: function (data) {
+    var options = { 'integral': this.data }
+    this.onLoad(options)
+  },
+  onloadData: function () {
+    let that = this;
+    util.request(api.IntegralsIndex, {
+      type: that.data.integral.type,
+      page: that.data.integral.page,
+      size: that.data.integral.size
+    }).then(function (res) {
+      if (res.errno === 0) {
+        that.setData({
+          integral: res.data,
+        });
+      }
+    });
+  },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
   },
   onReady: function() {
 
   },
-  onShow: function() {
+  onShow: function () {
 
     //获取用户的登录信息
     if (app.globalData.hasLogin) {
@@ -295,5 +313,12 @@ Page({
       }
     })
 
-  }
+  },
+  onPullDownRefresh() {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    this.getIntegrals();
+    wx.hideLoading();
+    wx.hideNavigationBarLoading() //完成停止加载
+    wx.stopPullDownRefresh() //停止下拉刷新
+    }
 })
