@@ -369,12 +369,16 @@ public class WxAuthController {
         String nickname = JacksonUtil.parseString(body, "nickname");
         String birthday = JacksonUtil.parseString(body, "birthday");
         String babybirthday = JacksonUtil.parseString(body, "babybirthday");
+        String babybirthday2 = JacksonUtil.parseString(body, "babybirthday2");
+        String babysex = JacksonUtil.parseString(body, "babysex");
+        String babysex2 = JacksonUtil.parseString(body, "babysex2");
         String fromSource = JacksonUtil.parseString(body, "fromSource");
         String address = JacksonUtil.parseString(body, "address");
+        String mobile = JacksonUtil.parseString(body, "mobile");
 
 
         if (StringUtils.isEmpty(nickname) || StringUtils.isEmpty(fromSource) || StringUtils.isEmpty(birthday)
-                || StringUtils.isEmpty(babybirthday) || StringUtils.isEmpty(address)) {
+                || StringUtils.isEmpty(babybirthday) || StringUtils.isEmpty(address)|| StringUtils.isEmpty(mobile)) {
             return ResponseUtil.badArgument();
         }
 
@@ -390,15 +394,33 @@ public class WxAuthController {
             Instant instant = birthdayDate.toInstant();
             ZoneId zoneId = ZoneId.systemDefault();
             LocalDate birthdayLocalDate = instant.atZone(zoneId).toLocalDate();
-            Date babybirthdayDate = format.parse(babybirthday);
-            instant = babybirthdayDate.toInstant();
-            LocalDate babybirthdayLocalDate = instant.atZone(zoneId).toLocalDate();
+            LocalDate babybirthdayLocalDate = null;
+            LocalDate babybirthdayLocalDate2 = null;
+            try{
+                Date babybirthdayDate = format.parse(babybirthday);
+                instant = babybirthdayDate.toInstant();
+                babybirthdayLocalDate= instant.atZone(zoneId).toLocalDate();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+            try{
+                Date babybirthdayDate2 = format.parse(babybirthday);
+                instant = babybirthdayDate2.toInstant();
+                babybirthdayLocalDate2= instant.atZone(zoneId).toLocalDate();
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+
 
             user.setNickname(nickname);
             user.setBirthday(birthdayLocalDate);
             user.setBabybirthday(babybirthdayLocalDate);
+            user.setBabybirthday2(babybirthdayLocalDate2);
+            user.setBabysex(Byte.parseByte(babysex));
+            user.setBabysex2(Byte.parseByte(babysex2));
             user.setFromsouce(fromSource);
             user.setAddress(address);
+            user.setMobile(mobile);
             userService.updateById(user);
 
             //激活注册积分
