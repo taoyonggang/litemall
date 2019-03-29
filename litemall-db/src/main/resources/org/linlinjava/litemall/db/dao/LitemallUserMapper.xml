@@ -27,6 +27,9 @@
     <result column="fromSouce" jdbcType="VARCHAR" property="fromsouce" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="babybirthday" jdbcType="DATE" property="babybirthday" />
+    <result column="babybirthday2" jdbcType="DATE" property="babybirthday2" />
+    <result column="babysex" jdbcType="TINYINT" property="babysex" />
+    <result column="babysex2" jdbcType="TINYINT" property="babysex2" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -101,7 +104,7 @@
     -->
     id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
     nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
-    integral, grade, fromSouce, address, babybirthday
+    integral, grade, fromSouce, address, babybirthday, babybirthday2, babysex, babysex2
   </sql>
   <select id="selectByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallUserExample" resultMap="BaseResultMap">
     <!--
@@ -140,7 +143,8 @@
       <otherwise>
         id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
           nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
-          integral, grade, fromSouce, address, babybirthday
+          integral, grade, fromSouce, address, babybirthday, babybirthday2, babysex, babysex2
+          
       </otherwise>
     </choose>
     from litemall_user
@@ -201,7 +205,8 @@
       <otherwise>
         id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
           nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
-          integral, grade, fromSouce, address, babybirthday
+          integral, grade, fromSouce, address, babybirthday, babybirthday2, babysex, babysex2
+          
       </otherwise>
     </choose>
     from litemall_user
@@ -239,14 +244,16 @@
       avatar, weixin_openid, `status`, 
       add_time, update_time, deleted, 
       integral, grade, fromSouce, 
-      address, babybirthday)
+      address, babybirthday, babybirthday2, 
+      babysex, babysex2)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
       #{birthday,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, 
       #{userLevel,jdbcType=TINYINT}, #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
       #{avatar,jdbcType=VARCHAR}, #{weixinOpenid,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, 
       #{integral,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER}, #{fromsouce,jdbcType=VARCHAR}, 
-      #{address,jdbcType=VARCHAR}, #{babybirthday,jdbcType=DATE})
+      #{address,jdbcType=VARCHAR}, #{babybirthday,jdbcType=DATE}, #{babybirthday2,jdbcType=DATE}, 
+      #{babysex,jdbcType=TINYINT}, #{babysex2,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="org.linlinjava.litemall.db.domain.LitemallUser">
     <!--
@@ -318,6 +325,15 @@
       <if test="babybirthday != null">
         babybirthday,
       </if>
+      <if test="babybirthday2 != null">
+        babybirthday2,
+      </if>
+      <if test="babysex != null">
+        babysex,
+      </if>
+      <if test="babysex2 != null">
+        babysex2,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="username != null">
@@ -379,6 +395,15 @@
       </if>
       <if test="babybirthday != null">
         #{babybirthday,jdbcType=DATE},
+      </if>
+      <if test="babybirthday2 != null">
+        #{babybirthday2,jdbcType=DATE},
+      </if>
+      <if test="babysex != null">
+        #{babysex,jdbcType=TINYINT},
+      </if>
+      <if test="babysex2 != null">
+        #{babysex2,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -462,6 +487,15 @@
       <if test="record.babybirthday != null">
         babybirthday = #{record.babybirthday,jdbcType=DATE},
       </if>
+      <if test="record.babybirthday2 != null">
+        babybirthday2 = #{record.babybirthday2,jdbcType=DATE},
+      </if>
+      <if test="record.babysex != null">
+        babysex = #{record.babysex,jdbcType=TINYINT},
+      </if>
+      <if test="record.babysex2 != null">
+        babysex2 = #{record.babysex2,jdbcType=TINYINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -493,7 +527,10 @@
       grade = #{record.grade,jdbcType=INTEGER},
       fromSouce = #{record.fromsouce,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      babybirthday = #{record.babybirthday,jdbcType=DATE}
+      babybirthday = #{record.babybirthday,jdbcType=DATE},
+      babybirthday2 = #{record.babybirthday2,jdbcType=DATE},
+      babysex = #{record.babysex,jdbcType=TINYINT},
+      babysex2 = #{record.babysex2,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -565,6 +602,15 @@
       <if test="babybirthday != null">
         babybirthday = #{babybirthday,jdbcType=DATE},
       </if>
+      <if test="babybirthday2 != null">
+        babybirthday2 = #{babybirthday2,jdbcType=DATE},
+      </if>
+      <if test="babysex != null">
+        babysex = #{babysex,jdbcType=TINYINT},
+      </if>
+      <if test="babysex2 != null">
+        babysex2 = #{babysex2,jdbcType=TINYINT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -593,7 +639,10 @@
       grade = #{grade,jdbcType=INTEGER},
       fromSouce = #{fromsouce,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      babybirthday = #{babybirthday,jdbcType=DATE}
+      babybirthday = #{babybirthday,jdbcType=DATE},
+      babybirthday2 = #{babybirthday2,jdbcType=DATE},
+      babysex = #{babysex,jdbcType=TINYINT},
+      babysex2 = #{babysex2,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallUserExample" resultMap="BaseResultMap">
@@ -629,7 +678,8 @@
       <otherwise>
         id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
           nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
-          integral, grade, fromSouce, address, babybirthday
+          integral, grade, fromSouce, address, babybirthday, babybirthday2, babysex, babysex2
+          
       </otherwise>
     </choose>
     from litemall_user
