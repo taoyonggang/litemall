@@ -18,7 +18,12 @@ background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/2qljgazqjk2sfphtf
   padding: 0 40rpx;
   z-index: 999;
 }
-
+button[type=primary]{
+  background-color:#931e24;
+}
+.button-hover[type=primary] {
+  background-color:#931e24;
+}
 .wx-login-btn {
   margin: 60rpx 0 40rpx 0;
   height: 96rpx;
@@ -44,7 +49,7 @@ background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/2qljgazqjk2sfphtf
   border-bottom-right-radius: 50rpx;
   letter-spacing: 3rpx;
   z-index: 999;
-  margin-top:135rpx;
+  margin-top:500rpx;
 }
 
 .account-login-btn {
@@ -73,3 +78,4 @@ background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/2qljgazqjk2sfphtf
   letter-spacing: 3rpx;
   background-image: linear-gradient(to right, #9a9ba1 0%, #9a9ba1 100%);
 }
+

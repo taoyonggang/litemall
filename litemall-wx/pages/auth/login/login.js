@@ -6,8 +6,14 @@ var app = getApp();
 Page({
   data: {
     fromId: '',
+    isBack:'',
   },
   onLoad: function(options) {
+    var that = this
+    //如果 isBack 为 true，就返回上一页
+    if (that.data.isBack) {
+      wx.navigateBack()
+    }
     // 页面初始化 options为页面跳转所带来的参数
     // 页面渲染完成
     if (options.q) {
@@ -33,7 +39,11 @@ Page({
 
   },
   onShow: function() {
-    // 页面显示
+    var that = this
+    //如果 isBack 为 true，就返回上一页
+    if (that.data.isBack) {
+      wx.navigateBack()
+    }
   },
   onHide: function() {
     // 页面隐藏
@@ -60,9 +70,13 @@ Page({
 
            });
         }else{
-          wx.navigateBack({
-            delta: 1
-          })
+          // wx.navigateBack({
+          //   delta: 1
+          // })
+          wx.navigateTo({
+            url: "/pages/ucenter/userinfo/userinfo"
+
+          });
         }
         
       }).catch((err) => {

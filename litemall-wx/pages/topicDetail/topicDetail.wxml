@@ -1,6 +1,6 @@
 <scroll-view class="container">
   <scroll-view class="content">
-  <view class="goods_name_right" bindtap="shareCode">分享二维码</view>
+  <!-- <view class="goods_name_right" bindtap="shareCode">分享二维码</view> -->
     <import src="../../lib/wxParse/wxParse.wxml" />
     <template is="wxParse" data="{{wxParseData:topicDetail.nodes}}" />
     <view  class="add-btn" style="background-color:{{pageBackgroundColor}}" bindtap='goCheckIn'>{{checkstatus}}</view>

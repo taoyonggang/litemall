@@ -7,6 +7,10 @@ var app = getApp();
 Page({
   data: {
     array: ['选择信息来源','活动推荐','门店','专业推荐','广告推荐','自主注册','其他'],
+    babysexarray: ['宝宝性别','男','女'],
+    babysexarray2: ['宝宝性别（二胎）','男', '女'],
+    indexsex: 0,
+    indexsex2: 0,
     index: 0,
     content: '',
     contentLength: 0,
@@ -14,6 +18,8 @@ Page({
     datePickerIsShowUser: false,
     datePickerValue: ['', '', ''],
     datePickerIsShow: false,
+    datePickerValue2: ['', '', ''],
+    datePickerIsShow2: false,
     address: '',
     cityPickerValue: [0, 0],
     cityPickerIsShow: false,
@@ -21,14 +27,19 @@ Page({
     mobile: '',
     birthday: '',
     babybirthday: '',
+    babybirthday2: '',
     userInfo: {
             nickName: 'test',
             avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png',
             id: 0,
             birthday:'',
             babybirthday:'',
+            babybirthday2: '',
             address:'',
-            fromSource:''
+            fromSource:'',
+            mobile:'',
+            babysex:'',
+            babysex2:''
         },
     integral: {
       type: 0,
@@ -41,15 +52,32 @@ Page({
     udername:'',
     id:'',
     fromSource:'',
+    babysex: '',
+    babysex2: '',
   },
   bindPickerChange: function (e) {
     this.setData({
       index: e.detail.value
     });
   },
+  bindPickerChangeSex: function (e) {
+    this.setData({
+      indexsex: e.detail.value
+    });
+  },
+  bindPickerChangeSex2: function (e) {
+    this.setData({
+      indexsex2: e.detail.value
+    });
+  },
   nicknameInput: function (e) {
     this.setData({
       nickname: e.detail.value
+    });
+  },
+  mobileInput: function (e) {
+    this.setData({
+      mobile: e.detail.value
     });
   },
   addressInput:function(e){
@@ -67,6 +95,12 @@ Page({
     // this.data.datePicker.show(this);
     this.setData({
       datePickerIsShow: true,
+    });
+  },
+  showBabyDatePicker2: function (e) {
+    // this.data.datePicker.show(this);
+    this.setData({
+      datePickerIsShow2: true,
     });
   },
   datePickerOnSureClickUser: function (e) {
@@ -95,7 +129,15 @@ Page({
       datePickerIsShow: false,
     });
   },
-
+  datePickerOnSureClick2: function (e) {
+    console.log('datePickerOnSureClick2');
+    console.log(e);
+    this.setData({
+      babybirthday2: `${e.detail.value[0]}-${e.detail.value[1]}-${e.detail.value[2]}`,
+      datePickerValue2: e.detail.value,
+      datePickerIsShow2: false,
+    });
+  },
   datePickerOnCancelClick: function (event) {
     console.log('datePickerOnCancelClick');
     console.log(event);
@@ -144,21 +186,51 @@ Page({
     let that = this;
 
     var fromsouce = that.data.array[that.data.index];
+    var babysex = that.data.babysexarray[that.data.indexsex];
+    var babysex2 = that.data.babysexarray2[that.data.indexsex2];
+    if (babysex == '男'){
+        babysex = 1
+    } else if (babysex == '女'){
+        babysex = 2
+    }else{
+        babysex = 0
+    }
+    if (babysex2 == '男') {
+      babysex2 = 1
+    } else if (babysex2 == '女') {
+      babysex2 = 2
+    } else {
+      babysex2 = 0
+    }
     this.setData({
-      fromSource: fromsouce
+      fromSource: fromsouce,
+      babysex: babysex,
+      babysex2: babysex2
     })
     if (that.data.nickname == '') {
        util.showErrorToast('请输入会员姓名');
        return false;
      }
-    if (that.data.birthday == '') {
-      util.showErrorToast('请输入宝宝生日');
+    if (that.data.mobile == '') {
+      util.showErrorToast('请输入手机号码');
       return false;
     }
     if (that.data.babybirthday == '') {
-      util.showErrorToast('请输入宝宝生日(二胎)');
+      util.showErrorToast('请输入宝宝生日');
       return false;
     }
+    if (that.data.babysex == '') {
+      util.showErrorToast('请输入宝宝性别');
+      return false;
+    }
+    // if (that.data.babybirthday == '') {
+    //   util.showErrorToast('请输入宝宝生日(二胎)');
+    //   return false;
+    // }
+    // if (that.data.babysex2 == '') {
+    //   util.showErrorToast('请输入宝宝生日(二胎)性别');
+    //   return false;
+    // }
     if (that.data.fromSource == '') {
       util.showErrorToast('请输入来源');
       return false;
@@ -167,7 +239,18 @@ Page({
       util.showErrorToast('请输入地址');
       return false;
     }
-
+    if (that.data.mobile == '') {
+      util.showErrorToast('请输入手机号');
+      return false;
+    }
+    if (!check.isValidPhone(this.data.mobile)) {
+      wx.showModal({
+        title: '错误信息',
+        content: '手机号输入不正确',
+        showCancel: false
+      });
+      return false;
+    }
     wx.showLoading({
       title: '提交中...',
       mask: true,
@@ -179,11 +262,13 @@ Page({
 
     util.request(api.UpdateUser, {
       nickname: that.data.nickname,
-      //mobile: that.data.mobile,
+      mobile: that.data.mobile,
       fromSource: that.data.fromSource,
-      birthday: that.data.birthday,
       babybirthday: that.data.babybirthday,
+      babybirthday2: that.data.babybirthday2,
       address: that.data.address,
+      babysex:that.data.babysex,
+      babysex2: that.data.babysex2
       //id: that.data.id,
     }, 'POST').then(function (res) {
       wx.hideLoading();
@@ -193,34 +278,24 @@ Page({
           icon: 'success',
           duration: 2000,
           complete: function () {
-            that.setData({
-            });
             // wx.navigateTo({
             //   url: "/pages/index/index"
             // });
-            var pages = getCurrentPages();//当前页面栈
+            var that = this
 
-            if (pages.length > 1) {
-              var beforePage = pages[pages.length - 2];//获取上一个页面实例对象
-              var currPage = pages[pages.length - 1]; // 当前页面，若不对当前页面进行操作，可省去
-              beforePage.changeData();//触发父页面中的方法
+            //判断页面栈里面的页面数是否大于2
+            if (getCurrentPages().length > 2) {
+              //获取页面栈
+              let pages = getCurrentPages()
+              //给上一个页面设置状态
+              let curPage = pages[pages.length - 2];
+              let data = curPage.data;
+              curPage.setData({ 'isBack': true });
             }
-            let that = this;
-            util.request(api.IntegralsIndex, {
-              type: that.data.integral.type,
-              page: that.data.integral.page,
-              size: that.data.integral.size
-            }).then(function (res) {
-              if (res.errno === 0) {
-                beforePage.setData({       //如果需要传参，可直接修改A页面的数据，若不需要，则可省去这一步
-                  integral: res.data
-                })
-              }
-            });
-           
              wx.navigateBack({
-              delta: 2
-            })
+               delta: 1
+             })
+           
           }
         });
       } else {
@@ -234,10 +309,65 @@ Page({
     util.request(api.GetUserDeatil, {
     }).then(function (res) {
       if (res.errno === 0) {
+        var fromSource = res.data.userDetail.fromSource;
+        var babysex = res.data.userDetail.babysex;
+        var babysex2 = res.data.userDetail.babysex2;
+        if (fromSource == '活动推荐'){
+          that.setData({
+            index:1
+          })
+        } else if (fromSource == '门店'){
+          that.setData({
+            index: 2
+          })
+        } else if (fromSource == '专业推荐') {
+          that.setData({
+            index: 3
+          })
+        } else if (fromSource == '广告推荐') {
+          that.setData({
+            index: 4
+          })
+        } else if (fromSource == '自主注册') {
+          that.setData({
+            index: 5
+          })
+        } else if (fromSource == '其他') {
+          that.setData({
+            index: 6
+          })
+        }
+        if (babysex == 1) {
+          that.setData({
+            indexsex: 1
+          })
+        } else if (babysex == 2) {
+          that.setData({
+            indexsex: 2
+          })
+        } else if (babysex == 0) {
+          that.setData({
+            indexsex: 0
+          })
+        }
+        if (babysex2 == 1) {
+          that.setData({
+            indexsex2: 1
+          })
+        } else if (babysex2 == 2) {
+          that.setData({
+            indexsex2: 2
+          })
+        } else if (babysex2 == 0) {
+          that.setData({
+            indexsex2: 0
+          })
+        }
         that.setData({
           nickname: res.data.userDetail.nickName,
+          mobile: res.data.userDetail.mobile,
           fromSource: res.data.userDetail.fromSource,
-          birthday: res.data.userDetail.birthday,
+          babybirthday2: res.data.userDetail.babybirthday2,
           babybirthday: res.data.userDetail.babybirthday,
           address: res.data.userDetail.address,
         });
@@ -255,13 +385,28 @@ Page({
 
   },
   onUnload: function () {
-    // 页面关闭
+    var that = this
+
+    //判断页面栈里面的页面数是否大于2
+    if (getCurrentPages().length > 2) {
+      //获取页面栈
+      let pages = getCurrentPages()
+      //给上一个页面设置状态
+      let curPage = pages[pages.length - 2];
+      let data = curPage.data;
+      curPage.setData({ 'isBack': true });
+    }
   },
   clearInput: function (e) {
     switch (e.currentTarget.id) {
       case 'clear-nickname':
         this.setData({
           nickname: ''
+        });
+        break;
+      case 'clear-mobile':
+        this.setData({
+          mobile: ''
         });
         break;
       case 'clear-birthday':
@@ -279,6 +424,5 @@ Page({
         address:''
       }) ; 
     }
-  }
-  
+  },
 })
