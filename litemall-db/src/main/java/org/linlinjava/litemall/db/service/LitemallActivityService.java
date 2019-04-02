@@ -2,9 +2,11 @@ package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
 import org.linlinjava.litemall.db.dao.LitemallActivityMapper;
+import org.linlinjava.litemall.db.dao.LitemallActivityMoreMapper;
 import org.linlinjava.litemall.db.domain.LitemallActivity;
 import org.linlinjava.litemall.db.domain.LitemallActivityExample;
 import org.linlinjava.litemall.db.domain.LitemallActivity.Column;
+import org.linlinjava.litemall.db.domain.LitemallActivityMore;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -18,6 +20,8 @@ import java.util.List;
 public class LitemallActivityService {
     @Resource
     private LitemallActivityMapper activityMapper;
+    @Resource
+    LitemallActivityMoreMapper activityMoreMapper;
 
 
     private Column[] columns = new Column[]{Column.id, Column.activityId, Column.userId, Column.promoterId, Column.orign, Column.addTime};
@@ -47,6 +51,11 @@ public class LitemallActivityService {
         example.setOrderByClause(sort + " " + order);
         PageHelper.startPage(offset, limit);
         return activityMapper.selectByExampleSelective(example,columns);
+    }
+
+    public List<LitemallActivityMore> queryListMore(LitemallActivityMore activityMore, int offset, int limit, String sort, String order) {
+        PageHelper.startPage(offset, limit);
+        return activityMoreMapper.selectMore(activityMore);
     }
 
     public List<LitemallActivity> queryMyList(int userid,int offset, int limit, String sort, String order) {
