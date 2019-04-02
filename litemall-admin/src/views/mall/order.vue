@@ -29,6 +29,10 @@
 
       <el-table-column align="center" label="支付金额" prop="actualPrice"/>
 
+      <el-table-column align="center" label="订单积分" prop="integralPrice"/>
+
+      <el-table-column align="center" label="支付积分" prop="actualIntegral"/>
+
       <el-table-column align="center" label="支付时间" prop="payTime"/>
 
       <el-table-column align="center" label="物流单号" prop="shipSn"/>
@@ -75,6 +79,7 @@
             <el-table-column align="center" label="商品编号" prop="goodsSn" />
             <el-table-column align="center" label="货品规格" prop="specifications" />
             <el-table-column align="center" label="货品价格" prop="price" />
+            <el-table-column align="center" label="货品积分" prop="integral" />
             <el-table-column align="center" label="货品数量" prop="number" />
             <el-table-column align="center" label="货品图片" prop="picUrl">
               <template slot-scope="scope">
@@ -83,13 +88,18 @@
             </el-table-column>
           </el-table>
         </el-form-item>
-        <el-form-item label="费用信息">
+        <el-form-item label="现金费用信息">
           <span>
             (实际费用){{ orderDetail.order.actualPrice }}元 =
             (商品总价){{ orderDetail.order.goodsPrice }}元 +
             (快递费用){{ orderDetail.order.freightPrice }}元 -
-            (优惠减免){{ orderDetail.order.couponPrice }}元 -
-            (积分减免){{ orderDetail.order.integralPrice }}元
+            (优惠减免){{ orderDetail.order.couponPrice }}元
+          </span>
+        </el-form-item>
+        <el-form-item label="积分费用信息">
+          <span>
+            (实际费用){{ orderDetail.order.actualIntegral }}点 =
+            (积分总价){{ orderDetail.order.integralPrice }}点
           </span>
         </el-form-item>
         <el-form-item label="支付信息">
@@ -211,6 +221,7 @@ export default {
     getList() {
       this.listLoading = true
       listOrder(this.listQuery).then(response => {
+        console.log(response.data)
         this.list = response.data.data.items
         this.total = response.data.data.total
         this.listLoading = false
@@ -226,6 +237,7 @@ export default {
     },
     handleDetail(row) {
       detailOrder(row.id).then(response => {
+        console.log(response.data)
         this.orderDetail = response.data.data
       })
       this.orderDialogVisible = true

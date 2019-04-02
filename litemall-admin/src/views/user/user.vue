@@ -30,7 +30,7 @@
 
       <el-table-column align="center" label="宝宝生日" prop="babybirthday"/>
 
-      <el-table-column align="center" label="来源" prop="fromSource"/>
+      <el-table-column align="center" label="来源" prop="fromsouce"/>
 
       <el-table-column align="center" label="用户等级" prop="userLevel">
         <template slot-scope="scope">
@@ -79,8 +79,8 @@
         <el-form-item label="宝宝生日" prop="birthday">
           <el-date-picker v-model="dataForm.babybirthday" type="date" value-format="yyyy-MM-dd"/>
         </el-form-item>
-        <el-form-item label="来源" prop="fromSource">
-          <el-input v-model="dataForm.fromSource"/>
+        <el-form-item label="来源" prop="fromsouce">
+          <el-input v-model="dataForm.fromsouce"/>
         </el-form-item>
         <el-form-item label="用户等级" prop="userLevel">
           <el-select v-model="dataForm.userLevel">
@@ -136,7 +136,7 @@ export default {
         userLevel: 0,
         birthday: '',
         babybirthday: '',
-        fromSource: '',
+        fromsouce: '',
         status: 0
       },
       dialogFormVisible: false,
@@ -149,7 +149,7 @@ export default {
         username: [{ required: true, message: '用户名不能为空', trigger: 'blur' }],
         mobile: [{ required: true, message: '手机号码不能为空', trigger: 'blur' }],
         password: [{ required: true, message: '密码不能为空', trigger: 'blur' }],
-        fromSource: [{ required: true, message: '来源不能为空', trigger: 'blur' }]
+        fromsouce: [{ required: true, message: '来源不能为空', trigger: 'blur' }]
       },
       downloadLoading: false,
       genderDic: ['未知', '男', '女'],
@@ -188,7 +188,7 @@ export default {
         userLevel: 0,
         birthday: '',
         babybirthday: '',
-        fromSource: '',
+        fromsouce: '',
         status: 0
       }
     },
@@ -262,7 +262,7 @@ export default {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['用户名', '手机号码', '性别', '生日', '状态']
-        const filterVal = ['username', 'mobile', 'gender', 'birthday', 'status', 'babybirthday', 'fromSource']
+        const filterVal = ['username', 'mobile', 'gender', 'birthday', 'status', 'babybirthday', 'fromsouce']
         excel.export_json_to_excel2(tHeader, this.list, filterVal, '用户信息')
         this.downloadLoading = false
       })

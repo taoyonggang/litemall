@@ -338,7 +338,7 @@
 .a-popular .b .item {
   border-top: 1px solid #d9d9d9;
   margin: 0 20rpx;
-  height: 264rpx;
+  height: 300rpx;
   width: 710rpx;
 }
 
@@ -364,7 +364,7 @@
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  height: 264rpx;
+  height: 300rpx;
   width: 456rpx;
 }
 
@@ -497,7 +497,7 @@
   width: 365.625rpx;
   padding: 0 20rpx;
   overflow: hidden;
-  height: 35rpx;
+  height: 45rpx;
   margin: 11.5rpx 0 22rpx 0;
   text-align: center;
   font-size: 30rpx;

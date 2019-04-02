@@ -1,53 +1,63 @@
 <view class="container" mode="widthFix">
-<!-- <view class='imagesize'>
-  <image src="/static/images/registerimg.png" class='in-image'   >
-  </image>
-</view> -->
- <view class="form-box"> 
-    <view class="form-item">
-      <input class="nickname" placeholder-style="color:#dddddd;" value="{{nickname}}" bindinput="nicknameInput" placeholder="姓名"/>
-      <!-- <image wx:if="{{ nickname.length > 0 }}" id="clear-nickname" class="clear" src="/static/images/nickname.png" catchtap="clearInput"></image> -->
-       <image class="clear" src="/static/images/nickname.png"></image>
-    </view>
-    <view class="form-item">
-      <input class="birthday" placeholder-style="color:#dddddd;" value="{{birthday}}"bindtap="showUserDatePicker" placeholder="宝宝生日" disabled="false"/>
-      <!-- <image wx:if="{{ birthday.length > 0 }}" id="clear-birthday" class="clear" src="/static/images/mombirthday.png" catchtap="clearInput"></image> -->
-       <image class="clear" src="/static/images/babybirthday.png"></image>
-    </view>
-    <view class="form-item">
-      <input class="babybirthday"  placeholder-style="color:#dddddd;"  value="{{babybirthday}}"bindtap="showBabyDatePicker" placeholder="宝宝生日(二胎)" disabled="false"/>
-       <!-- <image wx:if="{{ babybirthday.length > 0 }}" id="clear-babybirthday" class="clear" src="/static/images/babybirthday.png" catchtap="clearInput"></image> -->
-      <image class="clear" src="/static/images/babybirthday.png"></image>
-
-    </view>
- 
-       <date-picker
-    id="date-picker-User"
-    value="{{datePickerValueUser}}" 
-    isShow="{{datePickerIsShowUser}}"
-    bindsureclick="datePickerOnSureClickUser"
-    bindcancelclick="datePickerOnCancelClickUser" />  
- <date-picker
-    id="date-picker"
-    value="{{datePickerValue}}" 
-    isShow="{{datePickerIsShow}}"
-    bindsureclick="datePickerOnSureClick"
-    bindcancelclick="datePickerOnCancelClick" />  
-  <view class="form-item">
-      <input class="address" placeholder-style="color:#dddddd;"  value="{{address}}" bindinput="addressInput" placeholder="地址"/>
-       <!-- <image wx:if="{{ address.length > 0 }}" id="clear-address" class="clear" src="/static/images/addressimg.png" catchtap="clearInput"></image> -->
-       <image class="clear" src="/static/images/addressimg.png"></image>
-  </view>
-  <view class="form-item">
-    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}" style="background-color: #FFFFFF;height: 80rpx;border-radius:33rpx">
-        <view class="picker" style="border-radius:33rpx">
-          <view class="fb-type">
-             <view class="type-label" id='souces' style="font-size:29rpx">{{array[index]}}</view>
-                <image class="type-icon" src="/static/images/pulldown.png"></image>
-          </view>
+  <view class="wanshan2" mode="widthFix">
+    <view class="wanshan3" mode="widthFix">
+      <view class="form-box">
+        <view class="form-item">
+          <input class="nickname" placeholder-style="color:#dddddd;" value="{{nickname}}" bindinput="nicknameInput" placeholder="姓名" />
+          <image class="clear" src="/static/images/nickname.png"></image>
         </view>
-     </picker>
- </view>
-  <view class="login-btn" bindtap="submitFeedback">提交</view>
+        <view class="form-item">
+          <input class="mobile" placeholder-style="color:#dddddd;" value="{{mobile}}" bindinput="mobileInput" placeholder="手机" />
+          <image class="clear" src="/static/images/iPhone.png"></image>
+        </view>
+        <view class="form-item">
+          <input class="babybirthday" placeholder-style="color:#dddddd;" value="{{babybirthday}}" bindtap="showBabyDatePicker" placeholder="宝宝生日" disabled="false" />
+          <image class="clear" src="/static/images/babybirthday.png"></image>
+        </view>
+        <view class="form-item">
+          <picker bindchange="bindPickerChangeSex" value="{{indexsex}}" range="{{babysexarray}}">
+            <!-- <view class="picker" style="border-radius:33rpx"> -->
+              <view class="fb-type">
+                <view class="type-label">{{babysexarray[indexsex]}}</view>
+                <image class="type-icon" src="/static/images/sex.png"></image>
+              </view>
+            <!-- </view> -->
+          </picker>
+        </view>
+        <view class="form-item">
+          <input class="babybirthday2" placeholder-style="color:#dddddd;" value="{{babybirthday2}}" bindtap="showBabyDatePicker2" placeholder="宝宝生日(二胎)" disabled="false" />
+          <image class="clear" src="/static/images/babybirthday.png"></image>
+
+        </view>
+        <view class="form-item">
+          <picker bindchange="bindPickerChangeSex2" value="{{indexsex2}}" range="{{babysexarray2}}">
+            <!-- <view class="picker" style="border-radius:33rpx"> -->
+              <view class="fb-type">
+                <view class="type-label">{{babysexarray2[indexsex2]}}</view>
+                <image class="type-icon" src="/static/images/sex.png"></image>
+              </view>
+            <!-- </view> -->
+          </picker>
+        </view>
+        <view class="form-item">
+          <input class="address" placeholder-style="color:#dddddd;" value="{{address}}" bindtap="showCityPicker" placeholder="地址" disabled="false" />
+          <image class="clear" src="/static/images/addressimg.png"></image>
+        </view>
+        <view class="form-item">
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <!-- <view class="picker" style="border-radius:33rpx"> -->
+              <view class="fb-type">
+                <view class="type-label">{{array[index]}}</view>
+                <image class="type-icon" src="/static/images/pulldown.png"></image>
+              </view>
+            <!-- </view> -->
+          </picker>
+        </view>
+        <date-picker id="date-picker" value="{{datePickerValue}}" isShow="{{datePickerIsShow}}" bindsureclick="datePickerOnSureClick" bindcancelclick="datePickerOnCancelClick" />
+        <date-picker id="date-picker2" value="{{datePickerValue2}}" isShow="{{datePickerIsShow2}}" bindsureclick="datePickerOnSureClick2" bindcancelclick="datePickerOnCancelClick2" />
+         <city-picker id="city-picker" value="{{cityPickerValue}}" isShow="{{cityPickerIsShow}}" bindsureclick="cityPickerOnSureClick" bindcancelclick="cityPickerOnCancelClick" />
+        <view class="login-btn" bindtap="submitFeedback">提交</view>
+      </view>
+    </view>
   </view>
 </view>

@@ -23,7 +23,8 @@ Page({
       page: 1,
       size: 10,
       totalPages: 1
-    }
+    },
+    integralSum: 0,
   },
   changeData: function (data) {
     var options = { 'integral': this.data }
@@ -39,6 +40,7 @@ Page({
       if (res.errno === 0) {
         that.setData({
           integral: res.data,
+          integralSum: res.data.integralSum,
         });
       }
     });
@@ -77,6 +79,7 @@ Page({
         if (res.errno === 0) {
           that.setData({
             integral: res.data,
+            integralSum: res.data.integralSum,
            // integrals: that.data.integrals.concat(res.data.integrals),
            // totalPages: res.data.totalPages
           });
