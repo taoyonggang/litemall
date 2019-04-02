@@ -5,10 +5,12 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.linlinjava.litemall.admin.annotation.RequiresPermissionsDesc;
 import org.linlinjava.litemall.admin.util.QRCodeUtil;
+import org.linlinjava.litemall.core.util.DateTimeUtil;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
 import org.linlinjava.litemall.db.domain.LitemallActivity;
+import org.linlinjava.litemall.db.domain.LitemallActivityMore;
 import org.linlinjava.litemall.db.service.LitemallActivityService;
 import org.linlinjava.litemall.db.service.LitemallActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +44,51 @@ public class AdminActivityController {
                        @Order @RequestParam(defaultValue = "desc") String order) {
         List<LitemallActivity> ActivityList = activityService.querySelective(activityId, promoterId, userId, addTime, endTime, page, limit, sort, order);
         int total = activityService.countSelective(activityId, promoterId, userId, addTime, endTime, page, limit, sort, order);
+        Map<String, Object> data = new HashMap<>();
+        data.put("total", total);
+        data.put("items", ActivityList);
+
+        return ResponseUtil.ok(data);
+    }
+
+    /**
+     *
+     * @param activityId
+     * @param promoterId
+     * @param userId
+     * @param title
+     * @param orign
+     * @param nickname
+     * @param beginTime
+     * @param endTime
+     * @param page
+     * @param limit
+     * @param sort
+     * @param order
+     * @return
+     */
+    @RequiresPermissions("admin:Activity:list")
+    @RequiresPermissionsDesc(menu={"推广管理" , "专题管理"}, button="查询")
+    @GetMapping("/listMore")
+    public Object listMore(Integer activityId,Integer promoterId,Integer userId,
+                           String title,String orign,String nickname,
+                           String beginTime,String endTime,
+                       @RequestParam(defaultValue = "1") Integer page,
+                       @RequestParam(defaultValue = "10") Integer limit,
+                       @Sort @RequestParam(defaultValue = "add_time") String sort,
+                       @Order @RequestParam(defaultValue = "desc") String order) {
+        LitemallActivityMore activityMore =  new LitemallActivityMore();
+
+        activityMore.setAddTime(DateTimeUtil.StringToLocalDateTime(beginTime));
+        activityMore.setEndTime(DateTimeUtil.StringToLocalDateTime(endTime));
+        activityMore.setTitle(title);
+        activityMore.setNickname(nickname);
+        activityMore.setUserId(userId);
+        activityMore.setPromoterId(promoterId);
+        activityMore.setActivityId(activityId);
+
+        List<LitemallActivityMore> ActivityList = activityService.queryListMore(activityMore,page, limit, sort, order);
+        int total = activityService.queryListMoreCount(activityMore, page, limit, sort, order);
         Map<String, Object> data = new HashMap<>();
         data.put("total", total);
         data.put("items", ActivityList);

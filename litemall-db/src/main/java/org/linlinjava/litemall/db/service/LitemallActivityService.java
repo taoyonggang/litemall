@@ -53,17 +53,21 @@ public class LitemallActivityService {
         return activityMapper.selectByExampleSelective(example,columns);
     }
 
-    public List<LitemallActivityMore> queryListMore(LitemallActivityMore activityMore, int offset, int limit, String sort, String order) {
-        PageHelper.startPage(offset, limit);
-        return activityMoreMapper.selectMore(activityMore);
-    }
-
     public List<LitemallActivity> queryMyList(int userid,int offset, int limit, String sort, String order) {
         LitemallActivityExample example = new LitemallActivityExample();
         example.or().andDeletedEqualTo(false).andUserIdEqualTo(userid);
         example.setOrderByClause(sort + " " + order);
         PageHelper.startPage(offset, limit);
         return activityMapper.selectByExampleSelective(example,columns);
+    }
+
+    public List<LitemallActivityMore> queryListMore(LitemallActivityMore activityMore, int offset, int limit, String sort, String order) {
+        PageHelper.startPage(offset, limit);
+        return activityMoreMapper.selectMore(activityMore);
+    }
+
+    public Integer queryListMoreCount(LitemallActivityMore activityMore, int offset, int limit, String sort, String order) {
+        return activityMoreMapper.selectMoreCount(activityMore);
     }
 
     /**

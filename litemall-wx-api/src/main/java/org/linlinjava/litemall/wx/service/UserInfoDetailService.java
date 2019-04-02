@@ -26,6 +26,10 @@ public class UserInfoDetailService {
         userInfo.setBabybirthday(DateTimeUtil.getDateDisplayString(user.getBabybirthday()));
         userInfo.setAddress(user.getAddress());
         userInfo.setFromSource(user.getFromsouce());
+        userInfo.setBabybirthday2(DateTimeUtil.getDateDisplayString(user.getBabybirthday2()));
+        userInfo.setMobile(user.getMobile());
+        userInfo.setBabysex(user.getBabysex());
+        userInfo.setBabysex2(user.getBabysex2());
         return userInfo;
     }
 }

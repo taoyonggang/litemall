@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class LitemallActivityMore {
+public class LitemallActivityMore extends LitemallActivity{
       private String title = "";
-      private LocalDateTime addTime;
+      private LocalDateTime topicAddTime;
       private LocalDateTime endTime;
       private String username;
       private String nickname;
@@ -20,12 +20,12 @@ public class LitemallActivityMore {
         this.title = title;
     }
 
-    public LocalDateTime getAddTime() {
-        return addTime;
+    public LocalDateTime getTopicAddTime() {
+        return topicAddTime;
     }
 
-    public void setAddTime(LocalDateTime addTime) {
-        this.addTime = addTime;
+    public void setTopicAddTime(LocalDateTime topicAddTime) {
+        this.topicAddTime = topicAddTime;
     }
 
     public LocalDateTime getEndTime() {

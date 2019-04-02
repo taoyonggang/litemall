@@ -9,6 +9,10 @@ public class UserInfoDetail extends UserInfo {
     private String babybirthday;
     private String address;
     private String fromSource;
+    private String babybirthday2;
+    private String mobile;
+    private Byte babysex;
+    private Byte babysex2;
 
     public Integer getUserId() {
         return userId;
@@ -56,5 +60,37 @@ public class UserInfoDetail extends UserInfo {
 
     public void setFromSource(String fromSource) {
         this.fromSource = fromSource;
+    }
+
+    public String getBabybirthday2() {
+        return babybirthday2;
+    }
+
+    public void setBabybirthday2(String babybirthday2) {
+        this.babybirthday2 = babybirthday2;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public Byte getBabysex() {
+        return babysex;
+    }
+
+    public void setBabysex(Byte babysex) {
+        this.babysex = babysex;
+    }
+
+    public Byte getBabysex2() {
+        return babysex2;
+    }
+
+    public void setBabysex2(Byte babysex2) {
+        this.babysex2 = babysex2;
     }
 }

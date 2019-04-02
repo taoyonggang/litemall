@@ -377,8 +377,8 @@ public class WxAuthController {
         String mobile = JacksonUtil.parseString(body, "mobile");
 
 
-        if (StringUtils.isEmpty(nickname) || StringUtils.isEmpty(fromSource) || StringUtils.isEmpty(birthday)
-                || StringUtils.isEmpty(babybirthday) || StringUtils.isEmpty(address)|| StringUtils.isEmpty(mobile)) {
+        if (StringUtils.isEmpty(nickname) || StringUtils.isEmpty(fromSource)
+                || StringUtils.isEmpty(babybirthday) || StringUtils.isEmpty(address)) {
             return ResponseUtil.badArgument();
         }
 
@@ -387,40 +387,25 @@ public class WxAuthController {
             return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "用户不存在");
         }
 
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
 
         try {
-            Date birthdayDate = format.parse(birthday);
-            Instant instant = birthdayDate.toInstant();
-            ZoneId zoneId = ZoneId.systemDefault();
-            LocalDate birthdayLocalDate = instant.atZone(zoneId).toLocalDate();
-            LocalDate babybirthdayLocalDate = null;
-            LocalDate babybirthdayLocalDate2 = null;
-            try{
-                Date babybirthdayDate = format.parse(babybirthday);
-                instant = babybirthdayDate.toInstant();
-                babybirthdayLocalDate= instant.atZone(zoneId).toLocalDate();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-            try{
-                Date babybirthdayDate2 = format.parse(babybirthday);
-                instant = babybirthdayDate2.toInstant();
-                babybirthdayLocalDate2= instant.atZone(zoneId).toLocalDate();
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-
-
             user.setNickname(nickname);
-            user.setBirthday(birthdayLocalDate);
-            user.setBabybirthday(babybirthdayLocalDate);
-            user.setBabybirthday2(babybirthdayLocalDate2);
-            user.setBabysex(Byte.parseByte(babysex));
-            user.setBabysex2(Byte.parseByte(babysex2));
+            user.setBirthday(DateTimeUtil.StringToLocalDate(birthday));
+            user.setBabybirthday(DateTimeUtil.StringToLocalDate(babybirthday));
+            user.setBabybirthday2(DateTimeUtil.StringToLocalDate(babybirthday2));
+            try {
+                if (babysex != null)
+                    user.setBabysex(Byte.parseByte(babysex));
+                if (babysex2 != null)
+                    user.setBabysex2(Byte.parseByte(babysex2));
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             user.setFromsouce(fromSource);
             user.setAddress(address);
-            user.setMobile(mobile);
+            if(mobile!=null&&!mobile.isEmpty())
+                user.setMobile(mobile);
             userService.updateById(user);
 
             //激活注册积分
@@ -434,6 +419,8 @@ public class WxAuthController {
 
         return ResponseUtil.ok();
     }
+
+
 
 
     /**

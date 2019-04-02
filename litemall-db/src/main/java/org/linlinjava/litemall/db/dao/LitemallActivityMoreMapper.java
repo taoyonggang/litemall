@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface LitemallActivityMoreMapper extends LitemallActivityMapper{
     List<LitemallActivityMore> selectMore(@Param("activity") LitemallActivityMore activity);
+    Integer selectMoreCount(@Param("activity") LitemallActivityMore activity);
 }
