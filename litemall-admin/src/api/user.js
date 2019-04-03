@@ -64,6 +64,14 @@ export function listFootprint(query) {
   })
 }
 
+export function listActivity(query) {
+  return request({
+    url: '/Activity/listMore',
+    method: 'get',
+    params: query
+  })
+}
+
 export function listHistory(query) {
   return request({
     url: '/history/list',

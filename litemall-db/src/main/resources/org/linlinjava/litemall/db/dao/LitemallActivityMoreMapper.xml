@@ -28,7 +28,7 @@
     -->
     id, activity_id, promoter_id, user_id, add_time, orign, deleted,username,nickname,mobile,topic_add_time,end_time
   </sql>
-  <select id="selectActiveMore" parameterType="org.linlinjava.litemall.db.domain.LitemallActivityMore" resultMap="BaseResultMap">
+  <select id="selectMore" parameterType="org.linlinjava.litemall.db.domain.LitemallActivityMore" resultMap="BaseResultMap">
     SELECT distinct
     litemall_activity.id,
     litemall_activity.activity_id,
