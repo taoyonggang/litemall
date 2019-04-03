@@ -765,7 +765,7 @@ public class WxOrderService {
             Integer resultId  = integralsService.addIntegral("现金支付",
                     order.getActualPrice().intValue()*IntegralStatus.CASH_GIFT_SWITCH,
                     order.getUserId(),
-                    IntegralStatus.STATUS_USED,IntegralStatus.EFFECTIVE_YES,order.getId());
+                    IntegralStatus.STATUS_CASH,IntegralStatus.EFFECTIVE_YES,order.getId());
 
         }
 

@@ -2,12 +2,14 @@ package org.linlinjava.litemall.wx.web;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.bouncycastle.asn1.eac.UnsignedInteger;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
 import org.linlinjava.litemall.db.domain.LitemallIntegrals;
 import org.linlinjava.litemall.db.service.LitemallOrderService;
 import org.linlinjava.litemall.db.service.LitemallIntegralsService;
+import org.linlinjava.litemall.db.util.IntegralStatus;
 import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.linlinjava.litemall.wx.service.UserInfoDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
 import java.util.Map;
+
+import static org.linlinjava.litemall.wx.util.WxResponseCode.ORDER_PAY_FAIL;
 
 /**
  * 用户服务
@@ -73,6 +77,27 @@ public class WxUserController {
         data.put("integrals", litemallIntegralsService.queryIntegrals(userId,page,size,sort,order));
         data.put("integralSum", litemallIntegralsService.queryIntegralSum(userId));
         data.put("totalPages", totalPages);
+        return ResponseUtil.ok(data);
+    }
+
+    @GetMapping("useIntegral")
+    public Object integralList(@LoginUser Integer userId, Integer ingegral) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+
+        int sum = litemallIntegralsService.queryIntegralSum(userId);
+        if (Math.abs(ingegral)>sum){
+            ResponseUtil.fail(ORDER_PAY_FAIL,"积分不足");
+        }
+        // 支付成功，增加积分
+        Integer resultId  = litemallIntegralsService.addIntegral("公益行",
+                -Math.abs(ingegral),
+                userId,
+                IntegralStatus.STATUS_OUT,IntegralStatus.EFFECTIVE_YES,-1);
+        sum = litemallIntegralsService.queryIntegralSum(userId);
+        Map<Object, Object> data = new HashMap<Object, Object>();
+        data.put("integralSum", sum);
         return ResponseUtil.ok(data);
     }
 
