@@ -78,14 +78,18 @@ public class AdminActivityController {
                        @Sort @RequestParam(defaultValue = "add_time") String sort,
                        @Order @RequestParam(defaultValue = "desc") String order) {
         LitemallActivityMore activityMore =  new LitemallActivityMore();
-
-        activityMore.setAddTime(DateTimeUtil.StringToLocalDateTime(beginTime));
-        activityMore.setEndTime(DateTimeUtil.StringToLocalDateTime(endTime));
+        if(beginTime != null){
+            activityMore.setAddTime(DateTimeUtil.StringToLocalDateTime(beginTime));
+        }
+        if(endTime != null){
+            activityMore.setEndTime(DateTimeUtil.StringToLocalDateTime(endTime));
+        }
         activityMore.setTitle(title);
         activityMore.setNickname(nickname);
         activityMore.setUserId(userId);
         activityMore.setPromoterId(promoterId);
         activityMore.setActivityId(activityId);
+        activityMore.setOrign(orign);
 
         List<LitemallActivityMore> ActivityList = activityService.queryListMore(activityMore,page, limit, sort, order);
         int total = activityService.queryListMoreCount(activityMore, page, limit, sort, order);

@@ -130,6 +130,16 @@ export const asyncRouterMap = [
         }
       },
       {
+        path: 'activity',
+        component: () => import('@/views/user/activity'),
+        name: 'activity',
+        meta: {
+          perms: ['GET /admin/Activity/listMore'],
+          title: '会员活动',
+          noCache: true
+        }
+      },
+      {
         path: 'history',
         component: () => import('@/views/user/history'),
         name: 'history',
