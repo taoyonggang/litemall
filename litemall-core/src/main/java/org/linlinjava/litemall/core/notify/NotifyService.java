@@ -66,7 +66,7 @@ public class NotifyService {
             return;
         }
 
-        int templateId = Integer.parseInt(templateIdStr);
+        String templateId = (templateIdStr);
         smsSender.sendWithTemplate(phoneNumber, templateId, params);
     }
 
@@ -82,7 +82,7 @@ public class NotifyService {
         if (smsSender == null)
             return null;
 
-        int templateId = Integer.parseInt(getTemplateId(notifyType, smsTemplate));
+        String templateId = (getTemplateId(notifyType, smsTemplate));
 
         return smsSender.sendWithTemplate(phoneNumber, templateId, params);
     }

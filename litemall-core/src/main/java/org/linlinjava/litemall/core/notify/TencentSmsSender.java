@@ -42,9 +42,9 @@ public class TencentSmsSender implements SmsSender {
     }
 
     @Override
-    public SmsResult sendWithTemplate(String phone, int templateId, String[] params) {
+    public SmsResult sendWithTemplate(String phone, String templateId, String[] params) {
         try {
-            SmsSingleSenderResult result = sender.sendWithParam("86", phone, templateId, params, "", "", "");
+            SmsSingleSenderResult result = sender.sendWithParam("86", phone, Integer.parseInt(templateId), params, "", "", "");
             logger.debug(result);
 
             SmsResult smsResult = new SmsResult();

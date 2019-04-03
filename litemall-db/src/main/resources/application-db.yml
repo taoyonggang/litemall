@@ -10,13 +10,13 @@ spring:
       url:  jdbc:mysql://localhost:3306/litemall?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
       driver-class-name:  com.mysql.jdbc.Driver
       username:  root
-      password:  naifen77889900!
-      initial-size:  10
-      max-active:  50
-      min-idle:  10
+      password:  Wsyj$121433
+      initial-size:  50
+      max-active:  500
+      min-idle:  50
       max-wait:  60000
       pool-prepared-statements:  true
-      max-pool-prepared-statement-per-connection-size:  20
+      max-pool-prepared-statement-per-connection-size:  50
       validation-query:  SELECT 1 FROM DUAL
       test-on-borrow:  false
       test-on-return:  false

@@ -1,6 +1,8 @@
 package org.linlinjava.litemall.core.notify.config;
 
+import cn.javaer.aliyun.sms.SmsClient;
 import com.github.qcloudsms.SmsSingleSender;
+import org.linlinjava.litemall.core.notify.AliyunSmsSender;
 import org.linlinjava.litemall.core.notify.NotifyService;
 import org.linlinjava.litemall.core.notify.TencentSmsSender;
 import org.linlinjava.litemall.core.notify.WxTemplateSender;
@@ -33,7 +35,8 @@ public class NotifyAutoConfiguration {
 
         NotifyProperties.Sms smsConfig = properties.getSms();
         if (smsConfig.isEnable()) {
-            notifyService.setSmsSender(tencentSmsSender());
+            //notifyService.setSmsSender(tencentSmsSender());
+            notifyService.setSmsSender(aliyunSmsSender());
             notifyService.setSmsTemplate(smsConfig.getTemplate());
         }
 
@@ -65,7 +68,15 @@ public class NotifyAutoConfiguration {
     public TencentSmsSender tencentSmsSender() {
         NotifyProperties.Sms smsConfig = properties.getSms();
         TencentSmsSender smsSender = new TencentSmsSender();
-        smsSender.setSender(new SmsSingleSender(smsConfig.getAppid(), smsConfig.getAppkey()));
+        //smsSender.setSender(new SmsSingleSender(smsConfig.getAppid(), smsConfig.getAppkey()));
+        return smsSender;
+    }
+
+    @Bean
+    public AliyunSmsSender aliyunSmsSender() {
+        NotifyProperties.Sms smsConfig = properties.getSms();
+        AliyunSmsSender smsSender = new AliyunSmsSender();
+        smsSender.setSender(new SmsClient(smsConfig.getAppid(), smsConfig.getAppkey()),smsConfig.getSignName());
         return smsSender;
     }
 }

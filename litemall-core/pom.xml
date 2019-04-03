@@ -71,10 +71,15 @@
             <groupId>org.linlinjava</groupId>
             <artifactId>litemall-db</artifactId>
         </dependency>
-        <dependency>
+<!--        <dependency>
             <groupId>com.aliyun</groupId>
             <artifactId>aliyun-java-sdk-core</artifactId>
             <version>4.1.0</version>
+        </dependency>-->
+        <dependency>
+            <groupId>cn.javaer.aliyun</groupId>
+            <artifactId>aliyun-sms</artifactId>
+            <version>1.2.0</version>
         </dependency>
     </dependencies>
 

@@ -95,8 +95,18 @@ public class NotifyProperties {
 
     public static class Sms {
         private boolean enable;
-        private int appid;
+        private String appid;
         private String appkey;
+        private String signName;
+
+        public String getSignName() {
+            return signName;
+        }
+
+        public void setSignName(String signName) {
+            this.signName = signName;
+        }
+
         private List<Map<String, String>> template = new ArrayList<>();
 
         public boolean isEnable() {
@@ -107,11 +117,11 @@ public class NotifyProperties {
             this.enable = enable;
         }
 
-        public int getAppid() {
+        public String getAppid() {
             return appid;
         }
 
-        public void setAppid(int appid) {
+        public void setAppid(String appid) {
             this.appid = appid;
         }
 

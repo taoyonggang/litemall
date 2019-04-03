@@ -11,7 +11,7 @@ import com.aliyuncs.profile.DefaultProfile;
 
 public class CommonRpc {
     public static void main(String[] args) {
-        DefaultProfile profile = DefaultProfile.getProfile("default", "xxxxx", "xxxxx");
+        DefaultProfile profile = DefaultProfile.getProfile("cn-hangzhou", "LTAIEcxALUGMIYWx", "1fae37ei8BCVaECT7u13CiB8Uzqf30");
         IAcsClient client = new DefaultAcsClient(profile);
 
         CommonRequest request = new CommonRequest();
@@ -22,7 +22,9 @@ public class CommonRpc {
         request.setAction("SendSms");
         request.putQueryParameter("PhoneNumbers", "17301613520");
         request.putQueryParameter("SignName", "海普诺凯1897");
-        request.putQueryParameter("TemplateCode", "xxxx");
+        request.putQueryParameter("TemplateCode", "SMS_162547021");
+        String code = "{\"code\":123456}";
+        request.putQueryParameter("TemplateParam", code);
         try {
             CommonResponse response = client.getCommonResponse(request);
             System.out.println(response.getData());
