@@ -7,7 +7,7 @@ import org.linlinjava.litemall.db.domain.LitemallActivityMore;
 
 import java.util.List;
 
-public interface LitemallActivityMoreMapper extends LitemallActivityMapper{
+public interface LitemallActivityMoreMapper {
     List<LitemallActivityMore> selectMore(@Param("activity") LitemallActivityMore activity);
     Integer selectMoreCount(@Param("activity") LitemallActivityMore activity);
 }
