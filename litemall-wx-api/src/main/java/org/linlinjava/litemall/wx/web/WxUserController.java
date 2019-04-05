@@ -3,6 +3,7 @@ package org.linlinjava.litemall.wx.web;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.bouncycastle.asn1.eac.UnsignedInteger;
+import org.linlinjava.litemall.core.util.JacksonUtil;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,24 +82,32 @@ public class WxUserController {
     }
 
     @PostMapping("useIntegral")
-    public Object integralList(@LoginUser Integer userId, @RequestParam(defaultValue = "100")Integer integral) {
+    public Object integralList(@LoginUser Integer userId,
+                               @RequestBody String body, HttpServletRequest request) {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
 
-        int sum = litemallIntegralsService.queryIntegralSum(userId);
-        if (Math.abs(integral)>sum){
-            ResponseUtil.fail(ORDER_PAY_FAIL,"积分不足");
+        String integralStr = JacksonUtil.parseString(body, "integral");
+        Integer integral = 100;
+        if (integralStr!=null && !integralStr.isEmpty()) {
+            integral = Integer.parseInt(integralStr);
+            int sum = litemallIntegralsService.queryIntegralSum(userId);
+            if (Math.abs(integral) > sum) {
+                ResponseUtil.fail(ORDER_PAY_FAIL, "积分不足");
+            }
+            // 扣积分
+            Integer resultId = litemallIntegralsService.addIntegral("公益行",
+                    -Math.abs(integral),
+                    userId,
+                    IntegralStatus.STATUS_OUT, IntegralStatus.EFFECTIVE_YES, -1);
+            sum = litemallIntegralsService.queryIntegralSum(userId);
+            Map<Object, Object> data = new HashMap<Object, Object>();
+            data.put("integralSum", sum);
+            return ResponseUtil.ok(data);
         }
-        // 扣积分
-        Integer resultId  = litemallIntegralsService.addIntegral("公益行",
-                -Math.abs(integral),
-                userId,
-                IntegralStatus.STATUS_OUT,IntegralStatus.EFFECTIVE_YES,-1);
-        sum = litemallIntegralsService.queryIntegralSum(userId);
-        Map<Object, Object> data = new HashMap<Object, Object>();
-        data.put("integralSum", sum);
-        return ResponseUtil.ok(data);
+        return ResponseUtil.fail(ORDER_PAY_FAIL, "参数错误");
+
     }
 
     @GetMapping("listIntegralByType")
