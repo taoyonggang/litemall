@@ -6,6 +6,7 @@ import org.bouncycastle.asn1.eac.UnsignedInteger;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
+import org.linlinjava.litemall.db.domain.IntegralSum;
 import org.linlinjava.litemall.db.domain.LitemallIntegrals;
 import org.linlinjava.litemall.db.service.LitemallOrderService;
 import org.linlinjava.litemall.db.service.LitemallIntegralsService;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static org.linlinjava.litemall.wx.util.WxResponseCode.ORDER_PAY_FAIL;
@@ -97,6 +99,59 @@ public class WxUserController {
                 IntegralStatus.STATUS_OUT,IntegralStatus.EFFECTIVE_YES,-1);
         sum = litemallIntegralsService.queryIntegralSum(userId);
         Map<Object, Object> data = new HashMap<Object, Object>();
+        data.put("integralSum", sum);
+        return ResponseUtil.ok(data);
+    }
+
+    @GetMapping("listIntegralByType")
+    public Object integraListOut(@LoginUser Integer userId,
+                                 @RequestParam(defaultValue = "1") Integer type,
+                                 @RequestParam(defaultValue = "1") Integer page,
+                                 @RequestParam(defaultValue = "10") Integer size,
+                                 @Sort(accepts = {"add_time", "id"}) @RequestParam(defaultValue = "add_time") String sort,
+                                 @Order @RequestParam(defaultValue = "desc") String order) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        List<LitemallIntegrals>  list = litemallIntegralsService.queryIntegralsByType(userId,type,page,size,sort,order);
+        Integer sum = litemallIntegralsService.queryIntegralSum(userId);
+        Map<Object, Object> data = new HashMap<Object, Object>();
+        int count = litemallIntegralsService.queryTotalCountByType(userId,type);
+        int totalPages = (int) Math.ceil((double) count / size);
+        data.put("integrals", list);
+        data.put("totalPages", totalPages);
+        data.put("integralSum", sum);
+        return ResponseUtil.ok(data);
+    }
+
+    /**
+     *
+     * @param userId
+     * @param type 积分种类，为null时，统计所有积分记录
+     * @param abs 统计种类，true统计>0积分记录，false 统计<0积分记录，null统计所有积分记录
+     * @param page
+     * @param size
+     * @param sort
+     * @param order
+     * @return 返回按积分种类的汇总排名，可以统计总消费积分，总产生消费积分，总积分等各种组合排名，并返回自己积分值
+     */
+    @GetMapping("listTopIntegralByType")
+    public Object listTopIntegralByType(@LoginUser Integer userId,
+                                 @RequestParam(defaultValue = "1") Integer type, Boolean abs,
+                                 @RequestParam(defaultValue = "1") Integer page,
+                                 @RequestParam(defaultValue = "10") Integer size,
+                                 @Sort(accepts = {"add_time", "id"}) @RequestParam(defaultValue = "add_time") String sort,
+                                 @Order @RequestParam(defaultValue = "desc") String order) {
+        if (userId == null) {
+            return ResponseUtil.unlogin();
+        }
+        List<IntegralSum>  list = litemallIntegralsService.queryTopIntegrals(type,abs,page,size);
+        int count = litemallIntegralsService.queryTopIntegralsCount(type,abs);
+        int totalPages = (int) Math.ceil((double) count / size);
+        Integer sum = litemallIntegralsService.queryIntegralSum(userId);
+        Map<Object, Object> data = new HashMap<Object, Object>();
+        data.put("integrals", list);
+        data.put("totalPages", totalPages);
         data.put("integralSum", sum);
         return ResponseUtil.ok(data);
     }

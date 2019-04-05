@@ -14,7 +14,9 @@ import org.linlinjava.litemall.admin.util.QRCodeUtil;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
+import org.linlinjava.litemall.db.domain.IntegralSum;
 import org.linlinjava.litemall.db.domain.LitemallTopic;
+import org.linlinjava.litemall.db.service.LitemallIntegralsService;
 import org.linlinjava.litemall.db.service.LitemallTopicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
@@ -37,6 +39,8 @@ public class AdminTopicController {
 
     @Autowired
     private LitemallTopicService topicService;
+    @Autowired
+    private LitemallIntegralsService litemallIntegralsService;
 
     @RequiresPermissions("admin:topic:list")
     @RequiresPermissionsDesc(menu={"推广管理" , "专题管理"}, button="查询")
@@ -124,6 +128,33 @@ public class AdminTopicController {
         //String binary = Qrcode2.creatRrCode(url, "D:/barcode/milk.jpg",200,200);
         String binary = QRCodeUtil.encode(url, "/opt/www/hpnk/dist/static/img/hpnk.jpg",output,true);
         return ResponseUtil.ok(binary);
+    }
+
+    /**
+     *
+     * @param type 积分种类，为null时，统计所有积分记录
+     * @param abs 统计种类，true统计>0积分记录，false 统计<0积分记录，null统计所有积分记录
+     * @param page
+     * @param size
+     * @param sort
+     * @param order
+     * @return 返回按积分种类的汇总排名，可以统计总消费积分，总产生消费积分，总积分等各种组合排名
+     */
+    @GetMapping("listTopIntegralByType")
+    @RequiresPermissions("admin:topic:list")
+    @RequiresPermissionsDesc(menu={"推广管理" , "专题管理"}, button="查询")
+    public Object listTopIntegralByType(@RequestParam(defaultValue = "1") Integer type, Boolean abs,
+                                        @RequestParam(defaultValue = "1") Integer page,
+                                        @RequestParam(defaultValue = "10") Integer size,
+                                        @Sort(accepts = {"add_time", "id"}) @RequestParam(defaultValue = "add_time") String sort,
+                                        @Order @RequestParam(defaultValue = "desc") String order) {
+        List<IntegralSum>  list = litemallIntegralsService.queryTopIntegrals(type,abs,page,size);
+        int count = litemallIntegralsService.queryTopIntegralsCount(type,abs);
+        int totalPages = (int) Math.ceil((double) count / size);
+        Map<Object, Object> data = new HashMap<Object, Object>();
+        data.put("integrals", list);
+        data.put("totalPages", totalPages);
+        return ResponseUtil.ok(data);
     }
 
 }

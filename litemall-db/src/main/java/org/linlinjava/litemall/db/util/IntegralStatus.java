@@ -20,10 +20,13 @@ public class IntegralStatus {
      */
     public static final Integer STATUS_USED = 3;
     /**
-     * 公益，其它
+     * 公益
      */
     public static final Integer STATUS_OUT = 4;
-
+    /**
+     * 其它
+     */
+    public static final Integer STATUS_OTHER = 5;
 
     /**
      * 积分有效

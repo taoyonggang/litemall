@@ -1,7 +1,10 @@
 package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
+import org.apache.ibatis.annotations.Param;
+import org.linlinjava.litemall.db.dao.LitemallActivityMoreMapper;
 import org.linlinjava.litemall.db.dao.LitemallIntegralsMapper;
+import org.linlinjava.litemall.db.domain.IntegralSum;
 import org.linlinjava.litemall.db.domain.LitemallIntegrals;
 import org.linlinjava.litemall.db.domain.LitemallIntegralsExample;
 import org.linlinjava.litemall.db.domain.LitemallUser;
@@ -20,6 +23,8 @@ public class LitemallIntegralsService {
     private LitemallIntegralsMapper integralsMapper;
     @Resource
     private LitemallUserService userService;
+    @Resource
+    private LitemallActivityMoreMapper moreMapper;
 
     /**
      * 查询指定用户积分明细
@@ -48,6 +53,48 @@ public class LitemallIntegralsService {
         PageHelper.startPage(page, size);
         return integralsMapper.selectByExample(example);
 
+    }
+
+    /**
+     * 查询指定用户某种积分明细
+     * @param userId
+     * @param page
+     * @param size
+     * @param sort
+     * @param order
+     * @return
+     */
+    public List<LitemallIntegrals> queryIntegralsByType(Integer userId,Integer type,Integer page, Integer size, String sort, String order){
+        LitemallIntegralsExample example = new LitemallIntegralsExample();
+        LitemallIntegralsExample.Criteria criteria = example.createCriteria();
+
+        if (userId!=null && userId>=0) {
+            criteria.andUserIdEqualTo(userId);
+            criteria.andIntegralTypeEqualTo(type.byteValue());
+            //criteria.andEffectiveEqualTo((byte) 1);
+        }else{ //不允许查询所有积分
+            return null;
+        }
+
+        if (!StringUtils.isEmpty(sort) && !StringUtils.isEmpty(order)) {
+            example.setOrderByClause(sort + " " + order);
+        }
+
+        PageHelper.startPage(page, size);
+        return integralsMapper.selectByExample(example);
+
+    }
+
+    //List<IntegralSum> selectIntegralSum(@Param("integralType") Integer integralType,@Param("abs") Boolean abs);
+    //Integer selectIntegralSumCount(@Param("integralType") Integer integralType,@Param("abs") Boolean abs);
+
+    public List<IntegralSum> queryTopIntegrals(Integer integralType,Boolean abs,Integer page, Integer size){
+        PageHelper.startPage(page, size);
+        return moreMapper.selectIntegralSum(integralType,abs);
+    }
+
+    public Integer queryTopIntegralsCount(Integer integralType,Boolean abs){
+        return moreMapper.selectIntegralSumCount(integralType,abs);
     }
 
     public List<LitemallIntegrals> queryAllIntegrals(Integer userId,String sort, String order){
@@ -120,6 +167,20 @@ public class LitemallIntegralsService {
             LitemallIntegralsExample example = new LitemallIntegralsExample();
             LitemallIntegralsExample.Criteria criteria = example.createCriteria();
             criteria.andUserIdEqualTo(userId);
+            Integer count = (int)integralsMapper.countByExample(example);
+            return count;
+        }else{
+            return 0;
+        }
+    }
+
+    public Integer queryTotalCountByType(Integer userId,Integer type){
+
+        if (userId!=null && userId>=0) {
+            LitemallIntegralsExample example = new LitemallIntegralsExample();
+            LitemallIntegralsExample.Criteria criteria = example.createCriteria();
+            criteria.andUserIdEqualTo(userId);
+            criteria.andIntegralTypeEqualTo(type.byteValue());
             Integer count = (int)integralsMapper.countByExample(example);
             return count;
         }else{
