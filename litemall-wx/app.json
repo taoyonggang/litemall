@@ -40,7 +40,10 @@
     "pages/coupon/coupon",
     "pages/qrcode/qrcode",
     "pages/ucenter/activityrecord/activityrecord",
-    "pages/ucenter/userinfo/userinfo"
+    "pages/ucenter/userinfo/userinfo",
+    "pages/ucenter/commonweal/commonweal",
+    "pages/ucenter/commonwealrecord/commonwealrecord",
+    "pages/ucenter/commonwealrank/commonwealrank"
     
   ],
   "window": {
