@@ -151,7 +151,7 @@
     order by abs(sum(litemall_integrals.integral_do)) desc
   </select>
 
-  <select  id="selectIntegralSum"   resultType="int">
+  <select  id="selectIntegralSumCount"   resultType="int">
     SELECT
     count(*)
     FROM
