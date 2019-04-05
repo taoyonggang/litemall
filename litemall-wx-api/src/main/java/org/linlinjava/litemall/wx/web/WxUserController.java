@@ -15,10 +15,7 @@ import org.linlinjava.litemall.wx.annotation.LoginUser;
 import org.linlinjava.litemall.wx.service.UserInfoDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -82,19 +79,19 @@ public class WxUserController {
         return ResponseUtil.ok(data);
     }
 
-    @GetMapping("useIntegral")
-    public Object integralList(@LoginUser Integer userId, Integer ingegral) {
+    @PostMapping("useIntegral")
+    public Object integralList(@LoginUser Integer userId, @RequestParam(defaultValue = "100")Integer integral) {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
 
         int sum = litemallIntegralsService.queryIntegralSum(userId);
-        if (Math.abs(ingegral)>sum){
+        if (Math.abs(integral)>sum){
             ResponseUtil.fail(ORDER_PAY_FAIL,"积分不足");
         }
-        // 支付成功，增加积分
+        // 扣积分
         Integer resultId  = litemallIntegralsService.addIntegral("公益行",
-                -Math.abs(ingegral),
+                -Math.abs(integral),
                 userId,
                 IntegralStatus.STATUS_OUT,IntegralStatus.EFFECTIVE_YES,-1);
         sum = litemallIntegralsService.queryIntegralSum(userId);
