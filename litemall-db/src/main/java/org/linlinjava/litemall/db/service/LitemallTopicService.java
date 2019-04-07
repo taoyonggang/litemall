@@ -24,21 +24,21 @@ public class LitemallTopicService {
     private Column[] columns = new Column[]{Column.id, Column.title, Column.subtitle, Column.price, Column.picUrl, Column.readCount};
 
 
-    public List<LitemallTopic> queryList(int offset, int limit) {
-        return queryList(offset, limit, "add_time", "desc");
+    public List<LitemallTopic> queryList(int offset, int limit,Byte topicType) {
+        return queryList(offset, limit, "add_time", "desc",topicType);
     }
 
-    public List<LitemallTopic> queryList(int offset, int limit, String sort, String order) {
+    public List<LitemallTopic> queryList(int offset, int limit, String sort, String order,Byte topicType) {
         LitemallTopicExample example = new LitemallTopicExample();
-        example.or().andDeletedEqualTo(false);
+        example.or().andDeletedEqualTo(false).andTopicTypeEqualTo(topicType);
         example.setOrderByClause(sort + " " + order);
         PageHelper.startPage(offset, limit);
         return topicMapper.selectByExampleSelective(example, columns);
     }
 
-    public int queryTotal() {
+    public int queryTotal(Byte topicType) {
         LitemallTopicExample example = new LitemallTopicExample();
-        example.or().andDeletedEqualTo(false);
+        example.or().andDeletedEqualTo(false).andTopicTypeEqualTo(topicType);
         return (int) topicMapper.countByExample(example);
     }
 
@@ -53,7 +53,7 @@ public class LitemallTopicService {
         example.or().andIdEqualTo(id).andDeletedEqualTo(false);
         List<LitemallTopic> topics = topicMapper.selectByExample(example);
         if (topics.size() == 0) {
-            return queryList(offset, limit, "add_time", "desc");
+            return queryList(offset, limit, "add_time", "desc",(byte)0);
         }
         LitemallTopic topic = topics.get(0);
 
@@ -65,7 +65,7 @@ public class LitemallTopicService {
             return relateds;
         }
 
-        return queryList(offset, limit, "add_time", "desc");
+        return queryList(offset, limit, "add_time", "desc",(byte)0);
     }
 
     public List<LitemallTopic> querySelective(String title, String subtitle, Integer page, Integer limit, String sort, String order) {

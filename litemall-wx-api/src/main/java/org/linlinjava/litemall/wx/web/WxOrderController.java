@@ -87,7 +87,12 @@ public class WxOrderController {
      */
     @PostMapping("prepay")
     public Object prepay(@LoginUser Integer userId, @RequestBody String body, HttpServletRequest request) {
-        Integer orderType = JacksonUtil.parseInteger(body, "orderType");
+        Integer orderType = 1;
+        try {
+            orderType = JacksonUtil.parseInteger(body, "orderType");
+        }catch(Exception e){
+            logger.error(e.getMessage());
+        }
         if(orderType==0) {
             return wxOrderService.prepay(userId, body, request);
         }else if (orderType==1){

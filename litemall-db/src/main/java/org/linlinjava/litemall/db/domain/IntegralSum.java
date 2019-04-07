@@ -6,7 +6,7 @@ public class IntegralSum {
     private String username;
     private String nickname;
     private String mobile;
-    private String sum;
+    private Integer sum;
 
     public Integer getUser_id() {
         return user_id;
@@ -40,11 +40,11 @@ public class IntegralSum {
         this.mobile = mobile;
     }
 
-    public String getSum() {
+    public Integer getSum() {
         return sum;
     }
 
-    public void setSum(String sum) {
+    public void setSum(Integer sum) {
         this.sum = sum;
     }
 }

@@ -88,13 +88,13 @@ public class LitemallIntegralsService {
     //List<IntegralSum> selectIntegralSum(@Param("integralType") Integer integralType,@Param("abs") Boolean abs);
     //Integer selectIntegralSumCount(@Param("integralType") Integer integralType,@Param("abs") Boolean abs);
 
-    public List<IntegralSum> queryTopIntegrals(Integer integralType,Boolean abs,Integer page, Integer size){
+    public List<IntegralSum> queryTopIntegrals(Integer integralType,Integer userId,Boolean abs,Integer page, Integer size){
         PageHelper.startPage(page, size);
-        return moreMapper.selectIntegralSum(integralType,abs);
+        return moreMapper.selectIntegralSum(integralType,abs,userId);
     }
 
-    public Integer queryTopIntegralsCount(Integer integralType,Boolean abs){
-        return moreMapper.selectIntegralSumCount(integralType,abs);
+    public Integer queryTopIntegralsCount(Integer integralType,Integer userId,Boolean abs){
+        return moreMapper.selectIntegralSumCount(integralType,abs,userId);
     }
 
     public List<LitemallIntegrals> queryAllIntegrals(Integer userId,String sort, String order){

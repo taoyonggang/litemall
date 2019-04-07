@@ -102,7 +102,10 @@ public class WxHomeController {
 
         Callable<List> brandListCallable = () -> brandService.queryVO(0, SystemConfig.getBrandLimit());
 
-        Callable<List> topicListCallable = () -> topicService.queryList(0, SystemConfig.getTopicLimit());
+        Callable<List> topicListCallable = () -> topicService.queryList(0, SystemConfig.getTopicLimit(),(byte)0);
+
+        //公益行
+        Callable<List> topicListCallable1 = () -> topicService.queryList(0, SystemConfig.getTopicLimit(),(byte)1);
 
         //团购专区
         Callable<List> grouponListCallable = () -> grouponRulesService.queryList(0, 5);
@@ -116,6 +119,7 @@ public class WxHomeController {
         FutureTask<List> hotGoodsListTask = new FutureTask<>(hotGoodsListCallable);
         FutureTask<List> brandListTask = new FutureTask<>(brandListCallable);
         FutureTask<List> topicListTask = new FutureTask<>(topicListCallable);
+        FutureTask<List> topicListTask1 = new FutureTask<>(topicListCallable1);
         FutureTask<List> grouponListTask = new FutureTask<>(grouponListCallable);
         FutureTask<List> floorGoodsListTask = new FutureTask<>(floorGoodsListCallable);
 
@@ -126,6 +130,7 @@ public class WxHomeController {
         executorService.submit(hotGoodsListTask);
         executorService.submit(brandListTask);
         executorService.submit(topicListTask);
+        executorService.submit(topicListTask1);
         executorService.submit(grouponListTask);
         executorService.submit(floorGoodsListTask);
 
@@ -137,6 +142,7 @@ public class WxHomeController {
             data.put("hotGoodsList", hotGoodsListTask.get());
             data.put("brandList", brandListTask.get());
             data.put("topicList", topicListTask.get());
+            data.put("topicList1", topicListTask1.get());
             data.put("grouponList", grouponListTask.get());
             data.put("floorGoodsList", floorGoodsListTask.get());
         }

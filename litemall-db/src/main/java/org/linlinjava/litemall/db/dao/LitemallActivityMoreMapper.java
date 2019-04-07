@@ -12,6 +12,6 @@ public interface LitemallActivityMoreMapper {
     List<LitemallActivityMore> selectMore(@Param("activity") LitemallActivityMore activity);
     Integer selectMoreCount(@Param("activity") LitemallActivityMore activity);
 
-    List<IntegralSum> selectIntegralSum(@Param("integralType") Integer integralType,@Param("abs") Boolean abs);
-    Integer selectIntegralSumCount(@Param("integralType") Integer integralType,@Param("abs") Boolean abs);
+    List<IntegralSum> selectIntegralSum(@Param("integralType") Integer integralType,@Param("abs") Boolean abs,@Param("userId") Integer userId);
+    Integer selectIntegralSumCount(@Param("integralType") Integer integralType,@Param("abs") Boolean abs,@Param("userId") Integer userId);
 }

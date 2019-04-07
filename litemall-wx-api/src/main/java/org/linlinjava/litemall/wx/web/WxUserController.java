@@ -143,14 +143,14 @@ public class WxUserController {
         if (userId == null) {
             return ResponseUtil.unlogin();
         }
-        List<IntegralSum>  list = litemallIntegralsService.queryTopIntegrals(type,abs,page,size);
-        int count = litemallIntegralsService.queryTopIntegralsCount(type,abs);
+        List<IntegralSum>  list = litemallIntegralsService.queryTopIntegrals(type,null,abs,page,size);
+        int count = litemallIntegralsService.queryTopIntegralsCount(type,null,abs);
         int totalPages = (int) Math.ceil((double) count / size);
-        Integer sum = litemallIntegralsService.queryIntegralSum(userId);
+        List<IntegralSum>  myList = litemallIntegralsService.queryTopIntegrals(type,userId,abs,page,size);
         Map<Object, Object> data = new HashMap<Object, Object>();
         data.put("integrals", list);
+        data.put("myIntegrals", myList);
         data.put("totalPages", totalPages);
-        data.put("integralSum", sum);
         return ResponseUtil.ok(data);
     }
 

@@ -30,6 +30,7 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+      <result column="integral_do" jdbcType="INTEGER" property="integral_do" />
     <result column="sum" jdbcType="INTEGER" property="sum" />
   </resultMap>
 
@@ -123,24 +124,27 @@
 
   <select  id="selectIntegralSum"  resultMap="IntegralMap">
     SELECT distinct
-    litemall_integrals.user_id,
+    litemall_integrals.`user_id`,
     litemall_user.username,
     litemall_user.nickname,
     litemall_user.mobile,
-    abs(sum(litemall_integrals.integral_do)) as sum
+    abs(sum(litemall_integrals.`integral_do`)) as sum
     FROM
     litemall_integrals ,
     litemall_user
     WHERE 1=1 AND
+    <if test="userId != null">
+          litemall_integrals.`user_id`=#{userId} AND
+    </if>
     <if test="integralType != null">
-      litemall_integrals.integral_type =#{integralType} AND
+      litemall_integrals.`integral_type`=#{integralType} AND
     </if>
     <if test="abs != null">
       <if test="abs == true">
-        litemall_integrals.integral_do &gt;0 AND
+        litemall_integrals.`integral_do`&gt;0 AND
       </if>
       <if test="abs == false">
-        litemall_integrals.integral_do &lt;0 AND
+        litemall_integrals.`integral_do`&lt;0 AND
       </if>
     </if>
     litemall_integrals.user_id = litemall_user.id
@@ -148,25 +152,29 @@
     litemall_user.username,
     litemall_user.nickname,
     litemall_user.mobile
-    order by abs(sum(litemall_integrals.integral_do)) desc
+    order by abs(sum(litemall_integrals.`integral_do`)) desc
   </select>
 
   <select  id="selectIntegralSumCount"   resultType="int">
+    select count(*) from (
     SELECT
-    count(*)
+      litemall_integrals.`user_id`
     FROM
     litemall_integrals ,
     litemall_user
     WHERE 1=1 AND
+    <if test="userId != null">
+          litemall_integrals.`user_id`=#{userId} AND
+    </if>
     <if test="integralType != null">
-      litemall_integrals.integral_type =#{integralType} AND
+      litemall_integrals.`integral_type`=#{integralType} AND
     </if>
     <if test="abs != null">
       <if test="abs == true">
-      litemall_integrals.integral_do &gt;0 AND
+      litemall_integrals.`integral_do`&gt;0 AND
       </if>
       <if test="abs == false">
-        litemall_integrals.integral_do &lt;0 AND
+        litemall_integrals.`integral_do`&lt;0 AND
       </if>
     </if>
     litemall_integrals.user_id = litemall_user.id
@@ -174,6 +182,7 @@
     litemall_user.username,
     litemall_user.nickname,
     litemall_user.mobile
+    ) as a
   </select>
 
 
