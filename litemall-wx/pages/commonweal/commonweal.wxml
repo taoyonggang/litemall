@@ -1,0 +1,16 @@
+<view class="container">
+<view class="image-parent">
+  <image class='image' mode='widthFix' src="{{picUrl}}"></image>
+</view>
+  <view class="collect-list">
+      <view  class="add-btn"><text class="integraltext">当前积分\n</text><text class="integraltext1">{{integralSum}}</text></view>
+      <view class="input-box">
+        <input bindinput="bindExchange" style="height:70rpx;" class="coupon-sn" placeholder="" value="" ></input>
+        <text class="textstyle" bindtap="saveDonate">捐赠＞</text>
+      </view>
+    </view>
+    <view class="bottomtab">
+      <laber class="laber1" bindtap="listDnonate">历史查询</laber>
+      <laber class="laber2" bindtap="rankDonate">榜单</laber>
+    </view>
+</view>
