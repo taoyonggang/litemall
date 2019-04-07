@@ -9,7 +9,7 @@ background-size:100% 100%;
 -moz-background-size:100% 100%;
 width:100%;
 height:100%;
-background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/2qljgazqjk2sfphtfry1.jpg);
+background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/x8gdn14d5b43g8p6uhu8.jpg);
 }
 .login-box {
   width: 100%;
@@ -19,10 +19,10 @@ background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/2qljgazqjk2sfphtf
   z-index: 999;
 }
 button[type=primary]{
-  background-color:#931e24;
+  background-color:#1c2e56;
 }
 .button-hover[type=primary] {
-  background-color:#931e24;
+  background-color:#1c2e56;
 }
 .wx-login-btn {
   margin: 60rpx 0 40rpx 0;

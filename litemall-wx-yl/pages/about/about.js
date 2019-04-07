@@ -12,8 +12,8 @@ Page({
   data: {
     load_statue: true,
     shopInfo: {
-      name: '海普诺凯',
-      address: 'http://www.1897.com',
+      name: '悠蓝',
+      address: 'http://www.neolac.com',
       latitude: 31.201900,
       longitude: 121.587839,
       linkPhone: '021-xxxx-xxxx',

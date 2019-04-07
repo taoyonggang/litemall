@@ -41,14 +41,15 @@
     "pages/qrcode/qrcode",
     "pages/ucenter/activityrecord/activityrecord",
     "pages/ucenter/userinfo/userinfo",
+    "pages/commonweal/commonweal",
     "pages/ucenter/commonweal/commonweal",
     "pages/ucenter/commonwealrecord/commonwealrecord",
     "pages/ucenter/commonwealrank/commonwealrank"
     
   ],
   "window": {
-    "navigationBarBackgroundColor": "#931e24",
-    "navigationBarTitleText": "海普诺凯商城",
+    "navigationBarBackgroundColor": "#1c2e56",
+    "navigationBarTitleText": "悠蓝商城",
     "enablePullDownRefresh": true,
     "navigationBarTextStyle": "white",
     "backgroundColor": "#FFFFFF",

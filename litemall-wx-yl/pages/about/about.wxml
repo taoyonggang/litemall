@@ -4,7 +4,7 @@
 
     <view class="item-left">
       <label>公司名称: </label>
-      <text>海普诺凯</text>
+      <text>悠蓝</text>
        <!-- <text>{{shopInfo.name}}</text>  -->
     </view>
 

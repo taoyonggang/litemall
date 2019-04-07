@@ -41,6 +41,7 @@
     "pages/qrcode/qrcode",
     "pages/ucenter/activityrecord/activityrecord",
     "pages/ucenter/userinfo/userinfo",
+    "pages/commonweal/commonweal",
     "pages/ucenter/commonweal/commonweal",
     "pages/ucenter/commonwealrecord/commonwealrecord",
     "pages/ucenter/commonwealrank/commonwealrank"

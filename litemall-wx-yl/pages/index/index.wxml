@@ -23,7 +23,7 @@
     <view class="h">
       <view>
         <navigator url="/pages/topic/topic">
-          <text class="txt">活动专区</text>
+          <text class="txt">活动签到</text>
         </navigator>
       </view>
     </view>
@@ -34,7 +34,30 @@
             <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
             <view class="np">
               <text class="name">{{item.title}}</text>
-              <text class="price">￥{{item.price}}元起</text>
+              <!-- <text class="price">￥{{item.price}}元起</text> -->
+            </view>
+            <text class="desc">{{item.subtitle}}</text>
+          </navigator>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+  <view class="a-section a-topic" wx:if="topics.length > 0">
+    <view class="h">
+      <view>
+        <navigator url="/pages/topic/topic">
+          <text class="txt">公益行</text>
+        </navigator>
+      </view>
+    </view>
+    <view class="b">
+      <scroll-view scroll-x class="list">
+        <view class="item" wx:for="{{topicdonate}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+          <navigator url="../commonweal/commonweal?id={{item.id}}">
+            <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
+            <view class="np">
+              <text class="name">{{item.title}}</text>
+              <!-- <text class="price">￥{{item.price}}元起</text> -->
             </view>
             <text class="desc">{{item.subtitle}}</text>
           </navigator>

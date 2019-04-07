@@ -16,6 +16,8 @@
 
       <el-table-column align="center" label="活动区域" prop="subtitle" min-width="15%"/>
 
+      <el-table-column align="center" label="活动类别" prop="topicType" min-width="15%"/>
+
       <el-table-column align="center" property="picUrl" label="图片" min-width="10%">
         <template slot-scope="scope">
           <img :src="scope.row.picUrl" width="80">
@@ -65,6 +67,9 @@
         </el-form-item>
         <el-form-item label="活动区域" prop="subtitle">
           <el-input v-model="dataForm.subtitle"/>
+        </el-form-item>
+        <el-form-item label="活动类别" prop="topicType">
+          <el-input v-model="dataForm.topicType"/>
         </el-form-item>
         <el-form-item label="活动图片" prop="picUrl">
           <el-upload
@@ -168,6 +173,7 @@ export default {
         limit: 20,
         title: undefined,
         subtitle: undefined,
+        topicType: undefined,
         sort: 'add_time',
         order: 'desc'
       },
@@ -175,6 +181,7 @@ export default {
         id: undefined,
         titile: undefined,
         subtitle: undefined,
+        topicType: undefined,
         picUrl: undefined,
         content: '',
         price: undefined,
@@ -264,6 +271,7 @@ export default {
         id: undefined,
         titile: undefined,
         subtitle: undefined,
+        topicType: undefined,
         picUrl: undefined,
         content: '',
         price: undefined,
@@ -415,6 +423,7 @@ export default {
           '活动ID',
           '活动名称',
           '活动区域',
+          '活动类别',
           '活动内容',
           '活动图片',
           '有效期',
@@ -426,6 +435,7 @@ export default {
           'id',
           'title',
           'subtitle',
+          'topicType',
           'content',
           'picUrl',
           'endTime',

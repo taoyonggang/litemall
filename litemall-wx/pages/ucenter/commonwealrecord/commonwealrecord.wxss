@@ -10,9 +10,15 @@ page {
   height:100rpx;
   width:100rpx;
 }
+.items{
+  position:relative;
+}
 .imageframe{
-  height:100rpx;
-  width:84%;
+ height:180rpx;
+ width:100%;
+ margin:0;
+ padding:0;
+ vertical-align:middle;
 }
 .image-parent {
   position: relative;
@@ -100,4 +106,21 @@ page {
   text-align:center;
   line-height:90rpx;
   color:#fff;
+}
+.info {
+  position:absolute;
+  margin-top:-129rpx;
+  margin-left:86px;
+}
+.action {
+  font-size: 32rpx;
+  color:#333;
+  font-weight: bolder;
+  line-height: 40rpx;
+}
+.addTime {
+  font-size: 24rpx;
+  color: #888;
+  min-width: 600rpx;
+  line-height: 40rpx;
 }

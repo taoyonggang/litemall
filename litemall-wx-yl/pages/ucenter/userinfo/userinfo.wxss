@@ -15,7 +15,7 @@ display:block;
 top:0;
 left:0;
 right:0px;
-background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/urn9humeoixoyq7ehux2.jpg);
+background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/ot8gu0qznbjmjuskrwpx.jpg);
 }
 .wanshan2 {
 background-repeat:no-repeat;
@@ -28,7 +28,7 @@ display:block;
 top:451rpx;
 left:0;
 right:0px;
-background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/th32gse8ac1260bfg41o.jpg);
+background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/mwdn55jyxyajlpzqrqi5.jpg);
 }
 .wanshan3 {
 background-repeat:no-repeat;
@@ -41,7 +41,7 @@ display:block;
 top:201rpx;
 left:0;
 right:0px;
-background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/0o5gi5h42kbyxttz96x6.jpg);
+background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/t3s3kco3bbwns5kuwkoe.jpg);
 }
 .section{
   display:flex;
@@ -98,7 +98,7 @@ border-radius:33rpx;
 background:#fff;
 text-indent:45rpx;
 }
-input.birthday,input.nickname,input.babybirthday,input.babybirthday2,input.address,input.mobile{
+input.birthday,input.nickname,input.babybirthday,input.babybirthday2,input.address,input.mobile,captchacode{
   text-indent:45rpx;
 }
 .fb-body .text-count {
@@ -253,7 +253,17 @@ height:40rpx;
 width:40rpx;
 
 }
+.form-item .captchacode-btn {
+ position:absolute;
+ top:16rpx;
+ right:30rpx;
+ z-index:2;
+ display:block;
+ width:165rpx;
+ border-left:1px solid #ddd;
+ font-size:28rpx;
 
+}
 .login-btn {
   margin: 60rpx 0 40rpx 0;
   height: 70rpx;

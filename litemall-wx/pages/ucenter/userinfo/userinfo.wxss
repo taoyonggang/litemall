@@ -98,7 +98,7 @@ border-radius:33rpx;
 background:#fff;
 text-indent:45rpx;
 }
-input.birthday,input.nickname,input.babybirthday,input.babybirthday2,input.address,input.mobile{
+input.birthday,input.nickname,input.babybirthday,input.babybirthday2,input.address,input.mobile,captchacode{
   text-indent:45rpx;
 }
 .fb-body .text-count {
@@ -253,7 +253,17 @@ height:40rpx;
 width:40rpx;
 
 }
+.form-item .captchacode-btn {
+ position:absolute;
+ top:16rpx;
+ right:30rpx;
+ z-index:2;
+ display:block;
+ width:165rpx;
+ border-left:1px solid #ddd;
+ font-size:28rpx;
 
+}
 .login-btn {
   margin: 60rpx 0 40rpx 0;
   height: 70rpx;

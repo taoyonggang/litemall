@@ -5,21 +5,23 @@ var app = getApp();
 
 Page({
   data: {
-    type: 0,
+    type: 4,
     status: 0,
+    integralSum: 0,
+    integrals: [],
     page: 1,
     size: 8,
     totalPages: 1,
     scrollTop: 0,
     showPage: false,
     hasMoreData: true,
-    integralSum: 0,
-    ingegral:0,
-
   },
-  onLoad: function(options) {
+  getIntegrals() {
+    // wx.showLoading({
+    //   title: '加载中...',
+    // });
     let that = this;
-    util.request(api.IntegralsIndex, {
+    util.request(api.ListDonate, {
       type: that.data.type,
       page: that.data.page,
       size: that.data.size
@@ -27,47 +29,91 @@ Page({
       if (res.errno === 0) {
         that.setData({
           integralSum: res.data.integralSum,
+          integrals: that.data.integrals.concat(res.data.integrals),
+          totalPages: res.data.totalPages,
+          showPage: true,
+          scrollTop: 0,
         });
       }
       wx.hideLoading();
     });
   },
-  bindExchange: function (e) {
-    this.setData({
-      ingegral: e.detail.value
-    });
+  onLoad: function (options) {
+    this.getIntegrals();
   },
-  saveDonate(){
+  onPullDownRefresh() {
+    wx.showNavigationBarLoading() //在标题栏中显示加载
+    if (this.data.totalPages > this.data.page) {
+      this.setData({
+        page: this.data.page + 1
+      });
+      this.getIntegrals();
+    } else {
+      wx.showToast({
+        title: '没有更多捐赠积分记录了',
+        icon: 'none',
+        duration: 2000
+      });
+      wx.hideNavigationBarLoading() //完成停止加载
+      wx.stopPullDownRefresh() //停止下拉刷新
+      return false;
+    }
+
+  },
+  onReachBottom() {
+    if (this.data.totalPages > this.data.page) {
+      this.setData({
+        page: this.data.page + 1
+      });
+      this.getIntegrals();
+    } else {
+      wx.showToast({
+        title: '没有更多捐赠积分记录了',
+        icon: 'none',
+        duration: 2000
+      });
+      return false;
+    }
+  },
+  onReady: function () {
+
+  },
+  onShow: function () {
+
+  },
+  onHide: function () {
+    // 页面隐藏
+
+  },
+  onUnload: function () {
+    // 页面关闭
+  },
+  //按下事件开始  
+  touchStart: function (e) {
     let that = this;
-    if (!(/(^[1-9]\d*$)/.test(that.data.ingegral))) {
-      if (parseInt(that.data.ingegral) <= 500) {
-        wx.showToast({
-          title: '请输入大于等于500的正整数',
-          icon: 'none',
-          duration: 2000
-        });
-        return false;
-        }
-      }
-    util.request(api.SaveDonate, {
-      ingegral: that.data.ingegral,
-    }, 'POST').then(function (res) {
-      wx.hideLoading();
-      if (res.errno === 0) {
-        wx.showToast({
-          title: '提交成功',
-          icon: 'success',
-          duration: 2000,
-          complete: function () {
-            var that = this
+    that.setData({
+      touchStart: e.timeStamp
+    })
+  },
+  //按下事件结束  
+  touchEnd: function (e) {
+    let that = this;
+    that.setData({
+      touchEnd: e.timeStamp
+    })
+  },
+  switchTab: function (e) {
 
-          }
-        });
-      } else {
-        util.showErrorToast(res.errmsg);
-      }
-
+    this.setData({
+      integrals: [],
+      status: e.currentTarget.dataset.index,
+      page: 1,
+      size: 8,
+      count: 0,
+      scrollTop: 0,
+      showPage: false
     });
-  }
 
+    this.getIntegrals();
+  }
 })

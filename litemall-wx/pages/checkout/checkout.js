@@ -152,13 +152,13 @@ Page({
         }
 
         const orderId = res.data.orderId;
-        if(this.data.orderTotalIntegral>0){
+        if (this.data.orderTotalPrice>0){
           this.setData({
-            orderType: 1
+            orderType: 0
           });
         }else{
           this.setData({
-            orderType: 0
+            orderType: 1
           });
         }
         const orderType = this.data.orderType;

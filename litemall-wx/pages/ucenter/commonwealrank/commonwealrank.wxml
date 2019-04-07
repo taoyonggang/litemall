@@ -1,16 +1,34 @@
 <view class="container">
-<view class="image-parent">
-  <image class='image' mode='widthFix' src='/static/images/commonweal.jpg'></image>
-</view>
-  <view class="collect-list">
-      <view  class="add-btn"><text class="integraltext">当前积分\n</text><text class="integraltext1">{{integralSum}}</text></view>
-      <view class="input-box">
-        <input bindinput="bindExchange" style="height:70rpx;" class="coupon-sn" placeholder="" value="" ></input>
-        <text class="textstyle" bindtap="saveDonate">捐赠＞</text>
+  <view class="image-parent">
+    <image class='image' mode='widthFix' src='/static/images/rankbac.png'></image>
+   <view class="currentuserrank">
+ 
+      <image class="avatar" src="{{avatar}}"></image>
+      <view class="info">
+        <text class="name">{{nickname}}</text>
+        <image class="rankicon" src="/static/images/rankdonate.png"></image>
+        <text style="color:#505050">  捐赠：</text>
+        <image class="rankicon" src="/static/images/intergralicon.png"></image>
+        <text class="integrals">{{integralSum}}</text>
       </view>
     </view>
-    <view class="bottomtab">
-      <laber class="laber1">历史查询</laber>
-      <laber class="laber2">榜单</laber>
-    </view>
+  </view>
+  <view style="margin-top:110px;position:absolute;">
+    <scroll-view class="coupon-list" scroll-y="true" scroll-top="{{scrollTop}}">
+          <view class="items" bindtap="openGoods" bindtouchstart="touchStart" bindtouchend="touchEnd" wx:for="{{integrals}}" wx:key="id" data-index="{{index}}">
+              <view class="info2">
+               <view style="font-size:30rpx;line-height:100rpx">{{index+1}}
+                   <!-- <imageclass="rankicon" src="/static/images/intergralicon.png"></image> -->
+               </view>
+                        <image class="avatar1" src="{{item.avatar}}"></image>
+                        <view class="action">{{item.nickname}}</view>
+                       <view style="margin-left: 84rpx;margin-top:30rpx;">
+                       <image class="rankicon" src="/static/images/intergralicon.png"></image>
+                        <text class="addTime">{{item.sum}}</text>
+                        <view class="action1">累计捐赠</view>
+                        </view>
+              </view>
+        </view>
+      </scroll-view>
+      </view>
 </view>

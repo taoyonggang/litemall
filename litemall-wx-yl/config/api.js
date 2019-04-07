@@ -1,13 +1,12 @@
 // 以下是业务服务器API地址
 // 本机开发时使用
-//var WxApiRoot = 'https://hpnk.1897.com/wx/';
-var WxApiRoot = 'http://localhost:8080/wx/';
+// var WxApiRoot = 'http://localhost:8080/wx/';
 // 局域网测试使用
 // var WxApiRoot = 'http://192.168.0.101:8080/wx/';
 // 云平台部署时使用
 // var WxApiRoot = 'http://122.152.206.172:8080/wx/';
 // 云平台上线时使用
-//var WxApiRoot = 'https://hpnk.1897.com/wx/';
+var WxApiRoot = 'https://yl.1897.com/wx/';
 
 //var utils = require('../utils/utils.js');
 
@@ -108,8 +107,11 @@ module.exports = {
     CheckIn: WxApiRoot + 'activity/addActivityUser', 
     SelectActivity: WxApiRoot + 'activity/listActivity',
     UpdateUser: WxApiRoot + 'auth/update', //更新用户
-  SelectActivityRecord: WxApiRoot + 'activity/listMyActivity', //查询活动记录
-  GetUserDeatil: WxApiRoot +'user/userDetail',
+    SelectActivityRecord: WxApiRoot + 'activity/listMyActivity', //查询活动记录
+    GetUserDeatil: WxApiRoot +'user/userDetail',
+    SaveDonate: WxApiRoot + 'user/useIntegral', //捐赠积分
+    ListDonate: WxApiRoot + 'user/listIntegralByType', //查询捐赠积分记录
+    ListTopDonate: WxApiRoot + 'user/listTopIntegralByType', //查询捐赠积分记录
 };
 
 /*

@@ -109,7 +109,9 @@ module.exports = {
     UpdateUser: WxApiRoot + 'auth/update', //更新用户
     SelectActivityRecord: WxApiRoot + 'activity/listMyActivity', //查询活动记录
     GetUserDeatil: WxApiRoot +'user/userDetail',
-    SaveDonate: WxApiRoot + 'user/useIntegral', //捐赈积分
+    SaveDonate: WxApiRoot + 'user/useIntegral', //捐赠积分
+    ListDonate: WxApiRoot + 'user/listIntegralByType', //查询捐赠积分记录
+    ListTopDonate: WxApiRoot + 'user/listTopIntegralByType', //查询捐赠积分记录
 };
 
 /*

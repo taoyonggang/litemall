@@ -1,9 +1,9 @@
 page {
-  background: #fff;
+  background: #c39744;
   min-height: 100%;
 }
 .container {
-  background: #fff;
+  background: #c39744;
   min-height: 100%;
 }
 .image {
@@ -12,100 +12,13 @@ page {
 }
 
 .image-parent {
-  position:relavite;
-  height: 220rpx;
-  width: 100%
-}
-.currentuserrank{
-  background:#fff;
-  height:161rpx;
-  width:70%;
-  border-radius:50px;
-  border:1rpx solid #c59db86e;
-  margin:0 auto;
-  margin-top:-72rpx;
-  display:flex;
-  align-items:center;
-  position:absolute;
-margin-left:15%;
-
-
-}
-.avatar {
-  height:130rpx;
-  width:130rpx;
-  border-radius:50%;
-  margin-left:12rpx;
-  margin-top:12rpx;
-  margin-bottom:12rpx;
-
-}
-.avatar1 {
-height:100rpx;
-width:100rpx;
-border-radius:50%;
-margin-left:50rpx;
-margin-bottom:12rpx;
-margin-top:12rpx;
-
-}
-.info {
-  flex: 1;
-  height: 85rpx;
-  padding-left: 31.25rpx;
-}
-.name {
-  display: block;
-  height: 45rpx;
-  line-height: 45rpx;
-  color: #505050;
-  font-size: 37.5rpx;
-  margin-bottom: 10rpx;
-}
-.integrals {
-  color: #505050;
-  font-size: 30rpx;
-}
-.rankicon{
- width:45rpx;
-height:45rpx;
-margin-bottom:-4px;
-}
-.items{
-  position:relative;
-}
-.info2 {
- margin-left:38rpx;
-display:flex;
-border-bottom:1px solid #ddd;
-
-
-}
-.action {
-  font-size: 32rpx;
-  color:#333;
-line-height:73px;
-margin-left:50rpx;
-min-width:200rpx;
-}
-.action1{
-  font-size: 22rpx;
-  color:rgb(87, 80, 80);
-line-height:62rpx;
-margin-left:35rpx;
-}
-.addTime {
-  font-size: 38rpx;
-  color: #800000;
-margin-top:32rpx;
-
-
+  position: relative;
 }
 .collect-list {
   width: 100%;
   height: auto;
   overflow: hidden;
-  background: #fff;
+  background: #c39744;
 }
 .collect-list .add-btn {
     width:200rpx;
