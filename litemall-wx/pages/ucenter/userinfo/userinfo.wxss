@@ -228,7 +228,14 @@ view, text {
   float: left;
   width: 350rpx;
 }
-
+.form-item-code .code-btn {
+  float: right;
+  padding: 20rpx 40rpx;
+  border: 1px solid #d9d9d9;
+  border-radius: 10rpx;
+  color: #fff;
+  background: green;
+}
 .form-item-code .code-img {
   float: right;
   margin-top: 4rpx;

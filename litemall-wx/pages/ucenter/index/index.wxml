@@ -53,6 +53,10 @@
       <image class='user_column_item_image' src='/static/images/record.png'></image>
       <view class='user_column_item_text'>活动记录</view>
     </view>
+    <view class='user_column_item' bindtap='goCommonWeal'>
+      <image class='user_column_item_image' src='/static/images/commonwealicon.png'></image>
+      <view class='user_column_item_text'>公益行</view>
+    </view>
     <view class='user_column_item' bindtap='goCoupon'>
       <image class='user_column_item_image' src='/static/images/coupon.png'></image>
       <view class='user_column_item_text'>优惠卷</view>
@@ -109,6 +113,5 @@
       <view class='user_column_item_text'>关于我们</view>
     </view>
   </view>
-
   <view class="logout" wx:if="{{hasLogin}}" bindtap="exitLogin">退出登录</view>
 </view>
