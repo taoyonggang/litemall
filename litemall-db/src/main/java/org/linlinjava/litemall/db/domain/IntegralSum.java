@@ -7,6 +7,8 @@ public class IntegralSum {
     private String nickname;
     private String mobile;
     private Integer sum;
+    private String avatar;
+    private String address;
 
     public Integer getUser_id() {
         return user_id;
@@ -46,5 +48,21 @@ public class IntegralSum {
 
     public void setSum(Integer sum) {
         this.sum = sum;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 }
