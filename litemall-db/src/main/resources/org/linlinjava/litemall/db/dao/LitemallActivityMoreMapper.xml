@@ -30,6 +30,8 @@
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
     <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="address" jdbcType="VARCHAR" property="address" />
       <result column="integral_do" jdbcType="INTEGER" property="integral_do" />
     <result column="sum" jdbcType="INTEGER" property="sum" />
   </resultMap>
@@ -129,7 +131,7 @@
     litemall_user.nickname,
     litemall_user.mobile,
     litemall_user.avatar,
-    litemall_address.address
+    litemall_user.address,
     abs(sum(litemall_integrals.`integral_do`)) as sum
     FROM
     litemall_integrals ,
@@ -155,7 +157,7 @@
     litemall_user.nickname,
     litemall_user.mobile,
     litemall_user.avatar,
-    litemall_address.address
+    litemall_user.address
     order by abs(sum(litemall_integrals.`integral_do`)) desc
   </select>
 
