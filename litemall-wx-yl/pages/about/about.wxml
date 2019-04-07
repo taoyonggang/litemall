@@ -1,0 +1,47 @@
+<view class="container">
+
+  <view class="about-item">
+
+    <view class="item-left">
+      <label>公司名称: </label>
+      <text>海普诺凯</text>
+       <!-- <text>{{shopInfo.name}}</text>  -->
+    </view>
+
+  </view>
+
+  <view class="about-item">
+    <view class="item-left">
+      <label>公司地址: </label>
+      <text></text>
+       <!-- <text>{{shopInfo.address}}</text>  -->
+    </view>
+
+    <view class="item-right" bindtap="showLocation">
+      <image src="/static/images/ico-addr.png" class="right-icon"></image>
+    </view>
+  </view>
+
+  <view class="about-item">
+    <view class="item-left">
+      <label>电话号码:    </label>
+      <text></text>
+       <!-- <text>{{shopInfo.linkPhone}}</text>  -->
+    </view>
+    <view class="item-right" bindtap="callPhone">
+      <image src="/static/images/telephone.png" class="right-icon"></image>
+    </view>
+  </view>
+
+  <view class="about-item">
+    <view class="item-left">
+      <label>关于: </label>
+      <text></text>
+       <!-- <text>{{shopInfo.qqNumber}}</text>  -->
+    </view>
+    <view class="item-right">
+      <image src="/static/images/mobile.png" class="right-icon"></image>
+    </view>
+  </view>
+
+</view>

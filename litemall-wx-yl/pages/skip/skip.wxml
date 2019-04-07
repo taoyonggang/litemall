@@ -1,0 +1,7 @@
+<scroll-view class="container">
+ <view>
+        <navigator url="/pages/topic/topic">
+          <text class="txt">活动专题</text>
+        </navigator>
+  </view>
+</scroll-view>

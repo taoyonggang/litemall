@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="a-section a-topic" wx:if="topics.length > 0">
+    <view class="h">
+      <view>
+        <navigator url="/pages/topic/topic">
+          <text class="txt">活动专题</text>
+        </navigator>
+      </view>
+    </view>
+    <view class="b">
+      <scroll-view scroll-x class="list">
+        <view class="item" wx:for="{{topics}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+          <navigator url="../topicDetail/topicDetail?id={{item.id}}">
+          </navigator>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+</view>

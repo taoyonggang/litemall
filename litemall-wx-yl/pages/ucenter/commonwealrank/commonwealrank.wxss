@@ -1,0 +1,100 @@
+page {
+  background: #c39744;
+  min-height: 100%;
+}
+.container {
+  background: #c39744;
+  min-height: 100%;
+}
+.image {
+  height: 30%;
+  width:100%;
+}
+
+.image-parent {
+  position: relative;
+}
+.collect-list {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  background: #c39744;
+}
+.collect-list .add-btn {
+    width:200rpx;
+    height:200rpx;
+    background:#fff;
+    border-radius:50%;
+    color:#fff;
+    font-size:36rpx;
+    text-align:center;
+    line-height:200rpx;
+    margin:0 auto;
+    margin-top:78rpx;
+    margin-bottom:60rpx;
+    border:15rpx solid #ab2b2b;
+}
+.collect-list .input-box {
+  flex:1;
+  color:#333;
+  font-size:24rpx;
+  background:#fff;
+  position:relative;
+  border:3px solid #ab2b2b;
+  border-radius:10rpx;
+  margin-right:160rpx;
+  margin-left:160rpx;
+  margin-top:60px;
+}
+.collect-list .input-box .textstyle {
+  position:absolute;
+  top:15rpx;
+  right:9rpx;
+  z-index:2;
+  color:#ab2b2b;
+  font-weight:bold;
+  border-left:solid 2px #ab2b2b;
+  padding-left:15rpx;
+  font-size:32rpx;
+
+}
+.collect-list .add-btn .integraltext{
+  display:block;
+  line-height:100rpx;
+  color:#ab2b2b;
+  font-weight:bold;
+  font-size:22rpx;
+}
+.collect-list .add-btn .integraltext1{
+  display:block;
+  line-height:5rpx;
+  color:#ab2b2b;
+  font-weight:bold;
+  font-size:40rpx;
+
+}
+.bottomtab{
+  width:100%;
+  background:#ab2b2b;
+  height:90rpx;
+  position:fixed;
+  bottom:0px;
+
+}
+.bottomtab .laber1{
+  float:left;
+  width:50%;
+  font-size:30rpx;
+  border-right:1px solid #fff;
+  text-align:center;
+  line-height:90rpx;
+  color:#fff;
+}
+.bottomtab .laber2{
+  float:left;
+  width:49%;
+  font-size:30rpx;
+  text-align:center;
+  line-height:90rpx;
+  color:#fff;
+}

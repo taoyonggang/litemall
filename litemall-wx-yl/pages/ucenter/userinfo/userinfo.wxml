@@ -1,0 +1,70 @@
+<view class="container" mode="widthFix">
+  <view class="wanshan2" mode="widthFix">
+    <view class="wanshan3" mode="widthFix">
+      <view class="form-box">
+        <view class="form-item">
+          <input class="nickname" placeholder-style="color:#dddddd;" value="{{nickname}}" bindinput="nicknameInput" placeholder="姓名" />
+          <image class="clear" src="/static/images/nickname.png"></image>
+        </view>
+        <view class="form-item">
+          <input class="mobile" placeholder-style="color:#dddddd;" value="{{mobile}}" bindinput="mobileInput" placeholder="手机" />
+          <image class="clear" src="/static/images/iPhone.png"></image>
+        </view>
+        <view class="form-item">
+          <input class="babybirthday" placeholder-style="color:#dddddd;" value="{{babybirthday}}" bindtap="showBabyDatePicker" placeholder="宝宝生日" disabled="false" />
+          <image class="clear" src="/static/images/babybirthday.png"></image>
+        </view>
+        <view class="form-item">
+          <picker bindchange="bindPickerChangeSex" value="{{indexsex}}" range="{{babysexarray}}">
+            <!-- <view class="picker" style="border-radius:33rpx"> -->
+              <view class="fb-type">
+                <view class="type-label">{{babysexarray[indexsex]}}</view>
+                <image class="type-icon" src="/static/images/sex.png"></image>
+              </view>
+            <!-- </view> -->
+          </picker>
+        </view>
+        <view class="form-item">
+          <input class="babybirthday2" placeholder-style="color:#dddddd;" value="{{babybirthday2}}" bindtap="showBabyDatePicker2" placeholder="宝宝生日(二胎)" disabled="false" />
+          <image class="clear" src="/static/images/babybirthday.png"></image>
+
+        </view>
+        <view class="form-item">
+          <picker bindchange="bindPickerChangeSex2" value="{{indexsex2}}" range="{{babysexarray2}}">
+            <!-- <view class="picker" style="border-radius:33rpx"> -->
+              <view class="fb-type">
+                <view class="type-label">{{babysexarray2[indexsex2]}}</view>
+                <image class="type-icon" src="/static/images/sex.png"></image>
+              </view>
+            <!-- </view> -->
+          </picker>
+        </view>
+        <view class="form-item">
+          <input class="address" placeholder-style="color:#dddddd;" value="{{address}}" bindtap="showCityPicker" placeholder="地址" disabled="false" />
+          <image class="clear" src="/static/images/addressimg.png"></image>
+        </view>
+        <view class="form-item">
+          <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <!-- <view class="picker" style="border-radius:33rpx"> -->
+              <view class="fb-type">
+                <view class="type-label">{{array[index]}}</view>
+                <image class="type-icon" src="/static/images/pulldown.png"></image>
+              </view>
+            <!-- </view> -->
+          </picker>
+        </view>
+        <!-- <view class="form-item-code">
+          <view class="form-item code-item">
+            <input class="code" value="{{code}}" bindinput="bindCodeInput" placeholder="验证码" />
+            <image class="clear" id="clear-code" wx:if="{{ code.length > 0 }}" src="/static/images/clear_input.png" catchtap="clearInput"></image>
+          </view>
+            <view class="code-btn" bindtap="sendCode">获取验证码</view>
+       </view> -->
+        <date-picker id="date-picker" value="{{datePickerValue}}" isShow="{{datePickerIsShow}}" bindsureclick="datePickerOnSureClick" bindcancelclick="datePickerOnCancelClick" />
+        <date-picker id="date-picker2" value="{{datePickerValue2}}" isShow="{{datePickerIsShow2}}" bindsureclick="datePickerOnSureClick2" bindcancelclick="datePickerOnCancelClick2" />
+         <city-picker id="city-picker" value="{{cityPickerValue}}" isShow="{{cityPickerIsShow}}" bindsureclick="cityPickerOnSureClick" bindcancelclick="cityPickerOnCancelClick" />
+        <view class="login-btn" bindtap="submitFeedback">提交</view>
+      </view>
+    </view>
+  </view>
+</view>

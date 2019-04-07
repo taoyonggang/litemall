@@ -1,0 +1,19 @@
+<view class="container">
+<view class="image-parent">
+  <image class='image' mode='widthFix' src='/static/images/myactivity.jpg'></image>
+  <view class="child">{{topiclist.length}}</view>
+</view>
+
+    <view class="collect-list">
+      <scroll-view class="coupon-list" scroll-y="true" scroll-top="{{scrollTop}}">
+        <view class="items" bindtap="openGoods" bindtouchstart="touchStart" bindtouchend="touchEnd" wx:for="{{topiclist}}" wx:key="id" data-index="{{index}}">
+          <view class='list'>
+              <!-- <view class="action">{{item.orign}}</view> -->
+              <view class="addTime">{{item.addTime}}</view>
+               <view class="activitycount">参与<text class="textcount">1</text>次活动</view>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+
+</view>
