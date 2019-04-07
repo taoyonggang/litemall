@@ -148,8 +148,8 @@ public class AdminTopicController {
                                         @RequestParam(defaultValue = "10") Integer size,
                                         @Sort(accepts = {"add_time", "id"}) @RequestParam(defaultValue = "add_time") String sort,
                                         @Order @RequestParam(defaultValue = "desc") String order) {
-        List<IntegralSum>  list = litemallIntegralsService.queryTopIntegrals(type,abs,page,size);
-        int count = litemallIntegralsService.queryTopIntegralsCount(type,abs);
+        List<IntegralSum>  list = litemallIntegralsService.queryTopIntegrals(type,null,abs,page,size);
+        int count = litemallIntegralsService.queryTopIntegralsCount(type,null,abs);
         int totalPages = (int) Math.ceil((double) count / size);
         Map<Object, Object> data = new HashMap<Object, Object>();
         data.put("integrals", list);
