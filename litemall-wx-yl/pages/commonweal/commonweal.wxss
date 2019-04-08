@@ -1,9 +1,9 @@
 page {
-  background: #c39744;
+  background: #f9f9f9;
   min-height: 100%;
 }
 .container {
-  background: #c39744;
+  background: #f9f9f9;
   min-height: 100%;
 }
 .image {
@@ -18,7 +18,7 @@ page {
   width: 100%;
   height: auto;
   overflow: hidden;
-  background: #c39744;
+  background: #f9f9f9;
 }
 .collect-list .add-btn {
     width:200rpx;
@@ -32,7 +32,7 @@ page {
     margin:0 auto;
     margin-top:78rpx;
     margin-bottom:60rpx;
-    border:15rpx solid #ab2b2b;
+    border:15rpx solid #1c2e56;
 }
 .collect-list .input-box {
   flex:1;
@@ -40,7 +40,7 @@ page {
   font-size:24rpx;
   background:#fff;
   position:relative;
-  border:3px solid #ab2b2b;
+  border:3px solid #1c2e56;
   border-radius:10rpx;
   margin-right:160rpx;
   margin-left:160rpx;
@@ -51,9 +51,9 @@ page {
   top:15rpx;
   right:9rpx;
   z-index:2;
-  color:#ab2b2b;
+  color:#1c2e56;
   font-weight:bold;
-  border-left:solid 2px #ab2b2b;
+  border-left:solid 2px #1c2e56;
   padding-left:15rpx;
   font-size:32rpx;
 
@@ -61,21 +61,21 @@ page {
 .collect-list .add-btn .integraltext{
   display:block;
   line-height:100rpx;
-  color:#ab2b2b;
+  color:#1c2e56;
   font-weight:bold;
   font-size:22rpx;
 }
 .collect-list .add-btn .integraltext1{
   display:block;
   line-height:5rpx;
-  color:#ab2b2b;
+  color:#1c2e56;
   font-weight:bold;
   font-size:40rpx;
 
 }
 .bottomtab{
   width:100%;
-  background:#ab2b2b;
+  background:#1c2e56;
   height:90rpx;
   position:fixed;
   bottom:0px;

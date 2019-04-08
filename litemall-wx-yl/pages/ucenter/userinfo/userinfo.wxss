@@ -9,15 +9,15 @@ background-repeat:no-repeat;
 background-size:100% 100%;
 -moz-background-size:100% 100%;
 width:100%;
-height:450rpx;
+height:1440rpx;
 position:absolute;
 display:block;
 top:0;
 left:0;
 right:0px;
-background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/ot8gu0qznbjmjuskrwpx.jpg);
+background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/x8gdn14d5b43g8p6uhu8.jpg);
 }
-.wanshan2 {
+/* .wanshan2 {
 background-repeat:no-repeat;
 background-size:100% 100%;
 -moz-background-size:100% 100%;
@@ -42,6 +42,13 @@ top:201rpx;
 left:0;
 right:0px;
 background-image:url(https://hpnk.oss-cn-shanghai.aliyuncs.com/t3s3kco3bbwns5kuwkoe.jpg);
+} */
+.logostyle{
+  width:380rpx;
+margin:0px;
+height:307rpx;
+margin-left:26%;
+
 }
 .section{
   display:flex;
@@ -192,7 +199,6 @@ view, text {
   height: auto;
   overflow: hidden;
   padding: 0 40rpx;
-  /* margin-top:830rpx; */
   z-index:999;
 }
 

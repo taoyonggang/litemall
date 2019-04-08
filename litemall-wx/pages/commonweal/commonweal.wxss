@@ -1,9 +1,9 @@
 page {
-  background: #c39744;
+  background: #f9f9f9;
   min-height: 100%;
 }
 .container {
-  background: #c39744;
+  background: #f9f9f9;
   min-height: 100%;
 }
 .image {
@@ -18,7 +18,7 @@ page {
   width: 100%;
   height: auto;
   overflow: hidden;
-  background: #c39744;
+  background: #f9f9f9;
 }
 .collect-list .add-btn {
     width:200rpx;
