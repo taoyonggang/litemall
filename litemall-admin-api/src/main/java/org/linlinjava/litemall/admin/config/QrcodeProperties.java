@@ -2,29 +2,28 @@ package org.linlinjava.litemall.admin.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
-@Configuration
+@Component
 @ConfigurationProperties(prefix = "qrcode")
 public class QrcodeProperties {
-    private String codeurl;
+    private String codeUrl;
 
-    private String imgageurl;
+    private String imgageUrl;
 
-    public String getCodeurl() {
-        return codeurl;
+    public String getCodeUrl() {
+        return codeUrl;
     }
 
-    public void setCodeurl(String codeurl) {
-        this.codeurl = codeurl;
+    public void setCodeUrl(String codeUrl) {
+        this.codeUrl = codeUrl;
     }
 
-    public String getImgageurl() {
-        return imgageurl;
+    public String getImgageUrl() {
+        return imgageUrl;
     }
 
-    public void setImgageurl(String imgageurl) {
-        this.imgageurl = imgageurl;
+    public void setImgageUrl(String imgageUrl) {
+        this.imgageUrl = imgageUrl;
     }
-
-
 }

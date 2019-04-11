@@ -130,12 +130,12 @@ public class AdminTopicController {
     public Object createCode(@RequestBody LitemallTopic topic,OutputStream output, boolean needCompress) throws Exception {
         topic = topicService.findById(topic.getId());
         //String url = "https://hpnk.1897.com/activity/?id="+topic.getId();
-        String url = qrcodeProperties.getCodeurl()+topic.getId();
+        String url = qrcodeProperties.getCodeUrl()+topic.getId();
         topic.setCodeurl(url);
         topicService.updateById(topic);
         //String binary = Qrcode2.creatRrCode(url, "D:/barcode/milk.jpg",200,200);
         //String binary = QRCodeUtil.encode(url, "/opt/www/hpnk/dist/static/img/hpnk.jpg",output,true);
-        String binary = QRCodeUtil.encode(url, qrcodeProperties.getImgageurl(),output,true);
+        String binary = QRCodeUtil.encode(url, qrcodeProperties.getImgageUrl(),output,true);
         return ResponseUtil.ok(binary);
     }
 

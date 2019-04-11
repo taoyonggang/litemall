@@ -14,9 +14,10 @@ logging:
     org.mybatis:  ERROR
     org.linlinjava.litemall.admin:  DEBUG
     org.linlinjava.litemall:  ERROR
-
 qrcode:
-    codeurl:  https://hpnk.1897.com/activity/?id=
-    imgageurl:  /opt/www/hpnk/dist/static/img/hpnk.jpg
+  #codeurl:  https://hpnk.1897.com/activity/?id=
+  #imgageurl:  /opt/www/hpnk/dist/static/img/hpnk.jpg
+  codeUrl: https://yl.1897.com/activity/?id=
+  imgageUrl: /opt/www/hpnk/dist/static/img/yl.jpg
 
 
