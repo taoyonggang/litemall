@@ -376,6 +376,10 @@ public class WxAuthController {
         String address = JacksonUtil.parseString(body, "address");
         String mobile = JacksonUtil.parseString(body, "mobile");
 
+        String code = JacksonUtil.parseString(body, "code");
+
+
+
 
         if (StringUtils.isEmpty(nickname) || StringUtils.isEmpty(fromSource)
                 || StringUtils.isEmpty(babybirthday) || StringUtils.isEmpty(address)) {
@@ -387,7 +391,10 @@ public class WxAuthController {
             return ResponseUtil.fail(AUTH_INVALID_ACCOUNT, "用户不存在");
         }
 
-
+        //判断验证码是否正确
+        String cacheCode = CaptchaCodeManager.getCachedCaptcha(mobile);
+        if (cacheCode == null || cacheCode.isEmpty() || !cacheCode.equals(code))
+            return ResponseUtil.fail(AUTH_CAPTCHA_UNMATCH, "验证码错误");
 
         try {
             user.setNickname(nickname);

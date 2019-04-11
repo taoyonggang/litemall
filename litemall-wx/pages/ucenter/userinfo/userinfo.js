@@ -39,7 +39,8 @@ Page({
             fromSource:'',
             mobile:'',
             babysex:'',
-            babysex2:''
+            babysex2:'',
+            code: '',
         },
     integral: {
       type: 0,
@@ -54,6 +55,7 @@ Page({
     fromSource:'',
     babysex: '',
     babysex2: '',
+    code: '',
   },
   bindPickerChange: function (e) {
     this.setData({
@@ -83,6 +85,11 @@ Page({
   addressInput:function(e){
     this.setData({
       address: e.detail.value
+    });
+  },
+  bindCodeInput: function (e) {
+    this.setData({
+      code: e.detail.value
     });
   },
   showUserDatePicker: function (e) {
@@ -223,6 +230,10 @@ Page({
       util.showErrorToast('请输入宝宝性别');
       return false;
     }
+    if (that.data.code == '') {
+      util.showErrorToast('请输入验证码');
+      return false;
+    }
     // if (that.data.babybirthday == '') {
     //   util.showErrorToast('请输入宝宝生日(二胎)');
     //   return false;
@@ -268,7 +279,8 @@ Page({
       babybirthday2: that.data.babybirthday2,
       address: that.data.address,
       babysex:that.data.babysex,
-      babysex2: that.data.babysex2
+      babysex2: that.data.babysex2,
+      code: that.data.code
       //id: that.data.id,
     }, 'POST').then(function (res) {
       wx.hideLoading();
