@@ -10,7 +10,9 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.linlinjava.litemall.admin.annotation.RequiresPermissionsDesc;
+import org.linlinjava.litemall.admin.config.QrcodeProperties;
 import org.linlinjava.litemall.admin.util.QRCodeUtil;
+import org.linlinjava.litemall.core.config.WxProperties;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
@@ -19,6 +21,7 @@ import org.linlinjava.litemall.db.domain.LitemallTopic;
 import org.linlinjava.litemall.db.service.LitemallIntegralsService;
 import org.linlinjava.litemall.db.service.LitemallTopicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +37,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/admin/topic")
 @Validated
+@Configuration
 public class AdminTopicController {
     private final Log logger = LogFactory.getLog(AdminTopicController.class);
 
@@ -41,6 +45,9 @@ public class AdminTopicController {
     private LitemallTopicService topicService;
     @Autowired
     private LitemallIntegralsService litemallIntegralsService;
+
+    @Autowired
+    private QrcodeProperties qrcodeProperties;
 
     @RequiresPermissions("admin:topic:list")
     @RequiresPermissionsDesc(menu={"推广管理" , "专题管理"}, button="查询")
@@ -122,11 +129,13 @@ public class AdminTopicController {
     @PostMapping("/createCode")
     public Object createCode(@RequestBody LitemallTopic topic,OutputStream output, boolean needCompress) throws Exception {
         topic = topicService.findById(topic.getId());
-        String url = "https://hpnk.1897.com/activity/?id="+topic.getId();
+        //String url = "https://hpnk.1897.com/activity/?id="+topic.getId();
+        String url = qrcodeProperties.getCodeurl()+topic.getId();
         topic.setCodeurl(url);
         topicService.updateById(topic);
         //String binary = Qrcode2.creatRrCode(url, "D:/barcode/milk.jpg",200,200);
-        String binary = QRCodeUtil.encode(url, "/opt/www/hpnk/dist/static/img/hpnk.jpg",output,true);
+        //String binary = QRCodeUtil.encode(url, "/opt/www/hpnk/dist/static/img/hpnk.jpg",output,true);
+        String binary = QRCodeUtil.encode(url, qrcodeProperties.getImgageurl(),output,true);
         return ResponseUtil.ok(binary);
     }
 
