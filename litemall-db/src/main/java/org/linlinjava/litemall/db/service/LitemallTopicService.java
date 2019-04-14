@@ -21,7 +21,7 @@ public class LitemallTopicService {
     @Resource
     private LitemallTopicMapper topicMapper;
 
-    private Column[] columns = new Column[]{Column.id, Column.title, Column.subtitle, Column.price, Column.picUrl, Column.readCount};
+    private Column[] columns = new Column[]{Column.id, Column.title, Column.subtitle, Column.price, Column.picUrl, Column.readCount,Column.endTime};
 
 
     public List<LitemallTopic> queryList(int offset, int limit,Byte topicType) {

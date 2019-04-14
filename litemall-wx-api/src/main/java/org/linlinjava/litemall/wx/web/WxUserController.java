@@ -86,8 +86,8 @@ public class WxUserController {
         }
 
         int sum = litemallIntegralsService.queryIntegralSum(userId);
-        if (Math.abs(integral)>sum){
-            ResponseUtil.fail(ORDER_PAY_FAIL,"积分不足");
+        if (Math.abs(integral)>sum || sum<=0){
+            return ResponseUtil.fail(ORDER_PAY_FAIL,"积分不足");
         }
         // 扣积分
         Integer resultId  = litemallIntegralsService.addIntegral("公益行",

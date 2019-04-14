@@ -44,12 +44,14 @@ public class WxTopicController {
      * @return 专题列表
      */
     @GetMapping("list")
-    public Object list(@RequestParam(defaultValue = "1") Integer page,
+    public Object list(@RequestParam(defaultValue = "0") Integer topicType,
+                       @RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer size,
                        @Sort @RequestParam(defaultValue = "add_time") String sort,
                        @Order @RequestParam(defaultValue = "desc") String order) {
-        List<LitemallTopic> topicList = topicService.queryList(page, size, sort, order,(byte)0);
-        int total = topicService.queryTotal((byte)0);
+
+        List<LitemallTopic> topicList = topicService.queryList(page, size, sort, order,topicType.byteValue());
+        int total = topicService.queryTotal(topicType.byteValue());
         Map<String, Object> data = new HashMap<String, Object>();
         data.put("data", topicList);
         data.put("count", total);
