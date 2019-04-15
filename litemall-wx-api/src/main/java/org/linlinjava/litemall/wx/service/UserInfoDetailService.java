@@ -30,6 +30,7 @@ public class UserInfoDetailService {
         userInfo.setMobile(user.getMobile());
         userInfo.setBabysex(user.getBabysex());
         userInfo.setBabysex2(user.getBabysex2());
+        userInfo.setMemberUsername(user.getMemberUsername());
         return userInfo;
     }
 }

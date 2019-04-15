@@ -13,6 +13,15 @@ public class UserInfoDetail extends UserInfo {
     private String mobile;
     private Byte babysex;
     private Byte babysex2;
+    private String memberUsername;
+
+    public String getMemberUsername() {
+        return memberUsername;
+    }
+
+    public void setMemberUsername(String memberUsername) {
+        this.memberUsername = memberUsername;
+    }
 
     public Integer getUserId() {
         return userId;

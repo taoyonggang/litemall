@@ -375,13 +375,10 @@ public class WxAuthController {
         String fromSource = JacksonUtil.parseString(body, "fromSource");
         String address = JacksonUtil.parseString(body, "address");
         String mobile = JacksonUtil.parseString(body, "mobile");
-
+        String memberUsername = JacksonUtil.parseString(body, "memberUsername");
         String code = JacksonUtil.parseString(body, "code");
 
-
-
-
-        if (StringUtils.isEmpty(nickname) || StringUtils.isEmpty(fromSource)
+        if (StringUtils.isEmpty(memberUsername) || StringUtils.isEmpty(fromSource)
                 || StringUtils.isEmpty(babybirthday) || StringUtils.isEmpty(address)) {
             return ResponseUtil.badArgument();
         }
@@ -411,6 +408,7 @@ public class WxAuthController {
             }
             user.setFromsouce(fromSource);
             user.setAddress(address);
+            user.setMemberUsername(memberUsername);
             if(mobile!=null&&!mobile.isEmpty())
                 user.setMobile(mobile);
             userService.updateById(user);
