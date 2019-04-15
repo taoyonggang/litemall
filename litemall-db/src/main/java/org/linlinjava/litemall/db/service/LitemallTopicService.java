@@ -25,7 +25,7 @@ public class LitemallTopicService {
 
 
     public List<LitemallTopic> queryList(int offset, int limit,Byte topicType) {
-        return queryList(offset, limit, "add_time", "desc",topicType);
+        return queryList(offset, limit, "end_time", "desc",topicType);
     }
 
     public List<LitemallTopic> queryList(int offset, int limit, String sort, String order,Byte topicType) {
@@ -53,7 +53,7 @@ public class LitemallTopicService {
         example.or().andIdEqualTo(id).andDeletedEqualTo(false);
         List<LitemallTopic> topics = topicMapper.selectByExample(example);
         if (topics.size() == 0) {
-            return queryList(offset, limit, "add_time", "desc",(byte)0);
+            return queryList(offset, limit, "end_time", "desc",(byte)0);
         }
         LitemallTopic topic = topics.get(0);
 
@@ -65,7 +65,7 @@ public class LitemallTopicService {
             return relateds;
         }
 
-        return queryList(offset, limit, "add_time", "desc",(byte)0);
+        return queryList(offset, limit, "end_time", "desc",(byte)0);
     }
 
     public List<LitemallTopic> querySelective(String title, String subtitle, Integer page, Integer limit, String sort, String order) {
