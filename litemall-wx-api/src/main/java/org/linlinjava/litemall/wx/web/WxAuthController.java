@@ -421,7 +421,7 @@ public class WxAuthController {
             if(mobile!=null&&!mobile.isEmpty())
                 user.setMobile(mobile);
 
-            if (crmProperties.getEnalbe()) {
+            if (crmProperties.getEnabled()) {
                 logger.debug("Update to crm with:"+user.toString()+"\n codes:"+codes);
                 int r = crmService.addUser(user, codes);
                 if (r == -1) {//更新失败，保存信息，不更新积分
@@ -449,11 +449,7 @@ public class WxAuthController {
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseUtil.fail(USER_INFO_ERROR, "更新用户数据有错误");
-        }finally {
-            return ResponseUtil.ok();
         }
-
-
 
     }
 

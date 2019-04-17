@@ -43,6 +43,18 @@ public class DateTimeUtil {
         }
     }
 
+    public static String getDateDisplayString2(LocalDate date) {
+        try {
+            DateTimeFormatter dtf2 = DateTimeFormatter.ofPattern("yyyyMMdd");
+            String strDate2 = dtf2.format(date);
+            return strDate2;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+
     public static LocalDate StringToLocalDate(String dayDate) {
         Date birthdayDate = null;
         Instant instant = null;

@@ -75,8 +75,8 @@ public class CrmService {
             String md5Hex = DigestUtils
                     .md5Hex(user.getPassword()).toUpperCase();
             crm_user.setPassword(md5Hex);
-            crm_user.setBabybirthday(DateTimeUtil.getDateDisplayString(user.getBabybirthday()));
-            crm_user.setBabybirthday2(DateTimeUtil.getDateDisplayString(user.getBabybirthday2()));
+            crm_user.setBabybirthday(DateTimeUtil.getDateDisplayString2(user.getBabybirthday()));
+            crm_user.setBabybirthday2(DateTimeUtil.getDateDisplayString2(user.getBabybirthday2()));
             crm_user.setBabysex(user.getBabysex());
             crm_user.setBabysex2(user.getBabysex2());
             crm_user.setAddress(user.getAddress());
@@ -93,6 +93,9 @@ public class CrmService {
                 return client.addUser(crm_user);
             }catch (Exception e) {
                 e.printStackTrace();
+                client = null;
+                transport = null;
+                isConnected = false;
             }
         }
         return -1;
@@ -110,13 +113,16 @@ public class CrmService {
                 }
             }catch (Exception e) {
                 e.printStackTrace();
+                client = null;
+                transport = null;
+                isConnected = false;
             }
         }
         return null;
     }
 
     private Boolean checkStarted(){
-        if (isConnected&&transport!=null&&transport.isOpen())
+        if (isConnected&&transport!=null&&client!=null&&transport.isOpen())
             return true;
         else return start();
     }

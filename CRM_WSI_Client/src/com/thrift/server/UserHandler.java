@@ -74,32 +74,41 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
             return -1;
         }
         String rsxmlx = WebServiceExecuterNew.getUserSoapService(url, spName, spPassword).register(result.getToken(), sign, xml_encrypt);
+        System.out.println(rsxmlx);
         Document document = getDocument(rsxmlx);
+        String msg="",memberId="0";
         HashMap map = new HashMap();
         Element root = document.getRootElement();
         List<Element> childElements = root.elements();
         for (Element ele : childElements) {
             System.out.println(ele.getName() + ": " + ele.getText());
-            map.put(ele.getName(), ele.getText());
+            if(ele.getName().equals("msg")){
+                msg = ele.getText();
+            }else if(ele.getName().equals("memberId")){
+                memberId = ele.getText();
+            }
         }
-        Iterator keys = map.keySet().iterator();
-        while(keys.hasNext()){
-            String key = (String)keys.next();
-            if("memberId".equals(key)){
-                System.out.println("存在memberId,值为:"+(int)map.get(key));
-                return (int)map.get(key);
-            }else {
-                System.out.println("不存在memberId,返回0");
+
+
+        if (msg!=null){
+            if (msg.contains("成功")) {
+                System.out.println("成功");
+                return Integer.parseInt(memberId);
+            }
+            else if (msg.contains("已经注册")){
+                System.out.println("已经注册");
                 return 0;
             }
         }
-        return 0;
+        System.out.println("failed");
+
+        return -1;
     }
 
 
     public User getUserInfo(String mobile){
         User user = new User();
-        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><userQueryInfo>><companyId>1</companyId><userName>13822152569</userName></userQueryInfo>";
+        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><userQueryInfo>><companyId>"+company_id+"</companyId><userName>"+mobile+"</userName></userQueryInfo>";
         try {
             xml_encrypt = getXml_encrypt(key, xml);
             privateKey = IOUtils.toString(UserHandler.class.getResourceAsStream("/key/privateKey.txt"));
@@ -131,13 +140,13 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
             }else if("mobiletel".equals(key)){
                 user.setMobile((String) map.get(key));
             }else if("point_a_balance".equals(key)){
-                user.setIntegral((int) map.get(key));
+                user.setIntegral(Integer.parseInt(map.get(key).toString()));
             }else if("tier_id".equals(key)){
-                user.setGrade((int) map.get(key));
+                user.setGrade(Integer.parseInt(map.get(key).toString()));
             }else if("main_babay_birthday".equals(key)){
                 user.setBabybirthday((String) map.get(key));
             }else if("main_babay_sex".equals(key)){
-                user.setBabysex((byte) map.get(key));
+                user.setBabysex(Byte.valueOf(map.get(key).toString()));
             }else if("member_name".equals(key)){
                 user.setMemberUsername((String) map.get(key));
             }

@@ -1,26 +1,25 @@
 package org.linlinjava.litemall.core.config;
 
+import jdk.nashorn.internal.objects.annotations.Getter;
+import jdk.nashorn.internal.objects.annotations.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @ConfigurationProperties(prefix = "litemall.crm")
+
 public class CrmProperties {
 
-    private Boolean enalbe;
+    private Boolean enabled;
 
     private String host;
 
-    private Integer port;
-
-    private Integer timeout;
-
-    public Boolean getEnalbe() {
-        return enalbe;
+    public Boolean getEnabled() {
+        return enabled;
     }
 
-    public void setEnalbe(Boolean enalbe) {
-        this.enalbe = enalbe;
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 
     public String getHost() {
@@ -46,4 +45,10 @@ public class CrmProperties {
     public void setTimeout(Integer timeout) {
         this.timeout = timeout;
     }
+
+    private Integer port;
+
+    private Integer timeout;
+
+
 }
