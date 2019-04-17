@@ -11,6 +11,7 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
     public static String spPassword = "f929a717f99cbdd94eaa499207b86404";
     public static String spName = "b92705ab6294a656f8e073d6503bac55";
     public static String key = "c9d4cce1a2014d3bba0e1d434ee2e5e7";
+    public static Integer company_id = 6;
 
     public static String rsxml = WebServiceExecuterNew.getWsiSoapService(url, spName, spPassword).generationToken();
     public static GetTokenResult result = JaxbMapper.fromXml(rsxml, GetTokenResult.class);

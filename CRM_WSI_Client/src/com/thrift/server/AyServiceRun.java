@@ -90,9 +90,6 @@ public class AyServiceRun {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		//AyServiceRun tc = new AyServiceRun();
-		//tc.testSend1();
-
 		try {
 			handler = new UserHandler();
 			processor = new AyService.Processor(handler);
@@ -112,9 +109,7 @@ public class AyServiceRun {
 	public static void simple(AyService.Processor processor) {
 		try {
 			TServerTransport serverTransport = new TServerSocket(9090);
-			//TServer server = new TSimpleServer(new TServer.Args(serverTransport).processor(processor));
 
-			// Use this for a multithreaded server
 			TServer server = new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(processor));
 
 			System.out.println("Starting the simple server...");

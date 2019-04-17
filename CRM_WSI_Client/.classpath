@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="resources"/>
+	<classpathentry kind="lib" path="lib/cxf-api-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-bindings-soap-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-bindings-xml-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-core-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-databinding-jaxb-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-frontend-jaxrs-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-frontend-jaxws-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-frontend-simple-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-transports-http-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-ws-addr-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/cxf-rt-ws-policy-2.7.11.jar"/>
+	<classpathentry kind="lib" path="lib/commons-io-2.4.jar"/>
+	<classpathentry kind="lib" path="lib/springside-core-4.2.3-GA.jar"/>
+	<classpathentry kind="lib" path="lib/xmlschema-core-2.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/wsdl4j-1.6.3.jar"/>
+	<classpathentry kind="lib" path="lib/neethi-3.0.3.jar"/>
+	<classpathentry kind="lib" path="lib/asm-5.0.4.jar"/>
+	<classpathentry kind="lib" path="lib/woodstox-core-asl-4.4.1.jar"/>
+	<classpathentry kind="lib" path="lib/stax2-api-3.1.4.jar"/>
+	<classpathentry kind="lib" path="lib/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
