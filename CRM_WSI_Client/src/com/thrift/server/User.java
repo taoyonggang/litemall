@@ -35,34 +35,46 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   private static final org.apache.thrift.protocol.TField BABYSEX_FIELD_DESC = new org.apache.thrift.protocol.TField("babysex", org.apache.thrift.protocol.TType.BYTE, (short)23);
   private static final org.apache.thrift.protocol.TField BABYSEX2_FIELD_DESC = new org.apache.thrift.protocol.TField("babysex2", org.apache.thrift.protocol.TType.BYTE, (short)24);
   private static final org.apache.thrift.protocol.TField MEMBER_USERNAME_FIELD_DESC = new org.apache.thrift.protocol.TField("memberUsername", org.apache.thrift.protocol.TType.STRING, (short)25);
+  private static final org.apache.thrift.protocol.TField COMPANY_ID_FIELD_DESC = new org.apache.thrift.protocol.TField("company_id", org.apache.thrift.protocol.TType.I32, (short)26);
+  private static final org.apache.thrift.protocol.TField USER_TYPE_FIELD_DESC = new org.apache.thrift.protocol.TField("user_type", org.apache.thrift.protocol.TType.STRING, (short)27);
+  private static final org.apache.thrift.protocol.TField ORIGIN_FIELD_DESC = new org.apache.thrift.protocol.TField("origin", org.apache.thrift.protocol.TType.STRING, (short)28);
+  private static final org.apache.thrift.protocol.TField PROVINCE_FIELD_DESC = new org.apache.thrift.protocol.TField("province", org.apache.thrift.protocol.TType.STRING, (short)29);
+  private static final org.apache.thrift.protocol.TField CITY_FIELD_DESC = new org.apache.thrift.protocol.TField("city", org.apache.thrift.protocol.TType.STRING, (short)30);
+  private static final org.apache.thrift.protocol.TField AREA_FIELD_DESC = new org.apache.thrift.protocol.TField("area", org.apache.thrift.protocol.TType.STRING, (short)31);
 
   private static final org.apache.thrift.scheme.SchemeFactory STANDARD_SCHEME_FACTORY = new UserStandardSchemeFactory();
   private static final org.apache.thrift.scheme.SchemeFactory TUPLE_SCHEME_FACTORY = new UserTupleSchemeFactory();
 
   public int id; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String username; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String password; // required
+  public @org.apache.thrift.annotation.Nullable String username; // optional
+  public @org.apache.thrift.annotation.Nullable String password; // optional
   public byte gender; // optional
-  public @org.apache.thrift.annotation.Nullable java.lang.String birthday; // optional
-  public @org.apache.thrift.annotation.Nullable java.lang.String lastLoginTime; // optional
-  public @org.apache.thrift.annotation.Nullable java.lang.String lastLoginIp; // optional
+  public @org.apache.thrift.annotation.Nullable String birthday; // optional
+  public @org.apache.thrift.annotation.Nullable String lastLoginTime; // optional
+  public @org.apache.thrift.annotation.Nullable String lastLoginIp; // optional
   public byte userLevel; // optional
-  public @org.apache.thrift.annotation.Nullable java.lang.String nickname; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String mobile; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String avatar; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String weixinOpenid; // required
-  public byte status; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String addTime; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String updateTime; // required
-  public int integral; // required
-  public int grade; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String fromsouce; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String address; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String babybirthday; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String babybirthday2; // required
-  public byte babysex; // required
-  public byte babysex2; // required
-  public @org.apache.thrift.annotation.Nullable java.lang.String memberUsername; // required
+  public @org.apache.thrift.annotation.Nullable String nickname; // optional
+  public @org.apache.thrift.annotation.Nullable String mobile; // optional
+  public @org.apache.thrift.annotation.Nullable String avatar; // optional
+  public @org.apache.thrift.annotation.Nullable String weixinOpenid; // optional
+  public byte status; // optional
+  public @org.apache.thrift.annotation.Nullable String addTime; // optional
+  public @org.apache.thrift.annotation.Nullable String updateTime; // optional
+  public int integral; // optional
+  public int grade; // optional
+  public @org.apache.thrift.annotation.Nullable String fromsouce; // optional
+  public @org.apache.thrift.annotation.Nullable String address; // optional
+  public @org.apache.thrift.annotation.Nullable String babybirthday; // optional
+  public @org.apache.thrift.annotation.Nullable String babybirthday2; // optional
+  public byte babysex; // optional
+  public byte babysex2; // optional
+  public @org.apache.thrift.annotation.Nullable String memberUsername; // optional
+  public int company_id; // optional
+  public @org.apache.thrift.annotation.Nullable String user_type; // optional
+  public @org.apache.thrift.annotation.Nullable String origin; // optional
+  public @org.apache.thrift.annotation.Nullable String province; // optional
+  public @org.apache.thrift.annotation.Nullable String city; // optional
+  public @org.apache.thrift.annotation.Nullable String area; // optional
 
   /** The set of fields this struct contains, along with convenience methods for finding and manipulating them. */
   public enum _Fields implements org.apache.thrift.TFieldIdEnum {
@@ -89,9 +101,15 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     BABYBIRTHDAY2((short)22, "babybirthday2"),
     BABYSEX((short)23, "babysex"),
     BABYSEX2((short)24, "babysex2"),
-    MEMBER_USERNAME((short)25, "memberUsername");
+    MEMBER_USERNAME((short)25, "memberUsername"),
+    COMPANY_ID((short)26, "company_id"),
+    USER_TYPE((short)27, "user_type"),
+    ORIGIN((short)28, "origin"),
+    PROVINCE((short)29, "province"),
+    CITY((short)30, "city"),
+    AREA((short)31, "area");
 
-    private static final java.util.Map<java.lang.String, _Fields> byName = new java.util.HashMap<java.lang.String, _Fields>();
+    private static final java.util.Map<String, _Fields> byName = new java.util.HashMap<String, _Fields>();
 
     static {
       for (_Fields field : java.util.EnumSet.allOf(_Fields.class)) {
@@ -153,6 +171,18 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
           return BABYSEX2;
         case 25: // MEMBER_USERNAME
           return MEMBER_USERNAME;
+        case 26: // COMPANY_ID
+          return COMPANY_ID;
+        case 27: // USER_TYPE
+          return USER_TYPE;
+        case 28: // ORIGIN
+          return ORIGIN;
+        case 29: // PROVINCE
+          return PROVINCE;
+        case 30: // CITY
+          return CITY;
+        case 31: // AREA
+          return AREA;
         default:
           return null;
       }
@@ -164,7 +194,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
      */
     public static _Fields findByThriftIdOrThrow(int fieldId) {
       _Fields fields = findByThriftId(fieldId);
-      if (fields == null) throw new java.lang.IllegalArgumentException("Field " + fieldId + " doesn't exist!");
+      if (fields == null) throw new IllegalArgumentException("Field " + fieldId + " doesn't exist!");
       return fields;
     }
 
@@ -172,14 +202,14 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
      * Find the _Fields constant that matches name, or null if its not found.
      */
     @org.apache.thrift.annotation.Nullable
-    public static _Fields findByName(java.lang.String name) {
+    public static _Fields findByName(String name) {
       return byName.get(name);
     }
 
     private final short _thriftId;
-    private final java.lang.String _fieldName;
+    private final String _fieldName;
 
-    _Fields(short thriftId, java.lang.String fieldName) {
+    _Fields(short thriftId, String fieldName) {
       _thriftId = thriftId;
       _fieldName = fieldName;
     }
@@ -188,7 +218,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       return _thriftId;
     }
 
-    public java.lang.String getFieldName() {
+    public String getFieldName() {
       return _fieldName;
     }
   }
@@ -202,58 +232,71 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   private static final int __GRADE_ISSET_ID = 5;
   private static final int __BABYSEX_ISSET_ID = 6;
   private static final int __BABYSEX2_ISSET_ID = 7;
-  private byte __isset_bitfield = 0;
-  private static final _Fields optionals[] = {_Fields.GENDER,_Fields.BIRTHDAY,_Fields.LAST_LOGIN_TIME,_Fields.LAST_LOGIN_IP,_Fields.USER_LEVEL};
+  private static final int __COMPANY_ID_ISSET_ID = 8;
+  private short __isset_bitfield = 0;
+  private static final _Fields optionals[] = {_Fields.USERNAME, _Fields.PASSWORD, _Fields.GENDER, _Fields.BIRTHDAY, _Fields.LAST_LOGIN_TIME, _Fields.LAST_LOGIN_IP, _Fields.USER_LEVEL, _Fields.NICKNAME, _Fields.MOBILE, _Fields.AVATAR, _Fields.WEIXIN_OPENID, _Fields.STATUS, _Fields.ADD_TIME, _Fields.UPDATE_TIME, _Fields.INTEGRAL, _Fields.GRADE, _Fields.FROMSOUCE, _Fields.ADDRESS, _Fields.BABYBIRTHDAY, _Fields.BABYBIRTHDAY2, _Fields.BABYSEX, _Fields.BABYSEX2, _Fields.MEMBER_USERNAME, _Fields.COMPANY_ID, _Fields.USER_TYPE, _Fields.ORIGIN, _Fields.PROVINCE, _Fields.CITY, _Fields.AREA};
   public static final java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> metaDataMap;
   static {
     java.util.Map<_Fields, org.apache.thrift.meta_data.FieldMetaData> tmpMap = new java.util.EnumMap<_Fields, org.apache.thrift.meta_data.FieldMetaData>(_Fields.class);
-    tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.ID, new org.apache.thrift.meta_data.FieldMetaData("id", org.apache.thrift.TFieldRequirementType.DEFAULT,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32)));
-    tmpMap.put(_Fields.USERNAME, new org.apache.thrift.meta_data.FieldMetaData("username", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.USERNAME, new org.apache.thrift.meta_data.FieldMetaData("username", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.PASSWORD, new org.apache.thrift.meta_data.FieldMetaData("password", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.PASSWORD, new org.apache.thrift.meta_data.FieldMetaData("password", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.GENDER, new org.apache.thrift.meta_data.FieldMetaData("gender", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+    tmpMap.put(_Fields.GENDER, new org.apache.thrift.meta_data.FieldMetaData("gender", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
-    tmpMap.put(_Fields.BIRTHDAY, new org.apache.thrift.meta_data.FieldMetaData("birthday", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+    tmpMap.put(_Fields.BIRTHDAY, new org.apache.thrift.meta_data.FieldMetaData("birthday", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.LAST_LOGIN_TIME, new org.apache.thrift.meta_data.FieldMetaData("lastLoginTime", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+    tmpMap.put(_Fields.LAST_LOGIN_TIME, new org.apache.thrift.meta_data.FieldMetaData("lastLoginTime", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.LAST_LOGIN_IP, new org.apache.thrift.meta_data.FieldMetaData("lastLoginIp", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+    tmpMap.put(_Fields.LAST_LOGIN_IP, new org.apache.thrift.meta_data.FieldMetaData("lastLoginIp", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.USER_LEVEL, new org.apache.thrift.meta_data.FieldMetaData("userLevel", org.apache.thrift.TFieldRequirementType.OPTIONAL, 
+    tmpMap.put(_Fields.USER_LEVEL, new org.apache.thrift.meta_data.FieldMetaData("userLevel", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
-    tmpMap.put(_Fields.NICKNAME, new org.apache.thrift.meta_data.FieldMetaData("nickname", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.NICKNAME, new org.apache.thrift.meta_data.FieldMetaData("nickname", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.MOBILE, new org.apache.thrift.meta_data.FieldMetaData("mobile", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.MOBILE, new org.apache.thrift.meta_data.FieldMetaData("mobile", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.AVATAR, new org.apache.thrift.meta_data.FieldMetaData("avatar", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.AVATAR, new org.apache.thrift.meta_data.FieldMetaData("avatar", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.WEIXIN_OPENID, new org.apache.thrift.meta_data.FieldMetaData("weixinOpenid", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.WEIXIN_OPENID, new org.apache.thrift.meta_data.FieldMetaData("weixinOpenid", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.STATUS, new org.apache.thrift.meta_data.FieldMetaData("status", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.STATUS, new org.apache.thrift.meta_data.FieldMetaData("status", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
-    tmpMap.put(_Fields.ADD_TIME, new org.apache.thrift.meta_data.FieldMetaData("addTime", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.ADD_TIME, new org.apache.thrift.meta_data.FieldMetaData("addTime", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.UPDATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("updateTime", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.UPDATE_TIME, new org.apache.thrift.meta_data.FieldMetaData("updateTime", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.INTEGRAL, new org.apache.thrift.meta_data.FieldMetaData("integral", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.INTEGRAL, new org.apache.thrift.meta_data.FieldMetaData("integral", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32        , "int")));
-    tmpMap.put(_Fields.GRADE, new org.apache.thrift.meta_data.FieldMetaData("grade", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.GRADE, new org.apache.thrift.meta_data.FieldMetaData("grade", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32        , "int")));
-    tmpMap.put(_Fields.FROMSOUCE, new org.apache.thrift.meta_data.FieldMetaData("fromsouce", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.FROMSOUCE, new org.apache.thrift.meta_data.FieldMetaData("fromsouce", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.ADDRESS, new org.apache.thrift.meta_data.FieldMetaData("address", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.ADDRESS, new org.apache.thrift.meta_data.FieldMetaData("address", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.BABYBIRTHDAY, new org.apache.thrift.meta_data.FieldMetaData("babybirthday", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.BABYBIRTHDAY, new org.apache.thrift.meta_data.FieldMetaData("babybirthday", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.BABYBIRTHDAY2, new org.apache.thrift.meta_data.FieldMetaData("babybirthday2", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.BABYBIRTHDAY2, new org.apache.thrift.meta_data.FieldMetaData("babybirthday2", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
-    tmpMap.put(_Fields.BABYSEX, new org.apache.thrift.meta_data.FieldMetaData("babysex", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.BABYSEX, new org.apache.thrift.meta_data.FieldMetaData("babysex", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
-    tmpMap.put(_Fields.BABYSEX2, new org.apache.thrift.meta_data.FieldMetaData("babysex2", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.BABYSEX2, new org.apache.thrift.meta_data.FieldMetaData("babysex2", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.BYTE)));
-    tmpMap.put(_Fields.MEMBER_USERNAME, new org.apache.thrift.meta_data.FieldMetaData("memberUsername", org.apache.thrift.TFieldRequirementType.DEFAULT, 
+    tmpMap.put(_Fields.MEMBER_USERNAME, new org.apache.thrift.meta_data.FieldMetaData("memberUsername", org.apache.thrift.TFieldRequirementType.OPTIONAL,
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.COMPANY_ID, new org.apache.thrift.meta_data.FieldMetaData("company_id", org.apache.thrift.TFieldRequirementType.OPTIONAL,
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.I32        , "int")));
+    tmpMap.put(_Fields.USER_TYPE, new org.apache.thrift.meta_data.FieldMetaData("user_type", org.apache.thrift.TFieldRequirementType.OPTIONAL,
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.ORIGIN, new org.apache.thrift.meta_data.FieldMetaData("origin", org.apache.thrift.TFieldRequirementType.OPTIONAL,
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.PROVINCE, new org.apache.thrift.meta_data.FieldMetaData("province", org.apache.thrift.TFieldRequirementType.OPTIONAL,
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.CITY, new org.apache.thrift.meta_data.FieldMetaData("city", org.apache.thrift.TFieldRequirementType.OPTIONAL,
+        new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
+    tmpMap.put(_Fields.AREA, new org.apache.thrift.meta_data.FieldMetaData("area", org.apache.thrift.TFieldRequirementType.OPTIONAL,
         new org.apache.thrift.meta_data.FieldValueMetaData(org.apache.thrift.protocol.TType.STRING)));
     metaDataMap = java.util.Collections.unmodifiableMap(tmpMap);
     org.apache.thrift.meta_data.FieldMetaData.addStructMetaDataMap(User.class, metaDataMap);
@@ -265,52 +308,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   public User(
-    int id,
-    java.lang.String username,
-    java.lang.String password,
-    java.lang.String nickname,
-    java.lang.String mobile,
-    java.lang.String avatar,
-    java.lang.String weixinOpenid,
-    byte status,
-    java.lang.String addTime,
-    java.lang.String updateTime,
-    int integral,
-    int grade,
-    java.lang.String fromsouce,
-    java.lang.String address,
-    java.lang.String babybirthday,
-    java.lang.String babybirthday2,
-    byte babysex,
-    byte babysex2,
-    java.lang.String memberUsername)
+    int id)
   {
     this();
     this.id = id;
     setIdIsSet(true);
-    this.username = username;
-    this.password = password;
-    this.nickname = nickname;
-    this.mobile = mobile;
-    this.avatar = avatar;
-    this.weixinOpenid = weixinOpenid;
-    this.status = status;
-    setStatusIsSet(true);
-    this.addTime = addTime;
-    this.updateTime = updateTime;
-    this.integral = integral;
-    setIntegralIsSet(true);
-    this.grade = grade;
-    setGradeIsSet(true);
-    this.fromsouce = fromsouce;
-    this.address = address;
-    this.babybirthday = babybirthday;
-    this.babybirthday2 = babybirthday2;
-    this.babysex = babysex;
-    setBabysexIsSet(true);
-    this.babysex2 = babysex2;
-    setBabysex2IsSet(true);
-    this.memberUsername = memberUsername;
   }
 
   /**
@@ -374,6 +376,22 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     if (other.isSetMemberUsername()) {
       this.memberUsername = other.memberUsername;
     }
+    this.company_id = other.company_id;
+    if (other.isSetUser_type()) {
+      this.user_type = other.user_type;
+    }
+    if (other.isSetOrigin()) {
+      this.origin = other.origin;
+    }
+    if (other.isSetProvince()) {
+      this.province = other.province;
+    }
+    if (other.isSetCity()) {
+      this.city = other.city;
+    }
+    if (other.isSetArea()) {
+      this.area = other.area;
+    }
   }
 
   public User deepCopy() {
@@ -414,6 +432,13 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     setBabysex2IsSet(false);
     this.babysex2 = 0;
     this.memberUsername = null;
+    setCompany_idIsSet(false);
+    this.company_id = 0;
+    this.user_type = null;
+    this.origin = null;
+    this.province = null;
+    this.city = null;
+    this.area = null;
   }
 
   public int getId() {
@@ -440,11 +465,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getUsername() {
+  public String getUsername() {
     return this.username;
   }
 
-  public User setUsername(@org.apache.thrift.annotation.Nullable java.lang.String username) {
+  public User setUsername(@org.apache.thrift.annotation.Nullable String username) {
     this.username = username;
     return this;
   }
@@ -465,11 +490,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getPassword() {
+  public String getPassword() {
     return this.password;
   }
 
-  public User setPassword(@org.apache.thrift.annotation.Nullable java.lang.String password) {
+  public User setPassword(@org.apache.thrift.annotation.Nullable String password) {
     this.password = password;
     return this;
   }
@@ -513,11 +538,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getBirthday() {
+  public String getBirthday() {
     return this.birthday;
   }
 
-  public User setBirthday(@org.apache.thrift.annotation.Nullable java.lang.String birthday) {
+  public User setBirthday(@org.apache.thrift.annotation.Nullable String birthday) {
     this.birthday = birthday;
     return this;
   }
@@ -538,11 +563,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getLastLoginTime() {
+  public String getLastLoginTime() {
     return this.lastLoginTime;
   }
 
-  public User setLastLoginTime(@org.apache.thrift.annotation.Nullable java.lang.String lastLoginTime) {
+  public User setLastLoginTime(@org.apache.thrift.annotation.Nullable String lastLoginTime) {
     this.lastLoginTime = lastLoginTime;
     return this;
   }
@@ -563,11 +588,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getLastLoginIp() {
+  public String getLastLoginIp() {
     return this.lastLoginIp;
   }
 
-  public User setLastLoginIp(@org.apache.thrift.annotation.Nullable java.lang.String lastLoginIp) {
+  public User setLastLoginIp(@org.apache.thrift.annotation.Nullable String lastLoginIp) {
     this.lastLoginIp = lastLoginIp;
     return this;
   }
@@ -611,11 +636,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getNickname() {
+  public String getNickname() {
     return this.nickname;
   }
 
-  public User setNickname(@org.apache.thrift.annotation.Nullable java.lang.String nickname) {
+  public User setNickname(@org.apache.thrift.annotation.Nullable String nickname) {
     this.nickname = nickname;
     return this;
   }
@@ -636,11 +661,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getMobile() {
+  public String getMobile() {
     return this.mobile;
   }
 
-  public User setMobile(@org.apache.thrift.annotation.Nullable java.lang.String mobile) {
+  public User setMobile(@org.apache.thrift.annotation.Nullable String mobile) {
     this.mobile = mobile;
     return this;
   }
@@ -661,11 +686,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getAvatar() {
+  public String getAvatar() {
     return this.avatar;
   }
 
-  public User setAvatar(@org.apache.thrift.annotation.Nullable java.lang.String avatar) {
+  public User setAvatar(@org.apache.thrift.annotation.Nullable String avatar) {
     this.avatar = avatar;
     return this;
   }
@@ -686,11 +711,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getWeixinOpenid() {
+  public String getWeixinOpenid() {
     return this.weixinOpenid;
   }
 
-  public User setWeixinOpenid(@org.apache.thrift.annotation.Nullable java.lang.String weixinOpenid) {
+  public User setWeixinOpenid(@org.apache.thrift.annotation.Nullable String weixinOpenid) {
     this.weixinOpenid = weixinOpenid;
     return this;
   }
@@ -734,11 +759,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getAddTime() {
+  public String getAddTime() {
     return this.addTime;
   }
 
-  public User setAddTime(@org.apache.thrift.annotation.Nullable java.lang.String addTime) {
+  public User setAddTime(@org.apache.thrift.annotation.Nullable String addTime) {
     this.addTime = addTime;
     return this;
   }
@@ -759,11 +784,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getUpdateTime() {
+  public String getUpdateTime() {
     return this.updateTime;
   }
 
-  public User setUpdateTime(@org.apache.thrift.annotation.Nullable java.lang.String updateTime) {
+  public User setUpdateTime(@org.apache.thrift.annotation.Nullable String updateTime) {
     this.updateTime = updateTime;
     return this;
   }
@@ -830,11 +855,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getFromsouce() {
+  public String getFromsouce() {
     return this.fromsouce;
   }
 
-  public User setFromsouce(@org.apache.thrift.annotation.Nullable java.lang.String fromsouce) {
+  public User setFromsouce(@org.apache.thrift.annotation.Nullable String fromsouce) {
     this.fromsouce = fromsouce;
     return this;
   }
@@ -855,11 +880,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getAddress() {
+  public String getAddress() {
     return this.address;
   }
 
-  public User setAddress(@org.apache.thrift.annotation.Nullable java.lang.String address) {
+  public User setAddress(@org.apache.thrift.annotation.Nullable String address) {
     this.address = address;
     return this;
   }
@@ -880,11 +905,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getBabybirthday() {
+  public String getBabybirthday() {
     return this.babybirthday;
   }
 
-  public User setBabybirthday(@org.apache.thrift.annotation.Nullable java.lang.String babybirthday) {
+  public User setBabybirthday(@org.apache.thrift.annotation.Nullable String babybirthday) {
     this.babybirthday = babybirthday;
     return this;
   }
@@ -905,11 +930,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getBabybirthday2() {
+  public String getBabybirthday2() {
     return this.babybirthday2;
   }
 
-  public User setBabybirthday2(@org.apache.thrift.annotation.Nullable java.lang.String babybirthday2) {
+  public User setBabybirthday2(@org.apache.thrift.annotation.Nullable String babybirthday2) {
     this.babybirthday2 = babybirthday2;
     return this;
   }
@@ -976,11 +1001,11 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.String getMemberUsername() {
+  public String getMemberUsername() {
     return this.memberUsername;
   }
 
-  public User setMemberUsername(@org.apache.thrift.annotation.Nullable java.lang.String memberUsername) {
+  public User setMemberUsername(@org.apache.thrift.annotation.Nullable String memberUsername) {
     this.memberUsername = memberUsername;
     return this;
   }
@@ -1000,13 +1025,161 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable java.lang.Object value) {
+  public int getCompany_id() {
+    return this.company_id;
+  }
+
+  public User setCompany_id(int company_id) {
+    this.company_id = company_id;
+    setCompany_idIsSet(true);
+    return this;
+  }
+
+  public void unsetCompany_id() {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.clearBit(__isset_bitfield, __COMPANY_ID_ISSET_ID);
+  }
+
+  /** Returns true if field company_id is set (has been assigned a value) and false otherwise */
+  public boolean isSetCompany_id() {
+    return org.apache.thrift.EncodingUtils.testBit(__isset_bitfield, __COMPANY_ID_ISSET_ID);
+  }
+
+  public void setCompany_idIsSet(boolean value) {
+    __isset_bitfield = org.apache.thrift.EncodingUtils.setBit(__isset_bitfield, __COMPANY_ID_ISSET_ID, value);
+  }
+
+  @org.apache.thrift.annotation.Nullable
+  public String getUser_type() {
+    return this.user_type;
+  }
+
+  public User setUser_type(@org.apache.thrift.annotation.Nullable String user_type) {
+    this.user_type = user_type;
+    return this;
+  }
+
+  public void unsetUser_type() {
+    this.user_type = null;
+  }
+
+  /** Returns true if field user_type is set (has been assigned a value) and false otherwise */
+  public boolean isSetUser_type() {
+    return this.user_type != null;
+  }
+
+  public void setUser_typeIsSet(boolean value) {
+    if (!value) {
+      this.user_type = null;
+    }
+  }
+
+  @org.apache.thrift.annotation.Nullable
+  public String getOrigin() {
+    return this.origin;
+  }
+
+  public User setOrigin(@org.apache.thrift.annotation.Nullable String origin) {
+    this.origin = origin;
+    return this;
+  }
+
+  public void unsetOrigin() {
+    this.origin = null;
+  }
+
+  /** Returns true if field origin is set (has been assigned a value) and false otherwise */
+  public boolean isSetOrigin() {
+    return this.origin != null;
+  }
+
+  public void setOriginIsSet(boolean value) {
+    if (!value) {
+      this.origin = null;
+    }
+  }
+
+  @org.apache.thrift.annotation.Nullable
+  public String getProvince() {
+    return this.province;
+  }
+
+  public User setProvince(@org.apache.thrift.annotation.Nullable String province) {
+    this.province = province;
+    return this;
+  }
+
+  public void unsetProvince() {
+    this.province = null;
+  }
+
+  /** Returns true if field province is set (has been assigned a value) and false otherwise */
+  public boolean isSetProvince() {
+    return this.province != null;
+  }
+
+  public void setProvinceIsSet(boolean value) {
+    if (!value) {
+      this.province = null;
+    }
+  }
+
+  @org.apache.thrift.annotation.Nullable
+  public String getCity() {
+    return this.city;
+  }
+
+  public User setCity(@org.apache.thrift.annotation.Nullable String city) {
+    this.city = city;
+    return this;
+  }
+
+  public void unsetCity() {
+    this.city = null;
+  }
+
+  /** Returns true if field city is set (has been assigned a value) and false otherwise */
+  public boolean isSetCity() {
+    return this.city != null;
+  }
+
+  public void setCityIsSet(boolean value) {
+    if (!value) {
+      this.city = null;
+    }
+  }
+
+  @org.apache.thrift.annotation.Nullable
+  public String getArea() {
+    return this.area;
+  }
+
+  public User setArea(@org.apache.thrift.annotation.Nullable String area) {
+    this.area = area;
+    return this;
+  }
+
+  public void unsetArea() {
+    this.area = null;
+  }
+
+  /** Returns true if field area is set (has been assigned a value) and false otherwise */
+  public boolean isSetArea() {
+    return this.area != null;
+  }
+
+  public void setAreaIsSet(boolean value) {
+    if (!value) {
+      this.area = null;
+    }
+  }
+
+  public void setFieldValue(_Fields field, @org.apache.thrift.annotation.Nullable Object value) {
     switch (field) {
     case ID:
       if (value == null) {
         unsetId();
       } else {
-        setId((java.lang.Integer)value);
+        setId((Integer)value);
       }
       break;
 
@@ -1014,7 +1187,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetUsername();
       } else {
-        setUsername((java.lang.String)value);
+        setUsername((String)value);
       }
       break;
 
@@ -1022,7 +1195,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetPassword();
       } else {
-        setPassword((java.lang.String)value);
+        setPassword((String)value);
       }
       break;
 
@@ -1030,7 +1203,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetGender();
       } else {
-        setGender((java.lang.Byte)value);
+        setGender((Byte)value);
       }
       break;
 
@@ -1038,7 +1211,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetBirthday();
       } else {
-        setBirthday((java.lang.String)value);
+        setBirthday((String)value);
       }
       break;
 
@@ -1046,7 +1219,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetLastLoginTime();
       } else {
-        setLastLoginTime((java.lang.String)value);
+        setLastLoginTime((String)value);
       }
       break;
 
@@ -1054,7 +1227,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetLastLoginIp();
       } else {
-        setLastLoginIp((java.lang.String)value);
+        setLastLoginIp((String)value);
       }
       break;
 
@@ -1062,7 +1235,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetUserLevel();
       } else {
-        setUserLevel((java.lang.Byte)value);
+        setUserLevel((Byte)value);
       }
       break;
 
@@ -1070,7 +1243,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetNickname();
       } else {
-        setNickname((java.lang.String)value);
+        setNickname((String)value);
       }
       break;
 
@@ -1078,7 +1251,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetMobile();
       } else {
-        setMobile((java.lang.String)value);
+        setMobile((String)value);
       }
       break;
 
@@ -1086,7 +1259,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetAvatar();
       } else {
-        setAvatar((java.lang.String)value);
+        setAvatar((String)value);
       }
       break;
 
@@ -1094,7 +1267,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetWeixinOpenid();
       } else {
-        setWeixinOpenid((java.lang.String)value);
+        setWeixinOpenid((String)value);
       }
       break;
 
@@ -1102,7 +1275,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetStatus();
       } else {
-        setStatus((java.lang.Byte)value);
+        setStatus((Byte)value);
       }
       break;
 
@@ -1110,7 +1283,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetAddTime();
       } else {
-        setAddTime((java.lang.String)value);
+        setAddTime((String)value);
       }
       break;
 
@@ -1118,7 +1291,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetUpdateTime();
       } else {
-        setUpdateTime((java.lang.String)value);
+        setUpdateTime((String)value);
       }
       break;
 
@@ -1126,7 +1299,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetIntegral();
       } else {
-        setIntegral((java.lang.Integer)value);
+        setIntegral((Integer)value);
       }
       break;
 
@@ -1134,7 +1307,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetGrade();
       } else {
-        setGrade((java.lang.Integer)value);
+        setGrade((Integer)value);
       }
       break;
 
@@ -1142,7 +1315,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetFromsouce();
       } else {
-        setFromsouce((java.lang.String)value);
+        setFromsouce((String)value);
       }
       break;
 
@@ -1150,7 +1323,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetAddress();
       } else {
-        setAddress((java.lang.String)value);
+        setAddress((String)value);
       }
       break;
 
@@ -1158,7 +1331,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetBabybirthday();
       } else {
-        setBabybirthday((java.lang.String)value);
+        setBabybirthday((String)value);
       }
       break;
 
@@ -1166,7 +1339,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetBabybirthday2();
       } else {
-        setBabybirthday2((java.lang.String)value);
+        setBabybirthday2((String)value);
       }
       break;
 
@@ -1174,7 +1347,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetBabysex();
       } else {
-        setBabysex((java.lang.Byte)value);
+        setBabysex((Byte)value);
       }
       break;
 
@@ -1182,7 +1355,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetBabysex2();
       } else {
-        setBabysex2((java.lang.Byte)value);
+        setBabysex2((Byte)value);
       }
       break;
 
@@ -1190,7 +1363,55 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (value == null) {
         unsetMemberUsername();
       } else {
-        setMemberUsername((java.lang.String)value);
+        setMemberUsername((String)value);
+      }
+      break;
+
+    case COMPANY_ID:
+      if (value == null) {
+        unsetCompany_id();
+      } else {
+        setCompany_id((Integer)value);
+      }
+      break;
+
+    case USER_TYPE:
+      if (value == null) {
+        unsetUser_type();
+      } else {
+        setUser_type((String)value);
+      }
+      break;
+
+    case ORIGIN:
+      if (value == null) {
+        unsetOrigin();
+      } else {
+        setOrigin((String)value);
+      }
+      break;
+
+    case PROVINCE:
+      if (value == null) {
+        unsetProvince();
+      } else {
+        setProvince((String)value);
+      }
+      break;
+
+    case CITY:
+      if (value == null) {
+        unsetCity();
+      } else {
+        setCity((String)value);
+      }
+      break;
+
+    case AREA:
+      if (value == null) {
+        unsetArea();
+      } else {
+        setArea((String)value);
       }
       break;
 
@@ -1198,7 +1419,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @org.apache.thrift.annotation.Nullable
-  public java.lang.Object getFieldValue(_Fields field) {
+  public Object getFieldValue(_Fields field) {
     switch (field) {
     case ID:
       return getId();
@@ -1272,14 +1493,32 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     case MEMBER_USERNAME:
       return getMemberUsername();
 
+    case COMPANY_ID:
+      return getCompany_id();
+
+    case USER_TYPE:
+      return getUser_type();
+
+    case ORIGIN:
+      return getOrigin();
+
+    case PROVINCE:
+      return getProvince();
+
+    case CITY:
+      return getCity();
+
+    case AREA:
+      return getArea();
+
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   /** Returns true if field corresponding to fieldID is set (has been assigned a value) and false otherwise */
   public boolean isSet(_Fields field) {
     if (field == null) {
-      throw new java.lang.IllegalArgumentException();
+      throw new IllegalArgumentException();
     }
 
     switch (field) {
@@ -1331,12 +1570,24 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       return isSetBabysex2();
     case MEMBER_USERNAME:
       return isSetMemberUsername();
+    case COMPANY_ID:
+      return isSetCompany_id();
+    case USER_TYPE:
+      return isSetUser_type();
+    case ORIGIN:
+      return isSetOrigin();
+    case PROVINCE:
+      return isSetProvince();
+    case CITY:
+      return isSetCity();
+    case AREA:
+      return isSetArea();
     }
-    throw new java.lang.IllegalStateException();
+    throw new IllegalStateException();
   }
 
   @Override
-  public boolean equals(java.lang.Object that) {
+  public boolean equals(Object that) {
     if (that == null)
       return false;
     if (that instanceof User)
@@ -1458,8 +1709,8 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return false;
     }
 
-    boolean this_present_status = true;
-    boolean that_present_status = true;
+    boolean this_present_status = true && this.isSetStatus();
+    boolean that_present_status = true && that.isSetStatus();
     if (this_present_status || that_present_status) {
       if (!(this_present_status && that_present_status))
         return false;
@@ -1485,8 +1736,8 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return false;
     }
 
-    boolean this_present_integral = true;
-    boolean that_present_integral = true;
+    boolean this_present_integral = true && this.isSetIntegral();
+    boolean that_present_integral = true && that.isSetIntegral();
     if (this_present_integral || that_present_integral) {
       if (!(this_present_integral && that_present_integral))
         return false;
@@ -1494,8 +1745,8 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return false;
     }
 
-    boolean this_present_grade = true;
-    boolean that_present_grade = true;
+    boolean this_present_grade = true && this.isSetGrade();
+    boolean that_present_grade = true && that.isSetGrade();
     if (this_present_grade || that_present_grade) {
       if (!(this_present_grade && that_present_grade))
         return false;
@@ -1539,8 +1790,8 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return false;
     }
 
-    boolean this_present_babysex = true;
-    boolean that_present_babysex = true;
+    boolean this_present_babysex = true && this.isSetBabysex();
+    boolean that_present_babysex = true && that.isSetBabysex();
     if (this_present_babysex || that_present_babysex) {
       if (!(this_present_babysex && that_present_babysex))
         return false;
@@ -1548,8 +1799,8 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return false;
     }
 
-    boolean this_present_babysex2 = true;
-    boolean that_present_babysex2 = true;
+    boolean this_present_babysex2 = true && this.isSetBabysex2();
+    boolean that_present_babysex2 = true && that.isSetBabysex2();
     if (this_present_babysex2 || that_present_babysex2) {
       if (!(this_present_babysex2 && that_present_babysex2))
         return false;
@@ -1563,6 +1814,60 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (!(this_present_memberUsername && that_present_memberUsername))
         return false;
       if (!this.memberUsername.equals(that.memberUsername))
+        return false;
+    }
+
+    boolean this_present_company_id = true && this.isSetCompany_id();
+    boolean that_present_company_id = true && that.isSetCompany_id();
+    if (this_present_company_id || that_present_company_id) {
+      if (!(this_present_company_id && that_present_company_id))
+        return false;
+      if (this.company_id != that.company_id)
+        return false;
+    }
+
+    boolean this_present_user_type = true && this.isSetUser_type();
+    boolean that_present_user_type = true && that.isSetUser_type();
+    if (this_present_user_type || that_present_user_type) {
+      if (!(this_present_user_type && that_present_user_type))
+        return false;
+      if (!this.user_type.equals(that.user_type))
+        return false;
+    }
+
+    boolean this_present_origin = true && this.isSetOrigin();
+    boolean that_present_origin = true && that.isSetOrigin();
+    if (this_present_origin || that_present_origin) {
+      if (!(this_present_origin && that_present_origin))
+        return false;
+      if (!this.origin.equals(that.origin))
+        return false;
+    }
+
+    boolean this_present_province = true && this.isSetProvince();
+    boolean that_present_province = true && that.isSetProvince();
+    if (this_present_province || that_present_province) {
+      if (!(this_present_province && that_present_province))
+        return false;
+      if (!this.province.equals(that.province))
+        return false;
+    }
+
+    boolean this_present_city = true && this.isSetCity();
+    boolean that_present_city = true && that.isSetCity();
+    if (this_present_city || that_present_city) {
+      if (!(this_present_city && that_present_city))
+        return false;
+      if (!this.city.equals(that.city))
+        return false;
+    }
+
+    boolean this_present_area = true && this.isSetArea();
+    boolean that_present_area = true && that.isSetArea();
+    if (this_present_area || that_present_area) {
+      if (!(this_present_area && that_present_area))
+        return false;
+      if (!this.area.equals(that.area))
         return false;
     }
 
@@ -1619,7 +1924,9 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     if (isSetWeixinOpenid())
       hashCode = hashCode * 8191 + weixinOpenid.hashCode();
 
-    hashCode = hashCode * 8191 + (int) (status);
+    hashCode = hashCode * 8191 + ((isSetStatus()) ? 131071 : 524287);
+    if (isSetStatus())
+      hashCode = hashCode * 8191 + (int) (status);
 
     hashCode = hashCode * 8191 + ((isSetAddTime()) ? 131071 : 524287);
     if (isSetAddTime())
@@ -1629,9 +1936,13 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     if (isSetUpdateTime())
       hashCode = hashCode * 8191 + updateTime.hashCode();
 
-    hashCode = hashCode * 8191 + integral;
+    hashCode = hashCode * 8191 + ((isSetIntegral()) ? 131071 : 524287);
+    if (isSetIntegral())
+      hashCode = hashCode * 8191 + integral;
 
-    hashCode = hashCode * 8191 + grade;
+    hashCode = hashCode * 8191 + ((isSetGrade()) ? 131071 : 524287);
+    if (isSetGrade())
+      hashCode = hashCode * 8191 + grade;
 
     hashCode = hashCode * 8191 + ((isSetFromsouce()) ? 131071 : 524287);
     if (isSetFromsouce())
@@ -1649,13 +1960,41 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     if (isSetBabybirthday2())
       hashCode = hashCode * 8191 + babybirthday2.hashCode();
 
-    hashCode = hashCode * 8191 + (int) (babysex);
+    hashCode = hashCode * 8191 + ((isSetBabysex()) ? 131071 : 524287);
+    if (isSetBabysex())
+      hashCode = hashCode * 8191 + (int) (babysex);
 
-    hashCode = hashCode * 8191 + (int) (babysex2);
+    hashCode = hashCode * 8191 + ((isSetBabysex2()) ? 131071 : 524287);
+    if (isSetBabysex2())
+      hashCode = hashCode * 8191 + (int) (babysex2);
 
     hashCode = hashCode * 8191 + ((isSetMemberUsername()) ? 131071 : 524287);
     if (isSetMemberUsername())
       hashCode = hashCode * 8191 + memberUsername.hashCode();
+
+    hashCode = hashCode * 8191 + ((isSetCompany_id()) ? 131071 : 524287);
+    if (isSetCompany_id())
+      hashCode = hashCode * 8191 + company_id;
+
+    hashCode = hashCode * 8191 + ((isSetUser_type()) ? 131071 : 524287);
+    if (isSetUser_type())
+      hashCode = hashCode * 8191 + user_type.hashCode();
+
+    hashCode = hashCode * 8191 + ((isSetOrigin()) ? 131071 : 524287);
+    if (isSetOrigin())
+      hashCode = hashCode * 8191 + origin.hashCode();
+
+    hashCode = hashCode * 8191 + ((isSetProvince()) ? 131071 : 524287);
+    if (isSetProvince())
+      hashCode = hashCode * 8191 + province.hashCode();
+
+    hashCode = hashCode * 8191 + ((isSetCity()) ? 131071 : 524287);
+    if (isSetCity())
+      hashCode = hashCode * 8191 + city.hashCode();
+
+    hashCode = hashCode * 8191 + ((isSetArea()) ? 131071 : 524287);
+    if (isSetArea())
+      hashCode = hashCode * 8191 + area.hashCode();
 
     return hashCode;
   }
@@ -1668,7 +2007,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
 
     int lastComparison = 0;
 
-    lastComparison = java.lang.Boolean.valueOf(isSetId()).compareTo(other.isSetId());
+    lastComparison = Boolean.valueOf(isSetId()).compareTo(other.isSetId());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1678,7 +2017,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetUsername()).compareTo(other.isSetUsername());
+    lastComparison = Boolean.valueOf(isSetUsername()).compareTo(other.isSetUsername());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1688,7 +2027,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetPassword()).compareTo(other.isSetPassword());
+    lastComparison = Boolean.valueOf(isSetPassword()).compareTo(other.isSetPassword());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1698,7 +2037,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetGender()).compareTo(other.isSetGender());
+    lastComparison = Boolean.valueOf(isSetGender()).compareTo(other.isSetGender());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1708,7 +2047,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetBirthday()).compareTo(other.isSetBirthday());
+    lastComparison = Boolean.valueOf(isSetBirthday()).compareTo(other.isSetBirthday());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1718,7 +2057,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetLastLoginTime()).compareTo(other.isSetLastLoginTime());
+    lastComparison = Boolean.valueOf(isSetLastLoginTime()).compareTo(other.isSetLastLoginTime());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1728,7 +2067,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetLastLoginIp()).compareTo(other.isSetLastLoginIp());
+    lastComparison = Boolean.valueOf(isSetLastLoginIp()).compareTo(other.isSetLastLoginIp());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1738,7 +2077,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetUserLevel()).compareTo(other.isSetUserLevel());
+    lastComparison = Boolean.valueOf(isSetUserLevel()).compareTo(other.isSetUserLevel());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1748,7 +2087,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetNickname()).compareTo(other.isSetNickname());
+    lastComparison = Boolean.valueOf(isSetNickname()).compareTo(other.isSetNickname());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1758,7 +2097,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetMobile()).compareTo(other.isSetMobile());
+    lastComparison = Boolean.valueOf(isSetMobile()).compareTo(other.isSetMobile());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1768,7 +2107,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetAvatar()).compareTo(other.isSetAvatar());
+    lastComparison = Boolean.valueOf(isSetAvatar()).compareTo(other.isSetAvatar());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1778,7 +2117,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetWeixinOpenid()).compareTo(other.isSetWeixinOpenid());
+    lastComparison = Boolean.valueOf(isSetWeixinOpenid()).compareTo(other.isSetWeixinOpenid());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1788,7 +2127,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetStatus()).compareTo(other.isSetStatus());
+    lastComparison = Boolean.valueOf(isSetStatus()).compareTo(other.isSetStatus());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1798,7 +2137,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetAddTime()).compareTo(other.isSetAddTime());
+    lastComparison = Boolean.valueOf(isSetAddTime()).compareTo(other.isSetAddTime());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1808,7 +2147,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetUpdateTime()).compareTo(other.isSetUpdateTime());
+    lastComparison = Boolean.valueOf(isSetUpdateTime()).compareTo(other.isSetUpdateTime());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1818,7 +2157,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetIntegral()).compareTo(other.isSetIntegral());
+    lastComparison = Boolean.valueOf(isSetIntegral()).compareTo(other.isSetIntegral());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1828,7 +2167,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetGrade()).compareTo(other.isSetGrade());
+    lastComparison = Boolean.valueOf(isSetGrade()).compareTo(other.isSetGrade());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1838,7 +2177,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetFromsouce()).compareTo(other.isSetFromsouce());
+    lastComparison = Boolean.valueOf(isSetFromsouce()).compareTo(other.isSetFromsouce());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1848,7 +2187,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetAddress()).compareTo(other.isSetAddress());
+    lastComparison = Boolean.valueOf(isSetAddress()).compareTo(other.isSetAddress());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1858,7 +2197,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetBabybirthday()).compareTo(other.isSetBabybirthday());
+    lastComparison = Boolean.valueOf(isSetBabybirthday()).compareTo(other.isSetBabybirthday());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1868,7 +2207,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetBabybirthday2()).compareTo(other.isSetBabybirthday2());
+    lastComparison = Boolean.valueOf(isSetBabybirthday2()).compareTo(other.isSetBabybirthday2());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1878,7 +2217,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetBabysex()).compareTo(other.isSetBabysex());
+    lastComparison = Boolean.valueOf(isSetBabysex()).compareTo(other.isSetBabysex());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1888,7 +2227,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetBabysex2()).compareTo(other.isSetBabysex2());
+    lastComparison = Boolean.valueOf(isSetBabysex2()).compareTo(other.isSetBabysex2());
     if (lastComparison != 0) {
       return lastComparison;
     }
@@ -1898,12 +2237,72 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         return lastComparison;
       }
     }
-    lastComparison = java.lang.Boolean.valueOf(isSetMemberUsername()).compareTo(other.isSetMemberUsername());
+    lastComparison = Boolean.valueOf(isSetMemberUsername()).compareTo(other.isSetMemberUsername());
     if (lastComparison != 0) {
       return lastComparison;
     }
     if (isSetMemberUsername()) {
       lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.memberUsername, other.memberUsername);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetCompany_id()).compareTo(other.isSetCompany_id());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetCompany_id()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.company_id, other.company_id);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetUser_type()).compareTo(other.isSetUser_type());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetUser_type()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.user_type, other.user_type);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetOrigin()).compareTo(other.isSetOrigin());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetOrigin()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.origin, other.origin);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetProvince()).compareTo(other.isSetProvince());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetProvince()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.province, other.province);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetCity()).compareTo(other.isSetCity());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetCity()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.city, other.city);
+      if (lastComparison != 0) {
+        return lastComparison;
+      }
+    }
+    lastComparison = Boolean.valueOf(isSetArea()).compareTo(other.isSetArea());
+    if (lastComparison != 0) {
+      return lastComparison;
+    }
+    if (isSetArea()) {
+      lastComparison = org.apache.thrift.TBaseHelper.compareTo(this.area, other.area);
       if (lastComparison != 0) {
         return lastComparison;
       }
@@ -1925,29 +2324,33 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
   }
 
   @Override
-  public java.lang.String toString() {
-    java.lang.StringBuilder sb = new java.lang.StringBuilder("User(");
+  public String toString() {
+    StringBuilder sb = new StringBuilder("User(");
     boolean first = true;
 
     sb.append("id:");
     sb.append(this.id);
     first = false;
-    if (!first) sb.append(", ");
-    sb.append("username:");
-    if (this.username == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.username);
+    if (isSetUsername()) {
+      if (!first) sb.append(", ");
+      sb.append("username:");
+      if (this.username == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.username);
+      }
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("password:");
-    if (this.password == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.password);
+    if (isSetPassword()) {
+      if (!first) sb.append(", ");
+      sb.append("password:");
+      if (this.password == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.password);
+      }
+      first = false;
     }
-    first = false;
     if (isSetGender()) {
       if (!first) sb.append(", ");
       sb.append("gender:");
@@ -1990,114 +2393,202 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       sb.append(this.userLevel);
       first = false;
     }
-    if (!first) sb.append(", ");
-    sb.append("nickname:");
-    if (this.nickname == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.nickname);
+    if (isSetNickname()) {
+      if (!first) sb.append(", ");
+      sb.append("nickname:");
+      if (this.nickname == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.nickname);
+      }
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("mobile:");
-    if (this.mobile == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.mobile);
+    if (isSetMobile()) {
+      if (!first) sb.append(", ");
+      sb.append("mobile:");
+      if (this.mobile == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.mobile);
+      }
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("avatar:");
-    if (this.avatar == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.avatar);
+    if (isSetAvatar()) {
+      if (!first) sb.append(", ");
+      sb.append("avatar:");
+      if (this.avatar == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.avatar);
+      }
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("weixinOpenid:");
-    if (this.weixinOpenid == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.weixinOpenid);
+    if (isSetWeixinOpenid()) {
+      if (!first) sb.append(", ");
+      sb.append("weixinOpenid:");
+      if (this.weixinOpenid == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.weixinOpenid);
+      }
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("status:");
-    sb.append(this.status);
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("addTime:");
-    if (this.addTime == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.addTime);
+    if (isSetStatus()) {
+      if (!first) sb.append(", ");
+      sb.append("status:");
+      sb.append(this.status);
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("updateTime:");
-    if (this.updateTime == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.updateTime);
+    if (isSetAddTime()) {
+      if (!first) sb.append(", ");
+      sb.append("addTime:");
+      if (this.addTime == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.addTime);
+      }
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("integral:");
-    sb.append(this.integral);
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("grade:");
-    sb.append(this.grade);
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("fromsouce:");
-    if (this.fromsouce == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.fromsouce);
+    if (isSetUpdateTime()) {
+      if (!first) sb.append(", ");
+      sb.append("updateTime:");
+      if (this.updateTime == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.updateTime);
+      }
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("address:");
-    if (this.address == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.address);
+    if (isSetIntegral()) {
+      if (!first) sb.append(", ");
+      sb.append("integral:");
+      sb.append(this.integral);
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("babybirthday:");
-    if (this.babybirthday == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.babybirthday);
+    if (isSetGrade()) {
+      if (!first) sb.append(", ");
+      sb.append("grade:");
+      sb.append(this.grade);
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("babybirthday2:");
-    if (this.babybirthday2 == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.babybirthday2);
+    if (isSetFromsouce()) {
+      if (!first) sb.append(", ");
+      sb.append("fromsouce:");
+      if (this.fromsouce == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.fromsouce);
+      }
+      first = false;
     }
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("babysex:");
-    sb.append(this.babysex);
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("babysex2:");
-    sb.append(this.babysex2);
-    first = false;
-    if (!first) sb.append(", ");
-    sb.append("memberUsername:");
-    if (this.memberUsername == null) {
-      sb.append("null");
-    } else {
-      sb.append(this.memberUsername);
+    if (isSetAddress()) {
+      if (!first) sb.append(", ");
+      sb.append("address:");
+      if (this.address == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.address);
+      }
+      first = false;
     }
-    first = false;
+    if (isSetBabybirthday()) {
+      if (!first) sb.append(", ");
+      sb.append("babybirthday:");
+      if (this.babybirthday == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.babybirthday);
+      }
+      first = false;
+    }
+    if (isSetBabybirthday2()) {
+      if (!first) sb.append(", ");
+      sb.append("babybirthday2:");
+      if (this.babybirthday2 == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.babybirthday2);
+      }
+      first = false;
+    }
+    if (isSetBabysex()) {
+      if (!first) sb.append(", ");
+      sb.append("babysex:");
+      sb.append(this.babysex);
+      first = false;
+    }
+    if (isSetBabysex2()) {
+      if (!first) sb.append(", ");
+      sb.append("babysex2:");
+      sb.append(this.babysex2);
+      first = false;
+    }
+    if (isSetMemberUsername()) {
+      if (!first) sb.append(", ");
+      sb.append("memberUsername:");
+      if (this.memberUsername == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.memberUsername);
+      }
+      first = false;
+    }
+    if (isSetCompany_id()) {
+      if (!first) sb.append(", ");
+      sb.append("company_id:");
+      sb.append(this.company_id);
+      first = false;
+    }
+    if (isSetUser_type()) {
+      if (!first) sb.append(", ");
+      sb.append("user_type:");
+      if (this.user_type == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.user_type);
+      }
+      first = false;
+    }
+    if (isSetOrigin()) {
+      if (!first) sb.append(", ");
+      sb.append("origin:");
+      if (this.origin == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.origin);
+      }
+      first = false;
+    }
+    if (isSetProvince()) {
+      if (!first) sb.append(", ");
+      sb.append("province:");
+      if (this.province == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.province);
+      }
+      first = false;
+    }
+    if (isSetCity()) {
+      if (!first) sb.append(", ");
+      sb.append("city:");
+      if (this.city == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.city);
+      }
+      first = false;
+    }
+    if (isSetArea()) {
+      if (!first) sb.append(", ");
+      sb.append("area:");
+      if (this.area == null) {
+        sb.append("null");
+      } else {
+        sb.append(this.area);
+      }
+      first = false;
+    }
     sb.append(")");
     return sb.toString();
   }
@@ -2115,7 +2606,7 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
     }
   }
 
-  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, java.lang.ClassNotFoundException {
+  private void readObject(java.io.ObjectInputStream in) throws java.io.IOException, ClassNotFoundException {
     try {
       // it doesn't seem like you should have to do this, but java serialization is wacky, and doesn't call the default constructor.
       __isset_bitfield = 0;
@@ -2335,6 +2826,54 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
               org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
             }
             break;
+          case 26: // COMPANY_ID
+            if (schemeField.type == org.apache.thrift.protocol.TType.I32) {
+              struct.company_id = iprot.readI32();
+              struct.setCompany_idIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 27: // USER_TYPE
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.user_type = iprot.readString();
+              struct.setUser_typeIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 28: // ORIGIN
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.origin = iprot.readString();
+              struct.setOriginIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 29: // PROVINCE
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.province = iprot.readString();
+              struct.setProvinceIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 30: // CITY
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.city = iprot.readString();
+              struct.setCityIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
+          case 31: // AREA
+            if (schemeField.type == org.apache.thrift.protocol.TType.STRING) {
+              struct.area = iprot.readString();
+              struct.setAreaIsSet(true);
+            } else { 
+              org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
+            }
+            break;
           default:
             org.apache.thrift.protocol.TProtocolUtil.skip(iprot, schemeField.type);
         }
@@ -2354,14 +2893,18 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       oprot.writeI32(struct.id);
       oprot.writeFieldEnd();
       if (struct.username != null) {
-        oprot.writeFieldBegin(USERNAME_FIELD_DESC);
-        oprot.writeString(struct.username);
-        oprot.writeFieldEnd();
+        if (struct.isSetUsername()) {
+          oprot.writeFieldBegin(USERNAME_FIELD_DESC);
+          oprot.writeString(struct.username);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.password != null) {
-        oprot.writeFieldBegin(PASSWORD_FIELD_DESC);
-        oprot.writeString(struct.password);
-        oprot.writeFieldEnd();
+        if (struct.isSetPassword()) {
+          oprot.writeFieldBegin(PASSWORD_FIELD_DESC);
+          oprot.writeString(struct.password);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.isSetGender()) {
         oprot.writeFieldBegin(GENDER_FIELD_DESC);
@@ -2395,74 +2938,146 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
         oprot.writeFieldEnd();
       }
       if (struct.nickname != null) {
-        oprot.writeFieldBegin(NICKNAME_FIELD_DESC);
-        oprot.writeString(struct.nickname);
-        oprot.writeFieldEnd();
+        if (struct.isSetNickname()) {
+          oprot.writeFieldBegin(NICKNAME_FIELD_DESC);
+          oprot.writeString(struct.nickname);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.mobile != null) {
-        oprot.writeFieldBegin(MOBILE_FIELD_DESC);
-        oprot.writeString(struct.mobile);
-        oprot.writeFieldEnd();
+        if (struct.isSetMobile()) {
+          oprot.writeFieldBegin(MOBILE_FIELD_DESC);
+          oprot.writeString(struct.mobile);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.avatar != null) {
-        oprot.writeFieldBegin(AVATAR_FIELD_DESC);
-        oprot.writeString(struct.avatar);
-        oprot.writeFieldEnd();
+        if (struct.isSetAvatar()) {
+          oprot.writeFieldBegin(AVATAR_FIELD_DESC);
+          oprot.writeString(struct.avatar);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.weixinOpenid != null) {
-        oprot.writeFieldBegin(WEIXIN_OPENID_FIELD_DESC);
-        oprot.writeString(struct.weixinOpenid);
+        if (struct.isSetWeixinOpenid()) {
+          oprot.writeFieldBegin(WEIXIN_OPENID_FIELD_DESC);
+          oprot.writeString(struct.weixinOpenid);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.isSetStatus()) {
+        oprot.writeFieldBegin(STATUS_FIELD_DESC);
+        oprot.writeByte(struct.status);
         oprot.writeFieldEnd();
       }
-      oprot.writeFieldBegin(STATUS_FIELD_DESC);
-      oprot.writeByte(struct.status);
-      oprot.writeFieldEnd();
       if (struct.addTime != null) {
-        oprot.writeFieldBegin(ADD_TIME_FIELD_DESC);
-        oprot.writeString(struct.addTime);
-        oprot.writeFieldEnd();
+        if (struct.isSetAddTime()) {
+          oprot.writeFieldBegin(ADD_TIME_FIELD_DESC);
+          oprot.writeString(struct.addTime);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.updateTime != null) {
-        oprot.writeFieldBegin(UPDATE_TIME_FIELD_DESC);
-        oprot.writeString(struct.updateTime);
+        if (struct.isSetUpdateTime()) {
+          oprot.writeFieldBegin(UPDATE_TIME_FIELD_DESC);
+          oprot.writeString(struct.updateTime);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.isSetIntegral()) {
+        oprot.writeFieldBegin(INTEGRAL_FIELD_DESC);
+        oprot.writeI32(struct.integral);
         oprot.writeFieldEnd();
       }
-      oprot.writeFieldBegin(INTEGRAL_FIELD_DESC);
-      oprot.writeI32(struct.integral);
-      oprot.writeFieldEnd();
-      oprot.writeFieldBegin(GRADE_FIELD_DESC);
-      oprot.writeI32(struct.grade);
-      oprot.writeFieldEnd();
-      if (struct.fromsouce != null) {
-        oprot.writeFieldBegin(FROMSOUCE_FIELD_DESC);
-        oprot.writeString(struct.fromsouce);
+      if (struct.isSetGrade()) {
+        oprot.writeFieldBegin(GRADE_FIELD_DESC);
+        oprot.writeI32(struct.grade);
         oprot.writeFieldEnd();
+      }
+      if (struct.fromsouce != null) {
+        if (struct.isSetFromsouce()) {
+          oprot.writeFieldBegin(FROMSOUCE_FIELD_DESC);
+          oprot.writeString(struct.fromsouce);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.address != null) {
-        oprot.writeFieldBegin(ADDRESS_FIELD_DESC);
-        oprot.writeString(struct.address);
-        oprot.writeFieldEnd();
+        if (struct.isSetAddress()) {
+          oprot.writeFieldBegin(ADDRESS_FIELD_DESC);
+          oprot.writeString(struct.address);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.babybirthday != null) {
-        oprot.writeFieldBegin(BABYBIRTHDAY_FIELD_DESC);
-        oprot.writeString(struct.babybirthday);
-        oprot.writeFieldEnd();
+        if (struct.isSetBabybirthday()) {
+          oprot.writeFieldBegin(BABYBIRTHDAY_FIELD_DESC);
+          oprot.writeString(struct.babybirthday);
+          oprot.writeFieldEnd();
+        }
       }
       if (struct.babybirthday2 != null) {
-        oprot.writeFieldBegin(BABYBIRTHDAY2_FIELD_DESC);
-        oprot.writeString(struct.babybirthday2);
+        if (struct.isSetBabybirthday2()) {
+          oprot.writeFieldBegin(BABYBIRTHDAY2_FIELD_DESC);
+          oprot.writeString(struct.babybirthday2);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.isSetBabysex()) {
+        oprot.writeFieldBegin(BABYSEX_FIELD_DESC);
+        oprot.writeByte(struct.babysex);
         oprot.writeFieldEnd();
       }
-      oprot.writeFieldBegin(BABYSEX_FIELD_DESC);
-      oprot.writeByte(struct.babysex);
-      oprot.writeFieldEnd();
-      oprot.writeFieldBegin(BABYSEX2_FIELD_DESC);
-      oprot.writeByte(struct.babysex2);
-      oprot.writeFieldEnd();
-      if (struct.memberUsername != null) {
-        oprot.writeFieldBegin(MEMBER_USERNAME_FIELD_DESC);
-        oprot.writeString(struct.memberUsername);
+      if (struct.isSetBabysex2()) {
+        oprot.writeFieldBegin(BABYSEX2_FIELD_DESC);
+        oprot.writeByte(struct.babysex2);
         oprot.writeFieldEnd();
+      }
+      if (struct.memberUsername != null) {
+        if (struct.isSetMemberUsername()) {
+          oprot.writeFieldBegin(MEMBER_USERNAME_FIELD_DESC);
+          oprot.writeString(struct.memberUsername);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.isSetCompany_id()) {
+        oprot.writeFieldBegin(COMPANY_ID_FIELD_DESC);
+        oprot.writeI32(struct.company_id);
+        oprot.writeFieldEnd();
+      }
+      if (struct.user_type != null) {
+        if (struct.isSetUser_type()) {
+          oprot.writeFieldBegin(USER_TYPE_FIELD_DESC);
+          oprot.writeString(struct.user_type);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.origin != null) {
+        if (struct.isSetOrigin()) {
+          oprot.writeFieldBegin(ORIGIN_FIELD_DESC);
+          oprot.writeString(struct.origin);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.province != null) {
+        if (struct.isSetProvince()) {
+          oprot.writeFieldBegin(PROVINCE_FIELD_DESC);
+          oprot.writeString(struct.province);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.city != null) {
+        if (struct.isSetCity()) {
+          oprot.writeFieldBegin(CITY_FIELD_DESC);
+          oprot.writeString(struct.city);
+          oprot.writeFieldEnd();
+        }
+      }
+      if (struct.area != null) {
+        if (struct.isSetArea()) {
+          oprot.writeFieldBegin(AREA_FIELD_DESC);
+          oprot.writeString(struct.area);
+          oprot.writeFieldEnd();
+        }
       }
       oprot.writeFieldStop();
       oprot.writeStructEnd();
@@ -2554,7 +3169,25 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (struct.isSetMemberUsername()) {
         optionals.set(23);
       }
-      oprot.writeBitSet(optionals, 24);
+      if (struct.isSetCompany_id()) {
+        optionals.set(24);
+      }
+      if (struct.isSetUser_type()) {
+        optionals.set(25);
+      }
+      if (struct.isSetOrigin()) {
+        optionals.set(26);
+      }
+      if (struct.isSetProvince()) {
+        optionals.set(27);
+      }
+      if (struct.isSetCity()) {
+        optionals.set(28);
+      }
+      if (struct.isSetArea()) {
+        optionals.set(29);
+      }
+      oprot.writeBitSet(optionals, 30);
       if (struct.isSetId()) {
         oprot.writeI32(struct.id);
       }
@@ -2627,12 +3260,30 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (struct.isSetMemberUsername()) {
         oprot.writeString(struct.memberUsername);
       }
+      if (struct.isSetCompany_id()) {
+        oprot.writeI32(struct.company_id);
+      }
+      if (struct.isSetUser_type()) {
+        oprot.writeString(struct.user_type);
+      }
+      if (struct.isSetOrigin()) {
+        oprot.writeString(struct.origin);
+      }
+      if (struct.isSetProvince()) {
+        oprot.writeString(struct.province);
+      }
+      if (struct.isSetCity()) {
+        oprot.writeString(struct.city);
+      }
+      if (struct.isSetArea()) {
+        oprot.writeString(struct.area);
+      }
     }
 
     @Override
     public void read(org.apache.thrift.protocol.TProtocol prot, User struct) throws org.apache.thrift.TException {
       org.apache.thrift.protocol.TTupleProtocol iprot = (org.apache.thrift.protocol.TTupleProtocol) prot;
-      java.util.BitSet incoming = iprot.readBitSet(24);
+      java.util.BitSet incoming = iprot.readBitSet(30);
       if (incoming.get(0)) {
         struct.id = iprot.readI32();
         struct.setIdIsSet(true);
@@ -2728,6 +3379,30 @@ public class User implements org.apache.thrift.TBase<User, User._Fields>, java.i
       if (incoming.get(23)) {
         struct.memberUsername = iprot.readString();
         struct.setMemberUsernameIsSet(true);
+      }
+      if (incoming.get(24)) {
+        struct.company_id = iprot.readI32();
+        struct.setCompany_idIsSet(true);
+      }
+      if (incoming.get(25)) {
+        struct.user_type = iprot.readString();
+        struct.setUser_typeIsSet(true);
+      }
+      if (incoming.get(26)) {
+        struct.origin = iprot.readString();
+        struct.setOriginIsSet(true);
+      }
+      if (incoming.get(27)) {
+        struct.province = iprot.readString();
+        struct.setProvinceIsSet(true);
+      }
+      if (incoming.get(28)) {
+        struct.city = iprot.readString();
+        struct.setCityIsSet(true);
+      }
+      if (incoming.get(29)) {
+        struct.area = iprot.readString();
+        struct.setAreaIsSet(true);
       }
     }
   }
