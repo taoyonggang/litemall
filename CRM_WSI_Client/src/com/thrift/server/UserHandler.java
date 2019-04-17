@@ -53,17 +53,16 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
                 "<mobiletel>"+user.getMobile()+"“”“”“”“”</mobiletel>" +
                 "<open_id>"+user.getWeixinOpenid()+"</open_id>" +
                 "<password>"+user.getPassword()+"</password>" +
-                "<user_type></user_type>" +
-                "<area>511722</area>" +
-                "<city>511700</city>" +
-                "<main_babay_birthday>20151225</main_babay_birthday>" +
-                "<member_name>潘婷</member_name>" +
+                "<user_type>"+user.getUser_type()+"</user_type>" +
+                "<area>"+user.getArea()+"</area>" +
+                "<city>"+user.getCity()+"</city>" +
+                "<main_babay_birthday>"+user.getBabybirthday()+"</main_babay_birthday>" +
+                "<main_babay_sex>"+user.getBabysex()+"</main_babay_sex>" +
+                "<member_name>"+user.getMemberUsername()+"</member_name>" +
                 "<member_no>"+user.getMobile()+"</member_no>" +
-                "<province>"+user.getMobile()+"</province>" +
-                "<referrer></referrer>" +
-                "<address>叶家坡</address>" +
-                "<origin>weixin_origin</origin>" +
-                "<post_code>636150</post_code>" +
+                "<province>"+user.getProvince()+"</province>" +
+                "<address>"+user.getAddress()+"</address>" +
+                "<origin>"+user.getOrigin()+"</origin>" +
                 "</userInfo>";
 
         try {
@@ -161,13 +160,13 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
     /**
      * @param args
      */
-    public static void main(String[] args) throws TException {
-        UserHandler tc = new UserHandler();
-        com.thrift.server.User user = new User();
-       // tc.addUser(user);
-        String mobile = "13822152569";
-        tc.getUserInfo(mobile);
-    }
+//    public static void main(String[] args) throws TException {
+//        UserHandler tc = new UserHandler();
+//        com.thrift.server.User user = new User();
+//       // tc.addUser(user);
+//        String mobile = "13822152569";
+//        tc.getUserInfo(mobile);
+//    }
 
 
 }
