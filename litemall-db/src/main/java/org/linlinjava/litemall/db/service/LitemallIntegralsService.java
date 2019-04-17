@@ -250,5 +250,41 @@ public class LitemallIntegralsService {
 
     }
 
+    /**
+     * 使某一类积分记录有效/无效,并同时更新积分总值
+     *
+     * @param type
+     * @param effective
+     * @param userId
+     * @return
+     */
+    @Transactional
+    public Integer updateIntegralFromCrm(Integer userId, Integer type, Integer effective,Integer integral) {
+
+        LitemallIntegralsExample example = new LitemallIntegralsExample();
+        LitemallIntegralsExample.Criteria criteria = example.createCriteria();
+
+        if (userId != null && userId >= 0) {
+            criteria.andUserIdEqualTo(userId);
+            criteria.andIntegralTypeEqualTo(type.byteValue());
+        } else { //不允许查询所有用户积分
+            return -1;
+        }
+
+        List<LitemallIntegrals> records = integralsMapper.selectByExample(example);
+
+        if (records != null && records.size() > 0) {
+            LitemallIntegrals record = records.get(0);
+            record.setAction("注册时同步商城积分");
+            record.setIntegralDo(integral);
+            record.setEffective(effective.byteValue());
+            return integralsMapper.updateByPrimaryKey(record);
+        }
+
+        return -1;
+
+
+    }
+
 
 }

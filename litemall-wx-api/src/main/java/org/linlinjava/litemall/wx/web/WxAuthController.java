@@ -5,8 +5,10 @@ import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.linlinjava.litemall.core.config.CrmProperties;
 import org.linlinjava.litemall.core.notify.NotifyService;
 import org.linlinjava.litemall.core.notify.NotifyType;
+import org.linlinjava.litemall.core.system.CrmService;
 import org.linlinjava.litemall.core.util.*;
 import org.linlinjava.litemall.core.util.bcrypt.BCryptPasswordEncoder;
 import org.linlinjava.litemall.db.domain.LitemallUser;
@@ -67,6 +69,12 @@ public class WxAuthController {
 
     @Autowired
     private LitemallIntegralsService integralsService;
+
+    @Autowired
+    private CrmService crmService;
+
+    @Autowired
+    private CrmProperties crmProperties;
 
 
 
@@ -377,6 +385,7 @@ public class WxAuthController {
         String mobile = JacksonUtil.parseString(body, "mobile");
         String memberUsername = JacksonUtil.parseString(body, "memberUsername");
         String code = JacksonUtil.parseString(body, "code");
+        String codes = JacksonUtil.parseString(body, "regioncode");
 
         if (StringUtils.isEmpty(memberUsername) || StringUtils.isEmpty(fromSource)
                 || StringUtils.isEmpty(babybirthday) || StringUtils.isEmpty(address)) {
@@ -411,18 +420,41 @@ public class WxAuthController {
             user.setMemberUsername(memberUsername);
             if(mobile!=null&&!mobile.isEmpty())
                 user.setMobile(mobile);
-            userService.updateById(user);
 
-            //激活注册积分
-            integralsService.updateIntegral(userId, 1, 1);
+            if (crmProperties.getEnalbe()) {
+                logger.debug("Update to crm with:"+user.toString()+"\n codes:"+codes);
+                int r = crmService.addUser(user, codes);
+                if (r == -1) {//更新失败，保存信息，不更新积分
+                    userService.updateById(user);
+                    logger.error("crm add failed! with:" + user.toString() + "\n:" + codes);
+                    return ResponseUtil.fail(USER_INFO_ERROR, "更新CRM用户数据有错误");
+                } else if (r == 0) { //已经存在，需要查询积分并同步积分
+                    LitemallUser c_user = crmService.getUser(user.getMobile());
+                    user.setIntegral(c_user.getIntegral());
+                    userService.updateById(user);
+                    if (c_user != null && c_user.getIntegral() > 0) {
+                        integralsService.updateIntegralFromCrm(userId, 1, 1, c_user.getIntegral());
+                    }
+                } else if (r > 0) { //添加成功，使积分有效
+                    userService.updateById(user);
+                    integralsService.updateIntegral(userId, 1, 1);
+                }
+            }else{
+                logger.debug("don't update to crm with:"+user.toString()+"\n codes:"+codes);
+                userService.updateById(user);
+                integralsService.updateIntegral(userId, 1, 1);
+            }
+            return ResponseUtil.ok();
 
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseUtil.fail(USER_INFO_ERROR, "更新用户数据有错误");
+        }finally {
+            return ResponseUtil.ok();
         }
 
 
-        return ResponseUtil.ok();
+
     }
 
 
