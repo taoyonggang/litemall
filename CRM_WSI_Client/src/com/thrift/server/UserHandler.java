@@ -67,7 +67,7 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
 
         try {
             xml_encrypt = getXml_encrypt(key, xml);
-            privateKey = IOUtils.toString(TestClient2.class.getResourceAsStream("/key/privateKey.txt"));
+            privateKey = IOUtils.toString(UserHandler.class.getResourceAsStream("/key/privateKey.txt"));
             sign = Coder.sign(xml_encrypt.getBytes(), privateKey);
         } catch (Exception e) {
             e.printStackTrace();
@@ -102,7 +102,7 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><userQueryInfo>><companyId>1</companyId><userName>13822152569</userName></userQueryInfo>";
         try {
             xml_encrypt = getXml_encrypt(key, xml);
-            privateKey = IOUtils.toString(TestClient2.class.getResourceAsStream("/key/privateKey.txt"));
+            privateKey = IOUtils.toString(UserHandler.class.getResourceAsStream("/key/privateKey.txt"));
             sign = Coder.sign(xml_encrypt.getBytes(), privateKey);
         } catch (Exception e) {
             e.printStackTrace();
