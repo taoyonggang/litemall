@@ -3,6 +3,8 @@ package com.thrift.server;
 import java.security.Key;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.server.TServer;
 import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.*;
@@ -110,7 +112,11 @@ public class AyServiceRun {
 		try {
 			TServerTransport serverTransport = new TServerSocket(9090);
 
-			TServer server = new TThreadPoolServer(new TThreadPoolServer.Args(serverTransport).processor(processor));
+            TThreadPoolServer.Args tArgs = new TThreadPoolServer.Args(serverTransport);
+            AyService.Processor<AyService.Iface> tprocessor = new AyService.Processor<AyService.Iface>(new UserHandler());
+            tArgs.processor(tprocessor);
+            tArgs.protocolFactory(new TCompactProtocol.Factory());
+			TServer server = new TThreadPoolServer(tArgs);
 
 			System.out.println("Starting the simple server...");
 			server.serve();

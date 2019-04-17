@@ -3,6 +3,7 @@ package org.linlinjava.litemall.core.system;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
+import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
@@ -34,23 +35,25 @@ public class CrmService {
 
     @PostConstruct
     public Boolean start(){
-        if (checkStarted()&&client!=null) return true;
+        if (transport!=null&&client!=null) return true;
         isConnected = false;
         try {
             transport = new TSocket(properties.getHost(), properties.getPort(),properties.getTimeout() );
-            TProtocol protocol = new TBinaryProtocol(transport);
+            TProtocol protocol = new TCompactProtocol(transport);
             client = new AyService.Client(protocol);
             transport.open();
             isConnected = true;
             return isConnected;
         } catch (TTransportException e) {
             e.printStackTrace();
+            transport = null;
+            client = null;
         } catch (TException e) {
             e.printStackTrace();
+            transport = null;
+            client = null;
         } finally {
-            if (null != transport) {
-                transport.close();
-            }
+            System.out.println("rpc run...");
         }
         return isConnected;
     }
