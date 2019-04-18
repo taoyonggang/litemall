@@ -32,8 +32,8 @@ public class CrmService {
     private CrmProperties properties;
 
     private static Boolean isConnected = false;
-    private static TTransport transport = null;
-    private static AyService.Client client = null;
+    private TTransport transport = null;
+    private AyService.Client client = null;
 
     @PostConstruct
     public Boolean start(){
