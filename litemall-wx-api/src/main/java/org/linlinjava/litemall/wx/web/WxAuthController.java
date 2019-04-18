@@ -399,7 +399,7 @@ public class WxAuthController {
 
         //判断验证码是否正确
         String cacheCode = CaptchaCodeManager.getCachedCaptcha(mobile);
-        if (cacheCode == null || cacheCode.isEmpty() || !cacheCode.equals(code))
+        if (cacheCode == null || cacheCode.isEmpty() || !cacheCode.equals(code)||cacheCode.contains("undefined"))
             return ResponseUtil.fail(AUTH_CAPTCHA_UNMATCH, "验证码错误");
 
         try {
@@ -408,9 +408,9 @@ public class WxAuthController {
             user.setBabybirthday(DateTimeUtil.StringToLocalDate(babybirthday));
             user.setBabybirthday2(DateTimeUtil.StringToLocalDate(babybirthday2));
             try {
-                if (babysex != null)
+                if (babysex != null&&!babysex.contains("undefined"))
                     user.setBabysex(Byte.parseByte(babysex));
-                if (babysex2 != null)
+                if (babysex2 != null&&!babysex2.contains("undefined"))
                     user.setBabysex2(Byte.parseByte(babysex2));
             }catch (Exception e){
                 e.printStackTrace();
@@ -418,7 +418,7 @@ public class WxAuthController {
             user.setFromsouce(fromSource);
             user.setAddress(address);
             user.setMemberUsername(memberUsername);
-            if(mobile!=null&&!mobile.isEmpty())
+            if(mobile!=null&&!mobile.isEmpty()&&!mobile.contains("undefined"))
                 user.setMobile(mobile);
 
             if (crmProperties.getEnabled()) {
@@ -426,7 +426,6 @@ public class WxAuthController {
                 int r = crmService.addUser(user, codes);
                 if (r == -1) {//更新失败，保存信息，不更新积分
                     userService.updateById(user);
-
                     logger.error("crm add failed! with:" + user.toString() + "\n:" + codes);
                     return ResponseUtil.fail(USER_INFO_ERROR, "更新CRM用户数据有错误");
                 } else if (r == 0) { //已经存在，需要查询积分并同步积分
@@ -448,7 +447,7 @@ public class WxAuthController {
             return ResponseUtil.ok();
 
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
             return ResponseUtil.fail(USER_INFO_ERROR, "更新用户数据有错误");
         }
 

@@ -1,6 +1,8 @@
 package org.linlinjava.litemall.core.system;
 
 import org.apache.commons.codec.digest.DigestUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.thrift.TException;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TCompactProtocol;
@@ -25,76 +27,82 @@ import javax.annotation.PreDestroy;
 @Service
 @Scope("prototype")
 public class CrmService {
-
+    private final Log logger = LogFactory.getLog(getClass());
     @Autowired
     private CrmProperties properties;
 
-    private  Boolean isConnected = false;
-    private  TTransport transport = null;
-    private  AyService.Client client = null;
+    private static Boolean isConnected = false;
+    private static TTransport transport = null;
+    private static AyService.Client client = null;
 
     @PostConstruct
     public Boolean start(){
         //if (isConnected&&transport!=null&&client!=null&&transport.isOpen()) return true;
         isConnected = false;
         try {
+            logger.info("CRM客户端开始连接.....");
             transport = new TSocket(properties.getHost(), properties.getPort(),properties.getTimeout() );
             TProtocol protocol = new TCompactProtocol(transport);
             client = new AyService.Client(protocol);
             transport.open();
             isConnected = true;
+            logger.info("CRM客户端连接成功");
             return isConnected;
         } catch (TTransportException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
             transport = null;
             client = null;
         } catch (TException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
             transport = null;
             client = null;
-        } finally {
-            System.out.println("rpc run...");
         }
+        logger.info("CRM客户端连接失败");
         return isConnected;
     }
     @PreDestroy
     public void stop(){
+
         if (checkStarted()){
             client = null;
             transport.close();
             transport = null;
             isConnected = false;
+            logger.info("CRM客户端断开连接");
         }
     }
     public int addUser(LitemallUser user,String codes){
+        logger.info("添加CRM用户");
         if (checkStarted()&&codes!=null&&codes.length()>10){
-            User crm_user = new User();
-            crm_user.setMemberUsername(user.getMemberUsername());
-            crm_user.setMobile(user.getMobile());
-            if (user.getPassword()==null) user.setPassword("123456");
-            String md5Hex = DigestUtils
-                    .md5Hex(user.getPassword()).toUpperCase();
-            crm_user.setPassword(md5Hex);
-            crm_user.setBabybirthday(DateTimeUtil.getDateDisplayString2(user.getBabybirthday()));
-            crm_user.setBabybirthday2(DateTimeUtil.getDateDisplayString2(user.getBabybirthday2()));
-            crm_user.setBabysex(user.getBabysex());
-            crm_user.setBabysex2(user.getBabysex2());
-            crm_user.setAddress(user.getAddress());
-            crm_user.setCompany_id(6);
-            crm_user.setOrigin("weixin_origin");
-            crm_user.setUser_type("member_user");
-            crm_user.setWeixinOpenid(user.getWeixinOpenid());
-            crm_user.setAvatar(properties.getFrom()+"#"+user.getFromsouce());
-            String[] code = codes.split(" ");
-            if (code!=null&&code.length >=3){
-                crm_user.setProvince(code[0]);
-                crm_user.setCity(code[1]);
-                crm_user.setArea(code[2]);
-            }
             try {
+                logger.info("开始添加CRM用户");
+                User crm_user = new User();
+                crm_user.setMemberUsername(user.getMemberUsername());
+                crm_user.setMobile(user.getMobile());
+                if (user.getPassword()==null) user.setPassword("123456");
+                    String md5Hex = DigestUtils
+                            .md5Hex(user.getPassword()).toUpperCase();
+                crm_user.setPassword(md5Hex);
+                crm_user.setBabybirthday(DateTimeUtil.getDateDisplayString2(user.getBabybirthday()));
+                crm_user.setBabybirthday2(DateTimeUtil.getDateDisplayString2(user.getBabybirthday2()));
+                crm_user.setBabysex(user.getBabysex());
+                crm_user.setBabysex2(user.getBabysex2());
+                crm_user.setAddress(user.getAddress());
+                crm_user.setCompany_id(6);
+                crm_user.setOrigin("weixin_origin");
+                crm_user.setUser_type("member_user");
+                crm_user.setWeixinOpenid(user.getWeixinOpenid());
+                crm_user.setAvatar(properties.getFrom()+"#"+user.getFromsouce());
+                String[] code = codes.split(" ");
+                if (code!=null&&code.length >=3){
+                    crm_user.setProvince(code[0]);
+                    crm_user.setCity(code[1]);
+                    crm_user.setArea(code[2]);
+                }
+                logger.info("结束添加CRM用户");
                 return client.addUser(crm_user);
             }catch (Exception e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(),e);
                 client = null;
                 transport = null;
                 isConnected = false;
@@ -104,28 +112,38 @@ public class CrmService {
     };
 
     public LitemallUser getUser(String mobile) {
+        logger.info("获取CRM用户");
         if (checkStarted()){
             try {
+                logger.info("开始获取CRM用户");
                 User crm_user = client.getUserInfo(mobile);
                 if (crm_user!=null&&crm_user.getMobile()!=null){
                     LitemallUser user = new LitemallUser();
                     user.setMemberUsername(crm_user.getMemberUsername());
                     user.setIntegral(crm_user.getIntegral());
+                    user.setGrade(crm_user.getGrade());
+                    logger.info("成功获取CRM用户");
                     return user;
                 }
             }catch (Exception e) {
-                e.printStackTrace();
+                logger.error(e.getMessage(),e);
                 client = null;
                 transport = null;
                 isConnected = false;
             }
         }
+        logger.info("获取CRM用户失败");
         return null;
     }
 
     private Boolean checkStarted(){
-        if (isConnected&&transport!=null&&client!=null&&transport.isOpen())
+        if (isConnected&&transport!=null&&client!=null&&transport.isOpen()){
+            logger.info("CRM客户端已经连接，直接返回");
             return true;
-        else return start();
+        }
+        else {
+            logger.info("CRM客户端未连接，尝试重连一次");
+            return start();
+        }
     }
 }
