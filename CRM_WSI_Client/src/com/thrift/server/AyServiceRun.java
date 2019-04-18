@@ -1,6 +1,9 @@
 package com.thrift.server;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.security.Key;
+import java.util.Properties;
 import java.util.Timer;
 import java.util.logging.Logger;
 
@@ -30,6 +33,8 @@ import sun.misc.BASE64Encoder;
  */
 public class AyServiceRun {
 
+    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(AyServiceRun.class.getName());
+
 	public static String url = "http://wsapi.ausnutria.com:1111/wsi";
 	public static String spPassword = "bff7bc472d0bfc9c024fdd10751b355d";
 	public static String spName = "b92705ab6294a656f8e073d6503bac55";
@@ -42,18 +47,34 @@ public class AyServiceRun {
 	public static UserHandler handler;
 	public static AyService.Processor processor;
 
-	/**
-	 * 测试1
-	 */
-	private static String getXml_encrypt(String key, String xml) throws Exception {
-
-		Key k = DESCoder.toKey(key.getBytes());
-		byte[] encryptData = DESCoder.encrypt(xml.getBytes(), k);
-		String xml_encrypt = new BASE64Encoder().encode(encryptData); // 加密后的数据
-		return xml_encrypt;
-
+    /**
+     * 读取配置文件
+     */
+	private static void readProperties(){
+	    logger.info("读取配置文件");
+        InputStream inStream = UserHandler.class.getClassLoader().getResourceAsStream("code.properties");
+        Properties properties = new Properties();
+            try {
+                properties.load(inStream);
+                logger.info("加载配置");
+                if (properties.get("url")!=null)
+                    url = properties.get("url").toString();
+                if (properties.get("spPassword")!=null)
+                    spPassword = properties.get("spPassword").toString();
+                if (properties.get("spName")!=null)
+                    spName = properties.get("spName").toString();
+                if (properties.get("key")!=null)
+                    key = properties.get("key").toString();
+            } catch (IOException e) {
+                logger.error(e.getMessage(),e);
+            }
 	}
 
+
+    /**
+     * 初始化连接 SOA服务器，获取token
+     * @return
+     */
 	public static Boolean init(){
 		try {
 			rsxml = WebServiceExecuterNew.getWsiSoapService(url, spName, spPassword).generationToken();
@@ -61,9 +82,9 @@ public class AyServiceRun {
 			privateKey = IOUtils.toString(UserHandler.class.getResourceAsStream("/key/privateKey.txt"));
 			return true;
 		}catch(Exception e){
-			return false;
+            logger.error(e.getMessage(),e);
+            return false;
 		}
-
 	}
 
 
@@ -73,10 +94,14 @@ public class AyServiceRun {
 	public static void main(String[] args) {
 		try {
 
+            readProperties();
+
 			if (!AyServiceRun.init()){
-				System.out.println("CRM Servcie connect failed.");
+                logger.error("CRM Servcie connect failed.");
 				return;
 			}
+
+            logger.info("开启定时刷新token任务，没有加锁");
 			Timer timer = new Timer();
 			//每12小时刷新token
 			timer.schedule(new TimerTaskRefresh(), 1000*60*60*12, 1000*60*60*12);
@@ -84,19 +109,20 @@ public class AyServiceRun {
 			handler = new UserHandler();
 			processor = new AyService.Processor(handler);
 
-			Runnable simple = new Runnable() {
+			Runnable SOAServer = new Runnable() {
 				public void run() {
-					simple(processor);
+                    SOAServer(processor);
 				}
 			};
-			new Thread(simple).start();
+            logger.info("开始启动业务处理RPC服务器");
+			new Thread(SOAServer).start();
 
-		} catch (Exception x) {
-			x.printStackTrace();
+		} catch (Exception e) {
+            logger.error(e.getMessage(),e);
 		}
 	}
 
-	public static void simple(AyService.Processor processor) {
+	public static void SOAServer(AyService.Processor processor) {
 		try {
 			TServerTransport serverTransport = new TServerSocket(9090);
 
@@ -106,10 +132,10 @@ public class AyServiceRun {
             tArgs.protocolFactory(new TCompactProtocol.Factory());
 			TServer server = new TThreadPoolServer(tArgs);
 
-			System.out.println("Starting the simple server...");
+            logger.info("服务器启动完成,开始提供服务.....");
 			server.serve();
 		} catch (Exception e) {
-			e.printStackTrace();
+            logger.error(e.getMessage(),e);
 		}
 	}
 }

@@ -26,6 +26,8 @@ import java.security.Key;
 
 public class UserHandler implements com.thrift.server.AyService.Iface{
 
+    private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(UserHandler.class.getName());
+
     public static Integer company_id = 6;
     public static String user_type = "member_user";
     public static String origin = "www.1897.com";
@@ -46,12 +48,15 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
 
 
     private String getXml_encrypt(String key, String xml) throws Exception {
-
-        Key k = DESCoder.toKey(key.getBytes());
-        byte[] encryptData = DESCoder.encrypt(xml.getBytes(), k);
-        String xml_encrypt = new BASE64Encoder().encode(encryptData); // 加密后的数据
-        return xml_encrypt;
-
+        try {
+            Key k = DESCoder.toKey(key.getBytes());
+            byte[] encryptData = DESCoder.encrypt(xml.getBytes(), k);
+            String xml_encrypt = new BASE64Encoder().encode(encryptData); // 加密后的数据
+            return xml_encrypt;
+        }catch (Exception e){
+            logger.error(e.getMessage(),e);
+        }
+        return null;
     }
     //
     public int addUser(com.thrift.server.User user) throws TException {
@@ -80,40 +85,41 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
                     "</userInfo>";
             xml_encrypt = getXml_encrypt(AyServiceRun.key, xml);
             sign = Coder.sign(xml_encrypt.getBytes(), AyServiceRun.privateKey);
+            String rsxmlx = WebServiceExecuterNew.getUserSoapService(AyServiceRun.url, AyServiceRun.spName, AyServiceRun.spPassword).register(AyServiceRun.result.getToken(), sign, xml_encrypt);
+            logger.debug(rsxmlx);
+            Document document = getDocument(rsxmlx);
+            String msg="",memberId="0";
+            HashMap map = new HashMap();
+            Element root = document.getRootElement();
+            List<Element> childElements = root.elements();
+            for (Element ele : childElements) {
+                System.out.println(ele.getName() + ": " + ele.getText());
+                if(ele.getName().equals("msg")){
+                    msg = ele.getText();
+                }else if(ele.getName().equals("memberId")){
+                    memberId = ele.getText();
+                }
+            }
+
+
+            if (msg!=null){
+                if (msg.contains("成功")) {
+                    logger.debug("用户注册成功");
+                    return Integer.parseInt(memberId);
+                }
+                else if (msg.contains("已经注册")){
+                    logger.debug("用户已经注册");
+                    return 0;
+                }
+            }
+            logger.debug("用户注册失败");
+
+            return -1;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
             return -1;
         }
-        String rsxmlx = WebServiceExecuterNew.getUserSoapService(AyServiceRun.url, AyServiceRun.spName, AyServiceRun.spPassword).register(AyServiceRun.result.getToken(), sign, xml_encrypt);
-        System.out.println(rsxmlx);
-        Document document = getDocument(rsxmlx);
-        String msg="",memberId="0";
-        HashMap map = new HashMap();
-        Element root = document.getRootElement();
-        List<Element> childElements = root.elements();
-        for (Element ele : childElements) {
-            System.out.println(ele.getName() + ": " + ele.getText());
-            if(ele.getName().equals("msg")){
-                msg = ele.getText();
-            }else if(ele.getName().equals("memberId")){
-                memberId = ele.getText();
-            }
-        }
 
-
-        if (msg!=null){
-            if (msg.contains("成功")) {
-                System.out.println("成功");
-                return Integer.parseInt(memberId);
-            }
-            else if (msg.contains("已经注册")){
-                System.out.println("已经注册");
-                return 0;
-            }
-        }
-        System.out.println("失败");
-
-        return -1;
     }
 
 
@@ -125,12 +131,13 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
             xml_encrypt = getXml_encrypt(AyServiceRun.key, xml);
             sign = Coder.sign(xml_encrypt.getBytes(), AyServiceRun.privateKey);
             String rsxmlx = WebServiceExecuterNew.getUserSoapService(AyServiceRun.url, AyServiceRun.spName, AyServiceRun.spPassword).userQuery(AyServiceRun.result.getToken(), sign, xml_encrypt);
+            logger.debug(rsxmlx);
             Document document = getDocument(rsxmlx);
             HashMap map = new HashMap();
             Element root = document.getRootElement();
             List<Element> childElements = root.elements();
             for (Element ele : childElements) {
-                System.out.println(ele.getName() + ": " + ele.getText());
+                logger.debug(ele.getName() + ": " + ele.getText());
                 map.put(ele.getName(), ele.getText());
             }
             Iterator keys = map.keySet().iterator();
@@ -158,9 +165,10 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
                     user.setMemberUsername((String) map.get(key));
                 }
             }
+            logger.debug("查询用户成功："+user.toString());
             return user;
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
             return null;
         }
 
@@ -168,26 +176,14 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
 
     private Document getDocument(String rsxmlx) {
         String rsxmlx1 = rsxmlx.replaceAll(">\\s+<", "><");
-        System.out.println(rsxmlx1);
+        logger.debug(rsxmlx1);
         Document document = null;
         try {
             document = DocumentHelper.parseText(rsxmlx1); //String转xml
         } catch (DocumentException e) {
-            e.printStackTrace();
+            logger.error(e.getMessage(),e);
         }
         return document;
     }
-
-    /**
-     * @param args
-     */
-//    public static void main(String[] args) throws TException {
-//        UserHandler tc = new UserHandler();
-//        com.thrift.server.User user = new User();
-//       // tc.addUser(user);
-//        String mobile = "13822152569";
-//        tc.getUserInfo(mobile);
-//    }
-
 
 }
