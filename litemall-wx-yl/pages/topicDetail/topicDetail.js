@@ -140,6 +140,11 @@ Page({
             })
         }
     },
+  listActivity() {
+    wx.navigateTo({
+      url: "/pages/ucenter/activityrecord/activityrecord"
+    });
+  },
     onReady: function () {
 
     },

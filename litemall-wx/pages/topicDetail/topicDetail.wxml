@@ -28,6 +28,9 @@
       </view>
     </view>
   </scroll-view>
+   <view class="bottomtab">
+      <laber class="laber1" bindtap="listActivity">历史查询</laber>
+    </view>
   <!-- <scroll-view class="comments">
     <view class="h">
       <text class="t">精选留言</text>

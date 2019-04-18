@@ -27,5 +27,8 @@ App({
   },
   globalData: {
     hasLogin: false
-  }
+  },
+  authorizedata: {
+    authorize: 0,
+  },
 })

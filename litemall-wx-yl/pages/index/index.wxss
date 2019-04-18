@@ -18,16 +18,18 @@
 }
 
 .m-menu .item {
-  width: 150rpx;
-  height: 126rpx;
+  /* width: 150rpx; */
+  width: 250rpx;
+  height: 136rpx;
 }
 
 .m-menu image {
   display: block;
-  width: 58rpx;
-  height: 58rpx;
+  width: 90rpx;
+  height: 90rpx;
   margin: 0 auto;
   margin-bottom: 12rpx;
+
 }
 
 .m-menu text {
@@ -38,7 +40,55 @@
   line-height: 1;
   color: #333;
 }
+.m-menu1 {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 0rpx;
+  padding-top: 25rpx;
+  margin-top: 20rpx;
+}
 
+.m-menu1 .item {
+  width: 49%;
+  height: 136rpx;
+}
+.m-menu1 .item-b {
+  margin-left:6.25rpx;
+}
+.m-menu1 image {
+  display: block;
+  width: 100rpx;
+  height: 100rpx;
+  margin: 0 auto;
+  margin-bottom: 12rpx;
+  float:left;
+  margin-left:45rpx;
+ margin-top:12rpx;
+
+}
+
+.m-menu1 text {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 2;
+  color: #000;
+  font-size:34rpx;
+  font-weight:900;
+
+}
+.textcontent {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+  line-height: 2;
+  color: rgb(122, 116, 116);
+  font-size:26rpx;
+  font-weight:border;
+
+}
 .a-section {
   width: 750rpx;
   height: auto;
@@ -57,12 +107,16 @@
 }
 
 .a-section .h .txt {
-  padding-right: 30rpx;
+  padding-right: 170rpx;
   background-size: 16.656rpx 27rpx;
   display: inline-block;
   height: 36rpx;
   font-size: 33rpx;
   line-height: 36rpx;
+  font-weight:900;
+  color:#1c2e56;
+  padding-left:210rpx;
+  
 }
 
 .a-brand .b {

@@ -3,6 +3,7 @@ var api = require('../../config/api.js');
 var app = getApp()
 Page({
   data: {
+    topicType:0,
     topicList: [],
     page: 1,
     size: 10,
@@ -12,7 +13,13 @@ Page({
   },
   onLoad: function(options) {
     // 页面初始化 options为页面跳转所带来的参数
-    this.getTopic();
+    if (options.id) {
+      this.setData({
+        topicType: parseInt(options.id)
+      });
+      this.getTopic();
+    }
+    
   },
   onReady: function() {
     // 页面渲染完成
@@ -57,7 +64,8 @@ Page({
 
     util.request(api.TopicList, {
       page: that.data.page,
-      size: that.data.size
+      size: that.data.size,
+      topicType: that.data.topicType
     }).then(function(res) {
       if (res.errno === 0) {
 

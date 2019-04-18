@@ -84,6 +84,8 @@ Page({
                 duration: 2000
               });
               that.getIntegralsIndex();
+            } else {
+              util.showErrorToast(res.errmsg);
             }
 
           });

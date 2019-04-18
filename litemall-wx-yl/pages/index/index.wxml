@@ -19,7 +19,19 @@
       <text>{{item.name}}</text>
     </navigator>
   </view>
-<view class="a-section a-topic" wx:if="topics.length > 0">
+  <view class="m-menu1">
+    <navigator class="item" url="/pages/topic/topic?id=0">
+      <image src="/static/images/indexqiandao.png" background-size="cover"></image>
+      <text>线下签到区</text>
+      <view class="textcontent">超级会员专享</view>
+    </navigator>
+    <navigator class="item item-b" url="/pages/topic/topic?id=1">
+      <image src="/static/images/indexgongyi.png" background-size="cover"></image>
+      <text>公益活动区</text>
+      <view class="textcontent">小积分大收获</view>
+    </navigator>
+  </view>
+<!-- <view class="a-section a-topic" wx:if="topics.length > 0">
     <view class="h">
       <view>
         <navigator url="/pages/topic/topic">
@@ -34,15 +46,14 @@
             <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
             <view class="np">
               <text class="name">{{item.title}}</text>
-              <!-- <text class="price">￥{{item.price}}元起</text> -->
             </view>
             <text class="desc">{{item.subtitle}}</text>
           </navigator>
         </view>
       </scroll-view>
     </view>
-  </view>
-  <view class="a-section a-topic" wx:if="topics.length > 0">
+  </view> -->
+  <!-- <view class="a-section a-topic" wx:if="topics.length > 0">
     <view class="h">
       <view>
         <navigator url="/pages/topic/topic">
@@ -57,14 +68,13 @@
             <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
             <view class="np">
               <text class="name">{{item.title}}</text>
-              <!-- <text class="price">￥{{item.price}}元起</text> -->
             </view>
             <text class="desc">{{item.subtitle}}</text>
           </navigator>
         </view>
       </scroll-view>
     </view>
-  </view>
+  </view> -->
   <view class="a-section a-coupon" wx:if="{{coupon.length > 0}}">
     <view class="h">
       <view class="title">
@@ -127,7 +137,7 @@
       </view>
     </view>
   </view>
-
+<!-- 
   <view class="a-section a-brand">
     <view class="h">
       <navigator url="../brand/brand">
@@ -148,16 +158,17 @@
         </navigator>
       </view>
     </view>
-  </view>
-   <view class="a-section a-popular" wx:if="{{hotGoods.length > 0}}">
+  </view> -->
+   <view class="a-section a-new" wx:if="{{hotGoods.length > 0}}">
     <view class="h">
       <view>
         <navigator url="../hotGoods/hotGoods">
-          <text class="txt">爆款推荐</text>
+          <text class="txt">— 为你推荐 —</text>
+           <text>更多></text>
         </navigator>
       </view>
     </view>
-    <view class="b">
+    <!-- <view class="b">
       <view class="item" wx:for="{{hotGoods}}" wx:for-index="index" wx:for-item="item" wx:key="id">
         <navigator url="/pages/goods/goods?id={{item.id}}">
           <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
@@ -169,9 +180,21 @@
                <view wx:if="{{ item.integral > 0 }}">
                    <image  src="/static/images/integrallogo.png" style="width:30rpx;height:30rpx;position:absolute;margin-top:10rpx"></image>
                 <text class="price" style="float:left;margin-left:38rpx">{{item.integral}}</text>
-
                </view>
             </view>
+          </view>
+        </navigator>
+      </view>
+    </view> -->
+     <view class="b">
+      <view class="item" wx:for="{{hotGoods}}" wx:for-index="index" wx:for-item="item" wx:key="id">
+        <navigator url="../goods/goods?id={{item.id}}">
+          <image class="img" src="{{item.picUrl}}" background-size="cover"></image>
+          <text class="name">{{item.name}}</text>
+          <text class="price" wx:if="{{ item.retailPrice > 0 }}">￥{{item.retailPrice}}</text>
+          <view wx:if="{{ item.integral > 0 }}" style='display:block;' class="integral">
+                 <image  src="/static/images/integrallogo.png" style="width:30rpx;height:30rpx;position:absolute;"></image>
+                  <text class="price"  style="float:left;margin-left:70rpx">{{item.integral}}</text>
           </view>
         </navigator>
       </view>
@@ -181,7 +204,8 @@
     <view class="h">
       <view>
         <navigator url="../newGoods/newGoods">
-          <text class="txt">新品首发</text>
+           <text class="txt">— 新品首发 —</text>
+           <text>更多></text>
         </navigator>
       </view>
     </view>
@@ -193,7 +217,7 @@
           <text class="price" wx:if="{{ item.retailPrice > 0 }}">￥{{item.retailPrice}}</text>
           <view wx:if="{{ item.integral > 0 }}" style='display:block;' class="integral">
                  <image  src="/static/images/integrallogo.png" style="width:30rpx;height:30rpx;position:absolute;"></image>
-                  <text class="price"  style="float:left;margin-left:38rpx">{{item.integral}}</text>
+                  <text class="price"  style="float:left;margin-left:70rpx">{{item.integral}}</text>
                </view>
         </navigator>
       </view>
@@ -203,7 +227,7 @@
  
 
   
-  <view class="good-grid" wx:for="{{floorGoods}}" wx:key="id">
+  <!-- <view class="good-grid" wx:for="{{floorGoods}}" wx:key="id">
     <view class="h">
       <text>{{item.name}}</text>
     </view>
@@ -225,5 +249,5 @@
     <navigator url="/pages/category/category?id={{item.id}}" class="t">
       <view class="txt">{{'更多'+item.name+'好物 >'}}</view>
     </navigator>
-  </view>
+  </view> -->
 </view>

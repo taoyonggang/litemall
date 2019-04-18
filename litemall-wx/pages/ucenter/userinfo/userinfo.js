@@ -6,9 +6,9 @@ var app = getApp();
 
 Page({
   data: {
-    array: ['选择信息来源','活动推荐','门店','专业推荐','广告推荐','自主注册','其他'],
-    babysexarray: ['宝宝性别','男','女'],
-    babysexarray2: ['宝宝性别（二胎）','男', '女'],
+    array: ['选择信息来源', '专业推荐', '活动推荐', '门店', '广告推荐', '自主注册', '其他'],
+    babysexarray: ['宝宝性别', '男', '女'],
+    babysexarray2: ['宝宝性别（二胎）', '男', '女'],
     indexsex: 0,
     indexsex2: 0,
     index: 0,
@@ -23,25 +23,25 @@ Page({
     address: '',
     cityPickerValue: [0, 0],
     cityPickerIsShow: false,
-    nickname:'',
+    nickname: '',
     mobile: '',
     birthday: '',
     babybirthday: '',
     babybirthday2: '',
     userInfo: {
-            nickName: 'test',
-            avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png',
-            id: 0,
-            birthday:'',
-            babybirthday:'',
-            babybirthday2: '',
-            address:'',
-            fromSource:'',
-            mobile:'',
-            babysex:'',
-            babysex2:'',
-            code: '',
-        },
+      nickName: 'test',
+      avatarUrl: 'http://yanxuan.nosdn.127.net/8945ae63d940cc42406c3f67019c5cb6.png',
+      id: 0,
+      birthday: '',
+      babybirthday: '',
+      babybirthday2: '',
+      address: '',
+      fromSource: '',
+      mobile: '',
+      babysex: '',
+      babysex2: '',
+      memberUsername: ''
+    },
     integral: {
       type: 0,
       integralSum: 0,
@@ -50,12 +50,26 @@ Page({
       size: 10,
       totalPages: 1
     },
-    udername:'',
-    id:'',
-    fromSource:'',
+    udername: '',
+    id: '',
+    fromSource: '',
     babysex: '',
     babysex2: '',
     code: '',
+    memberUsername: '',
+    region: ['地址'],
+   // customItem: '全部',
+    regioncode: '',
+  },
+  bindRegionChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      region: e.detail.value,
+      address: e.detail.value[0] + " " + e.detail.value[1] + " " + e.detail.value[2],
+      regioncode: e.detail.code[0] + " " + e.detail.code[1] + " " + e.detail.code[2],
+    })
+    console.log('picker发送选择改变，address', this.data.address)
+    console.log('picker发送选择改变，code', this.data.regioncode)
   },
   bindPickerChange: function (e) {
     this.setData({
@@ -77,12 +91,17 @@ Page({
       nickname: e.detail.value
     });
   },
+  memberUsernameInput: function (e) {
+    this.setData({
+      memberUsername: e.detail.value
+    });
+  },
   mobileInput: function (e) {
     this.setData({
       mobile: e.detail.value
     });
   },
-  addressInput:function(e){
+  addressInput: function (e) {
     this.setData({
       address: e.detail.value
     });
@@ -159,7 +178,7 @@ Page({
     console.log('cityPickerOnSureClick');
     console.log(e);
     this.setData({
-      address: e.detail.valueName[0] + e.detail.valueName[1],
+      address: e.detail.valueName[0] +" "+ e.detail.valueName[1],
       cityPickerValue: e.detail.valueCode,
       cityPickerIsShow: false,
     });
@@ -175,7 +194,26 @@ Page({
       cityPickerIsShow: false,
     });
   },
-
+  /**
+   * 宝宝生日（一胎）选择取消
+   */
+  datePickerOnCancelClick: function (event) {
+    console.log('datePickerOnCancelClick');
+    console.log(event);
+    this.setData({
+      datePickerIsShow: false,
+    });
+  },
+  /**
+ *  宝宝生日（二胎）选择取消
+ */
+  datePickerOnCancelClick2: function (event) {
+    console.log('datePickerOnCancelClick2');
+    console.log(event);
+    this.setData({
+      datePickerIsShow2: false,
+    });
+  },
 
   showCityPicker() {
     // this.data.cityPicker.show()
@@ -195,12 +233,12 @@ Page({
     var fromsouce = that.data.array[that.data.index];
     var babysex = that.data.babysexarray[that.data.indexsex];
     var babysex2 = that.data.babysexarray2[that.data.indexsex2];
-    if (babysex == '男'){
-        babysex = 1
-    } else if (babysex == '女'){
-        babysex = 2
-    }else{
-        babysex = 0
+    if (babysex == '男') {
+      babysex = 1
+    } else if (babysex == '女') {
+      babysex = 2
+    } else {
+      babysex = 0
     }
     if (babysex2 == '男') {
       babysex2 = 1
@@ -214,10 +252,14 @@ Page({
       babysex: babysex,
       babysex2: babysex2
     })
-    if (that.data.nickname == '') {
-       util.showErrorToast('请输入会员姓名');
-       return false;
-     }
+    // if (that.data.nickname == '') {
+    //    util.showErrorToast('请输入会员姓名');
+    //    return false;
+    //  }
+    if (that.data.memberUsername == '') {
+      util.showErrorToast('请输入会员姓名');
+      return false;
+    }
     if (that.data.mobile == '') {
       util.showErrorToast('请输入手机号码');
       return false;
@@ -228,10 +270,6 @@ Page({
     }
     if (that.data.babysex == '') {
       util.showErrorToast('请输入宝宝性别');
-      return false;
-    }
-    if (that.data.code == '') {
-      util.showErrorToast('请输入验证码');
       return false;
     }
     // if (that.data.babybirthday == '') {
@@ -250,8 +288,16 @@ Page({
       util.showErrorToast('请输入地址');
       return false;
     }
+    if (that.data.region == '') {
+      util.showErrorToast('请输入地址');
+      return false;
+    }
     if (that.data.mobile == '') {
       util.showErrorToast('请输入手机号');
+      return false;
+    }
+    if (that.data.code == '') {
+      util.showErrorToast('请输入验证码');
       return false;
     }
     if (!check.isValidPhone(this.data.mobile)) {
@@ -269,16 +315,18 @@ Page({
 
       }
     });
-    
+
 
     util.request(api.UpdateUser, {
+      memberUsername: that.data.memberUsername,
       nickname: that.data.nickname,
       mobile: that.data.mobile,
       fromSource: that.data.fromSource,
       babybirthday: that.data.babybirthday,
       babybirthday2: that.data.babybirthday2,
       address: that.data.address,
-      babysex:that.data.babysex,
+      regioncode: that.data.regioncode,
+      babysex: that.data.babysex,
       babysex2: that.data.babysex2,
       code: that.data.code
       //id: that.data.id,
@@ -304,10 +352,10 @@ Page({
               let data = curPage.data;
               curPage.setData({ 'isBack': true });
             }
-             wx.navigateBack({
-               delta: 1
-             })
-           
+            wx.navigateBack({
+              delta: 1
+            })
+
           }
         });
       } else {
@@ -324,11 +372,11 @@ Page({
         var fromSource = res.data.userDetail.fromSource;
         var babysex = res.data.userDetail.babysex;
         var babysex2 = res.data.userDetail.babysex2;
-        if (fromSource == '活动推荐'){
+        if (fromSource == '活动推荐') {
           that.setData({
-            index:1
+            index: 1
           })
-        } else if (fromSource == '门店'){
+        } else if (fromSource == '门店') {
           that.setData({
             index: 2
           })
@@ -375,14 +423,41 @@ Page({
             indexsex2: 0
           })
         }
-        that.setData({
-          nickname: res.data.userDetail.nickName,
-          mobile: res.data.userDetail.mobile,
-          fromSource: res.data.userDetail.fromSource,
-          babybirthday2: res.data.userDetail.babybirthday2,
-          babybirthday: res.data.userDetail.babybirthday,
-          address: res.data.userDetail.address,
-        });
+        if (res.data.userDetail.memberUsername != undefined) {
+          that.setData({
+            memberUsername: res.data.userDetail.memberUsername,
+          });
+        }
+        if (res.data.userDetail.nickName != undefined) {
+          that.setData({
+            nickname: res.data.userDetail.nickName,
+          });
+        }
+        if (res.data.userDetail.mobile != undefined) {
+          that.setData({
+            mobile: res.data.userDetail.mobile,
+          });
+        }
+        if (res.data.userDetail.babybirthday != undefined) {
+          that.setData({
+            babybirthday: res.data.userDetail.babybirthday,
+          });
+        }
+        if (res.data.userDetail.babybirthday2 != undefined) {
+          that.setData({
+            babybirthday2: res.data.userDetail.babybirthday2,
+          });
+        }
+        if (res.data.userDetail.address != undefined) {
+          that.setData({
+            address: res.data.userDetail.address,
+          });
+        }
+        if (res.data.userDetail.address != undefined) {
+          that.setData({
+            region: res.data.userDetail.address,
+          });
+        }
       }
     });
   },
@@ -432,9 +507,9 @@ Page({
         });
         break;
       case 'clear-address':
-      this.setData({
-        address:''
-      }) ; 
+        this.setData({
+          address: ''
+        });
     }
   },
   sendCode: function () {

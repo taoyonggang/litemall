@@ -6,9 +6,11 @@ var app = getApp();
 Page({
   data: {
     fromId: '',
-    isBack:'',
+    isBack: '',
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
+
+
     var that = this
     //如果 isBack 为 true，就返回上一页
     if (that.data.isBack) {
@@ -33,27 +35,44 @@ Page({
       };
 
     }
+    // 查看是否授权
+    wx.getSetting({
+      success: function (res) {
+
+        if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: function (res) {
+              console.log(res.userInfo)
+              //用户已经授权过
+            },
+          })
+        } else {
+          app.authorizedata.authorize = 1; //全局变量值的修改
+          console.log(app.authorizedata.authorize);   //全局变量修改后值的获取
+        }
+      }
+    })
 
   },
-  onReady: function() {
+  onReady: function () {
 
   },
-  onShow: function() {
+  onShow: function () {
     var that = this
     //如果 isBack 为 true，就返回上一页
     if (that.data.isBack) {
       wx.navigateBack()
     }
   },
-  onHide: function() {
+  onHide: function () {
     // 页面隐藏
 
   },
-  onUnload: function() {
+  onUnload: function () {
     // 页面关闭
 
   },
-  wxLogin: function(e) {
+  wxLogin: function (e) {
     if (e.detail.userInfo == undefined) {
       app.globalData.hasLogin = false;
       util.showErrorToast('微信登录失败');
@@ -64,21 +83,22 @@ Page({
       var that = this;
       user.loginByWeixin(e.detail.userInfo).then(res => {
         app.globalData.hasLogin = true;
-        if (that.data.fromId != ""){
-          wx.navigateTo({
-             url: "/pages/ucenter/userinfo/userinfo"
-
-           });
-        }else{
-          // wx.navigateBack({
-          //   delta: 1
-          // })
+        if (that.data.fromId != "" || app.authorizedata.authorize === 1) {
           wx.navigateTo({
             url: "/pages/ucenter/userinfo/userinfo"
-
           });
+         
+        } else {
+          wx.navigateBack({
+            delta: 1
+          })
+          // wx.navigateTo({
+          //   url: "/pages/ucenter/userinfo/userinfo"
+
+          // });
         }
-        
+        app.authorizedata.authorize = 0; //全局变量值的修改
+        console.log(app.authorizedata.authorize);   //全局变量修改后值的获取
       }).catch((err) => {
         app.globalData.hasLogin = false;
         util.showErrorToast('微信登录失败');
@@ -86,10 +106,10 @@ Page({
 
     });
   },
-  accountLogin: function() {
+  accountLogin: function () {
     wx.navigateTo({
       url: "/pages/auth/accountLogin/accountLogin"
-      
+
     });
   }
 })

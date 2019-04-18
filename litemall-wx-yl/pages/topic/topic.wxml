@@ -1,16 +1,24 @@
 <view class="container">
   <scroll-view class="topic-list" scroll-y="true" scroll-top="{{scrollTop}}">
-    <navigator class="item" wx:for="{{topicList}}" wx:key="id" url="../topicDetail/topicDetail?id={{item.id}}">
+    <navigator class="item" wx:if="{{topicType == 0}}"  wx:for="{{topicList}}" wx:key="id" url="../topicDetail/topicDetail?id={{item.id}}">
       <image class="img" src="{{item.picUrl}}"></image>
       <view class="info">
         <text class="title">{{item.title}}</text>
         <text class="desc">{{item.subtitle}}</text>
-        <text class="price">{{item.price}}元起</text>
+        <text class="desc">截止时间：{{item.endTime}}</text>
       </view>
     </navigator>
-    <view class="page" wx:if="{{showPage}}">
+     <navigator class="item" wx:if="{{topicType == 1}}"  wx:for="{{topicList}}" wx:key="id" url="../commonweal/commonweal?id={{item.id}}">
+      <image class="img" src="{{item.picUrl}}"></image>
+      <view class="info">
+        <text class="title">{{item.title}}</text>
+        <text class="desc">{{item.subtitle}}</text>
+        <text class="desc">截止时间：{{item.endTime}}</text>
+      </view>
+    </navigator>
+    <!-- <view class="page" wx:if="{{showPage}}">
       <view class="prev {{ page <= 1 ? 'disabled' : ''}}" bindtap="prevPage">上一页</view>
       <view class="next {{ (count / size) < page ? 'disabled' : ''}}" bindtap="nextPage">下一页</view>
-    </view>
+    </view> -->
   </scroll-view>
 </view>
