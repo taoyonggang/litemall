@@ -1,6 +1,7 @@
 package com.thrift.server;
 
 import java.security.Key;
+import java.util.Timer;
 import java.util.logging.Logger;
 
 
@@ -36,9 +37,7 @@ public class AyServiceRun {
 
 	public static String rsxml = null;
 	public static GetTokenResult result = null;
-	public static String xml_encrypt = null;
 	public static String privateKey = null;
-	public static String sign = null; // 加密后的数据进行签名
 
 	public static UserHandler handler;
 	public static AyService.Processor processor;
@@ -73,10 +72,15 @@ public class AyServiceRun {
 	 */
 	public static void main(String[] args) {
 		try {
+
 			if (!AyServiceRun.init()){
 				System.out.println("CRM Servcie connect failed.");
 				return;
 			}
+			Timer timer = new Timer();
+			//每12小时刷新token
+			timer.schedule(new TimerTaskRefresh(), 1000*60*60*12, 1000*60*60*12);
+
 			handler = new UserHandler();
 			processor = new AyService.Processor(handler);
 

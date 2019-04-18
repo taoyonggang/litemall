@@ -63,7 +63,7 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
             String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
                     "<userInfo>" +
                     "<company_id>"+company_id+"</company_id>" +
-                    "<mobiletel>"+user.getMobile()+"“”“”“”“”</mobiletel>" +
+                    "<mobiletel>"+user.getMobile()+"</mobiletel>" +
                     "<open_id>"+user.getWeixinOpenid()+"</open_id>" +
                     "<password>"+user.getPassword()+"</password>" +
                     "<user_type>"+user.getUser_type()+"</user_type>" +
@@ -76,10 +76,10 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
                     "<province>"+user.getProvince()+"</province>" +
                     "<address>"+user.getAddress()+"</address>" +
                     "<origin>"+user.getOrigin()+"</origin>" +
-                    "<referrer>"+user.getAvatar()+"</referrer>" +
+                    "<referrer>zy</referrer>" +
                     "</userInfo>";
             xml_encrypt = getXml_encrypt(AyServiceRun.key, xml);
-            sign = Coder.sign(AyServiceRun.xml_encrypt.getBytes(), AyServiceRun.privateKey);
+            sign = Coder.sign(xml_encrypt.getBytes(), AyServiceRun.privateKey);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
@@ -123,7 +123,7 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
         String xml_encrypt="",sign="";
         try {
             xml_encrypt = getXml_encrypt(AyServiceRun.key, xml);
-            sign = Coder.sign(AyServiceRun.xml_encrypt.getBytes(), AyServiceRun.privateKey);
+            sign = Coder.sign(xml_encrypt.getBytes(), AyServiceRun.privateKey);
             String rsxmlx = WebServiceExecuterNew.getUserSoapService(AyServiceRun.url, AyServiceRun.spName, AyServiceRun.spPassword).userQuery(AyServiceRun.result.getToken(), sign, xml_encrypt);
             Document document = getDocument(rsxmlx);
             HashMap map = new HashMap();
