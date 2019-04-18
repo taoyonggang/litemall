@@ -12,6 +12,7 @@ import org.apache.commons.io.IOUtils;
 import common.Coder;
 
 import org.dom4j.io.SAXReader;
+import sun.rmi.runtime.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,19 +25,33 @@ import java.security.Key;
 
 
 public class UserHandler implements com.thrift.server.AyService.Iface{
-    public static String url = "http://61.186.97.141:1211/wsi";
-    public static String spPassword = "f929a717f99cbdd94eaa499207b86404";
-    public static String spName = "b92705ab6294a656f8e073d6503bac55";
-    public static String key = "c9d4cce1a2014d3bba0e1d434ee2e5e7";
+    public static String url = "";
+    public static String spPassword = "";
+    public static String spName = "";
+    public static String key = "";
     public static Integer company_id = 6;
     public static String user_type = "member_user";
     public static String origin = "www.1897.com";
 
+    private static InputStream inStream = UserHandler.class.getClassLoader().getResourceAsStream("code.properties");
+    static {
+        Properties properties = new Properties();
+        try {
+            properties.load(inStream);
+            url = properties.get("url").toString();
+            spPassword = properties.get("spPassword").toString();
+            spName = properties.get("spName").toString();
+            key = properties.get("key").toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
     public static String rsxml = WebServiceExecuterNew.getWsiSoapService(url, spName, spPassword).generationToken();
     public static GetTokenResult result = JaxbMapper.fromXml(rsxml, GetTokenResult.class);
     public static String xml_encrypt = null;
     public static String privateKey = null;
     public static String sign = null; // 加密后的数据进行签名
+
     private String getXml_encrypt(String key, String xml) throws Exception {
 
         Key k = DESCoder.toKey(key.getBytes());
@@ -100,7 +115,7 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
                 return 0;
             }
         }
-        System.out.println("failed");
+        System.out.println("失败");
 
         return -1;
     }

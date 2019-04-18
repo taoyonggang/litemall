@@ -426,6 +426,7 @@ public class WxAuthController {
                 int r = crmService.addUser(user, codes);
                 if (r == -1) {//更新失败，保存信息，不更新积分
                     userService.updateById(user);
+
                     logger.error("crm add failed! with:" + user.toString() + "\n:" + codes);
                     return ResponseUtil.fail(USER_INFO_ERROR, "更新CRM用户数据有错误");
                 } else if (r == 0) { //已经存在，需要查询积分并同步积分
