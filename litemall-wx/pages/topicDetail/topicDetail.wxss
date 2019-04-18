@@ -1,3 +1,4 @@
+@import "../../lib/wxParse/wxParse.wxss";
 .content {
   width: 100%;
   height: auto;
@@ -304,5 +305,29 @@ background-color:#fff;
   width: 642rpx;
   font-size: 28rpx;
 }
+.bottomtab{
+  width:100%;
+  background:#ab2b2b;
+  height:90rpx;
+  position:fixed;
+  bottom:0px;
 
+}
+.bottomtab .laber1{
+  float:left;
+  width:100%;
+  font-size:30rpx;
+  border-right:1px solid #fff;
+  text-align:center;
+  line-height:90rpx;
+  color:#fff;
+}
+.bottomtab .laber2{
+  float:left;
+  width:49%;
+  font-size:30rpx;
+  text-align:center;
+  line-height:90rpx;
+  color:#fff;
+}
 @import "../../lib/wxParse/wxParse.wxss";

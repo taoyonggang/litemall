@@ -40,8 +40,8 @@ page {
 }
 
 .container .h .item.active .txt {
-  color: #ab2b2b;
-  border-bottom: 4rpx solid #ab2b2b;
+  color: #1c2e56;
+  border-bottom: 4rpx solid #1c2e56;
 }
 
 .container .b {
@@ -106,7 +106,7 @@ page {
 
 .container .b .discount {
   font-size: 50rpx;
-  color: #b4282d;
+  color: #1c2e56;
 }
 
 .container .b .min {
@@ -297,7 +297,7 @@ page {
   height: 70rpx;
   border: none;
   width: 168rpx;
-  background: #b4282d;
+  background: #1c2e56;
   border-radius: 0;
   line-height: 70rpx;
   color: #fff;

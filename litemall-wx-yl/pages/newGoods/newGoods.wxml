@@ -32,7 +32,11 @@
         <navigator class="item {{iindex % 2 == 0 ? 'item-b' : '' }}" url="../goods/goods?id={{iitem.id}}">
           <image class="img" src="{{iitem.picUrl}}" background-size="cover"></image>
           <text class="name">{{iitem.name}}</text>
-          <text class="price">￥{{iitem.retailPrice}}</text>
+          <text class="price" wx:if="{{ iitem.retailPrice > 0 }}">￥{{iitem.retailPrice}}</text>
+           <view wx:if="{{ iitem.integral > 0 }}">
+             <image  src="/static/images/integrallogo.png" style="width:30rpx;height:30rpx;position:absolute;margin-left:-37rpx;"></image>
+              <text class="price" style="float:left;margin-left:38rpx">{{iitem.integral}}</text>
+          </view>
         </navigator>
       </block>
     </view>

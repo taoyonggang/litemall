@@ -6,7 +6,7 @@ var app = getApp();
 Page({
   data: {
     type: 4,
-    abs:false,
+    abs: false,
     status: 0,
     page: 1,
     size: 8,
@@ -15,10 +15,12 @@ Page({
     showPage: false,
     hasMoreData: true,
     integralSum: 0,
-    ingegral:0,
+    ingegral: 0,
     integrals: [],
-    nickname:'',
-    avatar:''
+    nickname: '',
+    avatar: '',
+    userInfo: '',
+    hasLogin: false,
   },
   getIntegrals() {
     let that = this;
@@ -29,21 +31,43 @@ Page({
       abs: that.data.abs
     }).then(function (res) {
       if (res.errno === 0) {
-        that.setData({
-          integralSum: res.data.myIntegrals[0].sum,
-          nickname: res.data.myIntegrals[0].nickname,
-          avatar: res.data.myIntegrals[0].avatar,
-          integrals: that.data.integrals.concat(res.data.integrals),
-          totalPages: res.data.totalPages,
-          showPage: true,
-          scrollTop: 0,
-        });
+        if (res.data.myIntegrals.length === 0) {
+          that.setData({
+            integralSum: 0,
+            nickname: that.data.userInfo.nickName,
+            avatar: that.data.userInfo.avatarUrl,
+            integrals: that.data.integrals.concat(res.data.integrals),
+            totalPages: res.data.totalPages,
+            showPage: true,
+            scrollTop: 0,
+          })
+        } else {
+          that.setData({
+            integralSum: res.data.myIntegrals[0].sum,
+            nickname: res.data.myIntegrals[0].nickname,
+            avatar: res.data.myIntegrals[0].avatar,
+            integrals: that.data.integrals.concat(res.data.integrals),
+            totalPages: res.data.totalPages,
+            showPage: true,
+            scrollTop: 0,
+          });
+        }
+
       }
       wx.hideLoading();
     });
   },
-  onLoad: function(options) {
-    this.getIntegrals();
+  onLoad: function (options) {
+    //获取用户的登录信息
+    if (app.globalData.hasLogin) {
+      let userInfo = wx.getStorageSync('userInfo');
+      this.setData({
+        userInfo: userInfo,
+        hasLogin: true
+      });
+      this.getIntegrals();
+    }
+
   },
   onPullDownRefresh() {
     wx.showNavigationBarLoading() //在标题栏中显示加载

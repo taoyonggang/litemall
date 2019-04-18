@@ -55,6 +55,8 @@ Page({
             title: '捐赠成功',
             icon: 'success',
           });
+        } else {
+          util.showErrorToast(res.errmsg);
         }
 
       });

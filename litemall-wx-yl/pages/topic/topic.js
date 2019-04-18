@@ -3,6 +3,7 @@ var api = require('../../config/api.js');
 var app = getApp()
 Page({
   data: {
+    topicType: 0,
     topicList: [],
     page: 1,
     size: 10,
@@ -10,23 +11,29 @@ Page({
     scrollTop: 0,
     showPage: false
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
-    this.getTopic();
+    if (options.id) {
+      this.setData({
+        topicType: parseInt(options.id)
+      });
+      this.getTopic();
+    }
+
   },
-  onReady: function() {
+  onReady: function () {
     // 页面渲染完成
   },
-  onShow: function() {
+  onShow: function () {
     // 页面显示
   },
-  onHide: function() {
+  onHide: function () {
     // 页面隐藏
   },
-  onUnload: function() {
+  onUnload: function () {
     // 页面关闭
   },
-  nextPage: function(event) {
+  nextPage: function (event) {
     var that = this;
     if (this.data.page > that.data.count / that.data.size) {
       return true;
@@ -40,7 +47,7 @@ Page({
     this.getTopic();
 
   },
-  getTopic: function() {
+  getTopic: function () {
 
     let that = this;
     that.setData({
@@ -57,8 +64,9 @@ Page({
 
     util.request(api.TopicList, {
       page: that.data.page,
-      size: that.data.size
-    }).then(function(res) {
+      size: that.data.size,
+      topicType: that.data.topicType
+    }).then(function (res) {
       if (res.errno === 0) {
 
         that.setData({
@@ -72,7 +80,7 @@ Page({
     });
 
   },
-  prevPage: function(event) {
+  prevPage: function (event) {
     if (this.data.page <= 1) {
       return false;
     }

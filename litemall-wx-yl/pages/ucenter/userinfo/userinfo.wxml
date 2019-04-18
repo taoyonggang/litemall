@@ -6,7 +6,7 @@
      </view>
       <view class="form-box">
         <view class="form-item">
-          <input class="nickname" placeholder-style="color:#dddddd;" value="{{nickname}}" bindinput="nicknameInput" placeholder="姓名" />
+          <input class="nickname" placeholder-style="color:#dddddd;" value="{{memberUsername}}" bindinput="memberUsernameInput" placeholder="姓名" />
           <image class="clear" src="/static/images/nickname.png"></image>
         </view>
         <view class="form-item">
@@ -48,7 +48,12 @@
           </picker>
         </view>
         <view class="form-item">
-          <input class="address" placeholder-style="color:#dddddd;" value="{{address}}" bindtap="showCityPicker" placeholder="地址" disabled="false" />
+          <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+          <view class="fb-type">
+           <view class="type-label">{{region[0]}} {{region[1]}} {{region[2]}}</view>
+          </view>
+        </picker>
+          <!-- <input class="address" placeholder-style="color:#dddddd;" value="{{address}}" bindtap="showCityPicker" placeholder="地址" disabled="false" /> -->
           <image class="clear" src="/static/images/addressimg.png"></image>
         </view>
         <view class="form-item">
