@@ -35,10 +35,10 @@ public class AyServiceRun {
 
     private static final org.slf4j.Logger logger = org.slf4j.LoggerFactory.getLogger(AyServiceRun.class.getName());
 
-	public static String url = "http://wsapi.ausnutria.com:1111/wsi";
-	public static String spPassword = "bff7bc472d0bfc9c024fdd10751b355d";
-	public static String spName = "b92705ab6294a656f8e073d6503bac55";
-	public static String key = "e602df4dc47e41bdaea209d68b66fa45";
+	public static String url = "";
+	public static String spPassword = "";
+	public static String spName = "";
+	public static String key = "";
 
 	public static String rsxml = null;
 	public static GetTokenResult result = null;
