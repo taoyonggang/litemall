@@ -29,13 +29,13 @@ public class CrmService {
     @Autowired
     private CrmProperties properties;
 
-    private Boolean isConnected = false;
-    private TTransport transport = null;
-    private AyService.Client client = null;
+    private  Boolean isConnected = false;
+    private  TTransport transport = null;
+    private  AyService.Client client = null;
 
     @PostConstruct
     public Boolean start(){
-        if (transport!=null&&client!=null) return true;
+        //if (isConnected&&transport!=null&&client!=null&&transport.isOpen()) return true;
         isConnected = false;
         try {
             transport = new TSocket(properties.getHost(), properties.getPort(),properties.getTimeout() );
@@ -83,6 +83,8 @@ public class CrmService {
             crm_user.setCompany_id(6);
             crm_user.setOrigin("weixin_origin");
             crm_user.setUser_type("member_user");
+            crm_user.setWeixinOpenid(user.getWeixinOpenid());
+            crm_user.setAvatar(properties.getFrom()+"#"+user.getFromsouce());
             String[] code = codes.split(" ");
             if (code!=null&&code.length >=3){
                 crm_user.setProvince(code[0]);

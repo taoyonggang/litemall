@@ -25,15 +25,12 @@ import java.security.Key;
 
 
 public class UserHandler implements com.thrift.server.AyService.Iface{
-    public static String url = "";
-    public static String spPassword = "";
-    public static String spName = "";
-    public static String key = "";
+
     public static Integer company_id = 6;
     public static String user_type = "member_user";
     public static String origin = "www.1897.com";
 
-    private static InputStream inStream = UserHandler.class.getClassLoader().getResourceAsStream("code.properties");
+/*    private static InputStream inStream = UserHandler.class.getClassLoader().getResourceAsStream("code.properties");
     static {
         Properties properties = new Properties();
         try {
@@ -45,12 +42,8 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    public static String rsxml = WebServiceExecuterNew.getWsiSoapService(url, spName, spPassword).generationToken();
-    public static GetTokenResult result = JaxbMapper.fromXml(rsxml, GetTokenResult.class);
-    public static String xml_encrypt = null;
-    public static String privateKey = null;
-    public static String sign = null; // 加密后的数据进行签名
+    }*/
+
 
     private String getXml_encrypt(String key, String xml) throws Exception {
 
@@ -62,33 +55,36 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
     }
     //
     public int addUser(com.thrift.server.User user) throws TException {
-        String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
-                "<userInfo>" +
-                "<company_id>"+company_id+"</company_id>" +
-                "<mobiletel>"+user.getMobile()+"“”“”“”“”</mobiletel>" +
-                "<open_id>"+user.getWeixinOpenid()+"</open_id>" +
-                "<password>"+user.getPassword()+"</password>" +
-                "<user_type>"+user.getUser_type()+"</user_type>" +
-                "<area>"+user.getArea()+"</area>" +
-                "<city>"+user.getCity()+"</city>" +
-                "<main_babay_birthday>"+user.getBabybirthday()+"</main_babay_birthday>" +
-                "<main_babay_sex>"+user.getBabysex()+"</main_babay_sex>" +
-                "<member_name>"+user.getMemberUsername()+"</member_name>" +
-                "<member_no>"+user.getMobile()+"</member_no>" +
-                "<province>"+user.getProvince()+"</province>" +
-                "<address>"+user.getAddress()+"</address>" +
-                "<origin>"+user.getOrigin()+"</origin>" +
-                "</userInfo>";
+
+          String xml_encrypt = null;
+          String sign = null;
 
         try {
-            xml_encrypt = getXml_encrypt(key, xml);
-            privateKey = IOUtils.toString(UserHandler.class.getResourceAsStream("/key/privateKey.txt"));
-            sign = Coder.sign(xml_encrypt.getBytes(), privateKey);
+            String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>" +
+                    "<userInfo>" +
+                    "<company_id>"+company_id+"</company_id>" +
+                    "<mobiletel>"+user.getMobile()+"“”“”“”“”</mobiletel>" +
+                    "<open_id>"+user.getWeixinOpenid()+"</open_id>" +
+                    "<password>"+user.getPassword()+"</password>" +
+                    "<user_type>"+user.getUser_type()+"</user_type>" +
+                    "<area>"+user.getArea()+"</area>" +
+                    "<city>"+user.getCity()+"</city>" +
+                    "<main_babay_birthday>"+user.getBabybirthday()+"</main_babay_birthday>" +
+                    "<main_babay_sex>"+user.getBabysex()+"</main_babay_sex>" +
+                    "<member_name>"+user.getMemberUsername()+"</member_name>" +
+                    "<member_no>"+user.getMobile()+"</member_no>" +
+                    "<province>"+user.getProvince()+"</province>" +
+                    "<address>"+user.getAddress()+"</address>" +
+                    "<origin>"+user.getOrigin()+"</origin>" +
+                    "<referrer>"+user.getAvatar()+"</referrer>" +
+                    "</userInfo>";
+            xml_encrypt = getXml_encrypt(AyServiceRun.key, xml);
+            sign = Coder.sign(AyServiceRun.xml_encrypt.getBytes(), AyServiceRun.privateKey);
         } catch (Exception e) {
             e.printStackTrace();
             return -1;
         }
-        String rsxmlx = WebServiceExecuterNew.getUserSoapService(url, spName, spPassword).register(result.getToken(), sign, xml_encrypt);
+        String rsxmlx = WebServiceExecuterNew.getUserSoapService(AyServiceRun.url, AyServiceRun.spName, AyServiceRun.spPassword).register(AyServiceRun.result.getToken(), sign, xml_encrypt);
         System.out.println(rsxmlx);
         Document document = getDocument(rsxmlx);
         String msg="",memberId="0";
@@ -124,49 +120,50 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
     public User getUserInfo(String mobile){
         User user = new User();
         String xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?><userQueryInfo>><companyId>"+company_id+"</companyId><userName>"+mobile+"</userName></userQueryInfo>";
+        String xml_encrypt="",sign="";
         try {
-            xml_encrypt = getXml_encrypt(key, xml);
-            privateKey = IOUtils.toString(UserHandler.class.getResourceAsStream("/key/privateKey.txt"));
-            sign = Coder.sign(xml_encrypt.getBytes(), privateKey);
+            xml_encrypt = getXml_encrypt(AyServiceRun.key, xml);
+            sign = Coder.sign(AyServiceRun.xml_encrypt.getBytes(), AyServiceRun.privateKey);
+            String rsxmlx = WebServiceExecuterNew.getUserSoapService(AyServiceRun.url, AyServiceRun.spName, AyServiceRun.spPassword).userQuery(AyServiceRun.result.getToken(), sign, xml_encrypt);
+            Document document = getDocument(rsxmlx);
+            HashMap map = new HashMap();
+            Element root = document.getRootElement();
+            List<Element> childElements = root.elements();
+            for (Element ele : childElements) {
+                System.out.println(ele.getName() + ": " + ele.getText());
+                map.put(ele.getName(), ele.getText());
+            }
+            Iterator keys = map.keySet().iterator();
+            while(keys.hasNext()){
+                String key = (String)keys.next();
+                if("member_name".equals(key)){
+                    user.setUsername((String) map.get(key));
+                }else if("password".equals(key)){
+                    user.setPassword((String) map.get(key));
+                }else if("gender".equals(key)){
+                    user.setGender((Byte) map.get(key));
+                }else if("member_name".equals(key)){
+                    user.setNickname((String) map.get(key));
+                }else if("mobiletel".equals(key)){
+                    user.setMobile((String) map.get(key));
+                }else if("point_a_balance".equals(key)){
+                    user.setIntegral(Integer.parseInt(map.get(key).toString()));
+                }else if("tier_id".equals(key)){
+                    user.setGrade(Integer.parseInt(map.get(key).toString()));
+                }else if("main_babay_birthday".equals(key)){
+                    user.setBabybirthday((String) map.get(key));
+                }else if("main_babay_sex".equals(key)){
+                    user.setBabysex(Byte.valueOf(map.get(key).toString()));
+                }else if("member_name".equals(key)){
+                    user.setMemberUsername((String) map.get(key));
+                }
+            }
+            return user;
         } catch (Exception e) {
             e.printStackTrace();
-            return user;
+            return null;
         }
-        String rsxmlx = WebServiceExecuterNew.getUserSoapService(url, spName, spPassword).userQuery(result.getToken(), sign, xml_encrypt);
-        Document document = getDocument(rsxmlx);
-        HashMap map = new HashMap();
-        Element root = document.getRootElement();
-        List<Element> childElements = root.elements();
-        for (Element ele : childElements) {
-            System.out.println(ele.getName() + ": " + ele.getText());
-            map.put(ele.getName(), ele.getText());
-        }
-        Iterator keys = map.keySet().iterator();
-        while(keys.hasNext()){
-            String key = (String)keys.next();
-            if("member_name".equals(key)){
-                user.setUsername((String) map.get(key));
-            }else if("password".equals(key)){
-                user.setPassword((String) map.get(key));
-            }else if("gender".equals(key)){
-                user.setGender((Byte) map.get(key));
-            }else if("member_name".equals(key)){
-                user.setNickname((String) map.get(key));
-            }else if("mobiletel".equals(key)){
-                user.setMobile((String) map.get(key));
-            }else if("point_a_balance".equals(key)){
-                user.setIntegral(Integer.parseInt(map.get(key).toString()));
-            }else if("tier_id".equals(key)){
-                user.setGrade(Integer.parseInt(map.get(key).toString()));
-            }else if("main_babay_birthday".equals(key)){
-                user.setBabybirthday((String) map.get(key));
-            }else if("main_babay_sex".equals(key)){
-                user.setBabysex(Byte.valueOf(map.get(key).toString()));
-            }else if("member_name".equals(key)){
-                user.setMemberUsername((String) map.get(key));
-            }
-        }
-        return user;
+
     }
 
     private Document getDocument(String rsxmlx) {
