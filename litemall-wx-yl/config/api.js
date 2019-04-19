@@ -6,7 +6,7 @@
 // 云平台部署时使用
 // var WxApiRoot = 'http://122.152.206.172:8080/wx/';
 // 云平台上线时使用
-var WxApiRoot = 'https://yl.1897.com/wx/';
+ var WxApiRoot = 'https://yl.1897.com/wx/';
 
 //var utils = require('../utils/utils.js');
 

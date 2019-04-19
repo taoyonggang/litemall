@@ -454,8 +454,10 @@ Page({
           });
         }
         if (res.data.userDetail.address != undefined) {
+          var address1 = res.data.userDetail.address.trim().split(/\s+/);
+         console.log(address1);
           that.setData({
-            region: res.data.userDetail.address,
+            region: address1,
           });
         }
       }
