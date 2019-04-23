@@ -22,7 +22,7 @@ public class CommonRpc {
         request.setAction("SendSms");
         request.putQueryParameter("PhoneNumbers", "17301613520");
         request.putQueryParameter("SignName", "海普诺凯1897");
-        request.putQueryParameter("TemplateCode", "SMS_162547021");
+        request.putQueryParameter("TemplateCode", "SMS_162975031");
         String code = "{\"code\":123456}";
         request.putQueryParameter("TemplateParam", code);
         try {
