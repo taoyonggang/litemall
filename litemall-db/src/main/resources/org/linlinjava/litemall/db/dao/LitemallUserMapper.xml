@@ -31,6 +31,8 @@
     <result column="babysex" jdbcType="TINYINT" property="babysex" />
     <result column="babysex2" jdbcType="TINYINT" property="babysex2" />
     <result column="member_username" jdbcType="VARCHAR" property="memberUsername" />
+    <result column="regioncode" jdbcType="VARCHAR" property="regioncode" />
+    <result column="member_id" jdbcType="VARCHAR" property="memberId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--
@@ -106,7 +108,7 @@
     id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
     nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
     integral, grade, fromSouce, address, babybirthday, babybirthday2, babysex, babysex2, 
-    member_username
+    member_username, regioncode, member_id
   </sql>
   <select id="selectByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallUserExample" resultMap="BaseResultMap">
     <!--
@@ -146,7 +148,7 @@
         id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
           nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
           integral, grade, fromSouce, address, babybirthday, babybirthday2, babysex, babysex2, 
-          member_username
+          member_username, regioncode, member_id
       </otherwise>
     </choose>
     from litemall_user
@@ -208,7 +210,7 @@
         id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
           nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
           integral, grade, fromSouce, address, babybirthday, babybirthday2, babysex, babysex2, 
-          member_username
+          member_username, regioncode, member_id
       </otherwise>
     </choose>
     from litemall_user
@@ -247,8 +249,8 @@
       add_time, update_time, deleted, 
       integral, grade, fromSouce, 
       address, babybirthday, babybirthday2, 
-      babysex, babysex2, member_username
-      )
+      babysex, babysex2, member_username, 
+      regioncode, member_id)
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{gender,jdbcType=TINYINT}, 
       #{birthday,jdbcType=DATE}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, 
       #{userLevel,jdbcType=TINYINT}, #{nickname,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
@@ -256,8 +258,8 @@
       #{addTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{deleted,jdbcType=BIT}, 
       #{integral,jdbcType=INTEGER}, #{grade,jdbcType=INTEGER}, #{fromsouce,jdbcType=VARCHAR}, 
       #{address,jdbcType=VARCHAR}, #{babybirthday,jdbcType=DATE}, #{babybirthday2,jdbcType=DATE}, 
-      #{babysex,jdbcType=TINYINT}, #{babysex2,jdbcType=TINYINT}, #{memberUsername,jdbcType=VARCHAR}
-      )
+      #{babysex,jdbcType=TINYINT}, #{babysex2,jdbcType=TINYINT}, #{memberUsername,jdbcType=VARCHAR}, 
+      #{regioncode,jdbcType=VARCHAR}, #{memberId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.linlinjava.litemall.db.domain.LitemallUser">
     <!--
@@ -341,6 +343,12 @@
       <if test="memberUsername != null">
         member_username,
       </if>
+      <if test="regioncode != null">
+        regioncode,
+      </if>
+      <if test="memberId != null">
+        member_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="username != null">
@@ -414,6 +422,12 @@
       </if>
       <if test="memberUsername != null">
         #{memberUsername,jdbcType=VARCHAR},
+      </if>
+      <if test="regioncode != null">
+        #{regioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        #{memberId,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -509,6 +523,12 @@
       <if test="record.memberUsername != null">
         member_username = #{record.memberUsername,jdbcType=VARCHAR},
       </if>
+      <if test="record.regioncode != null">
+        regioncode = #{record.regioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="record.memberId != null">
+        member_id = #{record.memberId,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -544,7 +564,9 @@
       babybirthday2 = #{record.babybirthday2,jdbcType=DATE},
       babysex = #{record.babysex,jdbcType=TINYINT},
       babysex2 = #{record.babysex2,jdbcType=TINYINT},
-      member_username = #{record.memberUsername,jdbcType=VARCHAR}
+      member_username = #{record.memberUsername,jdbcType=VARCHAR},
+      regioncode = #{record.regioncode,jdbcType=VARCHAR},
+      member_id = #{record.memberId,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -628,6 +650,12 @@
       <if test="memberUsername != null">
         member_username = #{memberUsername,jdbcType=VARCHAR},
       </if>
+      <if test="regioncode != null">
+        regioncode = #{regioncode,jdbcType=VARCHAR},
+      </if>
+      <if test="memberId != null">
+        member_id = #{memberId,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -660,7 +688,9 @@
       babybirthday2 = #{babybirthday2,jdbcType=DATE},
       babysex = #{babysex,jdbcType=TINYINT},
       babysex2 = #{babysex2,jdbcType=TINYINT},
-      member_username = #{memberUsername,jdbcType=VARCHAR}
+      member_username = #{memberUsername,jdbcType=VARCHAR},
+      regioncode = #{regioncode,jdbcType=VARCHAR},
+      member_id = #{memberId,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectOneByExample" parameterType="org.linlinjava.litemall.db.domain.LitemallUserExample" resultMap="BaseResultMap">
@@ -697,7 +727,7 @@
         id, username, `password`, gender, birthday, last_login_time, last_login_ip, user_level, 
           nickname, mobile, avatar, weixin_openid, `status`, add_time, update_time, deleted, 
           integral, grade, fromSouce, address, babybirthday, babybirthday2, babysex, babysex2, 
-          member_username
+          member_username, regioncode, member_id
       </otherwise>
     </choose>
     from litemall_user
