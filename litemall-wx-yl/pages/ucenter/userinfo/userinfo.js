@@ -292,6 +292,10 @@ Page({
       util.showErrorToast('请输入地址');
       return false;
     }
+    if (that.data.regioncode == '') {
+      util.showErrorToast('请输入地址');
+      return false;
+    }
     if (that.data.mobile == '') {
       util.showErrorToast('请输入手机号');
       return false;
@@ -451,6 +455,11 @@ Page({
         if (res.data.userDetail.address != undefined) {
           that.setData({
             address: res.data.userDetail.address,
+          });
+        }
+        if (res.data.userDetail.regioncode != undefined) {
+          that.setData({
+            regioncode: res.data.userDetail.regioncode,
           });
         }
         if (res.data.userDetail.address != undefined) {
