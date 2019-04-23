@@ -85,8 +85,7 @@ public class CrmService {
                 crm_user.setPassword(md5Hex);
                 crm_user.setBabybirthday(DateTimeUtil.getDateDisplayString2(user.getBabybirthday()));
                 crm_user.setBabybirthday2(DateTimeUtil.getDateDisplayString2(user.getBabybirthday2()));
-                crm_user.setBabysex(user.getBabysex());
-                crm_user.setBabysex2(user.getBabysex2());
+
                 crm_user.setAddress(user.getAddress());
                 crm_user.setCompany_id(6);
                 crm_user.setOrigin("weixin_origin");
@@ -99,6 +98,12 @@ public class CrmService {
                     crm_user.setCity(code[1]);
                     crm_user.setArea(code[2]);
                 }
+                byte sex1 = user.getBabysex();
+                sex1 -= 1;
+                byte sex2 = user.getBabysex();
+                sex2 -= 1;
+                crm_user.setBabysex(sex1);
+                crm_user.setBabysex2(sex2);
                 logger.info("结束添加CRM用户");
                 return client.addUser(crm_user);
             }catch (Exception e) {

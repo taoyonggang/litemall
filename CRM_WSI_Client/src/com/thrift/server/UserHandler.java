@@ -4,6 +4,7 @@ import common.DESCoder;
 import common.GetTokenResult;
 import common.WebServiceExecuterNew;
 import jdk.nashorn.internal.runtime.regexp.joni.Regex;
+import org.apache.cxf.common.util.StringUtils;
 import org.apache.thrift.TException;
 import org.dom4j.*;
 import org.springside.modules.mapper.JaxbMapper;
@@ -105,7 +106,7 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
             if (msg!=null){
                 if (msg.contains("成功")) {
                     logger.debug("用户注册成功");
-                    return Integer.parseInt(memberId);
+                        return Integer.parseInt(memberId);
                 }
                 else if (msg.contains("已经注册")){
                     logger.debug("用户已经注册");
@@ -153,13 +154,13 @@ public class UserHandler implements com.thrift.server.AyService.Iface{
                     user.setNickname((String) map.get(key));
                 }else if("mobiletel".equals(key)){
                     user.setMobile((String) map.get(key));
-                }else if("point_a_balance".equals(key)){
+                }else if("point_a_balance".equals(key)/*&&StringUtils.isNumber(map.get(key).toString())*/){
                     user.setIntegral(Integer.parseInt(map.get(key).toString()));
-                }else if("tier_id".equals(key)){
+                }else if("tier_id".equals(key)/*&&StringUtils.isNumber(map.get(key).toString())*/){
                     user.setGrade(Integer.parseInt(map.get(key).toString()));
                 }else if("main_babay_birthday".equals(key)){
                     user.setBabybirthday((String) map.get(key));
-                }else if("main_babay_sex".equals(key)){
+                }else if("main_babay_sex".equals(key)/*&&StringUtils.isNumber(map.get(key).toString())*/){
                     user.setBabysex(Byte.valueOf(map.get(key).toString()));
                 }else if("member_name".equals(key)){
                     user.setMemberUsername((String) map.get(key));

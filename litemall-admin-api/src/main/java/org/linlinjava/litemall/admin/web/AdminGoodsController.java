@@ -6,14 +6,20 @@ import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.linlinjava.litemall.admin.annotation.RequiresPermissionsDesc;
 import org.linlinjava.litemall.admin.dao.GoodsAllinone;
 import org.linlinjava.litemall.admin.service.AdminGoodsService;
+import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.validator.Order;
 import org.linlinjava.litemall.core.validator.Sort;
 import org.linlinjava.litemall.db.domain.LitemallGoods;
+import org.linlinjava.litemall.db.domain.LitemallGoodsProduct;
+import org.linlinjava.litemall.db.domain.ProductStock;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.NotNull;
+import javax.xml.ws.Response;
+
+import static org.linlinjava.litemall.admin.util.AdminResponseCode.GOODS_UPDATE_NOT_ALLOWED;
 
 @RestController
 @RequestMapping("/admin/goods")
@@ -62,6 +68,24 @@ public class AdminGoodsController {
     @PostMapping("/update")
     public Object update(@RequestBody GoodsAllinone goodsAllinone) {
         return adminGoodsService.update(goodsAllinone);
+    }
+
+
+    /**
+     * 编辑商品
+     *
+     * @param goodsProduct
+     * @return
+     */
+    @RequiresPermissions("admin:goods:update")
+    @RequiresPermissionsDesc(menu = {"商品管理", "商品管理"}, button = "编辑")
+    @PostMapping("/updateProductStock")
+    public Object updateProductStock(@RequestBody LitemallGoodsProduct goodsProduct) {
+        if (goodsProduct!=null) {
+            adminGoodsService.updateProductStock(goodsProduct);
+            return ResponseUtil.ok();
+        };
+        return ResponseUtil.fail(GOODS_UPDATE_NOT_ALLOWED,"参数错误");
     }
 
     /**

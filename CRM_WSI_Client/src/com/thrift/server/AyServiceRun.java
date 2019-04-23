@@ -104,7 +104,7 @@ public class AyServiceRun {
             logger.info("开启定时刷新token任务，没有加锁");
 			Timer timer = new Timer();
 			//每12小时刷新token
-			timer.schedule(new TimerTaskRefresh(), 1000*60*60*12, 1000*60*60*12);
+			timer.schedule(new TimerTaskRefresh(), 1000*60*60*2, 1000*60*60*2);
 
 			handler = new UserHandler();
 			processor = new AyService.Processor(handler);

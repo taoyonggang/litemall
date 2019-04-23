@@ -31,6 +31,7 @@ public class UserInfoDetailService {
         userInfo.setBabysex(user.getBabysex());
         userInfo.setBabysex2(user.getBabysex2());
         userInfo.setMemberUsername(user.getMemberUsername());
+        userInfo.setRegioncode(user.getRegioncode());
         return userInfo;
     }
 }

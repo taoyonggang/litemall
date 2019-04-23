@@ -120,7 +120,7 @@ public class LitemallGrouponRulesService {
 
         LitemallGrouponRulesExample.Criteria criteria = example.createCriteria();
 
-        if (!StringUtils.isEmpty(goodsId)) {
+        if (!StringUtils.isEmpty(goodsId)&&StringUtils.isNumber(goodsId)) {
             criteria.andGoodsIdEqualTo(Integer.parseInt(goodsId));
         }
         criteria.andDeletedEqualTo(false);
@@ -133,7 +133,7 @@ public class LitemallGrouponRulesService {
         LitemallGrouponRulesExample example = new LitemallGrouponRulesExample();
         LitemallGrouponRulesExample.Criteria criteria = example.createCriteria();
 
-        if (!StringUtils.isEmpty(goodsId)) {
+        if (!StringUtils.isEmpty(goodsId)&&StringUtils.isNumber(goodsId)) {
             criteria.andGoodsIdEqualTo(Integer.parseInt(goodsId));
         }
         criteria.andDeletedEqualTo(false);

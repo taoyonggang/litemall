@@ -385,12 +385,14 @@ public class WxAuthController {
         String mobile = JacksonUtil.parseString(body, "mobile");
         String memberUsername = JacksonUtil.parseString(body, "memberUsername");
         String code = JacksonUtil.parseString(body, "code");
-        String codes = JacksonUtil.parseString(body, "regioncode");
+        String regioncode = JacksonUtil.parseString(body, "regioncode");
 
         if (StringUtils.isEmpty(memberUsername) || StringUtils.isEmpty(fromSource)
-                || StringUtils.isEmpty(babybirthday) || StringUtils.isEmpty(address)) {
+                || StringUtils.isEmpty(babybirthday) || StringUtils.isEmpty(address) || StringUtils.isEmpty(regioncode)){
             return ResponseUtil.badArgument();
         }
+
+        if (regioncode.length() < 5) return ResponseUtil.badArgument();
 
         LitemallUser user = userService.findById(userId);
         if (user == null) {
@@ -418,15 +420,16 @@ public class WxAuthController {
             user.setFromsouce(fromSource);
             user.setAddress(address);
             user.setMemberUsername(memberUsername);
+            user.setRegioncode(regioncode);
             if(mobile!=null&&!mobile.isEmpty()&&!mobile.contains("undefined"))
                 user.setMobile(mobile);
 
             if (crmProperties.getEnabled()) {
-                logger.debug("Update to crm with:"+user.toString()+"\n codes:"+codes);
-                int r = crmService.addUser(user, codes);
+                logger.debug("Update to crm with:"+user.toString()+"\n codes:"+regioncode);
+                int r = crmService.addUser(user, regioncode);
                 if (r == -1) {//更新失败，保存信息，不更新积分
                     userService.updateById(user);
-                    logger.error("crm add failed! with:" + user.toString() + "\n:" + codes);
+                    logger.error("crm add failed! with:" + user.toString() + "\n:" + regioncode);
                     return ResponseUtil.fail(USER_INFO_ERROR, "更新CRM用户数据有错误");
                 } else if (r == 0) { //已经存在，需要查询积分并同步积分
                     LitemallUser c_user = crmService.getUser(user.getMobile());
@@ -440,7 +443,7 @@ public class WxAuthController {
                     integralsService.updateIntegral(userId, 1, 1);
                 }
             }else{
-                logger.debug("don't update to crm with:"+user.toString()+"\n codes:"+codes);
+                logger.debug("don't update to crm with:"+user.toString()+"\n codes:"+regioncode);
                 userService.updateById(user);
                 integralsService.updateIntegral(userId, 1, 1);
             }

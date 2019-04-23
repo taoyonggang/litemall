@@ -1,10 +1,11 @@
 package org.linlinjava.litemall.db.service;
 
 import com.github.pagehelper.PageHelper;
+import org.linlinjava.litemall.db.dao.LitemallActivityMoreMapper;
 import org.linlinjava.litemall.db.dao.LitemallGoodsMapper;
-import org.linlinjava.litemall.db.domain.LitemallGoods;
+import org.linlinjava.litemall.db.domain.*;
 import org.linlinjava.litemall.db.domain.LitemallGoods.Column;
-import org.linlinjava.litemall.db.domain.LitemallGoodsExample;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
@@ -18,6 +19,9 @@ public class LitemallGoodsService {
     Column[] columns = new Column[]{Column.id, Column.name, Column.brief, Column.picUrl, Column.isHot, Column.isNew, Column.counterPrice, Column.retailPrice,Column.integral};
     @Resource
     private LitemallGoodsMapper goodsMapper;
+    @Resource
+    private LitemallActivityMoreMapper activityMoreMapper;
+
 
     /**
      * 获取热卖商品
@@ -297,5 +301,9 @@ public class LitemallGoodsService {
         LitemallGoodsExample example = new LitemallGoodsExample();
         example.or().andNameEqualTo(name).andIsOnSaleEqualTo(true).andDeletedEqualTo(false);
         return goodsMapper.countByExample(example) != 0;
+    }
+
+    public void updateProductStock(LitemallGoodsProduct stock){
+        activityMoreMapper.updateProductStock(stock);
     }
 }

@@ -43,6 +43,7 @@ public class AdminGoodsService {
     @Autowired
     private LitemallOrderGoodsService orderGoodsService;
 
+
     @Autowired
     private QCodeService qCodeService;
 
@@ -206,6 +207,13 @@ public class AdminGoodsService {
         qCodeService.createGoodShareImage(goods.getId().toString(), goods.getPicUrl(), goods.getName());
 
         return ResponseUtil.ok();
+    }
+
+    /**
+     * 更新商品某一规格库存
+     */
+    public void updateProductStock(LitemallGoodsProduct stock) {
+        goodsService.updateProductStock(stock);
     }
 
     @Transactional

@@ -14,6 +14,15 @@ public class UserInfoDetail extends UserInfo {
     private Byte babysex;
     private Byte babysex2;
     private String memberUsername;
+    private String regioncode;
+
+    public String getRegioncode() {
+        return regioncode;
+    }
+
+    public void setRegioncode(String regioncode) {
+        this.regioncode = regioncode;
+    }
 
     public String getMemberUsername() {
         return memberUsername;
