@@ -17,14 +17,14 @@ Page({
     },
     hasLogin: false,
     integral: {
-      type: 0,
       integralSum: 0,
       integral: [],
-      page: 1,
-      size: 10,
-      totalPages: 1
     },
     integralSum: 0,
+    type: 0,
+    page: 1,
+    size: 10,
+    totalPages: 1
   },
   changeData: function (data) {
     var options = { 'integral': this.data }
@@ -33,9 +33,9 @@ Page({
   onloadData: function () {
     let that = this;
     util.request(api.IntegralsIndex, {
-      type: that.data.integral.type,
-      page: that.data.integral.page,
-      size: that.data.integral.size
+      type: that.data.type,
+      page: that.data.page,
+      size: that.data.size
     }).then(function (res) {
       if (res.errno === 0) {
         that.setData({
@@ -45,10 +45,10 @@ Page({
       }
     });
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
   },
-  onReady: function() {
+  onReady: function () {
 
   },
   onShow: function () {
@@ -62,7 +62,7 @@ Page({
       });
 
       let that = this;
-      util.request(api.UserIndex).then(function(res) {
+      util.request(api.UserIndex).then(function (res) {
         if (res.errno === 0) {
           that.setData({
             order: res.data.order
@@ -70,30 +70,30 @@ Page({
         }
       });
     }
-      let that = this;
-      util.request(api.IntegralsIndex, {
-        type: that.data.integral.type,
-        page: that.data.integral.page,
-        size: that.data.integral.size
-      }).then(function (res) {
-        if (res.errno === 0) {
-          that.setData({
-            integral: res.data,
-            integralSum: res.data.integralSum,
-           // integrals: that.data.integrals.concat(res.data.integrals),
-           // totalPages: res.data.totalPages
-          });
-        }
-        wx.hideLoading();
-      });
+    let that = this;
+    util.request(api.IntegralsIndex, {
+      type: that.data.type,
+      page: that.data.page,
+      size: that.data.size
+    }).then(function (res) {
+      if (res.errno === 0) {
+        that.setData({
+          integral: res.data,
+          integralSum: res.data.integralSum,
+          // integrals: that.data.integrals.concat(res.data.integrals),
+          // totalPages: res.data.totalPages
+        });
+      }
+      wx.hideLoading();
+    });
 
 
   },
-  onHide: function() {
+  onHide: function () {
     // 页面隐藏
 
   },
-  onUnload: function() {
+  onUnload: function () {
     // 页面关闭
   },
   goLogin() {
@@ -125,9 +125,9 @@ Page({
       }
       wx.navigateTo({
         url: route,
-        success: function(res) {},
-        fail: function(res) {},
-        complete: function(res) {},
+        success: function (res) { },
+        fail: function (res) { },
+        complete: function (res) { },
       })
     } else {
       wx.navigateTo({
@@ -267,7 +267,7 @@ Page({
       });
     };
   },
-  bindPhoneNumber: function(e) {
+  bindPhoneNumber: function (e) {
     if (e.detail.errMsg !== "getPhoneNumber:ok") {
       // 拒绝授权
       return;
@@ -285,7 +285,7 @@ Page({
     util.request(api.AuthBindPhone, {
       iv: e.detail.iv,
       encryptedData: e.detail.encryptedData
-    }, 'POST').then(function(res) {
+    }, 'POST').then(function (res) {
       if (res.errno === 0) {
         wx.showToast({
           title: '绑定手机号码成功',
@@ -295,24 +295,24 @@ Page({
       }
     });
   },
-  goAfterSale: function() {
+  goAfterSale: function () {
     wx.showToast({
       title: '目前不支持',
       icon: 'none',
       duration: 2000
     });
   },
-  aboutUs: function() {
+  aboutUs: function () {
     wx.navigateTo({
       url: '/pages/about/about'
     });
   },
-  exitLogin: function() {
+  exitLogin: function () {
     wx.showModal({
       title: '',
       confirmColor: '#b4282d',
       content: '退出登录？',
-      success: function(res) {
+      success: function (res) {
         if (!res.confirm) {
           return;
         }
@@ -334,5 +334,5 @@ Page({
     wx.hideLoading();
     wx.hideNavigationBarLoading() //完成停止加载
     wx.stopPullDownRefresh() //停止下拉刷新
-    }
+  }
 })
