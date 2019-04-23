@@ -191,5 +191,10 @@
     ) as a
   </select>
 
+  <update id="updateProductStock"  parameterType="org.linlinjava.litemall.db.domain.LitemallGoodsProduct">
+    update litemall_goods_product set number = #{productStock.number}
+     where goods_id=#{productStock.goodsId} and specifications=#{productStock.specifications,jdbcType=VARCHAR,typeHandler=org.linlinjava.litemall.db.mybatis.JsonStringArrayTypeHandler} and deleted = 0
+   </update>
+
 
 </mapper>
