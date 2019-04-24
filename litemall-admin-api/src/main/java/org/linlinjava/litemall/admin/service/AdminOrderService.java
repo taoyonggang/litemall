@@ -15,6 +15,7 @@ import org.linlinjava.litemall.db.domain.LitemallOrder;
 import org.linlinjava.litemall.db.domain.LitemallOrderGoods;
 import org.linlinjava.litemall.db.domain.UserVo;
 import org.linlinjava.litemall.db.service.*;
+import org.linlinjava.litemall.db.util.IntegralStatus;
 import org.linlinjava.litemall.db.util.OrderUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -48,6 +49,8 @@ public class AdminOrderService {
     private WxPayService wxPayService;
     @Autowired
     private NotifyService notifyService;
+    @Autowired
+    private LitemallIntegralsService integralsService;
 
     public Object list(Integer userId, String orderSn, List<Short> orderStatusArray,
                        Integer page, Integer limit, String sort, String order) {
@@ -87,6 +90,7 @@ public class AdminOrderService {
      * 2. 管理员登录litemall管理后台点击退款操作进行订单状态修改和商品库存回库
      *
      * @param body 订单信息，{ orderId：xxx }
+     *
      * @return 订单退款操作结果
      */
     @Transactional
@@ -109,34 +113,49 @@ public class AdminOrderService {
             return ResponseUtil.badArgumentValue();
         }
 
-        // 如果订单不是退款状态，则不能退款
-        if (!order.getOrderStatus().equals(OrderUtil.STATUS_REFUND)) {
+        // 如果订单不是退款状态或者已经支付状态未发货，则不能退款
+        if (!(order.getOrderStatus().equals(OrderUtil.STATUS_REFUND)||order.getOrderStatus().equals(OrderUtil.STATUS_PAY))) {
             return ResponseUtil.fail(ORDER_CONFIRM_NOT_ALLOWED, "订单不能确认收货");
         }
 
-        // 微信退款
-        WxPayRefundRequest wxPayRefundRequest = new WxPayRefundRequest();
-        wxPayRefundRequest.setOutTradeNo(order.getOrderSn());
-        wxPayRefundRequest.setOutRefundNo("refund_" + order.getOrderSn());
-        // 元转成分
-        Integer totalFee = order.getActualPrice().multiply(new BigDecimal(100)).intValue();
-        wxPayRefundRequest.setTotalFee(totalFee);
-        wxPayRefundRequest.setRefundFee(totalFee);
+        if (order.getActualPrice().compareTo(new BigDecimal(0))>0) {
+            // 微信退款
+            WxPayRefundRequest wxPayRefundRequest = new WxPayRefundRequest();
+            wxPayRefundRequest.setOutTradeNo(order.getOrderSn());
+            wxPayRefundRequest.setOutRefundNo("refund_" + order.getOrderSn());
+            // 元转成分
+            Integer totalFee = order.getActualPrice().multiply(new BigDecimal(100)).intValue();
+            wxPayRefundRequest.setTotalFee(totalFee);
+            wxPayRefundRequest.setRefundFee(totalFee);
 
-        WxPayRefundResult wxPayRefundResult = null;
-        try {
-            wxPayRefundResult = wxPayService.refund(wxPayRefundRequest);
-        } catch (WxPayException e) {
-            e.printStackTrace();
-            return ResponseUtil.fail(ORDER_REFUND_FAILED, "订单退款失败");
+            WxPayRefundResult wxPayRefundResult = null;
+            try {
+                wxPayRefundResult = wxPayService.refund(wxPayRefundRequest);
+            } catch (WxPayException e) {
+                e.printStackTrace();
+                return ResponseUtil.fail(ORDER_REFUND_FAILED, "订单退款失败");
+            }
+            if (!wxPayRefundResult.getReturnCode().equals("SUCCESS")) {
+                logger.warn("refund fail: " + wxPayRefundResult.getReturnMsg());
+                return ResponseUtil.fail(ORDER_REFUND_FAILED, "订单退款失败");
+            }
+            if (!wxPayRefundResult.getResultCode().equals("SUCCESS")) {
+                logger.warn("refund fail: " + wxPayRefundResult.getReturnMsg());
+                return ResponseUtil.fail(ORDER_REFUND_FAILED, "订单退款失败");
+            }
         }
-        if (!wxPayRefundResult.getReturnCode().equals("SUCCESS")) {
-            logger.warn("refund fail: " + wxPayRefundResult.getReturnMsg());
-            return ResponseUtil.fail(ORDER_REFUND_FAILED, "订单退款失败");
-        }
-        if (!wxPayRefundResult.getResultCode().equals("SUCCESS")) {
-            logger.warn("refund fail: " + wxPayRefundResult.getReturnMsg());
-            return ResponseUtil.fail(ORDER_REFUND_FAILED, "订单退款失败");
+
+        if(order.getActualIntegral().compareTo(new BigDecimal(0)) > 0){
+            Integer result = integralsService.addIntegral("退款返回",
+                    order.getActualIntegral().intValue(),
+                    order.getUserId(),
+                    IntegralStatus.STATUS_CASH,
+                    IntegralStatus.EFFECTIVE_YES,
+                    order.getId());
+            if (result == -1){
+                logger.warn("refund fail with integral: " + order.getId());
+                return ResponseUtil.fail(ORDER_REFUND_FAILED, "订单退款失败");
+            }
         }
 
         // 设置订单取消状态
@@ -162,6 +181,13 @@ public class AdminOrderService {
 
         return ResponseUtil.ok();
     }
+
+    /**
+     * 强制直接退款
+     * 小心确认用户状态，不允许发货的，已经完成的交易退款，发货必须转为退货状态
+     * @param body
+     * @return
+     */
 
     /**
      * 发货
