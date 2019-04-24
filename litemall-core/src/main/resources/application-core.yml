@@ -116,10 +116,17 @@ litemall:
       secretKey: xxxxxx
       bucketName: litemall
 #二维码图片配置信息
-qrcode:
-   #codeurl:  https://hpnk.1897.com/activity/?id=
-   #imgageurl:  /opt/www/hpnk/dist/static/img/hpnk.jpg
-   codeUrl: https://yl.1897.com/activity/?id=
-   imgageUrl: /opt/www/hpnk/dist/static/img/yl.jpg
 
+  crm:
+    enabled: true
+    host: 127.0.0.1
+    port: 9090
+    timeout: 30000
+    from: yl
+
+qrcode:
+  #codeurl:  https://hpnk.1897.com/activity/?id=
+  #imgageurl:  /opt/www/hpnk/dist/static/img/hpnk.jpg
+  codeUrl: https://yl.1897.com/activity/?id=
+  imgageUrl: /opt/www/hpnk/dist/static/img/yl.jpg
 
