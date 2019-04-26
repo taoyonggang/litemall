@@ -434,11 +434,13 @@ public class WxAuthController {
                 } else if (r == 0) { //已经存在，需要查询积分并同步积分
                     LitemallUser c_user = crmService.getUser(user.getMobile());
                     user.setIntegral(c_user.getIntegral());
+                    user.setMemberId(c_user.getMemberId());
                     userService.updateById(user);
                     if (c_user != null && c_user.getIntegral() > 0) {
                         integralsService.updateIntegralFromCrm(userId, 1, 1, c_user.getIntegral());
                     }
                 } else if (r > 0) { //添加成功，使积分有效
+                    user.setMemberId(String.valueOf(r));
                     userService.updateById(user);
                     integralsService.updateIntegral(userId, 1, 1);
                 }
