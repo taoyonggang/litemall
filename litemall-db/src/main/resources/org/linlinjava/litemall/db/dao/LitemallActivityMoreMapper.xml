@@ -55,9 +55,13 @@
     litemall_topic.title,
     litemall_topic.add_time AS topic_add_time,
     litemall_topic.end_time,
+    litemall_topic.subtitle,
     litemall_user.username,
     litemall_user.nickname,
-    litemall_user.mobile
+    litemall_user.mobile,
+    litemall_user.member_username AS memberUsername,
+    litemall_user.babybirthday,
+    litemall_user.babybirthday2
     FROM
     litemall_activity ,
     litemall_topic ,
