@@ -17,9 +17,19 @@
 
       <el-table-column align="center" min-width="100px" label="活动名称" prop="title"/>
 
-      <el-table-column align="center" min-width="100px" label="用户昵称" prop="nickname"/>
+      <el-table-column align="center" min-width="100px" label="活动区域" prop="subtitle"/>
 
       <el-table-column align="center" min-width="100px" label="用户ID" prop="userId"/>
+
+      <el-table-column align="center" min-width="100px" label="用户昵称" prop="nickname"/>
+
+      <el-table-column align="center" min-width="100px" label="真实姓名" prop="memberUsername"/>
+
+      <el-table-column align="center" min-width="100px" label="手机号码" prop="mobile"/>
+
+      <el-table-column align="center" min-width="100px" label="宝宝生日（一胎）" prop="babybirthday"/>
+
+      <el-table-column align="center" min-width="100px" label="宝宝生日（二胎）" prop="babybirthday2"/>
 
       <el-table-column align="center" min-width="100px" label="推广人ID" prop="promoterId"/>
 
@@ -87,8 +97,8 @@ export default {
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['活动ID', '用户ID', '推广人ID', '活动来源', '参与时间']
-        const filterVal = ['activityId', 'userId', 'promoterId', 'orign', 'addTime']
+        const tHeader = ['活动ID', '活动名称', '活动区域', '用户ID', '用户昵称', '真实姓名', '手机号码', '宝宝生日（一胎）', '宝宝生日（二胎）', '推广人ID', '活动来源', '参与时间']
+        const filterVal = ['activityId', 'title', 'subtitle', 'userId', 'nickname', 'memberUsername', 'mobile', 'babybirthday', 'babybirthday2', 'promoterId', 'orign', 'addTime']
         excel.export_json_to_excel2(
           tHeader,
           this.list,

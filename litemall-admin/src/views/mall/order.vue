@@ -19,7 +19,7 @@
 
       <el-table-column align="center" label="用户ID" prop="userId"/>
 
-      <el-table-column align="center" label="订单状态" prop="orderStatus">
+      <el-table-column align="center" label="订单状态" width="100" prop="orderStatus">
         <template slot-scope="scope">
           <el-tag>{{ scope.row.orderStatus | orderStatusFilter }}</el-tag>
         </template>
@@ -39,11 +39,12 @@
 
       <el-table-column align="center" label="物流渠道" prop="shipChannel"/>
 
-      <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
+      <el-table-column align="center" label="操作" width="300" class-name="small-padding fixed-width">
         <template slot-scope="scope">
           <el-button v-permission="['GET /admin/order/detail']" type="primary" size="mini" @click="handleDetail(scope.row)">详情</el-button>
-          <el-button v-permission="['POST /admin/order/ship']" v-if="scope.row.orderStatus==201" type="primary" size="mini" @click="handleShip(scope.row)">发货</el-button>
-          <el-button v-permission="['POST /admin/order/refund']" v-if="scope.row.orderStatus==202" type="primary" size="mini" @click="handleRefund(scope.row)">退款</el-button>
+          <el-button v-permission="['POST /admin/order/ship']" v-if="scope.row.orderStatus==201" type="success" size="mini" @click="handleShip(scope.row)">发货</el-button>
+          <!-- <el-button v-permission="['POST /admin/order/refund']" v-if="scope.row.orderStatus==202" type="primary" size="mini" @click="handleRefund(scope.row)">退款</el-button> -->
+          <el-button v-permission="['POST /admin/order/refund']" v-if="scope.row.orderStatus==202||scope.row.orderStatus==201" type="danger" size="mini" @click="handleRefund(scope.row)">退款</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -139,6 +140,9 @@
         <el-form-item label="退款金额" prop="refundMoney">
           <el-input v-model="refundForm.refundMoney" :disabled="true"/>
         </el-form-item>
+        <el-form-item label="退款积分" prop="refundIntegral">
+          <el-input v-model="refundForm.refundIntegral" :disabled="true"/>
+        </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="refundDialogVisible = false">取消</el-button>
@@ -207,7 +211,8 @@ export default {
       shipDialogVisible: false,
       refundForm: {
         orderId: undefined,
-        refundMoney: undefined
+        refundMoney: undefined,
+        refundIntegral: undefined
       },
       refundDialogVisible: false,
       downloadLoading: false
@@ -274,6 +279,7 @@ export default {
     handleRefund(row) {
       this.refundForm.orderId = row.id
       this.refundForm.refundMoney = row.actualPrice
+      this.refundForm.refundIntegral = row.actualIntegral
 
       this.refundDialogVisible = true
       this.$nextTick(() => {

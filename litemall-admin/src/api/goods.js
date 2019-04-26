@@ -40,6 +40,15 @@ export function editGoods(data) {
   })
 }
 
+export function updateProductStock(data) {
+  console.log(data)
+  return request({
+    url: '/goods/updateProductStock',
+    method: 'post',
+    data
+  })
+}
+
 export function listCatAndBrand() {
   return request({
     url: '/goods/catAndBrand',

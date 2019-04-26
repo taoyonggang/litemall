@@ -175,9 +175,10 @@
             <img v-if="scope.row.url" :src="scope.row.url" width="40">
           </template>
         </el-table-column>
-        <el-table-column align="center" label="操作" width="100" class-name="small-padding fixed-width">
+        <el-table-column align="center" label="操作" width="200" class-name="small-padding fixed-width">
           <template slot-scope="scope">
             <el-button type="primary" size="mini" @click="handleProductShow(scope.row)">设置</el-button>
+            <el-button type="success" size="mini" @click="handleProductUpdate(scope.row)">更新</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -213,6 +214,22 @@
           <el-button type="primary" @click="handleProductEdit">确定</el-button>
         </div>
       </el-dialog>
+      <el-dialog :visible.sync="productUpdateVisiable" title="设置货品">
+        <el-form ref="productForm" :model="productForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
+          <el-form-item label="货品规格列" prop="specifications">
+            <el-tag v-for="tag in productForm.specifications" :key="tag">
+              {{ tag }}
+            </el-tag>
+          </el-form-item>
+          <el-form-item label="货品数量" prop="number">
+            <el-input v-model="productForm.number"/>
+          </el-form-item>
+        </el-form>
+        <div slot="footer" class="dialog-footer">
+          <el-button @click="productUpdateVisiable = false">取消</el-button>
+          <el-button type="primary" @click="handleProductEditUpdate">确定</el-button>
+        </div>
+      </el-dialog>
     </el-card>
 
     <el-card class="box-card">
@@ -227,7 +244,6 @@
           </template>
         </el-table-column>
       </el-table>
-
       <el-dialog :visible.sync="attributeVisiable" title="设置商品参数">
         <el-form ref="attributeForm" :model="attributeForm" status-icon label-position="left" label-width="100px" style="width: 400px; margin-left:50px;">
           <el-form-item label="商品参数名称" prop="attribute">
@@ -290,7 +306,7 @@
 </style>
 
 <script>
-import { detailGoods, editGoods, listCatAndBrand } from '@/api/goods'
+import { detailGoods, editGoods, listCatAndBrand, updateProductStock } from '@/api/goods'
 import { createStorage, uploadPath } from '@/api/storage'
 import Editor from '@tinymce/tinymce-vue'
 import { MessageBox } from 'element-ui'
@@ -314,6 +330,7 @@ export default {
       specForm: { specification: '', value: '', picUrl: '' },
       specifications: [{ specification: '规格', value: '标准', picUrl: '' }],
       productVisiable: false,
+      productUpdateVisiable: false,
       productForm: {
         id: 0,
         specifications: [],
@@ -324,6 +341,7 @@ export default {
       products: [
         { id: 0, specifications: ['标准'], price: 0.0, number: 0, url: '' }
       ],
+      goodsProduct: { id: 0, specifications: ['标准'], price: 0.0, number: 0, url: '' },
       attributeVisiable: false,
       attributeForm: { attribute: '', value: '' },
       attributes: [],
@@ -591,6 +609,10 @@ export default {
       this.productForm = Object.assign({}, row)
       this.productVisiable = true
     },
+    handleProductUpdate(row) {
+      this.productForm = Object.assign({}, row)
+      this.productUpdateVisiable = true
+    },
     uploadProductUrl: function(response) {
       this.productForm.url = response.data.url
     },
@@ -603,6 +625,35 @@ export default {
         }
       }
       this.productVisiable = false
+    },
+    handleProductEditUpdate() {
+      for (var i = 0; i < this.products.length; i++) {
+        const v = this.products[i]
+        if (v.id === this.productForm.id) {
+          this.products.splice(i, 1, this.productForm)
+          break
+        }
+      }
+      const finalGoods = {
+        goodsProduct: this.products[0]
+      }
+      updateProductStock(finalGoods.goodsProduct)
+        .then(response => {
+          this.$notify.success({
+            title: '成功',
+            message: '更新库存成功'
+          })
+          this.$router.push({ path: '/goods/list' })
+        })
+        .catch(response => {
+          MessageBox.alert('业务错误：' + response.data.errmsg, '警告', {
+            confirmButtonText: '确定',
+            type: 'error'
+          })
+        })
+      this.productUpdateVisiable = false
+    },
+    handleUpdate: function() {
     },
     handleAttributeShow() {
       this.attributeForm = {}
