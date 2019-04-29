@@ -12,8 +12,7 @@ view, image, text, navigator {
   margin: 0;
 }
 
-view, text {
+/* view, text {
   font-family: PingFangSC-Light, helvetica, 'Heiti SC';
   font-size: 29rpx;
-  color: #333;
-}
+}  */

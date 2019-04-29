@@ -1,7 +1,11 @@
-<view class="container">
-<view class="image-parent">
+<scroll-view class="container">
+<!-- <view class="image-parent">
   <image class='image' mode='widthFix' src="{{picUrl}}"></image>
-</view>
+</view> -->
+<scroll-view class="content">
+    <import src="../../lib/wxParse/wxParse.wxml" />
+    <template is="wxParse" data="{{wxParseData:topicDetail.nodes}}" />
+</scroll-view>    
   <view class="collect-list">
       <view  class="add-btn"><text class="integraltext">当前积分\n</text><text class="integraltext1">{{integralSum}}</text></view>
       <view class="input-box">
@@ -13,4 +17,4 @@
       <laber class="laber1" bindtap="listDnonate">历史查询</laber>
       <laber class="laber2" bindtap="rankDonate">榜单</laber>
     </view>
-</view>
+</scroll-view>

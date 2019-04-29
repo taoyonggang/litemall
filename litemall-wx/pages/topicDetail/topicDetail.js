@@ -1,9 +1,9 @@
-
+var app = getApp();
 var WxParse = require('../../lib/wxParse/wxParse.js');
 var utils = require('../../utils/utils.js');
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
-var app = getApp();
+
 
 
 Page({
@@ -82,8 +82,7 @@ Page({
                     topic: res.data.topic,
                     topicGoods: res.data.goods
                 });
-
-                WxParse.wxParse('topicDetail', 'html', res.data.topic.content, that);
+              WxParse.wxParse('topicDetail', 'html', res.data.topic.content, that, 0);
             }
         });
 

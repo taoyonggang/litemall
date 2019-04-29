@@ -1,4 +1,3 @@
-@import "../../lib/wxParse/wxParse.wxss";
 .content {
   width: 100%;
   height: auto;
@@ -331,3 +330,4 @@ background-color:#fff;
   color:#fff;
 }
 @import "../../lib/wxParse/wxParse.wxss";
+

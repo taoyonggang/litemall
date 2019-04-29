@@ -1,6 +1,6 @@
 var util = require('../../utils/util.js');
 var api = require('../../config/api.js');
-
+var WxParse = require('../../lib/wxParse/wxParse.js');
 var app = getApp();
 
 Page({
@@ -55,6 +55,7 @@ Page({
           topicGoods: res.data.goods,
           picUrl: res.data.topic.picUrl
         });
+        WxParse.wxParse('topicDetail', 'html', res.data.topic.content, that, 5);
       }
     });
     this.getIntegralsIndex();

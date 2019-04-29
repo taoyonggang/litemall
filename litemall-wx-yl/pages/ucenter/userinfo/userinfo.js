@@ -6,8 +6,8 @@ var app = getApp();
 
 Page({
   data: {
-    array: ['选择信息来源', '专业推荐', '活动推荐', '门店', '广告推荐', '自主注册', '其他'],
-    babysexarray: ['宝宝性别', '男', '女'],
+    array: ['专业推荐', '活动推荐', '门店', '广告推荐', '自主注册', '其他'],
+    babysexarray: ['*宝宝性别', '男', '女'],
     babysexarray2: ['宝宝性别（二胎）', '男', '女'],
     indexsex: 0,
     indexsex2: 0,
@@ -57,7 +57,7 @@ Page({
     babysex2: '',
     code: '',
     memberUsername: '',
-    region: ['地址'],
+    region: ['*地址'],
     // customItem: '全部',
     regioncode: '',
   },

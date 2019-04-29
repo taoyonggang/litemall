@@ -5,6 +5,7 @@
       <view class="info">
         <text class="title">{{item.title}}</text>
         <text class="desc">{{item.subtitle}}</text>
+        <text class="desc">开始时间：{{item.startTime}}</text>
         <text class="desc">截止时间：{{item.endTime}}</text>
         <!-- <text class="price">{{item.price}}元起</text> -->
       </view>
@@ -14,6 +15,7 @@
       <view class="info">
         <text class="title">{{item.title}}</text>
         <text class="desc">{{item.subtitle}}</text>
+        <text class="desc">开始时间：{{item.startTime}}</text>
         <text class="desc">截止时间：{{item.endTime}}</text>
       </view>
     </navigator>
