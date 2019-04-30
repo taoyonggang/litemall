@@ -4,6 +4,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.linlinjava.litemall.admin.annotation.RequiresPermissionsDesc;
+import org.linlinjava.litemall.core.util.DateTimeUtil;
 import org.linlinjava.litemall.core.util.RegexUtil;
 import org.linlinjava.litemall.core.util.ResponseUtil;
 import org.linlinjava.litemall.core.util.bcrypt.BCryptPasswordEncoder;
@@ -36,10 +37,18 @@ public class AdminUserController {
     @RequiresPermissionsDesc(menu={"用户管理" , "会员管理"}, button="查询")
     @GetMapping("/list")
     public Object list(String username, String mobile,
+                       String beginTime,String endTime,
                        @RequestParam(defaultValue = "1") Integer page,
                        @RequestParam(defaultValue = "10") Integer limit,
                        @Sort @RequestParam(defaultValue = "add_time") String sort,
                        @Order @RequestParam(defaultValue = "desc") String order) {
+        LitemallUser litemalluser =  new LitemallUser();
+        if(beginTime != null){
+            litemalluser.setAddTime(DateTimeUtil.StringToLocalDateTime(beginTime));
+        }
+        if(endTime != null){
+            litemalluser.setUpdateTime(DateTimeUtil.StringToLocalDateTime(endTime));
+        }
         List<LitemallUser> userList = userService.querySelective(username, mobile, page, limit, sort, order);
         int total = userService.countSeletive(username, mobile, page, limit, sort, order);
         Map<String, Object> data = new HashMap<>();

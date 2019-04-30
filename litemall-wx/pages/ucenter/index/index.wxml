@@ -3,6 +3,7 @@
     <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
     <view class="info">
       <text class="name">{{userInfo.nickName}}</text>
+      <text class="integrals">等级：{{gradename}}</text>
       <text class="integrals">积分：{{integralSum}}分</text>
     </view>
   </view>

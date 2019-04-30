@@ -15,6 +15,8 @@ public class UserInfoDetail extends UserInfo {
     private Byte babysex2;
     private String memberUsername;
     private String regioncode;
+    private Integer integral;
+    private Integer grade;
 
     public String getRegioncode() {
         return regioncode;
@@ -110,5 +112,21 @@ public class UserInfoDetail extends UserInfo {
 
     public void setBabysex2(Byte babysex2) {
         this.babysex2 = babysex2;
+    }
+
+    public Integer getIntegral() {
+        return integral;
+    }
+
+    public void setIntegral(Integer integral) {
+        this.integral = integral;
+    }
+
+    public Integer getGrade() {
+        return grade;
+    }
+
+    public void setGrade(Integer grade) {
+        this.grade = grade;
     }
 }

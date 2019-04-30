@@ -32,16 +32,35 @@ Page({
   },
   onloadData: function () {
     let that = this;
-    util.request(api.IntegralsIndex, {
-      type: that.data.type,
-      page: that.data.page,
-      size: that.data.size
+    util.request(api.GetUserDeatil, {
     }).then(function (res) {
       if (res.errno === 0) {
+        var integral = res.data.userDetail.integral;
+        var grade = res.data.userDetail.grade;
         that.setData({
-          integral: res.data,
-          integralSum: res.data.integralSum,
+          integralSum: res.data.userDetail.integral,
         });
+        if (grade === 0) {
+          that.setData({
+            gradename: '注册会员'
+          })
+        } else if (grade === 1) {
+          that.setData({
+            gradename: '普通会员'
+          })
+        } else if (grade === 2) {
+          that.setData({
+            gradename: '黄金会员'
+          })
+        } else if (grade === 3) {
+          that.setData({
+            gradename: '铂金会员'
+          })
+        } else if (grade === 4) {
+          that.setData({
+            gradename: '钻石会员'
+          })
+        }
       }
     });
   },
@@ -70,23 +89,37 @@ Page({
         }
       });
     }
-    let that = this;
-    util.request(api.IntegralsIndex, {
-      type: that.data.type,
-      page: that.data.page,
-      size: that.data.size
+    util.request(api.GetUserDeatil, {
     }).then(function (res) {
       if (res.errno === 0) {
+        var integral = res.data.userDetail.integral;
+        var grade = res.data.userDetail.grade;
         that.setData({
-          integral: res.data,
-          integralSum: res.data.integralSum,
-          // integrals: that.data.integrals.concat(res.data.integrals),
-          // totalPages: res.data.totalPages
+          integralSum: res.data.userDetail.integral,
         });
+        if (grade === 0) {
+          that.setData({
+            gradename: '注册会员'
+          })
+        } else if (grade === 1) {
+          that.setData({
+            gradename: '普通会员'
+          })
+        } else if (grade === 2) {
+          that.setData({
+            gradename: '黄金会员'
+          })
+        } else if (grade === 3) {
+          that.setData({
+            gradename: '铂金会员'
+          })
+        } else if (grade === 4) {
+          that.setData({
+            gradename: '钻石会员'
+          })
+        }
       }
-      wx.hideLoading();
     });
-
 
   },
   onHide: function () {

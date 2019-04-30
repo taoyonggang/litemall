@@ -42,11 +42,11 @@ page {
 }
 .profile-info .integrals {
   display: block;
-  height: 45rpx;
-  line-height: 45rpx;
-  color: #fff;
-  font-size: 30rpx;
-  margin-bottom: 10rpx;
+  line-height:40rpx;
+  color:#fff;
+  font-size:26rpx;
+  margin-bottom:4rpx;
+
 }
 .profile-info .level {
   display: block;
